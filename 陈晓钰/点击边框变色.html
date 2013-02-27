@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		div{
+			width:200px;
+			height:200px;
+			border:1px solid blue;
+		}
+		.show{
+			border:1px solid red;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="div1"></div>
+</body>
+<script>
+	var b=document.getElementById("div1");
+	b.onclick=function () {
+			
+			document.getElementById("div1").className="show";
+			}
+</script>
+</html>

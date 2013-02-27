@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		body,html{
+			height:100%;
+			margin:0;
+		}
+		.alert{
+			width:100%;
+			height:100%;
+			background:black;
+			opacity:0.4;
+			filter:alpha(opacity=40);
+			position:absolute;
+			left:0;
+			top:0;
+			z-index:1;
+			display:none;
+		}
+		.alertbox{
+			width:200px;
+			height:200px;
+			background:blue;
+			margin:100px auto;
+			position:absolute;
+			left:40%;
+			top:0;
+			z-index:2;
+			display:none;
+		}
+		.closebtn{
+			width:20px;
+			height:20px;
+			border-radius:10px;
+			background:gray;
+			position:absolute;
+			top:0;
+			right:0;
+		}
+	</style>
+</head>
+
+<body>
+	<input type="button" id="btn" value="点击" />
+	<div class="alert" id="alert"></div>
+	<div class="alertbox" id="alertbox">
+		<div class="closebtn" id="closebtn"></div>
+	</div>
+	
+	 <script type="text/javascript">
+	     var btn=document.getElementById("btn");
+		 btn.onclick=function () {
+			var a=document.getElementById("alert");
+			a.style.display="block";
+			var b=document.getElementById("alertbox");
+			b.style.display="block";
+		 }
+		 var closebtn=document.getElementById("closebtn");
+		 closebtn.onclick=function () {
+			var a=document.getElementById("alert");
+			a.style.display="none";	
+			var b=document.getElementById("alertbox");
+			b.style.display="none";
+		 }
+	  </script>            
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+	ul{
+		width:100px;
+		border:1px solid red;
+		list-style:none;
+		margin:0px;
+		padding:0px;
+	}
+	li{
+		width:100px;
+		height:30px;
+		
+	}
+	.show{
+		background:blue;
+	}
+	.show1{
+		background:gray;
+	}
+	</style>
+</head>
+
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+	<script>
+		var lis=document.getElementsByTagName("li");
+		for(var i=0;i<lis.length;i++){
+			if(i%2==0){
+				lis[i].className="show";
+			}else{
+				lis[i].className="show1";
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.showEffect{
+			border:3px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+	<div>5</div>
+	<input type="button" value="点击显示或隐藏" id="show" />
+	<script>
+		var divs=document.getElementsByTagName("div");
+		var btn1=document.getElementById("show");
+		btn1.onclick=function (){
+			for(var i=0;i<divs.length;i++){
+				if(divs[i].className=="showEffect"){
+					divs[i].className=" ";
+				}else{
+					divs[i].className="showEffect";
+				}
+			}
+		}
+		
+		/*
+		btn1.onclick=function () {
+			for(var i=0;i<divs.length;i++){
+				divs[i].className="showEffect";
+			}
+		}
+		var btn2=document.getElementById("hidden");
+		btn2.onclick=function () {
+			for(var i=0;i<divs.length;i++){
+				divs[i].className=" ";
+			}
+		}*/
+	</script>
+</body>
+</html>

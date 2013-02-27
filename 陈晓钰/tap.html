@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.nav{
+			width:300px;
+			height:100px;
+			border:1px solid red;
+		}
+		.nav div{
+			float:left;
+			width:98px;
+			height:98px;
+			border:1px solid blue;
+		}
+		.nav .show{
+			background:gray;
+		}
+		.con{
+			width:300px;
+			height:100px;
+			border:1px solid gray;
+		}
+		.con div{
+			width:298px;
+			height:98px;
+			border:1px solid green;
+			display:none;
+		}
+		.con .show1{
+			display:block;
+			
+		}
+	</style>
+</head>
+
+<body>
+	<div class="nav" id="div1">
+		<div class="show">1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+	<div class="con" id="div2">
+		<div class="show1">111</div>
+		<div>222</div>
+		<div>333</div>
+	</div>
+	<script>
+		//先获取nav下所有的div
+		//先获取con下所有的div
+		var navs=document.getElementById("div1").getElementsByTagName("div");
+		var cons=document.getElementById("div2").getElementsByTagName("div");
+		//点击谁就执行并且con的内容随着nav的改变而改变
+		function tap() {
+			for(var i=0;i<navs.length;i++){
+				if(navs[i]==this){
+					navs[i].className="show";
+					cons[i].className="show1";
+				}else{
+					navs[i].className="";
+					cons[i].className="";
+				}
+			}
+		}
+		//this事件的绑定
+		for(var i=0;i<navs.length;i++){
+			navs[i].onclick=tap;
+		}
+	</script>
+</body>
+</html>

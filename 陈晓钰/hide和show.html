@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		ul{
+			list-style:none;
+		}
+		div{
+			width:200px;
+		}
+		li{
+			float:left;
+			width:60px;
+			height:20px;
+			margin-left:10px;
+			margin-top:5px;
+			border:1px solid blue;
+		}
+		.show{
+			display:block;
+		}
+		.hidden{
+			display:none;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<ul class="hidden" id="hide">
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+		</ul>
+		<input type="button" value="更多" id="btn" />
+	</div>
+	<script>
+		var btn1=document.getElementById("btn");
+		var hid=document.getElementById("hide");
+		btn1.onclick=function(){
+			if(hid.className=='hidden'){
+				hid.className='show';
+			}else{
+				hid.className='hidden';
+			}
+		}
+	</script>
+</body>
+</html>

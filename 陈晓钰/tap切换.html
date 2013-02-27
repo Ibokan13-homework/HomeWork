@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.tap-nav{
+			width:300px;
+			height:50px;
+			border:1px solid red;
+			margin:50px auto 0;
+		}
+		.tap-nav div{
+			width:98px;
+			height:48px;
+			float:left;
+			border:1px solid blue;
+		}
+		.tap-nav .show{
+			background:gray;
+		}
+		
+		.tap-con div{
+			width:298px;
+			height:98px;
+			border:1px solid green;
+			margin:0 auto;
+			display:none;
+		}
+		.tap-con .show2{
+			display:block;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="tap-nav" id="nav">
+		<div class="show">1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+	<div class="tap-con" id="con">
+		<div class="show2">11</div>
+		<div>22</div>
+		<div>33</div>
+	</div>
+	<script>
+		var navs=document.getElementById("nav").getElementsByTagName("div");
+		var cons=document.getElementById("con").getElementsByTagName("div");
+		function a() {
+			for(var i=0;i<navs.length;i++){
+				if(navs[i]==this){
+					navs[i].className="show"
+					cons[i].className="show2"
+				}else{
+					navs[i].className=" "
+					cons[i].className=" "
+				}
+			}
+		}
+		for(var i=0;i<navs.length;i++){
+			navs[i].onclick=a;
+		}
+	</script>
+</body>
+</html>
