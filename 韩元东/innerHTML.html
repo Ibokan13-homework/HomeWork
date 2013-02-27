@@ -4,27 +4,249 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<title>innerHTML</title>
+	<meta name="description" content="博看文思HTML5-13班留言板">
+	<meta name="keywords" content="留言">
+	<title>博看文思HTML5-13班留言板</title>
+	<style type="text/css">
+		html, body, div, p, h1, h2, select, option, textarea, ul, li, span {
+			margin : 0;
+			padding: 0;
+			font-family: "微软雅黑", Arial;
+			font-size: 100%;
+			text-align: center;
+			color: white;
+		}
+		ul {
+			list-style: none;
+		}
+		.clearfix { zoom: 1; }
+		.clearfix:after {
+			content: ' ';
+			clear: both;
+			display: block;
+		}
+		h1 {
+			width: 100%;
+			line-height: 50px;
+			text-align: center;
+			font-size: 150%;
+			color: white;
+			background-color: #2369FF;
+		}
+		.inName {
+			width: 500px;
+			margin: 50px auto 0;
+		}
+		.inName p {
+			display: inline;
+			width: 20%;
+			line-height: 30px;
+			float: left;
+			text-align: left;
+			text-indent: 1em;
+			color: white;
+			background-color: #FFB000;
+		}
+		.inName select {
+			display: inline;
+			width: 79%;
+			height: 30px;
+			line-height: 20px;
+			padding: 5px 0;
+			border: none;
+			float: right;
+			text-align: left;
+			vertical-align: middle;
+			color: white;
+			font-weight: bold;
+			background-color: #FFB000;
+			cursor: pointer;
+		}
+		.inName select option {
+			text-align: left;
+		}
+		.inText {
+			width: 500px;
+			margin: 50px auto 0;
+		}
+		.inText p {
+			width: 100%;
+			line-height: 30px;
+			margin-bottom: 1%;
+			text-align: left;
+			text-indent: 1em;
+			background-color: #006718;
+		}
+		.inText div {
+			padding: 5px;
+			margin-bottom: 1%;
+			background-color: #008F21;
+		}
+		.inText textarea {
+			width: 100%;
+			border: none;
+			outline: none;
+			text-align: left;
+			text-indent: none;
+			resize: none;
+			color: #eee;
+			background-color: #008F21;
+		}
+		.inText .btn {
+			padding: 0;
+			background-color: transparent;
+		}
+		.btn span {
+			width: 49.5%;
+			line-height: 30px;
+			float: left;
+			background-color: #008F21;
+			cursor: pointer;
+		}
+		#clearBtn {
+			float: right;
+			color: #444;
+			font-style: italic;
+		}
+		.record {
+			width: 500px;
+			margin: 50px auto 0;
+		}
+		.recNameSpan {
+			width: 20%;
+			line-height: 30px;
+			margin-bottom: 1%;
+			float: left;
+			background-color: #D96400;
+		}
+		.recTextSpan {
+			width: 79%;
+			line-height: 30px;
+			margin-left: 1%;
+			margin-bottom: 1%;
+			float: left;
+			background-color: #D96400;
+		}
+		.recName {
+			width: 20%;
+			line-height: 30px;
+			border-bottom: 1px solid white;
+			float: left;
+			background-color: #D97C37;
+		}
+		.recText {
+			width: 77%;
+			height: 30px;
+			line-height: 30px;
+			border-bottom: 1px solid white;
+			padding: 0 1%;
+			float: right;
+			white-space: nowrap;
+			text-align: left;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			background-color: #D97C37;
+		}
+		.all {
+			height: auto;
+			white-space: normal;
+			word-wrap: break-word;
+			overflow: auto;
+		}
+	</style>
 </head>
 <body>
-	<input type="text" id="nameInput">
-	<button id="nameBtn">点击此处添加人名</button>
-	<input type="text" id="introInput">
-	<button id="introBtn">点击此处添加介绍</button>
-	<p id="mes">Oh What's Up?</p>
+	<h1>博看文思HTML5-13班留言板</h1>
+	<div class="inName clearfix">
+		<p>姓名：</p>
+		<select name="inName" id="inName">
+			<option value="陈小新">陈小新</option>
+			<option value="孙焕楠">孙焕楠</option>
+			<option value="陈晓钰">陈晓钰</option>
+			<option value="陈玮奇">陈玮奇</option>
+			<option value="黄贤达">黄贤达</option>
+			<option value="郜　婕">郜　婕</option>
+			<option value="王　智">王　智</option>
+			<option value="王　静">王　静</option>
+			<option value="孙立军">孙立军</option>
+			<option value="韦华东">韦华东</option>
+			<option value="周　浩">周　浩</option>
+			<option value="韩元东">韩元东</option>
+		</select>
+	</div>
+	<div class="inText">
+		<p>输入留言信息：</p>
+		<div>
+			<textarea name="inText" id="inText" cols="30" rows="10">点击输入留言信息</textarea> 
+		</div>
+		<div class="btn clearfix">
+			<span id="saveBtn">保存</span><span id="clearBtn">清空</span>
+		</div>
+	</div>
+	<div class="record clearfix">
+		<ul id="list">
+			<li class="clearfix"><span class="recNameSpan">姓名</span><span class="recTextSpan">留言内容</span></li>
+		</ul>
+	</div>
 	<script type="text/javascript">
-		var nameInput = document.getElementById("nameInput");
-		var nameBtn = document.getElementById("nameBtn");
-		var introInput = document.getElementById("introInput");
-		var introBtn = document.getElementById("introBtn");
-		var mes = document.getElementById("mes");
-		nameBtn.onclick = function () {
-			mes.innerHTML = mes.innerHTML + '<br \/>' + nameInput.value;
+		var inName   = document.getElementById("inName");
+		var inText   = document.getElementById("inText");
+		var saveBtn  = document.getElementById("saveBtn");
+		var clearBtn = document.getElementById("clearBtn");
+		var list     = document.getElementById("list");
+		var recTexts = list.getElementsByTagName('p');
+		var message  = '';
+
+		inText.onfocus = function() {
+			var temp   = this.value;
+			if ( temp  === "点击输入留言信息" ) {
+				this.value = '';
+			}
+		};
+		inText.onblur = function() {
+			var temp  = inText.value;
+			if ( temp === "" ) {
+				this.value = "点击输入留言信息";
+				message    = '';
+			} else {
+				message    = temp;
+			}
 		}
-		introBtn.onclick = function () {
-			mes.innerHTML = mes.innerHTML + '<br \/>' + introInput.value;;
+		
+		saveBtn.onclick  = function() {
+			if ( message == '' ) {
+				alert("不输入内容就想让我保存，开玩笑呢？");
+			} else {
+				saveMessage();
+			}
+		}
+		clearBtn.onclick = function() {
+			var warning  = confirm("确定要清空留言板里面的所有内容吗？");
+			if ( warning ) {
+				inText.value = "点击输入留言信息";
+			};
+		}
+		function saveMessage() {
+			var inName = document.getElementById("inName").value;
+			var inText = document.getElementById("inText").value;
+			var li     = document.createElement('li');
+			li.setAttribute('class','clearfix');
+			li.innerHTML = '<h2 class="recName">'+inName+'</h2><p class="recText">'+inText+'</p></li>';
+			list.appendChild(li);
+			console.log(recTexts.length);
+			addEvent();
+		}
+		function addEvent() {
+			for ( var i = 0; i < recTexts.length; i++ ) {
+				recTexts[i].onmousemove = function() {
+					this.className = 'recText' + ' ' + 'all';
+					console.log("HOVER")
+				}
+				recTexts[i].onmouseout = function() {
+					this.className = 'recText';
+					console.log("LEAVE");
+				}
+			}
 		}
 	</script>
 </body>
