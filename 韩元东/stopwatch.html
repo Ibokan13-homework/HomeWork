@@ -7,42 +7,58 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<title>秒表</title>
+	<style type="text/css">
+		.hour {
+			color: red;
+		}
+		.min {
+			color: blue;
+		}
+		.sec {
+			color: #555;
+		}
+	</style>
 </head>
 <body>
-	<span id="hour">00</span><span>:</span><span id="min">00</span><span>:</span><span id="sec">00</span>
+	<span id="hour" class="hour">00</span><span>:</span><span id="min" class="min">00</span><span>:</span><span id="sec" class="sec">00</span>
 	<script type="text/javascript">
-		var hour = document.getElementById("hour");
-		var min = document.getElementById("min");
-		var sec = document.getElementById("sec");
-		var time = 0;
+		var hour     = document.getElementById("hour");
+		var min      = document.getElementById("min");
+		var sec      = document.getElementById("sec");
+		var time     = 0;
+		var secTime  = 0;
+		var minTime  = 0;
+		var hourTime = 0;
 		function delay() {
-			sec.innerHTML = ++time;
+			secTime = ++time;
 			if ( time < 10 ) {
-				sec.innerHTML = '0' + time;
+				secTime = '0' + time;
 			}
-			else if ( time == 60 ) {
-				sec.innerHTML = '00';
-				time = 0;
-				min.innerHTML = Number(min.innerHTML) + 1;
-				if ( min.innerHTML < 10 ) {
-				min.innerHTML = '0' + Number(min.innerHTML);
+			else if ( time === 60 ) {
+				time    = 0;
+				secTime = '00';
+				minTime = Number(minTime) + 1;
+				if ( Number(minTime) < 10 ) {
+					minTime  = '0' + minTime;
 				}
-				else if ( min.innerHTML == 60 ) {
-					min.innerHTML = '00';
-					hour.innerHTML = Number(hour.innerHTML) + 1;
-					if ( hour.innerHTML < 10 ) {
-						hour.innerHTML = '0' + Number(hour.innerHTML);
+				else if ( Number(minTime) === 60 ) {
+					minTime  = '00';
+					hourTime = Number(hourTime) + 1;
+					if ( Number(hourTime) < 10 ) {
+						hourTime = '0' + hourTime;
 					}
-					else if ( hour.innerHTML == 60 ) {
+					else if ( Number(hourTime) === 60 ) {
 						alert("你没事干了？");
-						hour.innerHTML = '00';
+						hourTime   = '00';
 					};
+					hour.innerHTML = hourTime;
 				};
+				min.innerHTML      = minTime;
 			};
-			
-			setTimeout(delay, 1000);
+			sec.innerHTML          = secTime;
+			setTimeout(delay, 100);
 		}
-		setTimeout(delay, 1000);
+		setTimeout(delay, 100);
 	</script>
 </body>
 </html>
