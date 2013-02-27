@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+
+<body>
+	<input type="text" name="" id="e"/>
+	<input type="button" name="" value="添加人命"id="a" /><br />
+	<input type="text" name="" id="f"/>
+	<input type="button" name="" value="添加介绍"id="b"/>
+	<div style="font-size:20px;height:100px;width:200px;border:1px solid red;"id="c"></div>
+	<div style="font-size:20px;height:100px;width:200px;border:1px solid red;"id="d"></div>
+</body>
+<script>
+	var a=document.getElementById("a")
+	var c=document.getElementById("c")
+	var e=document.getElementById("e")
+	var d=document.getElementById("d")
+	var f=document.getElementById("f")
+	var b=document.getElementById("b")
+	a.onclick=function () {                                            
+		c.innerHTML=e.value+"<br/>"+c.innerHTML;
+	}
+	b.onclick=function () {
+		d.innerHTML=f.value+"<br/>"+d.innerHTML; 
+	}
+</script>
+</html>
