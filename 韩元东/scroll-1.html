@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可见区域宽度等于要滚动的图片总宽度</title>
+	<style type="text/css">
+		* { margin: 0; padding: 0; }
+		.clearfix { zoom: 1; }
+		.clearfix:after {
+			content: ' ';
+			clear: both;
+			display: block;
+		}
+		.boss {
+			width: 500px;
+			border: 1px solid green;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+		.slide {
+			width: 1000px;
+			height: 100px;
+		}
+		.wrap {
+			width: 500px;
+			height: 100px;
+			float: left;
+		}
+		.subwrap {
+			display: inline;
+			width: 98px;
+			height: 98px;
+			line-height: 98px;
+			border: 1px solid white;
+			/*margin: 5px;*/
+			float: left;
+			text-align: center;
+			font-size: 24px;
+			color: white;
+			background-color: red;
+		}
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="boss" class="boss clearfix">
+		<div id="slide" class="slide clearfix">
+			<div id="wrap" class="wrap">
+				<div class="subwrap">
+					<img src="img/1.jpg" alt="z">
+				</div>
+				<div class="subwrap">
+					<img src="img/2.jpg" alt="z">
+				</div>
+				<div class="subwrap">
+					<img src="img/3.jpg" alt="z">
+				</div>
+				<div class="subwrap">
+					<img src="img/4.jpg" alt="z">
+				</div>
+				<div class="subwrap">
+					<img src="img/5.jpg" alt="z">
+				</div>
+				
+			</div>
+			<div id="wrap2" class="wrap"></div>
+		</div>
+		
+	</div>
+	<script type="text/javascript">
+		var boss = document.getElementById("boss");
+		var slide = document.getElementById("slide");
+		var wrap = document.getElementById("wrap");
+		var wrap2 = document.getElementById("wrap2");
+		wrap2.innerHTML = wrap.innerHTML;
+		var control = null;
+		//scroll to left
+		
+		function scrollBoss() {
+			boss.scrollLeft += 2;
+			if (boss.scrollLeft == slide.clientWidth/2) {
+				boss.scrollLeft = 0;
+			}
+		}
+		
+		//scroll to right
+		/*
+		boss.scrollLeft = slide.clientWidth/2;
+		function scrollBoss() {
+			boss.scrollLeft -= 2;
+			if (boss.scrollLeft == 0) {
+				boss.scrollLeft = slide.clientWidth/2;
+			}
+		}
+		 */
+		var interTime = setInterval(scrollBoss, 10);
+		slide.onmousemove = function () {
+			console.log("HOVER");
+			clearInterval(interTime);
+		}
+		slide.onmouseout = function () {
+			interTime = setInterval(scrollBoss, 10);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>innerHTML</title>
+</head>
+<body>
+	<input type="text" id="nameInput">
+	<button id="nameBtn">点击此处添加人名</button>
+	<input type="text" id="introInput">
+	<button id="introBtn">点击此处添加介绍</button>
+	<p id="mes">Oh What's Up?</p>
+	<script type="text/javascript">
+		var nameInput = document.getElementById("nameInput");
+		var nameBtn = document.getElementById("nameBtn");
+		var introInput = document.getElementById("introInput");
+		var introBtn = document.getElementById("introBtn");
+		var mes = document.getElementById("mes");
+		nameBtn.onclick = function () {
+			mes.innerHTML = mes.innerHTML + '<br \/>' + nameInput.value;
+		}
+		introBtn.onclick = function () {
+			mes.innerHTML = mes.innerHTML + '<br \/>' + introInput.value;;
+		}
+	</script>
+</body>
+</html>

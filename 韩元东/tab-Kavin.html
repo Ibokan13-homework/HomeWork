@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		div, p, ul, li {
+			margin: 0; 
+			padding: 0;
+			list-style: none;
+		}
+		.clearfix { zoom: 1; }
+		.clearfix:after {
+			content: ' ';
+			clear: both;
+			display: block;
+		}
+		.nav .noMar-left {
+			margin-left: 0;
+		}
+		.wrap {
+			width: 310px;
+			margin: 0 auto;
+		}
+		.nav li {
+			display: inline;
+			width: 100px;
+			height: 30px;
+			line-height: 30px;
+			border-radius: 10px;
+			margin-left: 5px;
+			float: left;
+			background-color: purple;
+			text-align: center;
+			font-size: 14px;
+			color: white;
+			cursor: pointer;
+		}
+		.nav .navHide {
+			width: 98px;
+			height: 28px;
+			line-height: 28px;
+			border: 1px solid purple;
+			color: purple;
+			background-color: transparent;
+		}
+		.con {
+			margin-top: 20px;
+		}
+		.con li {
+			width: 300px;
+			height: 300px;
+			line-height: 300px;
+			border-radius: 10px;
+			margin: 0 auto;
+			background-color: blue;
+			text-align: center;
+			font-size: 30px;
+			color: green;
+			display: none;
+		}
+		.con .dspB {
+			display: block;
+		}
+		.con .dspN {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul id="nav" class="nav clearfix">
+			<li class="noMar-left">菜单1</li>
+			<li class="navHide">菜单2</li>
+			<li class="navHide">菜单3</li>
+		</ul>
+		<ul id="con" class="con">
+			<li class="dspB">内容1</li>
+			<li>内容2</li>
+			<li>内容3</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var nav = document.getElementById('nav');
+		var navLi = nav.getElementsByTagName('li');
+		var con = document.getElementById('con');
+		var conLi = con.getElementsByTagName('li');
+		//给菜单按钮添加点击事件
+		for ( var i = 0; i < navLi.length; i++ ) {
+			navLi[i].index = i;
+			navLi[i].onclick = function() {
+				// temp是点击的节点的序号
+				var temp = this.index;
+				// claName是跟当前点击序号一样序号的内容节点
+				var claName = conLi[temp].className;
+				for ( var j = 0; j < conLi.length; j++ ) {
+					//1. 这里是设置内容节点显示隐藏效果
+					//1.1 先将所有内容节点赋值成null,效果为隐藏
+					conLi[j].className = null;
+					//1.2 再将目标内容节点赋值dspB，效果为显示
+					conLi[temp].className = 'dspB';
+					//--------------------------
+					//2. 这里是设置菜单节点样式变换效果
+					//2.1 设置不点击样式
+					//    因为菜单第一个节点已经有一个类，所以进行判断。
+					if (j == 0) {
+						//2.1.1 当时第一个节点时保留原来的类，在加上navHide类
+						navLi[0].className = 'noMar-left' + ' ' + 'navHide';
+					} else {
+						//2.1.2 不是第一个节点时直接赋值navHide类
+						navLi[j].className = 'navHide';
+
+					};
+					//2.2 设置点击样式
+					//	  因为菜单第一个节点已经有一个类，所以进行判断
+					if (temp == 0) {
+						//2.2.1 当时第一个节点时保留noMar-left类
+						navLi[0].className = 'noMar-left';
+					} else {
+						//2.2.2 不是第一个节点时清空类
+						navLi[temp].className = null;
+					};
+				}
+				j = null;	//初始化变量j
+				//当点击内容节点为显示状态时，将其隐藏
+				if ( claName == 'dspB' ) {
+					conLi[temp].className = 'dspN';
+				}
+			}
+		}
+		i = null;
+	</script>
+
+	<script>
+	// var arrayOld = [1, 4, 56, 2, 5, 1];
+	// var array = [];
+	// for ( var i = 0; i < 100000; i++ ) {
+	// 	array = array.concat(arrayOld);
+	// }
+
+	// var sum = 0;
+	// var firstDateS = +new Date();
+	// for (i in array) {
+	//    sum = sum + array[i];
+	// };
+	// var firstDateF = +new Date(),
+	// 	firstFinish = firstDateF - firstDateS;
+	// console.log("firstFinish:"+firstFinish);
+
+	// var secondDateS = +new Date();
+	// for ( var i = 0; i < array.length; i++ ) {
+	// 	sum = sum + array[i];
+	// };
+	// var secondDateF = +new Date(),
+	// 	secondFinish = secondDateF - secondDateS;
+	// console.log("secondFinish:"+secondFinish);
+
+	// var thirdDateS = +new Date();
+	// sum = array.reduce(function(prev, cur, index, array){
+	// 	return prev + cur;
+	// });
+	// console.log(sum);
+	// var thirdDateF = +new Date(),
+	// 	thirdFinish = thirdDateF - thirdDateS;
+	// console.log("thirdFinish:"+thirdFinish);
+	</script>
+	<!-- homework -->
+	<style type="text/css">
+		.homework {
+			width: 320px;
+			margin: 50px auto 0 auto;
+			border-radius: 5px;
+			border: 1px solid green;
+		}
+		.list {
+			width: 310px;
+			padding: 5px;
+			margin: 0 auto;
+		}
+		.list li {
+			width: 100px;
+			height: 50px;
+			line-height: 50px;
+			margin: 2px 0 0 2px;
+			float: left;
+			text-align: center;
+		}
+		.list .noMar-top {
+			margin-top: 0;
+		}
+		.list .noMar-left {
+			margin-left: 0;
+		}
+		.show {
+			display: block;
+		}
+		.hide {
+			display: none;
+		}
+		.control {
+			width: 100px;
+			height: 50px;
+			line-height: 50px;
+			border: 1px solid red;			
+			border-radius: 10px;
+			margin: 0 auto;
+			clear: both;
+			text-align: center;
+			cursor: pointer;
+		}
+	</style>
+	<div class="homework">
+		<ul id="list" class="list clearfix">
+			<li class="noMar-top noMar-left">不动如山</li>
+			<li class="noMar-top">不动如山</li>
+			<li class="noMar-top">不动如山</li>
+			<li class="noMar-left">不动如山</li>
+			<li>不动如山</li>
+			<li>不动如山</li>
+			<li class="noMar-top">不动如山</li>
+			<li>不动如山</li>
+			<li>不动如山</li>
+			<li class="noMar-top">不动如山</li>
+			<li>不动如山</li>
+			<li>不动如山</li>
+
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+			<li class="hide">随风而动</li>
+		</ul>			
+		<p id="control" class="control">
+			<span class="show">风起</span>
+			<span class="hide">风止</span>
+		</p>
+	</div>
+	<script>
+		var list = document.getElementById("list");
+		var listLi = list.getElementsByTagName("li");
+		var control = document.getElementById("control");
+		var controlSpan = document.getElementsByTagName("span");
+		
+		control.onclick = function() {
+			var spanCla = controlSpan[0].className;
+			if (spanCla == "show") {
+				controlSpan[0].className = "hide";
+				controlSpan[1].className = "show";
+
+				for (var i = 12; i < listLi.length; i++) {
+					listLi[i].className = "show";
+				}
+				i = null;
+			} else {
+				controlSpan[1].className = "hide";
+				controlSpan[0].className = "show";
+
+				for (var i = 12; i < listLi.length; i++) {
+					listLi[i].className = "hide";
+
+				}
+				i = null;
+			};
+		};
+	</script>
+</body>
+</html>

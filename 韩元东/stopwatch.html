@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>Stopwatch</title>
+</head>
+<body>
+	<span id="hour">00</span><span>:</span><span id="min">00</span><span>:</span><span id="sec">00</span>
+	<script type="text/javascript">
+		var hour = document.getElementById("hour");
+		var min = document.getElementById("min");
+		var sec = document.getElementById("sec");
+		var time = 0;
+		function delay() {
+			var innerMin = min.innerHTML;
+			var innerHour = hour.innerHTML;
+			sec.innerHTML = ++time;
+			if ( time < 10 ) {
+				sec.innerHTML = '0' + time;
+			}
+			else if ( time == 60 ) {
+				sec.innerHTML = '00';
+				time = 0;
+				min.innerHTML = Number(min.innerHTML) + 1;
+				if ( min.innerHTML < 10 ) {
+				min.innerHTML = '0' + Number(min.innerHTML);
+				}
+				else if ( min.innerHTML == 60 ) {
+					min.innerHTML = '00';
+					hour.innerHTML = Number(hour.innerHTML) + 1;
+					if ( hour.innerHTML < 10 ) {
+						hour.innerHTML = '0' + Number(hour.innerHTML);
+					}
+					else if ( hour.innerHTML == 60 ) {
+						alert("你没事干了？");
+						hour.innerHTML = '00';
+					};
+				};
+			};
+			
+			setTimeout(delay, 1000);
+		}
+		setTimeout(delay, 1000);
+	</script>
+</body>
+</html>
