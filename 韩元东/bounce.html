@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="碰撞">
+	<meta name="keywords" content="碰撞">
+	<title>碰撞</title>
+	<style type="text/css">
+		html, body, div {
+			padding: 0;
+			margin: 0;
+		}
+
+		.wrap {
+			position: relative;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			width: 300px;
+			height: 200px;
+			border: 1px solid red;
+			margin: 200px auto 0;
+		}
+		.toy {
+			position: absolute;
+			left: 170px;
+			top: 0;
+			z-index: 1;
+			width: 20px;
+			height: 20px;
+			border-radius: 10px;
+			background-color: blue;
+		}
+		.control {
+			width: 260px;
+			border: 1px solid green;
+			padding: 10px 20px;
+			margin: 50px auto 0;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap" class="wrap">
+		<div id="toy" class="toy"></div>
+	</div>
+	<div class="control">
+		<button id="up">上</button>
+		<button id="down">下</button>
+		<button id="left">左</button>
+		<button id="right">右</button>
+	</div>
+	<script type="text/javascript">
+		var wrap        = document.getElementById("wrap");
+		var toy         = document.getElementById("toy");
+		
+		var up          = document.getElementById("up");
+		var down        = document.getElementById("down");
+		var left        = document.getElementById("left");
+		var right       = document.getElementById("right");
+
+		var toyWidth    = toy.clientWidth;
+		var toyHeight   = toy.clientHeight;
+		
+		var moveWidth   = wrap.clientWidth  - toy.clientWidth;
+		var moveHeight  = wrap.clientHeight - toy.clientHeight;
+		
+		var secMoveW    = toy.offsetLeft;
+		var secMoveH    = toy.offsetTop;
+		
+		var moveW_D     = 1;	//if (1) -> move to right;  if (-1) -> move to left
+		var moveH_D     = 1;	//if (1) -> move to bottom; if (-1) -> move to top
+		
+		var speed       = 2;  // move speed
+		var bounceSpeed = 30; // bounce speed
+		var bounceCount = 0;
+		
+		up.onclick = function() {
+			moveH_D = -1;
+		}
+		down.onclick = function() {
+			moveH_D = 1;
+		}
+		left.onclick = function() {
+			moveW_D = -1;
+		}
+		right.onclick = function() {
+			moveW_D = 1;
+		}
+		document.onkeydown = function(e) {
+			console.log(e.keyCode);
+			switch(e.keyCode) {
+				case 37: //left
+				moveW_D = -1
+				break;
+				case 38: //up
+				moveH_D = -1
+				break;
+				case 39: //right
+				moveW_D = 1
+				break;
+				case 40: //down
+				moveH_D = 1;
+			}
+		}
+		function bounceH() {
+			toy.style.height = (toy.clientHeight + 1) + 'px';
+			var time = setTimeout(bounceH, bounceSpeed);
+			if ( toy.clientHeight >= toyHeight ) { // (>=) -> has a bug: lianxu click btn can't if ture
+				clearTimeout(time);
+			}
+		}
+		function bounceW() {
+			toy.style.width = (toy.clientWidth + 1) + 'px';
+			var time = setTimeout(bounceW, bounceSpeed);
+			if ( toy.clientWidth >= toyWidth ) { // (>=) -> has a bug: lianxu click btn can't if ture
+				clearTimeout(time);
+			}
+		}
+		function move() {
+			if ( secMoveW !== 0 && secMoveW !== moveWidth && secMoveH === moveHeight ) {
+				console.log(1);
+				moveH_D = -1;
+				if ( bounceCount ) {
+					toy.style.height = toy.clientHeight/2 + 'px';
+					setTimeout(bounceH, bounceSpeed);
+				}
+			}
+			if ( secMoveW !== 0 && secMoveW !== moveWidth && secMoveH === 0 ) {
+				console.log(2);
+				moveH_D = 1;
+				if ( bounceCount ) {
+					toy.style.height = toy.clientHeight/2 + 'px';
+					setTimeout(bounceH, bounceSpeed);
+				}
+			}
+			if ( secMoveW === moveWidth && secMoveH !== moveHeight && secMoveH !== 0 ) {
+				console.log(3);
+				moveW_D = -1;
+				if ( bounceCount ) {
+					toy.style.width = toy.clientWidth/2 + 'px';
+					setTimeout(bounceW, bounceSpeed);
+				}
+			}
+			if ( secMoveW === 0 && secMoveH !== moveHeight && secMoveH !== 0 ) {
+				console.log(4);
+				moveW_D = 1;
+				if ( bounceCount ) {
+					toy.style.width = toy.clientWidth/2 + 'px';
+					setTimeout(bounceW, bounceSpeed);
+				}
+			}
+			if ( secMoveW === moveWidth && secMoveH === moveHeight ) {
+				console.log(5);
+				moveH_D = -1;
+				moveW_D = -1;
+				if ( bounceCount ) {
+					toy.style.width = toy.clientWidth/2 + 'px';
+					toy.style.height = toy.clientHeight/2 + 'px';
+					setTimeout(bounceW, bounceSpeed);
+					setTimeout(bounceH, bounceSpeed);
+				}
+			}
+			if ( secMoveW === 0 && secMoveH === 0 ) {
+				console.log(6);
+				moveH_D = 1;
+				moveW_D = 1;
+				if ( bounceCount ) {
+					toy.style.width = toy.clientWidth/2 + 'px';
+					toy.style.height = toy.clientHeight/2 + 'px';
+					setTimeout(bounceW, bounceSpeed);
+					setTimeout(bounceH, bounceSpeed);
+				}
+			}
+			if ( secMoveW === moveWidth && secMoveH === 0 ) {
+				console.log(7);
+				moveH_D = 1;
+				moveW_D = -1;
+				if ( bounceCount ) {
+					toy.style.width = toy.clientWidth/2 + 'px';
+					toy.style.height = toy.clientHeight/2 + 'px';
+					setTimeout(bounceW, bounceSpeed);
+					setTimeout(bounceH, bounceSpeed);
+				}
+			}
+			if ( secMoveW === 0 && secMoveH === moveHeight ) {
+				console.log(8);
+				moveH_D = -1;
+				moveW_D = 1;
+				if ( bounceCount ) {
+					toy.style.width = toy.clientWidth/2 + 'px';
+					toy.style.height = toy.clientHeight/2 + 'px';
+					setTimeout(bounceW, bounceSpeed);
+					setTimeout(bounceH, bounceSpeed);
+				}
+			}
+
+			secMoveW += moveW_D * speed;
+			secMoveH += moveH_D * speed;
+			console.log("secMoveW: " + secMoveW);
+			console.log("secMoveH: " + secMoveH);
+			toy.style.left = secMoveW + 'px';
+			toy.style.top  = secMoveH + 'px';
+
+			bounceCount = 1;
+			setTimeout(move, 17);
+		}
+		setTimeout(move, 17);
+	</script>
+</body>
+</html>
