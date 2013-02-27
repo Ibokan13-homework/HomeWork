@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.txt{
+			width:200px;
+			margin:10px 0;
+		}
+	</style>
+</head>
+
+<body>
+	<input class="txt" type="text" id="txt1" />
+	<br />
+	<textarea class="txt" id="txt2"></textarea>
+	<input type="button" id="btn" value="评论" />
+	<div class="con" id="con"></div>
+	<script type="text/javascript">
+		var btn=document.getElementById("btn");
+		var txt1=document.getElementById("txt1");
+		var txt2=document.getElementById("txt2");
+		var con=document.getElementById("con");
+		btn.onclick=function () {
+			con.innerHTML+="<br />名字:"+txt1.value+" 评论："+txt2.value;
+			txt1.value="";
+			txt2.value="";
+		}
+	</script>
+</body>
+</html>
