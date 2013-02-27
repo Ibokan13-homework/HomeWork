@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+
+<body>
+	<div>
+		<input type="text" name="" value="" id="val" />
+		<input type="button" name="" value="获取" id="btn" />
+	</div>
+	<div>
+		<input type="text" name="" value="" id="val2" />
+		<input type="button" name="" value="获" id="btn2" />
+	</div>
+	<div id="a"></div>
+	<div id="b"></div>
+</body>
+<script type="text/javascript">
+	var val=document.getElementById("val");
+	var val2=document.getElementById("val2");
+	var div=document.getElementById("a");
+	var div2=document.getElementById("b");
+	btn.onclick=function () {
+		//div.innerHTML=val.value;
+		//val.value="";
+		div.innerHTML=div.innerHTML+"<br />"+val.value;
+		val.value="";
+	}
+	btn2.onclick=function () {
+		//div2.innerHTML=val2.value;
+		//val2.value="";
+		div2.innerHTML=div2.innerHTML+"<br />"+val2.value;
+		val2.value="";
+	}
+</script>
+</html>

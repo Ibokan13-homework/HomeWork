@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		span{
+			font-size:200px;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<span id="hou">0</span>
+		<span>:</span>
+		<span id="min">0</span>
+		<span>:</span>
+		<span id="sec">0</span>
+	</div>
+</body>
+<script type="text/javascript">
+	var hou=document.getElementById("hou");
+	var min=document.getElementById("min");
+	var sec=document.getElementById("sec");
+	function time() {
+		sec.innerHTML++;
+		setTimeout(time,1000);
+		if (sec.innerHTML==60) {
+			min.innerHTML++;
+			sec.innerHTML=00;
+		}
+		if (min.innerHTML==60) {
+			hou.innerHTML++;
+			min.innerHTML=00;
+		}
+	};
+	time();
+	
+</script>
+</html>
