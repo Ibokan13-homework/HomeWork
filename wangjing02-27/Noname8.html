@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.outer{
+			width:400px;
+			height:400px;
+			overflow:auto;
+		}
+		.inner{
+			width:200px;
+			height:600px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id='outer' class='outer'>
+		<div id='inner' class='inner'>
+			还不赶紧回北京哪家好好看尽快回家好吧你还不赶紧回北京哪家好好看尽快回家好吧你还不赶紧回北京哪家好好看尽快回家好吧你还不赶紧回北京哪家好好看尽快回家好吧你还不赶紧回北京哪家好好看尽快回家好吧你还不赶紧回北京哪家好好看尽快回家好吧你还不赶紧回北京哪家好好看尽快回家好吧你还不赶紧回北京哪家好好看尽快回家好吧你还不赶紧回北京哪家好好看尽快回家好吧你还不赶紧回北京哪家好好看尽快回家好吧你还不赶紧回北京哪家好好看尽快回家好吧你
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var outer=document.getElementById('outer');
+	var inner=document.getElementById('inner');
+	outer.onclick=time;
+	function time(){
+		outer.scrollTop++;
+		setTimeout(time,10);
+	}
+	
+</script>
+
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.outer{
+			width:500px;
+			height:140px;
+			overflow:hidden;
+		}
+		.inner{
+			width:4000px;
+			
+		}
+	</style>
+</head>
+
+<body>
+	<div id='outer' class='outer'>
+		<div id='inner' class='inner'>
+			
+				<img src='images/img_h1.gif' alt='' />
+				<img src='images/img_h2.gif' alt='' />
+				<img src='images/img_h3.gif' alt='' />
+				<img src='images/img_h1.gif' alt='' />
+				<img src='images/img_h2.gif' alt='' />
+				<img src='images/img_h1.gif' alt='' />
+				<img src='images/img_h2.gif' alt='' />
+				<img src='images/img_h3.gif' alt='' />
+				<img src='images/img_h1.gif' alt='' />
+				<img src='images/img_h2.gif' alt='' />
+			</div>			 
+		</div>
+	</div>
+	
+</body>
+<script type="text/javascript">
+	var outer=document.getElementById('outer');
+	var inner1=document.getElementById('inner1');
+	/*var inner2=document.getElementById('inner2');*/
+	/*inner2.innerHTML=inner1.innerHTML;*/
+	setTimeout(imgscroll,10);
+	function imgscroll() {
+		outer.scrollLeft++;
+		
+		if (outer.scrollLeft==654) {
+			outer.scrollLeft=0;
+		}
+		setTimeout(imgscroll,10);
+	}
+
+</script>
+</html>

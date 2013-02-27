@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+
+<body>
+	<span>0</span>
+	<span>:</span>
+	<span>0</span>
+	<span>:</span>
+	<span>0</span>
+	<div id="now">0:0:0</div>
+	
+
+</body>
+<script type="text/javascript">
+	var spans=document.getElementsByTagName('span');
+	/*var nowDiv = document.getElementById("now");
+	var hour=0,minu=0,sec=0;
+	function time2() {
+		sec++;
+		if(sec == 60){
+			sec=0;
+			minu++;
+			if(minu == 60) {
+				minu=0;
+				hour++;
+			}
+		}
+		nowDiv.innerHTML = hour + "：" + minu + "：" + sec;
+	}*/
+	var hour=0;
+	var minute=0;
+	var second=0;
+	
+	function time() {
+		 spans[0].innerHTML=hour;
+		 spans[2].innerHTML=minute;
+		 spans[4].innerHTML=second;
+		second++;
+		if (second==60) {
+			/*spans[4].innerHTML=0;
+			spans[2].innerHTML++;*/
+			second=0;
+			minute++;
+		}
+		if (minute==60) {
+			/*spans[2].innerHTML=0;
+			spans[0].innerHTML++;*/
+			minute=0;
+			hour++;
+		}
+		setTimeout(time,10);
+	}
+	setTimeout(time,10);
+	/*setInterval(time2,10);*/
+</script>
+</html>
