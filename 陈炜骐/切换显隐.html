@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.show{
+		
+			border:10px solid red;
+		}
+		.abc{
+		border:10px solid green;
+			
+		}
+	</style>
+</head>
+	
+<body>
+	<div class="abc">1</div>
+	<div class="abc">2</div>
+	<div class="abc">3</div>
+	<div class="abc">4</div>
+	<div class="abc">5</div>
+	<div class="abc">6</div>
+	<div class="abc">7</div>
+	<input type="button" id="show" name="" value="显示/隐藏" />
+
+
+
+</body>
+	<script type="text/javascript">
+		var divs=document.getElementsByTagName("div")
+		var showBut=document.getElementById("show")
+			showBut.onclick = function(){
+				for(var i=0;i<divs.length;i++){
+					if(divs[i].className== "abc"){
+					divs[i].className="show"
+					}
+					else{
+					divs[i].className="abc"
+					}
+				}
+			}
+
+
+	</script>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.text{
+			width:200px;
+			height:100px;
+			margin:100px auto 20px;
+			border:1px solid red;
+		}
+		.ku{
+			width:200px;
+			margin:0 auto 20px;
+			text-align:center;
+		}
+		.liu{
+			width:200px;
+			margin:0 auto;
+			border:1px solid red;
+			height:300px;
+
+		}
+
+	</style>
+</head>
+
+<body>
+	<div id="texts" class="text">
+		<span id="hour">00</span>
+		<span>:</span>
+		<span id="min">00</span>
+		<span>:</span>
+		<span id="sec">00</span>
+	</div>
+	<div class="ku">
+		<input id="star" type="button" name="" value="开始" />
+		<input id="jilu" type="button" name="" value="记录" />
+		<input id="res" type="button" name="" value="重置" />
+	</div>
+	<div id="lius" class="liu">
+
+
+	</div>
+</body>
+<script>
+	var times=document.getElementById("texts")
+	var hour=document.getElementById("hour")
+	var mins=document.getElementById("min")
+	var sec=document.getElementById("sec")
+	var star=document.getElementById("star")
+	var jilu=document.getElementById("jilu")
+	var lius=document.getElementById("lius")
+	var res=document.getElementById("res")
+
+	
+	star.onclick=function time() {
+		sec.innerHTML++
+		if (sec.innerHTML>=60) {
+			sec.innerHTML="0"
+			mins.innerHTML++
+		}if (mins.innerHTML>=60) {
+			mins.innerHTML="0"
+			hour.innerHTML++
+		}
+		var t=setTimeout(time,1)
+		res.onclick=function () {
+	        clearTimeout(t);
+		    sec.innerHTML="0"
+		    mins.innerHTML="0"
+		    hour.innerHTML="0"
+	  }
+	}
+	
+	jilu.onclick=function () {
+		var a=times.innerHTML
+		lius.innerHTML=a+"<br />"+lius.innerHTML
+	}
+
+</script>
+</html>
