@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
-	<title>Stopwatch</title>
+	<title>秒表</title>
 </head>
 <body>
 	<span id="hour">00</span><span>:</span><span id="min">00</span><span>:</span><span id="sec">00</span>
@@ -16,8 +16,6 @@
 		var sec = document.getElementById("sec");
 		var time = 0;
 		function delay() {
-			var innerMin = min.innerHTML;
-			var innerHour = hour.innerHTML;
 			sec.innerHTML = ++time;
 			if ( time < 10 ) {
 				sec.innerHTML = '0' + time;
