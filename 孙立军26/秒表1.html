@@ -15,12 +15,12 @@
 	var h=m=s=0;
 	var time;
 	function autoAdd() {
-		if(m==59)
+		if(m>=60)
 		{
 			h++;
 			m=0;
 		}
-		else if(s==59){
+		else if(s>=60){
 			m++
 			s=0;
 		}
@@ -31,9 +31,9 @@
 		m=checkTime(m);
 		s=checkTime(s);
 		dis.innerHTML=h+":"+m+":"+s;
-		setTimeout(autoAdd,1000);
+		setTimeout(autoAdd,1);
 	}
-	setTimeout(autoAdd,1000);
+	setTimeout(autoAdd,1);
 	function checkTime(time) {
 		if(time<10)
 		{	time=time-"0";
