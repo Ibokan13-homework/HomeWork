@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.tt{
+			width:300px;
+			overflow:hidden;
+
+		}
+		.tt img{
+			float:left;
+		}
+		.cb{
+			clear:both;
+		}
+		.qq{
+		width:2000px;
+			overflow:hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="ttt" class="tt">
+		<div id="qqq" class="qq">
+			<img src="a.gif" />
+			<img src="b.gif" />
+			<img src="c.gif" />
+			<img src="d.gif" />
+			<img src="e.gif" />
+			<img src="a.gif" />
+			<img src="b.gif" />
+			<img src="c.gif" />
+			<img src="d.gif" />
+			<img src="e.gif" />
+		</div>
+	</div>
+
+
+</body>
+<script>
+	var qq=document.getElementById("qqq")
+	var tt=document.getElementById("ttt")
+	function gun() {
+		tt.scrollLeft++
+		if (tt.scrollLeft==408) {
+		tt.scrollLeft=0
+		}
+	}
+	setInterval(gun,1)
+
+
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		li{
+			height:40px;
+			width:200px;
+			border:1px solid red;
+		}
+		.lig{
+			background-color:gray;
+		}
+		.liw{
+			background-color:white;
+		}
+	</style>
+</head>
+
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+</body>
+
+
+<script>
+	var uls=document.getElementsByTagName("li")
+	for (var i=0; i<uls.length; i++) {
+		if (i%2==0) {
+			uls[i].className="liw"
+		}else{uls[i].className="lig"}
+	}
+
+
+
+</script>
+</html>
