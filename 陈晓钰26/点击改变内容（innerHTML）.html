@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		div{
+			width:300px;
+			height:300px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="a">1111</div>
+	<input type="button" value="点击改变" id="btn" />
+	<script>
+		var btn1=document.getElementById("btn");
+		//var a=document.getElementById("a");
+		btn1.onclick=function () {
+			if(a.innerHTML=='1111'){
+				a.innerHTML="345";
+			}else{
+				a.innerHTML="1111";
+			}
+			
+		}
+	</script>
+</body>
+</html>

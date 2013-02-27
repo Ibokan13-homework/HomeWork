@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.div1{
+			width:949px;
+			overflow:hidden;
+		}
+		.div2{
+			width:1899px;
+			overflow:hidden;
+		}
+		img{
+			float:left;
+			border:1px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="div1" id="a">
+		<div class="div2">
+			<img src="img/a.jpg" alt="pic" />
+			<img src="img/b.jpg" alt="pic" />
+			<img src="img/c.jpg" alt="pic" />
+			<img src="img/d.jpg" alt="pic" />
+			<img src="img/a.jpg" alt="pic" />
+			<img src="img/b.jpg" alt="pic" />
+			<img src="img/c.jpg" alt="pic" />
+			<img src="img/d.jpg" alt="pic" />
+		</div>
+	</div>
+	<script>
+		var a=document.getElementById("a");
+		a.scrollLeft=0;
+		function delay() {
+			a.scrollLeft++;
+			if(a.scrollLeft>=a.offsetWidth){
+				a.scrollLeft=0;
+			}
+			setTimeout(delay,18);
+		}
+		setTimeout(delay,18);
+	</script>
+</body>
+</html>

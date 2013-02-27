@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+
+<body>
+	<input type="text" id="btn" />
+	<input type="button" value="点击此处添加" id="btn1" />
+	<div id="div1"></div>
+	<script>
+		var div=document.getElementById("div1");
+		var btn1=document.getElementById("btn");
+		var btn=document.getElementById("btn1");
+		btn.onclick=function () {
+			div.innerHTML+="<br />"+btn1.value;
+		}
+	</script>
+</body>
+</html>

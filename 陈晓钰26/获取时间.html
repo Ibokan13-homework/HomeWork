@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.div1{
+			width:300px;
+			height:300px;
+			border:1px solid red;
+			margin:0 auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="div1" id="clock"></div>
+	<script>
+		function myclock() {
+			var today=new Date();
+			var hour=today.getHours();
+			var minute=today.getMinutes();
+			var second=today.getSeconds();
+			document.getElementById("clock").innerHTML="<h2>现在时间是:</h2>"+hour+":"+minute+":"+second;
+		}
+		setTimeout("myclock()","1000");
+	</script>
+</body>
+</html>
