@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.show{
+			display:block;
+		}
+		.hide{
+			display:none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="show">1</div>
+	<div class="show">2</div>
+	<div class="show">3</div>
+	<div class="show">4</div>
+	<input type="button" id="show" name="" value="显示/隐藏"/>
+	<script>
+		var a = [1,2,3,4,56,23422,23423,567,99];
+		//var b = a[0];
+		//b = b + a[1];
+		//b = b + a[2];
+		//b = b + a[3];
+	
+		var b = a[0];
+		for (var i=1; i<a.length; i++) {
+			b = b + a[i];
+		}
+		alert(b)
+
+	</script>
+</body>
+</html>

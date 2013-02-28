@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		li{
+			height:50px;
+			border:3px solid red;
+		}
+		.gray{
+			background:gray;
+		}
+		.black{
+			background:black;
+		}
+	</style>
+</head>
+
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+<script type="text/javascript">
+	var lis=document.getElementsByTagName('li');
+	for (var i=0; i<lis.length; i++) {
+		if (i%2==0) {
+			lis[i].className="gray";
+		}else{
+			lis[i].className="black";
+		}
+	} 
+</script>
+</html>

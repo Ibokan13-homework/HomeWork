@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.show{
+			display:block;
+		}
+		.hide{
+			display:none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="hide">1</div>
+	<div class="hide">2</div>
+	<div class="hide">3</div>
+	<div class="hide">4</div>
+	<input type="button" id="show" name="" value="显示/隐藏"/>
+	<script>
+		var divs = document.getElementsByTagName("div");
+		var s = document.getElementById("show")
+
+		s.onclick=function(){
+			if (divs[0].className == "hide") {
+				for (var i=0; i<divs.length; i++) {
+					divs[i].className = "show"
+				}
+			}else{
+				for (var i=0; i<divs.length; i++) {
+					divs[i].className = "hide";
+				}
+			}
+		}
+	</script>
+</body>
+</html>

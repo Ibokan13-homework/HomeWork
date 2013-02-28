@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.tab-nav{
+			overflow:hidden;
+			margin:0 auto;
+		}
+		.tab-nav div{
+			width:100px;
+			height:30px;
+			float:left;
+			/*background:red;*/
+			border:1px solid black;
+		}
+		.tab-con div{
+			height:300px;
+			width:306px;
+			background:yellow;
+		}
+		.select{
+			background:purple;
+		}
+		.show{
+			display:block;
+		}
+		.tab-con .hide{
+			display:none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class='tab-nav' id='tab-nav'>
+		<div class='nav1 select'>1</div>
+		<div class='nav2'>2</div>
+		<div class='nav3'>3</div>
+	</div>
+	<div class='tab-con' id='tab-con'>
+		<div class='con1' >1</div>
+		<div class='con2 hide'>2</div>
+		<div class='con3 hide'>3</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var navs=document.getElementById('tab-nav').getElementsByTagName('div');
+	var cons=document.getElementById('tab-con').getElementsByTagName('div');
+	/*navs[0].onclick=tab;
+	navs[1].onclick=tab;
+	navs[2].onclick=tab;*/
+	for (var i=0; i<navs.length; i++) {
+		navs[i].onclick=tab
+	}
+	function tab() {
+		for (var i=0; i<navs.length; i++) {
+			if (navs[i]==this) {
+				navs[i].className='select';
+				cons[i].className='show';
+			}
+			else {
+				navs[i].className='';
+				cons[i].className='hide';
+			}
+		}
+	}
+	/*function tab(){
+		if (navs[0]==this) {
+			navs[0].className='select';
+			cons[0].className='show';
+		}
+		else {
+			navs[0].className='';
+			cons[0].className='hide';
+		}
+		if (navs[1]==this) {
+			navs[1].className='select';
+			cons[1].className='show';
+		}
+		else {
+			navs[1].className='';
+			cons[1].className='hide';
+		}
+		if (navs[2]==this) {
+			navs[2].className='select';
+			cons[2].className='show';
+		}
+		else {
+			navs[2].className='';
+			cons[2].className='hide';
+
+		}
+	}
+*/
+   
+	
+</script>
+</html>

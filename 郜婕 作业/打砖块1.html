@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.big{
+			width:300px;
+			height:550px;
+			border:3px solid red;
+			margin:0 auto;
+			position:relative;
+		}
+		/*.small{
+		
+		}*/
+		.small-one{
+			width:300px;
+			height:100px;
+			background-color:gray;
+		}
+		.small-two{
+			width:300px;
+			height:100px;
+			background-color:blue;
+		}
+		.small-three{
+			width:30px;
+			height:30px;
+			border:1px solid black;
+			position:absolute;
+			left:134px; 
+			top:518px;
+		}
+		.san{
+			width:300px;
+			height:100px;
+			background-color:green;
+		}
+		.hid{
+			display:none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="big" id="big">
+		<div class="small-one" id="small-one"></div>
+		<div class="small-two" id="small-two"></div>
+		<div class="san" id="san"></div>
+		<div class="small-three" id="small-three"></div>
+	</div>
+	<!-- <div class="small">
+		
+	</div> -->
+	
+	<script type="text/javascript">
+		var bigbox=document.getElementById("big");
+		var one=document.getElementById("small-one");
+		var two=document.getElementById("small-two");
+		var three=document.getElementById("small-three");
+		var divs = bigbox.getElementsByTagName('div');
+		var wid=bigbox.clientWidth-three.offsetWidth;
+		var heg=bigbox.clientHeight-three.offsetHeight;
+		var a=134;//横向的宽度
+		var b=1;//
+		var c=518;//竖向的高度
+		var d=1;//
+		var hided = 0;//已经隐藏的块的数目
+		function run() {
+			if (b==1) {
+				a++;
+				if (a==wid) {
+					b=-1;
+				}
+			}else {
+				a--;
+				if (a==0) {
+					b=1;
+				}
+			}
+			if (d==1) {
+				c--;
+				if (c==(divs.length-1)*100-hided*100) {   //
+					d=-1;
+					if (divs.length-2-hided>=0) {
+						divs[divs.length-2-hided].className="hid";
+						hided++;
+					}
+				}
+			}else {
+				c++;
+				if (c==heg) {
+					d=1;
+				}
+				
+			}
+			
+			three.style.left=a+"px";
+			three.style.top=c+"px";
+		}
+		setInterval(run,1);
+	</script>
+</body>
+</html>

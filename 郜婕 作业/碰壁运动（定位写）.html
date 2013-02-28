@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.big{		
+			width:500px;
+			height:400px;
+			border:3px solid blue;
+			position:relative;
+		}
+		.small{
+			width:100px;
+			height:100px;
+			background-color:#abcdef;
+			position:absolute;
+			left:10px;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div class="big" id="bigbox">
+		<div class="small" id="smallbox"></div>
+	</div>
+	<!-- <div>a:<span id="apos"></span></div> -->
+	<script>
+		var bigbox=document.getElementById("bigbox");
+		var smallbox=document.getElementById("smallbox");
+		var wid=bigbox.clientWidth-smallbox.clientWidth;
+		var heg=bigbox.clientHeight-smallbox.clientHeight;
+		var a=0;
+		var b=1;
+		var c=0;
+		var d=1;
+		function run() {
+			if(b==1 /*&& a>=0*/){
+				a++;
+				if (a==wid) {
+					b=-1;
+					//alert("ok");
+				}
+				
+			} else{
+				a--;
+				if(a==0){
+					b=1;
+				}
+			}
+
+			if (d==1) {
+				c++;
+				if (c==heg) {
+					d=-1;
+				}
+
+			} else {
+				c--;
+				if (c==0) {
+					d=1;
+				}
+			}
+			smallbox.style.left=a+"px";
+			smallbox.style.top=c+"px";
+			//apos.innerHTML = a;	
+		}
+		setInterval(run,1);
+	</script>
+</body>
+</html>
