@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="弹砖块游戏">
+	<meta name="keywords" content="弹砖块游戏">
+	<title>弹砖块游戏</title>
+	<style type="text/css">
+		html, body, div, span {
+			padding: 0;
+			margin: 0;
+		}
+		body {
+			padding-top: 100px;
+		}
+		.inCount {
+			width: 360px;
+			margin: 0 auto;
+		}
+		.inCount input {
+			width: 50px;
+		}
+		.field {
+			position: relative;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			width: 200px;
+			height: 300px;
+			border: 1px solid red;
+			margin: 50px auto 0;
+		}
+		.brick {
+			position: absolute;
+			left: 0;
+			top: 0;;
+			z-index: 1px;
+			width: 18px;
+			height: 18px;
+			padding: 1px;
+			/*background-color: blue;*/
+		}
+		.brick span {
+			display: block;
+			width: 100%;
+			height: 100%;
+			background-color: blue;
+		}
+		#toy {
+			left: 130px;
+			/*left: 0;*/
+			top: 200px;
+			width: 20px;
+			height: 20px;
+			padding: 0;
+			background-color: green;
+		}
+		#brick {
+			visibility: hidden;
+		}
+		.hide {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="inCount">
+		<span>请输入砖块数：</span>
+		<input id="inCount" type="text" value="10">
+		<button id="subCount">提交</button>
+		<span><em>范围：(10-50)</em></span>
+	</div>
+	<div id="field" class="field">
+		<div id="toy" class="brick"></div>
+	</div>
+	<div id="brick" class="brick"></div>
+	<button id="stop">Stop</button>
+	<script type="text/javascript">
+		var field    = document.getElementById("field");
+		var inCount  = document.getElementById("inCount");
+		var subCount = document.getElementById("subCount");
+		var brick    = document.getElementById("brick");
+		var toy      = document.getElementById("toy");
+		var stop     = document.getElementById("stop");
+
+		var toyW = toy.clientWidth;
+		var toyH = toy.clientHeight;
+
+		var bricks = field.getElementsByTagName('div');
+		var brickW = brick.clientWidth;
+		var brickH = brick.clientHeight;
+		
+		var topLine = 0;
+
+		var brickCount = 10;
+
+		subCount.onclick = function() {
+			var temp = inCount.value;;
+			if ( temp ) {
+				if ( temp > 9 && temp < 51 ) {
+					brickCount = inCount.value;
+					addBricks();
+				} else {
+					alert("请输入范围内的数字！")
+				}
+			} else {
+				alert("请输入有效地数字！")
+			}
+			moveWidth  = parseInt(fieldW) - toyW;
+			moveHeight = parseInt(fieldH) - toyH;
+
+			for ( var i = bricks.length -1 ; i >= 0; i-- ) {
+				if ( bricks[i] !== toy ) {
+					field.removeChild(bricks[i]);
+				}
+			}
+			addBricks();
+		}
+
+		var bricks_left = [];
+		var bricks_top  = [];
+		var bricks_top_max  = 0;
+		var hideList    = [];
+		var fieldW = 0;
+		var fieldH = 0;
+		function addBricks() {
+			
+			for ( var i = 0; i < brickCount; i++ ) {
+				var div = document.createElement('div');
+				div.className = 'brick';
+				div.innerHTML = '<span></span>';
+				var divLeft = brickW * parseInt(i % 10) + 'px';
+				div.style.left = divLeft;
+				var divTop  = brickH * parseInt(i / 10) + 'px';
+				div.style.top  = divTop;
+				field.insertBefore(div, toy);
+				bricks_left[i] = parseInt(divLeft);
+				bricks_top[i]  = parseInt(divTop);
+			}
+
+			bricks_top_max  = Math.max.apply(Math, bricks_top);
+			topLine = bricks_top_max + 20;
+
+			fieldW = brickW * 10 + 'px';	// field width
+			fieldH = parseInt(brickCount/10) * brickH + 200 + 'px'; //field height
+			field.style.height = fieldH;
+			field.style.width  = fieldW;
+
+			for ( var i = 0; i < bricks_left.length; i++ ) {
+				hideList[i] = bricks_left[i];
+			}
+		}
+		addBricks();
+
+		var moveWidth  = parseInt(fieldW) - toyW;
+		var moveHeight = parseInt(fieldH) - toyH;
+
+		var secMoveW   = toy.offsetLeft;
+		var secMoveH   = toy.offsetTop;
+
+		var speed      = 2;  // move speed
+		var moveW_D    = -1;	//if (1) -> move to right;  if (-1) -> move to left
+		var moveH_D    = 1;	//if (1) -> move to bottom; if (-1) -> move to top
+		
+		var toLeft   = false;
+		var toRight  = false;
+		var toBottom = false;
+		function toyMove() {
+			if ( moveH_D === -1 ) { // to top
+				toyBounceT();
+				// console.log("topLine-==>"+topLine);
+				if ( secMoveH <= topLine ) {
+					moveH_D = 1; // change to bottom
+				}
+			}
+			if ( secMoveH >= moveHeight ) { // to bottom
+				moveH_D = -1; //change to top
+			} 
+
+			if ( moveW_D === 1) { // to right
+				toyBounceR();
+				if ( toLeft ) {
+					moveW_D = -1; //change to left
+					toLeft = false;
+				}
+			}
+			if ( moveW_D === -1) { // to left
+				toyBounceL();
+				if ( toRight ) {
+					moveW_D = 1; //change to right
+					toRight = false;
+				}
+			}
+			if ( secMoveW >= moveWidth ) {
+				moveW_D = -1; //change to left
+			}
+			if ( secMoveW <= 0 ) {
+				moveW_D = 1; // change to right
+			}
+			
+			
+			secMoveW += moveW_D * speed * 2;
+			secMoveH += moveH_D * speed;
+
+			toy.style.left = secMoveW + 'px';
+			toy.style.top  = secMoveH + 'px';
+
+			controlMove = setTimeout(toyMove, 1);
+		}
+		setTimeout(toyMove, 17);
+
+		stop.onclick = function() {
+			clearTimeout(controlMove);
+		}
+		function hide(node) {
+			node.className = 'brick' + ' ' +'hide';
+		}
+		// toyBounceT -> Bounce on top
+		function toyBounceT() {
+			// console.log("topLine->"+topLine)
+			if ( secMoveH === topLine ) {
+
+				var DsecMoveW = parseInt(secMoveW / brickW);
+				var CsecMoveW = (DsecMoveW * brickW);
+
+				for ( var i = 0; i < bricks_left.length; i++ ) {
+					var temp = bricks_left[i];
+					if ( temp === secMoveW ) {
+						if ( hideList[i] === 9999 ) {
+							// console.log("AAAAA")
+							// moveW_D *= 2;
+						} else {
+							// topLine = bricks_top_max + 20;
+							hide(bricks[i]);
+							hideList[i] = 9999;
+							// console.log("temp === secMoveW")
+						}
+					}
+					else if ( temp === CsecMoveW ) {
+						if ( hideList[i] === 9999 && hideList[i+1] === 9999 ) {
+							if ( topLine > 0 ) {
+								topLine -= brickH;
+							}
+						} else {
+							if ( topLine === 0 ) {
+								topLine = bricks_top_max + 20;
+							}
+							hide(bricks[i]);
+							hideList[i] = 9999;
+							// if ( bricks[i+1] !== toy ){
+								hide(bricks[i+1]);
+							// }
+							hideList[i+1] = 9999;
+							// console.log("temp === CsecMoveW ");
+						}
+					}
+				}
+			}
+			// console.log("topLine->"+topLine)
+		}
+		// toyBounceL -> bounce on left
+		function toyBounceL() {
+			var a = parseInt(secMoveW / brickW);
+			var tempW = a*brickW;
+			if ( secMoveH > 0 && secMoveH < brickH ) {
+				for ( var j = 0; j < hideList.length; j++ ) {
+					// console.log("tempW="+tempW+' '+"hideList[i]="+hideList[j])
+					if ( hideList[j] === tempW || hideList[j+10] === tempW ) {
+						// console.log("LLLL")
+						console.log(bricks[j])
+						hide(bricks[j]);
+						if ( bricks[j+10] ) {
+							hide(bricks[j+10]);
+						}
+						hideList[j] = 9999;
+						toRight = true;
+					}
+				}
+			}
+			else if ( secMoveH === 0 ) {
+				for ( var j = 0; j < hideList.length; j++ ) {
+					if ( hideList[j] === tempW ) {
+						hide(bricks[j]);
+						hideList[j] = 9999;
+						toRight = true;
+					}
+				}
+			}
+		}
+		// toyBounceR -> bounce on right
+		function toyBounceR() {
+			var a = parseInt(secMoveW / brickW);
+			var tempW = a*brickW + brickW;
+			if ( secMoveH > 0 && secMoveH < brickH ) {
+				for ( var j = 0; j < hideList.length; j++ ) {
+					// console.log("tempW="+tempW+' '+"hideList[i]="+hideList[j])
+					if ( hideList[j] === tempW || hideList[j+10] === tempW ) {
+						hide(bricks[j]);
+						if ( bricks[j+10] ) {
+							hide(bricks[j+10]);
+						}
+						hideList[j] = 9999;
+						toLeft = true;
+					}
+				}
+			}
+			else if ( secMoveH === 0 ) {
+				for ( var j = 0; j < hideList.length; j++ ) {
+					if ( hideList[j] === tempW ) {
+						hide(bricks[j]);
+						hideList[j] = 9999;
+						toLeft = true;
+					}
+				}
+			}
+		}
+		// toyBounceB -> Bounce on Bottom
+		function toyBounceB() {
+
+		}
+	</script>
+</body>
+</html>
