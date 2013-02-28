@@ -8,11 +8,38 @@
 	<meta name="keywords" content="碰撞">
 	<title>碰撞</title>
 	<style type="text/css">
-		html, body, div {
+		html, body, div, ul, li, h1, input, span {
 			padding: 0;
 			margin: 0;
 		}
-
+		ul { list-style: none; }
+		body {
+			padding-top: 50px;
+		}
+		.clearfix:after {
+			content: ' ';
+			clear: both;
+			display: block;
+		}
+		h1 {
+			width: 200px;
+			margin: 0 auto;
+		}
+		.inArg {
+			width: 550px;
+			margin: 50px auto 0;
+		}
+		.inXY {
+			width: 244px;
+			float: left;
+		}
+		input {
+			width: 100px;
+		}
+		.inWrap {
+			width: 274px;
+			float: right;
+		}
 		.wrap {
 			position: relative;
 			left: 0;
@@ -21,11 +48,11 @@
 			width: 300px;
 			height: 200px;
 			border: 1px solid red;
-			margin: 200px auto 0;
+			margin: 50px auto 0;
 		}
 		.toy {
 			position: absolute;
-			left: 170px;
+			left: 0;
 			top: 0;
 			z-index: 1;
 			width: 20px;
@@ -40,26 +67,61 @@
 			margin: 50px auto 0;
 			text-align: center;
 		}
+		.rule {
+			width: 500px;
+			margin: 50px auto 0;
+		}
 	</style>
 </head>
 <body>
+	<h1>得分：<span id="score">0</span></h1>
+	<div class="inArg clearfix">
+		<div class="inXY">
+			<span>X轴坐标：</span>
+			<input id="inX" type="text" value="0">
+			<br />
+			<span>Y轴坐标：</span>
+			<input id="inY" type="text" value="0">
+			<button id="start">开始</button>
+		</div>
+		<div class="inWrap">
+			<span>面积宽度：</span>
+			<input type="text" id="inW" value="300">
+			<br />
+			<span>面积高度：</span>
+			<input type="text" id="inH" value="200">
+			<button id="change">改变面积</button>
+		</div>
+	</div>
+	
 	<div id="wrap" class="wrap">
 		<div id="toy" class="toy"></div>
 	</div>
-	<div class="control">
+<!-- 	<div class="control">
 		<button id="up">上</button>
 		<button id="down">下</button>
 		<button id="left">左</button>
 		<button id="right">右</button>
+	</div> -->
+	<div class="rule">
+		<ul>
+			<li>1. 每一秒钟可以按一次方向键。</li>
+			<li>2. 按下的方向键与球体运动的方向相反时，球体减速，并加十分。</li>
+			<li>3. 按下的方向键与球体运动的方向相同时，球体加速，并减十分。</li>
+			<li>4. 分数达到0分游戏结束。</li>
+			<li>5. 球体运动速度达到最大游戏结束。</li>
+		</ul>
 	</div>
 	<script type="text/javascript">
+	// bounce code
 		var wrap        = document.getElementById("wrap");
 		var toy         = document.getElementById("toy");
-		
-		var up          = document.getElementById("up");
-		var down        = document.getElementById("down");
-		var left        = document.getElementById("left");
-		var right       = document.getElementById("right");
+		var score		= document.getElementById("score");
+
+		// var up          = document.getElementById("up");
+		// var down        = document.getElementById("down");
+		// var left        = document.getElementById("left");
+		// var right       = document.getElementById("right");
 
 		var toyWidth    = toy.clientWidth;
 		var toyHeight   = toy.clientHeight;
@@ -75,34 +137,128 @@
 		
 		var speed       = 2;  // move speed
 		var bounceSpeed = 30; // bounce speed
-		var bounceCount = 0;
-		
-		up.onclick = function() {
-			moveH_D = -1;
-		}
-		down.onclick = function() {
-			moveH_D = 1;
-		}
-		left.onclick = function() {
-			moveW_D = -1;
-		}
-		right.onclick = function() {
-			moveW_D = 1;
-		}
+		var firstBounce = false;  // judge first bounce
+		var bounceCount = 1;
+		var bounceAcc = 0.1;
+		var firstClick = true; //judge first click
+		var getScore = 0;
+		// up.onclick = function() {
+		// 	moveH_D = -1;
+		// }
+		// down.onclick = function() {
+		// 	moveH_D = 1;
+		// }
+		// left.onclick = function() {
+		// 	moveW_D = -1;
+		// }
+		// right.onclick = function() {
+		// 	moveW_D = 1;
+		// }
 		document.onkeydown = function(e) {
-			console.log(e.keyCode);
 			switch(e.keyCode) {
 				case 37: //left
-				moveW_D = -1
+				if ( moveW_D === 1 && bounceCount > 1 && firstClick && firstBounce ) {
+					bounceCount -= bounceAcc * 2;
+					console.log("Right");
+					getScore += 10;
+					score.innerHTML = getScore;
+					firstClick = false;
+					setTimeout(function(){
+						firstClick = true;
+					}, 1000);
+				}
+				else if ( moveW_D === -1 && bounceCount < 5 && firstClick && firstBounce ) {
+					bounceCount += bounceAcc;
+					console.log("Wrong");
+					getScore -= 10;
+					if ( getScore <= 0 ) {
+						gameOver();
+					} else {
+						score.innerHTML = getScore;
+					}
+					firstClick = false;
+					setTimeout(function(){
+						firstClick = true;
+					}, 1000);
+				}
 				break;
 				case 38: //up
-				moveH_D = -1
+				if ( moveH_D === 1 && bounceCount > 1 && firstClick && firstBounce ) {
+					bounceCount -= bounceAcc * 2;
+					console.log("Right");
+					getScore += 10;
+					score.innerHTML = getScore;
+					firstClick = false;
+					setTimeout(function(){
+						firstClick = true;
+					}, 1000);
+				}
+				else if ( moveH_D === -1 && bounceCount < 5 && firstClick && firstBounce ) {
+					bounceCount += bounceAcc;
+					console.log("Wrong");
+					getScore -= 10;
+					if ( getScore <= 0 ) {
+						gameOver();
+					} else {
+						score.innerHTML = getScore;
+					}
+					firstClick = false;
+					setTimeout(function(){
+						firstClick = true;
+					}, 1000);
+				}
 				break;
 				case 39: //right
-				moveW_D = 1
+				if ( moveW_D === -1 && bounceCount > 1 && firstClick && firstBounce ) {
+					bounceCount -= bounceAcc * 2;
+					console.log("Right");
+					getScore += 10;
+					score.innerHTML = getScore;
+					firstClick = false;
+					setTimeout(function(){
+						firstClick = true;
+					}, 1000);
+				}
+				else if ( moveW_D === 1 && bounceCount < 5 && firstClick && firstBounce ) {
+					bounceCount += bounceAcc;
+					console.log("Wrong");
+					getScore -= 10;
+					if ( getScore <= 0 ) {
+						gameOver();
+					} else {
+						score.innerHTML = getScore;
+					}
+					firstClick = false;
+					setTimeout(function(){
+						firstClick = true;
+					}, 1000);
+				}
 				break;
 				case 40: //down
-				moveH_D = 1;
+				if ( moveH_D === -1 && bounceCount > 1 && firstClick && firstBounce ) {
+					bounceCount -= bounceAcc * 2;
+					console.log("Right");
+					getScore += 10;
+					score.innerHTML = getScore;
+					firstClick = false;
+					setTimeout(function(){
+						firstClick = true;
+					}, 1000);
+				}
+				else if ( moveH_D === 1 && bounceCount < 5 && firstClick && firstBounce ) {
+					bounceCount += bounceAcc;
+					console.log("Wrong");
+					getScore -= 10;
+					if ( getScore <= 0 ) {
+						gameOver();
+					} else {
+						score.innerHTML = getScore;
+					}
+					firstClick = false;
+					setTimeout(function(){
+						firstClick = true;
+					}, 1000);
+				}
 			}
 		}
 		function bounceH() {
@@ -120,94 +276,118 @@
 			}
 		}
 		function move() {
-			if ( secMoveW !== 0 && secMoveW !== moveWidth && secMoveH === moveHeight ) {
-				console.log(1);
+			if ( secMoveH >= moveHeight ) {
 				moveH_D = -1;
-				if ( bounceCount ) {
+				if ( firstBounce ) {
 					toy.style.height = toy.clientHeight/2 + 'px';
 					setTimeout(bounceH, bounceSpeed);
+					if ( bounceCount < 5 ) {
+						bounceCount += bounceAcc;
+					}
 				}
 			}
-			if ( secMoveW !== 0 && secMoveW !== moveWidth && secMoveH === 0 ) {
-				console.log(2);
+			if ( secMoveH <= 0 ) {
 				moveH_D = 1;
-				if ( bounceCount ) {
+				if ( firstBounce ) {
 					toy.style.height = toy.clientHeight/2 + 'px';
 					setTimeout(bounceH, bounceSpeed);
+					if ( bounceCount < 5 ) {
+						bounceCount += bounceAcc;
+					}
 				}
 			}
-			if ( secMoveW === moveWidth && secMoveH !== moveHeight && secMoveH !== 0 ) {
-				console.log(3);
+			if ( secMoveW >= moveWidth ) {
 				moveW_D = -1;
-				if ( bounceCount ) {
+				if ( firstBounce ) {
 					toy.style.width = toy.clientWidth/2 + 'px';
 					setTimeout(bounceW, bounceSpeed);
+					if ( bounceCount < 5 ) {
+						bounceCount += bounceAcc;
+					}
 				}
 			}
-			if ( secMoveW === 0 && secMoveH !== moveHeight && secMoveH !== 0 ) {
-				console.log(4);
+			if ( secMoveW <= 0 ) {
 				moveW_D = 1;
-				if ( bounceCount ) {
+				if ( firstBounce ) {
 					toy.style.width = toy.clientWidth/2 + 'px';
 					setTimeout(bounceW, bounceSpeed);
+					if ( bounceCount < 5 ) {
+						bounceCount += bounceAcc;
+					}
 				}
 			}
-			if ( secMoveW === moveWidth && secMoveH === moveHeight ) {
-				console.log(5);
-				moveH_D = -1;
-				moveW_D = -1;
-				if ( bounceCount ) {
-					toy.style.width = toy.clientWidth/2 + 'px';
-					toy.style.height = toy.clientHeight/2 + 'px';
-					setTimeout(bounceW, bounceSpeed);
-					setTimeout(bounceH, bounceSpeed);
-				}
-			}
-			if ( secMoveW === 0 && secMoveH === 0 ) {
-				console.log(6);
-				moveH_D = 1;
-				moveW_D = 1;
-				if ( bounceCount ) {
-					toy.style.width = toy.clientWidth/2 + 'px';
-					toy.style.height = toy.clientHeight/2 + 'px';
-					setTimeout(bounceW, bounceSpeed);
-					setTimeout(bounceH, bounceSpeed);
-				}
-			}
-			if ( secMoveW === moveWidth && secMoveH === 0 ) {
-				console.log(7);
-				moveH_D = 1;
-				moveW_D = -1;
-				if ( bounceCount ) {
-					toy.style.width = toy.clientWidth/2 + 'px';
-					toy.style.height = toy.clientHeight/2 + 'px';
-					setTimeout(bounceW, bounceSpeed);
-					setTimeout(bounceH, bounceSpeed);
-				}
-			}
-			if ( secMoveW === 0 && secMoveH === moveHeight ) {
-				console.log(8);
-				moveH_D = -1;
-				moveW_D = 1;
-				if ( bounceCount ) {
-					toy.style.width = toy.clientWidth/2 + 'px';
-					toy.style.height = toy.clientHeight/2 + 'px';
-					setTimeout(bounceW, bounceSpeed);
-					setTimeout(bounceH, bounceSpeed);
-				}
-			}
+			secMoveW += moveW_D * speed * bounceCount;
+			secMoveH += moveH_D * speed * bounceCount;
 
-			secMoveW += moveW_D * speed;
-			secMoveH += moveH_D * speed;
-			console.log("secMoveW: " + secMoveW);
-			console.log("secMoveH: " + secMoveH);
 			toy.style.left = secMoveW + 'px';
 			toy.style.top  = secMoveH + 'px';
-
-			bounceCount = 1;
-			setTimeout(move, 17);
+			firstBounce = true;
+			controlMove = setTimeout(move, 17);
+			if ( bounceCount >= 5 ) {
+				gameOver();
+			}
 		}
-		setTimeout(move, 17);
+		function gameOver() {
+			alert("You are loser!!!");
+			clearTimeout(controlMove);
+			bounceCount = 1;
+			firstBounce = false;
+			getScore = 0;
+			score.innerHTML = getScore;
+		}
+	// start XY code
+		var inX = document.getElementById("inX");
+		var inY = document.getElementById("inY");
+		var start = document.getElementById("start");
+		var controlMove = null;		// move setTimeout ID
+		start.onclick = function() {
+			inX_value = parseInt(inX.value);
+			inY_value = parseInt(inY.value);
+			secMoveW  = inX_value;
+			secMoveH  = inY_value;
+			bounceCount = 1;
+			if ( (inX_value && inY_value) || (inX_value === 0 && inY_value === 0) || (inX_value === 0 && inY_value) || (inX_value && inY_value === 0) ) {
+				if ( inX_value < moveWidth && inY_value < moveHeight ) {
+					if ( controlMove ) {
+						clearTimeout(controlMove);
+					}
+					toy.style.left = inX_value + 'px';
+					toy.style.top  = inY_value + 'px';
+					setTimeout(move, 17);
+				} else {
+					alert("输入这么大的开始坐标，你想干什么？？");
+				};
+				
+			} else {
+				alert("请输入有效的数字！");
+			};
+		}
+	// change wrap code
+		var inW = document.getElementById("inW");
+		var inH = document.getElementById("inH");
+		var change = document.getElementById("change");
+		
+		change.onclick = function() {
+			inW_value = parseInt(inW.value);
+			inH_value = parseInt(inH.value);
+			console.log("1")
+			if ( inW_value && inH_value ) {
+				console.log(inW_value);
+				console.log(inH_value);
+				if ( inW_value > 100 && inH_value > 100 && inW_value < 961 && inH_value < 961 ) {
+					console.log("3")
+					wrap.style.width  = inW_value + 'px';
+					wrap.style.height = inH_value + 'px';
+					moveWidth   = wrap.clientWidth  - toy.clientWidth;
+					moveHeight  = wrap.clientHeight - toy.clientHeight;
+				} else {
+					alert("输入的宽度和高度太小！或太大！范围是(100-960)");
+				};
+				
+			} else {
+				alert("请输入有效的数字！");
+			};
+		}
 	</script>
 </body>
 </html>
