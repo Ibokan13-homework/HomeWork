@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.sh{
+			width:295px;
+			height:100px;
+			overflow:hidden;
+			resize:none
+		}
+		.ti{
+			margin-right:0;
+		}
+		.bor{
+			width:300px;
+			height:300px;
+			background:red;
+			overflow:hidden;
+			overflow:auto;
+			word-wrap:break-word;
+			border:1px solid #c0c0c0;
+		}
+		div li{
+			display:none;
+		}
+	</style>
+</head>
+<body>
+	<div style="background:yellow; width:600px; margin:0 auto;">
+		<div>姓名：</div>
+		<input type="text" name="" placeholder="请输入您的姓名" value="请输入您的姓名" id="e"/>
+		<div>留言：</div>
+		<textarea type="hext" name="" class="sh" placeholder="请输入您想说的话" id="a"></textarea><br />
+		<input type="button" name="" value="提交" class="ti" id="b"/>
+		<div class="bor"id="c"></div>
+	</div>
+</body>
+<script>
+	var a=document.getElementById("a");
+	var b=document.getElementById("b");
+	var c=document.getElementById("c");
+	var e=document.getElementById("e");
+	b.onclick=function () {
+		c.innerHTML="姓名："+"<br />"+e.value+"<br />"+"留言内容："+"<br />"+a.value+"<div style='border-bottom:1px solid blue;'></div>"+c.innerHTML;
+	}
+</script>
+</html>

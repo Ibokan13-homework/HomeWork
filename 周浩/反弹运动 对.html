@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		body{
+			width:800px;
+			height:500px;
+			margin:50px auto 0;
+			border:1px solid blue;
+			}
+		div{
+			width:40px;
+			height:40px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="a"></div>
+</body>
+<script>
+	var a=document.getElementById("a");
+	var b=1;
+	var e=2;
+	var c=0;
+	var d=0;
+	function n() {
+		if (b==1) {
+			c++;
+			if (c==758) {
+				b=0;
+			}
+		}else {
+			c--;
+			if (c==0) {
+				b=1;
+			}
+		}
+		if (e==2) {
+			d++;
+			if (d==458) {
+				e=0;
+			}
+		}else {
+			d--;
+			if (d==0) {
+				e=2;
+			}
+		}
+		a.style.marginLeft=c+"px";
+		a.style.marginTop=d+"px";
+	}
+	setInterval(n,1);
+</script>
+</html>
