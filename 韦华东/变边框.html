@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.a{
+			width:300px;
+			height:300px;
+			background-color:green;
+			margin:100px auto 0;
+		}
+	</style>
+</head>
+	<div id="a" class="a"></div>
+<body>
+	<script>
+		var a=document.getElementById("a");
+		var b=300;
+		var c=300;
+		var d=1;
+		
+		function delay() {
+			if (d==1) {
+				b++;
+				c++;
+				if (b==400) {
+					d=-1;
+				}
+			}else {
+				b--;
+				c--;
+				if (b==1) {
+					d=1;
+				}
+			}
+			a.style.width=b+"px";
+			a.style.height=c+"px";
+			setTimeout(delay,17);
+		}
+		delay();
+	</script>
+</body>
+</html>

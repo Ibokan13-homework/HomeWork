@@ -14,28 +14,37 @@
 	var a=document.getElementById("a");
 	var b=document.getElementById("b");
 	var c=document.getElementById("c");
+	var aa=0;
+	var bb=0;
+	var cc=0;
 	function delay() {
-		c.innerHTML++;
-		if (c.innerHTML==60) {
-			b.innerHTML++;
-			c.innerHTML=0;
-			if (b.innerHTML==60) {
-				a.innerHTML++;
-				b.innerHTML=0;
+		a.innerHTML=aa;
+		b.innerHTML=bb;
+		c.innerHTML=cc;
+		cc++;
+		if (cc==60) {
+			bb++;
+			cc=0;
+			if (bb==60) {
+				aa++;
+				bb=0;
 			}
 		}
 		setTimeout(delay,1000);
 		}
 	setTimeout(delay,1000);
-
-	/*var zero;
+	
+	var zero;
+	aa=add0(aa);
+	bb=add0(bb);
+	cc=add0(cc);
 	function add0(zero) {
 		if (zero<10) {
 		zero=zero-"0";
 		zero="0"+zero;
 		}
 		return zero;
-	}*/
+	}
 	</script>
 </body>
 </html>

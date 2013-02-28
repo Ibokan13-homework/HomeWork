@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+<style>
+	body{
+		background-color:green;
+	}
+	.title{
+		font-size:20px;
+		color:yellow;
+		padding:10px 0 0 10px;
+		font-family:微软雅黑;
+		font-weight:bold;
+	}
+	.box{
+		width:500px;
+		height:500px;
+		border:1px solid gray;
+		background-color:gray;
+		margin:50px auto 0;
+	}
+	.show{
+		width:400px;
+		height:300px;
+		background-color:pink;
+		margin:10px auto 0;
+		font-size:12px;
+		font-weight:bold;
+		color:green;
+		overflow:auto;
+		word-wrap:break-word;
+	}
+	.name{
+		width:200px;
+		height:20px;
+		background-color:yellow;
+	}
+	.words{
+		width:400px;
+		height:50px;
+		background-color:yellow;
+	}
+	.btn{
+		width:280px;
+		height:40px;
+		font-size:12px;
+		font-weight:bold;
+		color:green;
+		line-height:20px;
+	}
+	.middle1{
+		width:400px;
+		margin:10px auto 0;
+	}
+	.middle2{
+		width:400px;
+		margin:10px auto 0;
+	}
+	.middle3{
+		width:280px;
+		height:30px;
+		margin:10px 20px 0 0;
+		float:right;
+	}
+</style>
+<body>
+	<div class="box">
+		<div class="title">留言板(please say something,I beg you...)</div>
+		<div id="a" class="show"></div>	
+		<div class="middle1">
+			<input id="na" class="name" type="text" value="留下你的大名，小名不算" />
+		</div>
+		<div class="middle2">
+			<textarea id="words" class="words">写点儿什么吧，各路大神...</textarea>
+		</div>
+		<div class="middle3">
+			<input id="btn" class="btn" type="button" value="提交你的留言，讲文明，树新风，不许说脏话" />
+		</div>
+	</div>
+	<script>
+		var a=document.getElementById("a");
+		var na=document.getElementById("na");
+		var words=document.getElementById("words");
+		var btn=document.getElementById("btn");
+		btn.onclick=function () {
+			a.innerHTML="大名："+na.value+"<br />胡言乱语："+words.value+"<br />"+a.innerHTML;
+		}
+	</script>
+</body>
+</html>

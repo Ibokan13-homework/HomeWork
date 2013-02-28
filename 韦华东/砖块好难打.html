@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+	<style>
+		.outer{
+			width:200px;
+			height:400px;
+			margin:50px auto 0;
+			border:1px solid red;
+			background-color:red;
+		}
+		.lay1{
+			width:198px;
+			height:48px;
+			background-color:red;
+			border:1px solid yellow;
+		}
+		.lay2{
+			width:198px;
+			height:48px;
+			background-color:black;
+			border:1px solid yellow;
+		}
+		.lay3{
+			width:198px;
+			height:48px;
+			background-color:green;
+			border:1px solid yellow;
+		}
+		.ball{
+			width:20px;
+			height:20px;
+			background-color:purple;
+			/*margin:230px 0 0 90px;*/
+		}
+		.none{
+			display:none;
+		}
+	</style>
+<body>
+	<div id="outer" class="outer">
+		<div id="lay1" class="lay1"></div>
+		<div id="lay2" class="lay2"></div>
+		<div id="lay3" class="lay3"></div>
+		<div id="ball" class="ball"></div>
+	</div>
+	<script>
+		var outer=document.getElementById("outer");
+		var lay1=document.getElementById("lay1");
+		var lay2=document.getElementById("lay2");
+		var lay3=document.getElementById("lay3");
+		var ball=document.getElementById("ball");
+		var mov1=outer.clientHeight-ball.offsetHeight-lay1.clientHeight-lay2.clientHeight-lay3.clientHeight;
+		var mov2=outer.clientHeight-ball.offsetHeight-lay1.clientHeight-lay2.clientHeight;
+		var mov3=outer.clientHeight-ball.offsetHeight-lay1.clientHeight;
+		var mov4=outer.clientHeight-ball.offsetHeight;
+		var a=0;
+		var b=2;
+		var c=3;
+		var aa=0;
+		var bb=0;
+		function fight() {
+			//左右碰
+			if (a==0) {
+				aa++;
+				if (aa==180) {
+					a=1;
+				}
+			}else {
+				aa--;
+				if (aa==0) {
+					a=0;
+				}
+			}
+			//上下碰
+			if (b==2) {
+				bb++;
+				if (bb==mov1) {
+					b=3;
+				}
+			}else {
+				if (c==3) {
+					bb--;
+					if (bb==0) {
+						lay3.className="none";
+						bb=50;
+						c=4;
+					}
+				}
+				if (c==4) {
+					bb++;
+					if (bb==mov2) {
+						c=5;
+					}
+				}
+				if (c==5) {
+					bb--;
+					if (bb==0) {
+					lay2.className="none";
+					bb=50;
+					c=6;
+					}
+				}
+				if (c==6) {
+					bb++;
+					if (bb==mov3) {
+						c=7;
+					}
+				}
+				if (c==7) {
+					bb--;
+					if (bb==0) {
+					lay1.className="none";
+					bb=50;
+					c=8;
+					}
+				}
+				if (c==8) {
+					bb++;
+					if (bb==mov4) {
+						c=9;
+					}
+				}
+				if (c==9) {
+					bb--;
+					if (bb==0) {
+						c=8;
+					}
+				}
+			}
+			ball.style.marginLeft=aa+"px";
+			ball.style.marginTop=bb+"px";
+			if (c==9) {
+			clearTimeout(m);
+			alert("succeed!!!")
+		}
+		}
+		var m=setInterval(fight,1);
+		
+	</script>
+</body>
+</html>
