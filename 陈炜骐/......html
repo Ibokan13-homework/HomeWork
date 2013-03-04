@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		#name{
+			margin:50px auto 10px;
+			width:300px;	
+			
+		}
+		#liu{
+			margin:0 auto;
+			width:300px;
+			
+		}
+
+		#liu input{
+			height:70px;	
+		}
+		#but{
+			width:300px;
+			margin:10px auto 0;
+			padding-left:190px;
+		}
+		#texts{
+			width:500px;
+			margin:10px auto;
+			border:1px solid red;
+			height:500px;
+
+		}
+		.red{
+			color:red;
+		}
+		#na{
+			color:red;
+		}
+		#li{
+			color:blue;
+		}
+		li{
+			list-style-type:none;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="name">
+		<span>姓名</span>
+		<input placeholder="在这里输入名字" id="names" type="text" name="" value="" />
+	</div>
+	<div id="liu">
+		<span>留言</span>
+		<input placeholder="在这里输入留言" id="lius" type="text" name="" value="" />
+	</div>
+	<div id="but">
+		<input id="buts" type="button" name="" value="留言" />
+	</div>
+	<div id="texts">
+		<span id="na"></span>
+		<span id="say"></span>
+		<span id="li"></span>
+	</div>
+</body>
+<script>
+	var names=document.getElementById("names")
+	var lius=document.getElementById("lius")
+	var buts=document.getElementById("buts")
+	var texts=document.getElementById("texts")
+	var na=document.getElementById("na")
+	var li=document.getElementById("li")
+	var say=document.getElementById("say")
+	buts.onclick=function () {
+		var a=names.value
+		var b=lius.value
+		
+		if (names.value==""&&lius.value=="") {
+			texts.innerHTML=""
+		}else {
+				texts.innerHTML=texts.innerHTML+"<li style='border-bottom:1px solid black'>"+"<span style='color:red;'>"+a+"</span>"+"说......"+"<span style='color:blue'>"+b+"</span>"+"</li>";
+		}
+		names.value=""
+		lius.value=""
+
+	}
+
+</script>
+</html>
