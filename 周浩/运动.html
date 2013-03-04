@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.h{
+			width:40px;
+			height:40px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div class="h" id="a"></div>
+</body>
+<script>
+	var a=document.getElementById("a");
+	var b=1;
+	var c=40;
+	var d=40;
+	function n() {
+		if (b==1) {
+			c++;
+			d++;
+			a.style.width=c+"px";
+			a.style.height=d+"px";
+				if (c == 100) {
+				b=0;
+			}
+		}
+		else {
+			c--;
+			d--;
+			a.style.width=c+"px";
+			a.style.height=d+"px";
+			if (c == 40) {
+				b=1;
+			}
+		}
+	}
+	setInterval(n,17)
+</script>
+</html>

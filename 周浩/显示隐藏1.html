@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.all{
+			width:800px;
+			margin:50px auto 0;
+			border:1px solid red;
+		}
+		ul li{
+			width:25%;
+			line-height:50px;
+			float:left;
+			text-align:center;
+			list-style:none;
+		}
+		.bottom{
+			text-align:center;
+		}
+		.hide{
+			display:none;
+		}
+		.show{
+			display:block;
+		}
+	</style>
+</head>
+<body>
+	<div class="all">
+		<ul>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+		</ul>
+		<ul>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+		</ul>
+		<ul>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+		</ul>
+		<ul>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+		</ul>
+		<ul class="hide">
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+		</ul>
+		<ul class="hide">
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+		</ul>
+		<ul class="hide">
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+		</ul>
+		<ul class="hide">
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+			<li><a href="a" alt="">xx</a></li>
+		</ul>
+		<div class="bottom">
+			<input type="button" id="show" name="" value="显示/隐藏"/>
+		</div>
+	</div>
+</body>
+<script>
+		var uls = document.getElementsByTagName("ul")
+		var hdBtn = document.getElementById("show")
+		hdBtn.onclick=function(){
+			if (uls[4].className == "hide") {
+				for (var i=4; i<uls.length; i++) {
+					uls[i].className = "show"
+				}
+			}else{
+				for (var i=4; i<uls.length; i++) {
+					uls[i].className = "hide";
+				}
+			}
+		}
+	</script>
+</html>

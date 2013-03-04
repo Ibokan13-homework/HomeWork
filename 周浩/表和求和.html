@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		div{
+			width:200px;
+			margin:50px auto 0;
+			border:1px solid red;
+		}
+		ol li{
+			height:30px;
+			line-height:30px;
+			border:1px solid red;
+		}
+		.yi{
+			background:blue;
+		}
+		.er{
+			background:red;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<ol>
+			<li>红</li>
+			<li>蓝</li>
+			<li>红</li>
+			<li>蓝</li>
+			<li>红</li>
+			<li>蓝</li>
+			<li>红</li>
+			<li>蓝</li>
+			<li>红</li>
+			<li>蓝</li>
+			<li>红</li>
+			<li>蓝</li>
+			<li>红</li>
+			<li>蓝</li>
+			<li>红</li>
+			<li>蓝</li>
+			<li>红</li>
+			<li>蓝</li>
+			<li>红</li>
+			<li>蓝</li>
+		</ol>
+	</div>
+</body>
+<script>
+	var lis = document.getElementsByTagName("li");
+			for (var i=0; i<lis.length; i++) {
+				if (i%2 == 0) {
+					lis[i].className = "er";
+				}
+				else{
+					lis[i].className = "yi";
+				}
+			}
+	var a=[1,2,3,4,5,6,7,8];
+	/*var b = a[0];
+		b = b + a[1];
+		b = b + a[2];
+		b = b + a[3];
+		b = b + a[4];
+		b = b + a[5];*/
+	var b=0;
+		for (var i=0;i<a.length; i++) {
+			b = b + a[i];
+		}
+		alert(b);
+</script>
+</html>

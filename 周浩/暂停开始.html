@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		div{
+			width:40px;
+			height:40px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="a"></div>
+</body>
+<script>
+	var a=document.getElementById("a");
+	var c=1;
+	var d=40;
+	var e=40;
+	var num=1;
+	var t;
+	a.onclick=function () {
+		num++;
+		if (num%2 == 0) {
+             n();
+		}
+		else{
+		   clearTimeout(t);
+		}
+	}
+	function n() {
+		if (c == 1) {
+			d++;
+			e++;
+			if (d == 100) {
+				c=0;
+			}
+		}
+		else {
+			d--;
+			e--;
+			if (d == 40) {
+				c=1;
+			}	
+		}
+		a.style.width=d+"px";
+		a.style.height=e+"px";
+		t=setTimeout(n,17);
+	}
+</script>
+</html>

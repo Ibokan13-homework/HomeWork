@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.a{
+			width:600px;
+			margin:0 auto;
+			border:1px solid red;
+		}
+		.b{
+			width:300px;
+			height:100px;
+			margin:50px auto;
+			border:1px solid blue;
+		}
+		.c{
+			text-align:center
+		}
+		.bb{
+			display:none;
+		}
+		.h{
+			width:300px;
+			height:100px;
+			margin:50px auto;
+			border:1px solid blue;
+			display:black;
+		}
+	</style>
+</head>
+<body>
+	<div class="a">
+		<div class="b">1</div>
+		<div class="bb" id="k">2</div>
+		<div class="c">
+			<input type="button" name="" id="d" value="显示"/>
+		</div>
+	</div>
+</body>
+<script>
+	var divs=document.getElementsByTagName("div");
+	var d=document.getElementById("d");
+	d.onclick=function () {
+		if (divs[2].className=="bb") {
+			for (var i=2; i<3; i++) {
+				divs[i].className="h"
+				d.value='隐藏';
+			}
+		}
+		else {
+			for (var i=2; i<3; i++) {
+				divs[i].className="bb";
+				d.value='显示';
+			}
+		}
+	}
+	
+</script>
+</html>
