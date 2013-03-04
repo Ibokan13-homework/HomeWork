@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		div{
+			width:40px;
+			height:40px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="a"></div>
+	<input type="button" name="" value="112" id="b"/>
+</body>
+<script>
+	var a=document.getElementById("a");
+	var b=document.getElementById("b");
+	var c=0;
+	var d=40;
+	var num=1;
+	var t;
+	var h;
+	var n;
+	var p;
+	b.onclick=function () {
+		num++;
+		if (num%2==0) {
+			n();
+		}
+		else {
+			h();
+		}
+	}
+	function n() {
+		d++;
+		clearTimeout(p);
+		a.style.width=d+"px";
+		t=setTimeout(n,17);
+	}
+	function h() {
+		d--;
+		/*if (d==1) {
+			n();
+		}*/
+		clearTimeout(t);
+		a.style.width=d+"px";
+		p=setTimeout(h,17);
+	}
+</script>
+</html>
