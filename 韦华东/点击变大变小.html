@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.decoration{
+			width:100px;
+			height:50px;
+			margin:0 auto;
+		}
+		.btn{
+			width:80px;
+			height:40px;
+			font-size:16px;
+			color:green;
+			font-weight:bold;
+		}
+		.a{
+			width:100px;
+			height:100px;
+			background-color:yellow;
+			margin:100px auto 0;
+		}
+		body{
+			background-color:purple;
+		}
+	</style>
+</head>
+	
+<body>
+	<div class="decoration"><input id="c" class="btn" type="button" value="变大" /></div>
+	<div id="a" class="a"></div>
+	<script>
+		var a=document.getElementById("a");
+		var c=document.getElementById("c");
+		var b=100;
+		var d=1;
+		var t=0;
+		var n=0;
+		c.onclick=delay;
+		function delay() {
+			n++;
+			clearTimeout(t);
+			aa();
+			function aa() {
+				if (n%2==1) {
+					b++;
+					c.value="变小";
+				}else {
+					b--;
+					c.value="变大";
+				}
+				if (b==1) {
+					n=n+1;
+					}
+				t=setTimeout(aa,15);
+				a.style.width=b+"px";
+				a.style.height=b+"px";
+			}
+		}
+	</script>
+</body>
+</html>
