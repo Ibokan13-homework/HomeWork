@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>可见区域宽度小于要滚动的图片总宽度</title>
+	<title>可见区域宽度小于(总图片个数减一个数的)总宽度</title>
 	<style type="text/css">
 		* { margin: 0; padding: 0; }
 		.clearfix { zoom: 1; }
@@ -66,6 +66,7 @@
 		var wrap = document.getElementById("wrap");
 		var subwraps = wrap.getElementsByTagName("div");
 		var control = null;
+		var time = null;
 		function scrollBoss() {
 			boss.scrollLeft += 2;
 			control = boss.scrollLeft%100 + 2;
@@ -74,14 +75,15 @@
 				boss.scrollLeft -= control;
 				console.log(subwraps);
 			}
+			time = setTimeout(scrollBoss, 17);
 		}
-		var interTime = setInterval(scrollBoss, 10);
-		wrap.onmousemove = function () {
+		scrollBoss();
+		wrap.onmouseover = function () {
 			console.log("HOVER");
-			clearInterval(interTime);
+			clearTimeout(time);
 		}
 		wrap.onmouseout = function () {
-			interTime = setInterval(scrollBoss, 10);
+			scrollBoss();
 		}
 	</script>
 </body>

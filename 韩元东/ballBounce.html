@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="碰碰球">
+	<meta name="keywords" content="碰碰球">
+	<title>碰碰球</title>
+	<style type="text/css">
+		html, body, div, p, input, span, h1, button {
+			padding: 0;
+			margin: 0;
+		}
+		body {
+			padding-top: 50px;
+		}
+		.clearfix { zoom: 1; }
+		.clearfix:after { content: ' '; clear: both; display: block; }
+		.info {
+			width: 400px;
+			margin: 0 auto 50px;
+		}
+		.setting, .score { 
+			width: 200px;
+			float: left; 
+		}
+		p {
+			padding-bottom: 10px;
+		}
+		button {
+			padding: 4px 0;
+			margin-top: 10px;
+			width: 100%;
+		}
+		.setting input {
+			width: 30px;
+		}
+		.score h1 {
+			text-align: center;
+		}
+		.wall {
+			position: relative;
+			left: 0;
+			top:  0;
+			z-index: 1;
+			width:  300px;
+			height: 300px;
+			border: 10px solid green;
+			margin: 0 auto;
+		}
+		.ball {
+			position: absolute;
+			left: 150px;
+			top:  250px;
+			z-index: 1;
+			width: 20px;
+			height: 20px;
+			line-height: 10px;
+			border-radius: 25px;
+			text-align: center;
+			color: white;
+			background-color: red;
+		}
+		#ball_b {
+			left: 200px;
+			top: 150px;
+			background-color: purple;
+		}
+		.bricks {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1;
+		}
+		.brick {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			width: 50px;
+			height: 20px;
+			background: transparent url(img/brick.jpg) 0 0 no-repeat;
+		}
+		.hideBrick {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="info clearfix">
+		<div class="setting">
+			<p>游戏参数：</p>
+			<span>小球速度：</span><input type="text" id="inSpeed" value="2"><span>(1-10)</span>
+			<br />
+			<span>砖块行数：</span><input type="text" id="inRow" value="1"><span>(1-10)</span>
+			<br />
+			<span>砖块列数：</span><input type="text" id="inCol" value="6"><span>(6-16)</span>
+			<br />
+			<button id="start">开始</button>
+		</div>
+		<div class="score">
+			<p>游戏得分：</p>
+			<h1>100</h1>
+		</div>
+	</div>
+	<div id="wall" class="wall">
+		<div id="bricks" class="bricks clearfix">
+			
+		</div>
+		<div id="ball_a" class="ball"></div>
+		<!-- <div id="ball_b" class="ball"></div> -->
+	</div>
+	<button id="stop">stop</button>
+	<script type="text/javascript" src="js/hw.js"></script>
+	<script type="text/javascript">
+
+		var stop = document.getElementById('stop');
+		stop.onclick = function() {
+			clearTimeout(moveTime);
+		}
+
+		var bricks = document.getElementById('bricks');
+			bricks.line = bricks.clientHeight;
+		var bricksC = bricks.getElementsByTagName('div'); //bricks children
+		var inRow  = document.getElementById('inRow');
+		var inCol  = document.getElementById('inCol');
+		var inSpeed  = document.getElementById('inSpeed');
+		var start  = document.getElementById('start');
+		var speed = inSpeed.value;
+		var bricks_left = [];
+		var bricks_width = [];
+		var bricks_height  = [];
+		var bricks_top = [];
+		var bricks_height_diff = [];
+		var hideList    = [];
+		var bricks_top_max = 0;
+		start.onclick = function() {
+			addBrick(bricks);
+			clearTimeout(moveTime);
+			move();
+		}
+
+
+
+
+
+
+
+
+
+		var wall   = document.getElementById('wall');
+
+		var ball_a = document.getElementById('ball_a');
+			ball_a.diameter = ball_a.clientWidth;
+			ball_a.range = ball_a.diameter / 2;
+			ball_a.posX = ball_a.offsetLeft;
+			ball_a.posY = ball_a.offsetTop;
+			ball_a.pointX = ball_a.posX + ball_a.range;
+			ball_a.pointY = ball_a.posY + ball_a.range;
+			ball_a.moveX = 1;
+			ball_a.moveY = 1;
+			ball_a.moveW = wall.clientWidth - ball_a.diameter;
+			ball_a.moveH = wall.clientHeight - ball_a.diameter;
+			
+/*
+		var ball_b = document.getElementById('ball_b');
+			ball_b.diameter = ball_b.clientWidth;
+			ball_b.range = ball_b.diameter / 2;
+			ball_b.posX = ball_b.offsetLeft;
+			ball_b.posY = ball_b.offsetTop;
+			ball_b.pointX = ball_b.posX + ball_b.range;
+			ball_b.pointY = ball_b.posY + ball_b.range;
+			ball_b.moveX = 1;
+			ball_b.moveY = 1;
+			ball_b.moveW = wall.clientWidth - ball_b.diameter;
+			ball_b.moveH = wall.clientHeight - ball_b.diameter;
+*/
+		var fps   = 7; // fps
+		var moveTime = null;
+		function move() {
+			bounceWall(ball_a);
+			// bounceWall(ball_b);
+
+			// bounceBall(ball_a, ball_b);
+			
+			changePos(ball_a);
+			// changePos(ball_b);
+			
+			setStyle(ball_a);
+			// setStyle(ball_b);
+
+			moveTime = setTimeout(move, fps);
+		}
+
+	</script>
+	<script type="text/javascript">
+	/*
+	 * console.log()
+	 * 
+	// console.log("ball_a -> " + ball_a);
+	// console.log("ball_a.diameter -> " + ball_a.diameter);
+	// console.log("ball_a.range -> " + ball_a.range);
+	// console.log("ball_a.posX -> " + ball_a.posX);
+	// console.log("ball_a.posY -> " + ball_a.posY);
+	// console.log("ball_a.pointX -> " + ball_a.pointX);
+	// console.log("ball_a.pointY -> " + ball_a.pointY);
+	// console.log("ball_a.moveX -> " + ball_a.moveX);
+	// console.log("ball_a.moveY -> " + ball_a.moveY);
+	// console.log("ball_a.moveW -> " + ball_a.moveW);
+	// console.log("ball_a.moveH -> " + ball_a.moveH);
+
+	// console.log("ball_b -> " + ball_b);
+	// console.log("ball_b.diameter -> " + ball_b.diameter);
+	// console.log("ball_b.range -> " + ball_b.range);
+	// console.log("ball_b.posX -> " + ball_b.posX);
+	// console.log("ball_b.posY -> " + ball_b.posY);
+	// console.log("ball_b.pointX -> " + ball_b.pointX);
+	// console.log("ball_b.pointY -> " + ball_b.pointY);
+	// console.log("ball_b.moveX -> " + ball_b.moveX);
+	// console.log("ball_b.moveY -> " + ball_b.moveY);
+	// console.log("ball_b.moveW -> " + ball_b.moveW);
+	// console.log("ball_b.moveH -> " + ball_b.moveH);
+
+	// console.log("Run bounceWall function");
+	// console.log("ball_a.moveX -> " + ball_a.moveX);
+	// console.log("ball_a.moveY -> " + ball_a.moveY);
+	// console.log("ball_a.posX -> " + ball_a.posX);
+	// console.log("ball_a.posY -> " + ball_a.posY);
+
+	// console.log("Run changePos function");
+	// console.log("ball_a.posX -> " + ball_a.posX);
+	// console.log("ball_a.posY -> " + ball_a.posY);
+
+	console.log("bricks -> " + bricks);
+	console.log("inRow -> " + inRow);
+	console.log("inCol -> " + inCol);
+	console.log("speed -> " + speed);
+	 */
+	</script>
+</body>
+</html>

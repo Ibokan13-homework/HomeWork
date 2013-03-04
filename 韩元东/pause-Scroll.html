@@ -32,7 +32,6 @@
 			height: 98px;
 			line-height: 98px;
 			border: 1px solid white;
-			/*margin: 5px;*/
 			float: left;
 			text-align: center;
 			font-size: 24px;
@@ -64,11 +63,9 @@
 				<div class="subwrap">
 					<img src="img/5.jpg" alt="z">
 				</div>
-				
 			</div>
 			<div id="wrap2" class="wrap"></div>
 		</div>
-		
 	</div>
 	<script type="text/javascript">
 		var boss = document.getElementById("boss");
@@ -77,12 +74,23 @@
 		var wrap2 = document.getElementById("wrap2");
 		wrap2.innerHTML = wrap.innerHTML;
 		var control = null;
+		var stopTime = 0;
+		var time = null
+		var time1 = null;
 		//scroll to left
 		
 		function scrollBoss() {
 			boss.scrollLeft += 2;
+			stopTime += 2;
 			if (boss.scrollLeft == slide.clientWidth/2) {
 				boss.scrollLeft = 0;
+			}
+			if ( stopTime == 100 ) {
+				clearTimeout(time);
+				time = setTimeout(scrollBoss, 1000);
+				stopTime = 0;
+			} else {
+				time1 = setTimeout(scrollBoss, 10);
 			}
 		}
 		
@@ -96,13 +104,13 @@
 			}
 		}
 		 */
-		var interTime = setInterval(scrollBoss, 10);
-		slide.onmousemove = function () {
+		slide.onmouseover = function() {
 			console.log("HOVER");
-			clearInterval(interTime);
+			clearTimeout(time);
+			clearTimeout(time1);
 		}
-		slide.onmouseout = function () {
-			interTime = setInterval(scrollBoss, 10);
+		slide.onmouseout = function() {
+			time = setTimeout(scrollBoss, 10);
 		}
 	</script>
 </body>
