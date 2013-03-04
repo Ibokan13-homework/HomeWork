@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		#outer{
+			width:500px;
+			height:500px;
+			border:1px solid black;
+		}
+		.show{
+			display:block;
+		}
+		.hide{
+			display:none;
+		}
+		#inner1{
+			width:500px;
+			height:250px;
+			background:black;
+		}
+		#inner2{
+			width:500px;
+			height:250px;
+			background:red;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class='show' id='outer'>
+		<div id='inner1'></div>
+		<div id='inner2'></div>
+	</div>
+	<input type='button' value='show' id='button' />
+</body>
+<script type="text/javascript">
+	var inner1=document.getElementById('inner1');
+	var inner2=document.getElementById('inner2');
+	var button1=document.getElementById('button');
+	var outer=document.getElementById('outer');
+
+	button1.onclick=change;
+	function change () {
+		if (outer.className=='show') {
+			outer.className='hide';
+			button1.value='show'
+		} 
+		else {
+			outer.className='show';
+			button1.value='hidden';
+		}
+	}
+</script>
+</html>
