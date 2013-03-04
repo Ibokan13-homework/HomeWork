@@ -32,9 +32,13 @@
 					btn.value="正向";
 					
 				}
-				else {
+				if(t%2==0) {
 					i--;
-					btn.value="反向"
+					if(i==0)
+					{
+						t++;
+					}
+					btn.value="反向";
 				}
 				div.style.width=i+"px";
 			}
