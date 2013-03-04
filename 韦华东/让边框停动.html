@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.a{
+			width:100px;
+			height:100px;
+			background-color:yellow;
+			margin:100px auto 0;
+		}
+		body{
+			background-color:purple;
+		}
+	</style>
+</head>
+	
+<body>
+	<div id="a" class="a"></div>
+	<script>
+		var a=document.getElementById("a");
+		var b=100;
+		var c=100;
+		var d=1;
+		var n=0;
+		var t=0;
+		a.onclick=delay;
+		function delay() {
+			n++;
+			if (n%2==1) {
+			    aa();
+				function aa() {
+
+					if (d==1) {
+						b++;
+						c++;
+						if (b==400) {
+							d=-1;
+						}
+					}else {
+						b--;
+						c--;
+						if (b==1) {
+							d=1;
+						}
+					}
+					a.style.width=b+"px";
+					a.style.height=c+"px";
+					t=setTimeout(aa,10);
+				}
+			}
+			else{
+				clearTimeout(t);
+			}
+		}
+		//delay();
+	</script>
+</body>
+</html>

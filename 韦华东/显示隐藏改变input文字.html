@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+	<style>
+		.box{
+			width:300px;
+			height:500px;
+			margin:50px auto 0px;
+			border:1px solid red;
+			zoom:1;
+		}
+		.box2{
+			width:300px;
+			height:250px;
+			margin:50px auto 0px;
+			border:1px solid red;
+			zoom:1;
+		}
+		.ul li{
+			float:left;
+			width:48px;
+			height:20px;
+			list-style:none;
+			border:1px solid blue;
+			margin:5px;
+		}
+		.btn{
+			margin:30px 0 0 50px;
+		
+		}
+		.none{
+			display:none;
+		}
+		.show{
+			display:block;
+		}
+	</style>
+<body>
+	<div class="box" id="box">
+		<ul class="ul" id="ul">
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+		</ul>
+		<input class="btn" id="btn" type="button" value="显示/隐藏" />
+	</div>
+	
+</body>
+	<script type="text/javascript">
+		var lis = document.getElementById("ul").getElementsByTagName("li");
+		var bt = document.getElementById("btn");
+		var box = document.getElementById("box");
+		bt.onclick=function()
+		{
+			if (box.className=="box")
+			{
+				for (var i=20; i<lis.length; i++) 
+				{
+					lis[i].className="none";
+				}
+					box.className="box2";
+					bt.value="显示";
+			}
+			else
+			{	
+				for (var i=20; i<lis.length; i++) 
+				{
+					lis[i].className="show";	
+				}
+				box.className="box";	
+				bt.value="隐藏";
+			}
+		}
+	</script>
+</html>
