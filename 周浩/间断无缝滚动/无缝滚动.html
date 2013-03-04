@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.c{
+			width:596px;
+			height:225px;
+			overflow:hidden;
+		}
+		.d{
+			width:1192px;
+			height:225px;
+		}
+		img{
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<div id="a" class="c">
+			<div id="b" class="d">
+				<img src="1.jpg" alt="" />
+				<img src="2.jpg" alt="" />
+				<img src="3.jpg" alt="" />
+				<img src="4.jpg" alt="" />
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var a=document.getElementById("a");
+	var b=document.getElementById("b");
+	b.innerHTML+=b.innerHTML;
+	function n() {
+		a.scrollLeft++;
+		//setTimeout(n,100);
+		if (a.scrollLeft%( b.offsetWidth/8)==0 ){
+			clearInterval(k);
+			setTimeout(function () {
+				k=setInterval(n,18);
+			},3000);
+		}
+		if (a.scrollLeft == b.offsetWidth/2) {
+			a.scrollLeft=0;
+		}
+	}
+	//setTimeout(n,100);
+	var k=setInterval(n,18);
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> New Document </title>
+  <meta charset="UTF-8">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style type="text/css">
+      #wrap{
+		overflow:hidden;
+	  }
+	  span{
+		width:100px;
+		height:50px;
+		display:block;
+		float:left;
+		border:1px solid red;
+	  }
+	  #con div{
+		  width:304px;
+		  height:200px;
+		  border:1px solid blue;
+		  display:none;
+	  }
+	  .se{
+		background:red;
+	  }
+	  #con .di{
+		display:block;
+	  }
+  </style>
+ </head>
+ <body>
+    <div id='wrap'>
+	   <span class='se'>1</span>
+	   <span>2</span>
+	   <span>3</span>
+	</div>
+	<div id='con'>
+	   <div class='di'>11</div>
+	   <div>22</div>
+	   <div>33</div>
+	</div>
+ </body>
+</html>
+<script type="text/javascript">
+    var spans = document.getElementsByTagName('span');
+	var divs = document.getElementById('con').getElementsByTagName('div');
+	for (var i=0;i<spans.length;i++){
+	   spans[i].onclick = tab;
+	}
+	function tab(){
+	   for (var i=0;i<spans.length;i++){ 
+	      if(spans[i]==this){
+		      spans[i].className = "se";
+		      divs[i].className = "di";
+		  }
+		  else{
+		     spans[i].className = "";
+		     divs[i].className = "";
+		  }
+	   }
+	}
+</script>
