@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		div{
+			height:50px;
+			width:100px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="div"></div>
+	<script>
+		var div=document.getElementById("div");
+		var moveX=100;
+		var i=1//计算点击次数
+		var t;
+		var a=0//向左运动
+		div.onclick=moveo;
+		function moveo(){
+			i++;
+			if(i%2==0){
+				function moveo1() {
+					if(a==0){
+						moveX++;
+						div.style.width=moveX+"px";
+							if(moveX>300){
+								a=1;
+							}
+					}else{
+						moveX--;
+						div.style.width=moveX+"px";
+							if(moveX==0){
+								a=0;
+							}
+					}
+					t=setTimeout(moveo1,100);
+				}
+				setTimeout(moveo1,100);
+			}else{
+				clearTimeout(t);
+				}
+				
+			}
+	</script>
+</body>
+</html>

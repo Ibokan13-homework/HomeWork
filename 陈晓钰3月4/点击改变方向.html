@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		div{
+			border:1px solid red;
+			height:100px;
+			width:30px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="change"></div>
+	<input type="button" value="change" id="btn" />
+	<script>
+		var btn=document.getElementById("btn");
+		var cha=document.getElementById("change");
+		var movex=30;
+		var i=0;
+		var t;
+		btn.onclick=function () {
+			i++;
+			clearTimeout(t);
+			function moveo() {
+				t=setTimeout(moveo,16);
+				if(i%2==1){
+					movex++;
+				}
+				else{
+					movex--;
+					if(movex==0){
+						i++;
+					}
+				}
+				cha.style.width=movex+"px";
+			}
+			moveo();
+		}
+		
+		
+	</script>
+</body>
+</html>
