@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.con{
+			width:1000px;
+			overflow:auto;
+			overflow:hidden;
+		}
+		.turlef{
+			overflow:hidden;
+			width:2000px;
+			height:310px;
+			
+		}
+		img{
+			float:left;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="con" id="con">
+		<div class="turlef" id="turlef">
+			<img src="../images/nemo.png" alt="" />
+			<img src="../images/dragon.png" alt="" />
+			<img src="../images/mermaid.png" alt="" />
+			<img src="../images/rataouille.png" alt="" />
+			<img src="../images/mulan.png" alt="" />
+			<!-- <img src="../images/nemo.png" alt="" />
+			<img src="../images/dragon.png" alt="" />
+			<img src="../images/mermaid.png" alt="" />
+			<img src="../images/rataouille.png" alt="" />
+			<img src="../images/mulan.png" alt="" /> -->
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var con=document.getElementById("con");
+	var turlef=document.getElementById("turlef");
+	//turlef.innerHTML=turlef.innerHTML+turlef.innerHTML;
+	turlef.innerHTML+=turlef.innerHTML;//与上一行意思相同
+	function time() {
+		con.scrollLeft++;
+		//setTimeout(time,10);
+		if (con.scrollLeft==turlef.offsetWidth) {
+		   con.scrollLeft=0;
+	    }
+		if (con.scrollLeft%(turlef.offsetWidth/10)==0) {//除以总照片的张数，是10张
+			clearTimeout(t);
+			setTimeout(function () {
+				t=setInterval(time,17)
+			},3000)
+		}		
+	};
+	var t=setInterval(time,10)
+	//time();
+	
+</script>
+</html>

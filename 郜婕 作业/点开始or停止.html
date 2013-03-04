@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		div{
+			width:0;
+			height:50px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="a"></div>
+	<input type="button" name="" value="开/停" id="btn" />
+	<script>
+		var div=document.getElementById("a");
+		var btn=document.getElementById("btn");
+		var b=1;
+		var c=0;
+		var w=1;
+		var stop;
+		btn.onclick=function () {
+			w++;
+			if (w%2==0) {
+				auto();
+			}else {
+				clearInterval(stop);
+			}
+		}
+		function auto() {
+			if (b==1) {
+				c++;
+				div.style.width = c+"px";
+				if (c==200) {
+					b=-1
+				}
+			}else {
+				c--;
+				div.style.width = c+"px";
+				if (c==0) {
+					b=1
+				}
+			}
+			stop=setTimeout(auto,10)
+		}
+	</script>
+</body>
+</html>
