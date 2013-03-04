@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.out{
+			width:800px;
+			height:500px;
+			border:1px solid red;
+			position:relative;
+		}
+		.in{
+			width:50px;
+			height:50px;
+			background:red;
+			 position:absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="out" id="outter">
+		<div class="in" id="inner"></div>
+	</div>
+	<script>
+		var outter=document.getElementById("outter");
+		var inner=document.getElementById("inner");
+		var moveWidth=outter.clientWidth-inner.offsetWidth;
+		var moveHeight=outter.clientHeight-inner.offsetHeight;
+		var moveX=0;//判断横向移动(向右)
+		var moveY=0;//判断竖向移动
+		var runX=0;//横向移动距离
+		var runY=0;//竖向移动距离
+		function run() {
+			//水平方向
+			if(moveX==0){
+				runX+=5;
+				inner.style.left=runX+"px";
+					if(runX==moveWidth){
+						moveX=1;
+					}
+			}else{
+				runX-=5;
+				inner.style.left=runX+"px";
+				if(runX==0){
+					
+					moveX=0;
+				}
+			} 
+			//竖直方向	
+			if(moveY==0){
+				runY+=5;
+				inner.style.top=runY+"px";
+					if(runY==moveHeight){
+						moveY=1;
+					}
+			}else{
+				runY-=5;
+				inner.style.top=runY+"px";
+				if(runY==0){
+					moveY=0;
+				}
+			}
+			setTimeout(run,1);
+		}
+		setTimeout(run,1);
+	</script>
+</body>
+</html>

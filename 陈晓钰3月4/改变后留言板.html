@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title></title>
+	<style>
+	.text{
+			margin-top:5px;
+		}
+		.summbit{
+			margin-top:10px;
+		}
+		ul{
+			list-style:none;
+			width:300px;
+			
+			margin:0px;
+			padding:0px;
+		}
+		li{
+			width:298px;
+		}
+		.show{
+			color:red;
+		}
+		.content{
+			width:300px;
+			margin:0 auto;
+		}
+		.show1{
+			border:1px solid gray;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<span>姓名：</span>
+		<input type="text" id="cont1" value="" />
+		<br/>
+		<span>留言：</span>
+		<br/>
+		<textarea class="text" id="cont2" value=""></textarea>
+		<br/>
+		<input type="button" id="btn" value="提交" class="summbit" /><!-- 按钮 -->
+		<ul id="ul">
+			<li></li>
+		</ul>
+	</div>
+	<script>
+		 var btn=document.getElementById("btn");
+		 var contn=document.getElementById("cont1");
+		 var contc=document.getElementById("cont2");
+		 var uls=document.getElementById("ul");
+		 var lis=document.getElementsByTagName("li");
+		 btn.onclick=function () {
+			uls.innerHTML=uls.innerHTML+"<li style='border:1px solid gray;margin-bottom:5px;'>"+"<span style='color:blue;'>姓名:</span>"+contn.value+"<br />"+"<span style='color:blue;'>留言:</span>"+contc.value+"<br />"+"<br />"+"</li>";
+			for(var i=0;i<lis.length;i++){
+				lis[i].className="show";
+			}
+		}
+		
+	</script>
+</body>
+</html>
