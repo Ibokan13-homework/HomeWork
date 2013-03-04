@@ -14,7 +14,7 @@
 
 <body>
 	<div id="div"></div>
-	<input id="btn" type="button"/>
+	<input id="btn" type="button" value="正向"/>
 	<script type="text/javascript">
 		var div=document.getElementById("div");
 		var btn=document.getElementById("btn");
@@ -29,10 +29,12 @@
 				if(t%2==1)
 				{
 					i++;
+					btn.value="正向";
 					
 				}
 				else {
 					i--;
+					btn.value="反向"
 				}
 				div.style.width=i+"px";
 			}
