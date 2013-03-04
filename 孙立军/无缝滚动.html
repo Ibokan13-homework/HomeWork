@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.main{
+			width:480px;
+			height:48px;
+			overflow:hidden;
+			margin:50px auto 0;
+		}
+		.pics{
+			width:960px;
+			height:48px;
+		}
+		img{
+			float:left;
+			width:48px;
+			height:48px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="main" id="main">
+		<div id="pics" class="pics">
+			<img src="img/baina2.gif" alt="" />
+			<img src="img/gouwu2.gif" alt="" />
+			<img src="img/julebu2.gif" alt="" />
+			<img src="img/kongjian2.gif" alt="" />
+			<img src="img/luntan2.gif" alt="" />
+			<img src="img/meishi2.gif" alt="" />
+			<img src="img/wenhua2.gif" alt="" />
+			<img src="img/xiuxian2.gif" alt="" />
+			<img src="img/yedian2.gif" alt="" />
+			<img src="img/zhishifenzi2.gif" alt="" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		var main=document.getElementById("main");
+		var pics=document.getElementById("pics");
+		pics.innerHTML=pics.innerHTML+pics.innerHTML;
+		function autoScroll() {
+			main.scrollLeft++;
+			if(main.scrollLeft==pics.offsetWidth/2)
+			{	
+				main.scrollLeft=0;
+			}
+			setTimeout(autoScroll,10);
+		}
+		setTimeout(autoScroll,10);
+	</script>
+</body>
+</html>

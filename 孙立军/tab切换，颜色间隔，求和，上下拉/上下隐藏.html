@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.con{
+			border:1px solid red;
+			width:300px;
+		}
+		.show{display:block;}
+		.hide{display:none;}
+		ul{margin:0px;overflow:hidden;}
+		li{
+			float:left;
+			list-style-type:none;
+			width:100px;
+			height:50px;
+			background:blue;
+			margin:8px;
+		}
+	</style>
+</head>
+<body>
+	<div class="con">
+		<div>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+			</ul>
+		</div>
+		<div id="con" class="hide">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+			</ul>
+		</div>
+	</div>
+	<input type="button" value="显示/隐藏" id="btn"/>
+	<script type="text/javascript">
+		var btn=document.getElementById("btn");
+		var con=document.getElementById("con");
+		btn.onclick=function () {
+			if(con.className=="show")
+			{
+				con.className="hide";
+			}
+			else {
+				con.className="show";
+			}
+		}
+	</script>
+</body>
+</html>

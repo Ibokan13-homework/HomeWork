@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		li{
+			width:300px;
+			height:40px;
+			list-style-type:none;
+			border:1px solid red;
+			background:gray;
+		}
+	</style>
+</head>
+
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+
+	</ul>
+	<script type="text/javascript">
+		var lis=document.getElementsByTagName("li");
+		for (var i=1; i<lis.length; i=i+2) {
+			lis[i].style.background="white";
+		}
+	</script>
+</body>
+</html>

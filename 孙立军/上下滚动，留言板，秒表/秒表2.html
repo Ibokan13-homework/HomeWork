@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<meta charset='utf-8' />
+</head>
+<body>
+	<span id="h">00</span>
+	<span>:</span>
+	<span id="m">00</span>
+	<span>:</span>
+	<span id="s">00</span>
+	<script>
+		var s=document.getElementById("s");
+		var m=document.getElementById("m");
+		var h=document.getElementById("h");
+		var time;
+		function delay(){
+			s.innerHTML++;
+			if(s.innerHTML<10)
+			{
+				s.innerHTML="0"+s.innerHTML;
+			}
+			else if(s.innerHTML>=60){
+				s.innerHTML="00";
+				m.innerHTML++;
+				if(m.innerHTML<10)
+				{
+					m.innerHTML="0"+m.innerHTML;
+				}
+				else if(m.innerHTML>=60){
+
+					m.innerHTML="00";
+					h.innerHTML++;
+					if(h.innerHTML<10)
+					{
+						h.innerHTML="0"+h.innerHTML;
+					}
+					else {
+						h.innerHTML++;
+					}
+				}
+			}
+			setTimeout(delay,1000);
+		}
+		setTimeout(delay,1000);
+	</script>
+</body>
+</html>

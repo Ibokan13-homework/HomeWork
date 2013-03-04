@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.nav-tab{
+			width:300px;
+			height:30px;
+		}
+		.nav-tab div{
+			float:left;
+			width:98px;
+			border:1px solid blue;
+			height:28px;
+		}
+		.nav-con div{
+			width:300px;
+			height:300px;
+			border:1px solid green;
+			display:none;
+		}
+		.nav-tab div.select{
+			background:blue;
+		}
+		.nav-con div.show{
+			display:block;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="nav-tab" id="tab">
+		<div class="select">1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+	<div class="nav-con" id="con">
+		<div class="show">111</div>
+		<div>222</div>
+		<div>333</div>
+	</div>
+	<script type="text/javascript">
+		var tab=document.getElementById("tab").getElementsByTagName("div");
+		var con=document.getElementById("con").getElementsByTagName("div");
+		function a() {
+			for (var i=0; i<tab.length; i++) {
+				if(this==tab[i]){
+					tab[i].className="select";
+					con[i].className="show";
+				}
+				else {
+					tab[i].className="";
+					con[i].className="";
+				}
+			}
+		}
+		for (var i=0; i<3; i++) {
+			tab[i].onclick=a;
+		}
+	</script>
+</body>
+</html>
