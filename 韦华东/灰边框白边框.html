@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+	<style>
+		.box{
+			width:300px;
+			height:900px;
+			margin:50px auto 0px;
+			border:1px solid red;
+			zoom:1;
+		}
+		.ul li{
+			width:80px;
+			height:20px;
+			list-style:none;
+			margin:5px;
+		}
+		.ul .white{
+			background-color:grey;
+		}
+	</style>
+<body>
+	<div class="box" id="box">
+		<ul class="ul" id="ul">
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+			<li>联想</li>
+		</ul>
+	</div>
+	
+</body>
+	<script type="text/javascript">
+		var lis = document.getElementById("ul").getElementsByTagName("li");
+		for (var i=0; i<lis.length; i++) {
+			if (i%2==1) {
+				lis[i].className="white";
+			}
+		}	
+	</script>
+</html>

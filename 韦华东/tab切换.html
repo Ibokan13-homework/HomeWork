@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.a{
+			width:300px;
+			height:100px;
+			margin:50px auto 0;
+			zoom:1;
+		}
+		.c{
+			width:100px;
+			height:100px;
+			background-color:gray;
+			float:left;
+		}
+		.show{
+			width:100px;
+			height:100px;
+			background-color:red;
+			float:left;
+		}
+		.b{
+			width:300px;
+			height:400px;
+			background-color:green;
+		}
+		.e{
+			width:300px;
+			height:400px;
+			margin:0 auto;
+		}
+		.none{
+			display:none;
+		}
+	</style>
+</head>
+	<div id="a" class="a">
+		<div class="c">1</div>
+		<div class="c">2</div>
+		<div class="c">3</div>
+	</div>
+	<div id="e" class="e">
+		<div class="b">111</div>
+		<div>222</div>
+		<div>333</div>
+	</div>
+	<script>
+		var cs=document.getElementById("a").getElementsByTagName("div");
+		var bs=document.getElementById("e").getElementsByTagName("div");
+		for (var i=0; i<3; i++) {
+			cs[i].onclick=function () {
+				for (var i=0; i<3; i++) {
+					if (cs[i]==this) {
+						cs[i].className="show";
+						bs[i].className="b";
+					}else {
+						cs[i].className="c";
+						bs[i].className="none";
+					}
+				}
+			}
+		}
+		/*var a=0;
+		for (var i=1; i<101; i++) {
+			a=a+i;
+		}
+		alert(a);*/
+	</script>
+<body>
+	
+</body>
+</html>

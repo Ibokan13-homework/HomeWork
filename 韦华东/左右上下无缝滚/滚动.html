@@ -38,10 +38,11 @@
 	<script>
 		var a=document.getElementById("a");
 		var b=document.getElementById("b");
+		var mowidth=b.offsetWidth-a.clientWidth;
 		function delay() {
 			a.scrollLeft+=2;
 			setTimeout(delay,15);
-			if (a.scrollLeft==800) {
+			if (a.scrollLeft==mowidth) {
 				a.scrollLeft=0;
 			}
 		}
