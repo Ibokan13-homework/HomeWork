@@ -31,30 +31,30 @@
 		var f=0;
 		function change() {
 			if (d==0) {
-				b++;
+				b+=2;
 				if (b==450) {
 					d=1;
 				}
 			}else {
-				b--;
+				b-=2;
 				if (b==0) {
 					d=0;
 				}
 			}
 			if (f==0) {
-				c++;
+				c+=2;
 				if (c==250) {
 					f=1;
 				}
 			}else {
-				c--;
+				c-=2;
 				if (c==0) {
 					f=0;
 				}
 			}
 		a.style.marginLeft=b+"px";
 		a.style.marginTop=c+"px";
-		setTimeout(change,17);
+		setTimeout(change,1);
 		}
 		change();
 	</script>
