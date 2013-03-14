@@ -111,9 +111,55 @@
 		// setImgWrapSL -> set imgWrap node scrollLeft 
 		// num -> this is a number
 		function setImgWrapSL( num ) {
-			imgWrap.scrollLeft = num;
+			// imgWrap.scrollLeft = num;
+			startMove( imgWrap, 'sl', num );
 		}
-		
+		function startMove( obj, prop, end, options ) {
+			//当options存在
+			if (options) {
+				if (!options.d) {
+					var d = 31;
+				}else{
+					var d = options.d;
+				}
+
+				if (!options.twFn) {
+					var twFn = "Quad";
+				}else{
+					var twFn = options.twFn;
+				}
+
+				if (!options.easeFn) {
+					var easeFn = "easeOut";
+				}else{
+					var easeFn = options.easeFn;
+				}	
+			}else{
+				var d = 31;
+				var twFn = 'Quad';
+				var easeFn = 'easeOut';
+			}
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			var b = obj.scrollLeft;
+			var c = end - b;
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				obj.scrollLeft = num;
+			},10);
+		}
 	//------------------------------------------------------------
 	//------------------all of events-----------------------------
 	//------------------------------------------------------------
@@ -121,7 +167,7 @@
 		for (var i = navNumLiLength - 1; i >= 0; i--) {
 			navNumLi[i].onmouseover = (function(i) {
 				return function() {
-					if ( i < (navNumLiLength-1) ) {
+					if ( i < (navNumLiLength) ) {
 						setImgWrapSL(i * imgsLiW);
 					}
 					else if ( i === (navNumLiLength-1) ) {
