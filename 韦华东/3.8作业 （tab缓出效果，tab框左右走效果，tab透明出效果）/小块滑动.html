@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+</head>
+<style>
+	#box{
+		width:800px;
+		height:100px;
+		position:relative;
+		top:0;
+		left:0;
+		overflow:hidden;
+		zoom:1;
+		list-style:none;
+		padding:0;
+		margin:100px auto 0;
+	}
+	
+	#box li{
+		width:100px;
+		height:100px;
+		font-size:16px;
+		line-height:100px;
+		font-weight:bold;
+		float:left;
+		position:absolute;
+		top:0;
+		left:0;
+	}
+	
+	#box .img{
+		float:left;
+		margin-left:0;
+	}
+</style>
+<body>
+	<ul id="box">
+		<img id="img" class="img" src="ball.jpg" alt="ball" />
+		<li class="li1">首页</li>
+		<li class="li2">13班人</li>
+		<li class="li3">13班物</li>
+		<li class="li4">13班实力</li>
+		<li class="li5">关于13</li>
+		<li class="li6">13是个数</li>
+		<li class="li7">13xxx</li>
+		<li class="li8">13yyy</li>
+	</ul>
+	<script>
+		var lis=document.getElementById("box").getElementsByTagName("li");
+		var box=document.getElementById("box");
+		var img=document.getElementById("img");
+		for (var i=0; i<lis.length; i++) {
+			lis[i].style.left=100*i+"px";
+		}
+		for (var i=0; i<lis.length; i++) {
+			lis[i].onmouseover=function () {
+				for (var i=0; i<lis.length; i++) {
+					if (lis[i]==this) {
+					startMove(img,"marginLeft",100*i);
+					}	
+				}
+			}
+			lis[i].onmouseout=function () {
+				startMove(img,"marginLeft",0);
+			}
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+</head>
+	<style>
+		#box li{
+			width:100px;
+			height:50px;
+			float:left;
+			background-color:gray;
+		}
+		#box{
+			width:300px;
+			height:50px;
+			margin:50px auto 0;
+			zoom:1;
+			overflow:hidden;
+		}
+		#content{
+			width:300px;
+			margin:0 auto;
+			background-color:gray;
+			position:relative;
+			top:0;
+			left:0;
+		}
+		#content .block{
+			z-index:2;
+		}
+		#content div{
+			width:300px;
+			height:300px;
+			position:absolute;
+			top:0;
+			left:0;
+			z-index:0;
+		}
+	</style>
+<body>
+	<div id="box">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</div>
+	<div id="content">
+		<div class="block" style="background-color:purple;">one</div>
+		<div style="background-color:green;">two</div>
+		<div style="background-color:red;">three</div>
+	</div>
+	<script>
+		var tits=document.getElementById("box").getElementsByTagName("li");
+		var conts=document.getElementById("content").getElementsByTagName("div");
+		var aft=0; //给aft赋予0，方便后面引用
+		for (var i=0; i<tits.length; i++) {
+			tits[0].style.backgroundColor="blue";
+			tits[i].onclick=change;
+		}
+			function change() {
+				
+				for (var i=0; i<tits.length; i++) {
+					tits[i].style.backgroundColor="gray";
+					if (tits[aft]==this) {
+						tits[aft].style.backgroundColor="blue";
+						return;
+					}
+					if (tits[i]==this) {
+						
+						tits[i].style.backgroundColor="blue";
+						conts[i].style.zIndex=3;		//当点击上面小块的时候，让跟它对应的大块的层数最高为3，因为三个大框是绝对定位，所以他们是层叠关系，当给对应的大框赋值为3时，让它跟对应小块显示
+						conts[i].style.height="0px";
+						startMove(conts[i],"height",300,120);
+						var cli=i;//当执行了对应的显示之后，重新添加一个变量，目的是为了给下一次的点击执行函数传参数
+					}else if(aft==i) {
+						conts[aft].style.zIndex=2;//如果cli中的i传到aft中，也就是说上一次的点击目标i传给了aft，让上一次对应的大框层数为2，新点击的大框逐渐出来时作为它的背景
+					}else {
+						
+						conts[i].style.zIndex=1;//让其余的不相关的大框层数都为1，则它们在最下面，不显示
+					}	
+				}
+				aft=cli;//当执行了一次点击之后，将点击的目标i传给aft，为了下一次点击传参数做准备
+			}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+	<style>
+
+	</style>
+<body>
+	<script>
+		//运动通用函数
+
+		//为什么要传一个参数是obj
+
+					// 因为这有利于写多个对象的tween函数，用obj控制对象的名称同时也利于计时器的控制
+		//为什么要有style
+
+					//写style为了控制对象样式，用传参的方式写利于改变同一个对象或者不同对象的样式
+		//b,c
+
+					//b，c是tween函数中的参数，b代表起始点，c代表移动的距离
+		//d
+
+					//d是tween函数的运动总步数，b，c，d都用传参的方式写利于对同一个或多个对象的运动参数进行精确调节
+		//twfn1 , twfn2
+
+					//twfn1是tween函数中的运动轨迹名，twfn2是不同运动轨迹下的运动方式
+		function startMove(obj,style,b,c,d,twfn1,twfn2) {
+			//为什么要写这段代码
+
+					//这段代码function一开始就将对象进行判断，如果对象不存在，强制赋予；然后每次都声明一个新的对象，和下面”obj.t[style]=计时器“配合使每个对象都有一个独立的计时器
+			if (!obj.t) {
+				obj.t = {};
+			}
+			//为什么要写这段代码
+
+					//为了防止起始或终止时计时器没有清除
+			clearInterval(obj.t[style]);
+			//
+			var t = 0;
+			//为什么要用obj.t[style]，如果不用的话会有什么问题
+
+					//用obj.t[style]是给每一个对象赋予对应的独立计时器，这样做不会造成计时器混乱，让每一个对象使用自己的计时器，同时也利于清计时器
+			obj.t[style] = setInterval(function(){
+
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[style]);
+				//如果这里不写return，什么问题
+
+					//如果不写return，虽然计时器清除了，但下续代码还会执行
+					return;
+				}
+
+				//如果不写这个判断，会有什么问题
+
+					//如果不写此判断，那么无法写linear运动，因为linear没有相应的二级运动轨迹如easeOut，easeIn等
+				if (twfn1 == "Linear") {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twfn1][twfn2](t,b,c,d);
+				}
+				//同上
+
+					//如果没有此判断，将无法给对象加透明度效果，因为透明度效果的参数为纯数字，没有“px”；
+				if (style == "opacity") {
+					obj.style[style] = num;
+				}else{
+					obj.style[style] = num + "px";
+				}
+			},17)
+		}
+
+	
+
+	</script>
+</body>
+</html>

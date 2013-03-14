@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+</head>
+	<style>
+		#box li{
+			width:100px;
+			height:50px;
+			float:left;
+			background-color:gray;
+		}
+		#box{
+			width:300px;
+			height:50px;
+			margin:50px auto 0;
+			zoom:1;
+			overflow:hidden;
+		}
+		#content{
+			width:300px;
+			margin:0 auto;
+			overflow:hidden;
+		}
+		#content #inner .block{
+			width:298px;
+			height:298px;
+			border:1px solid red;
+			display:block;
+			float:left;
+		}
+		#inner{
+			width:900px;
+			height:300px;
+		}
+	</style>
+<body>
+	<div id="box">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</div>
+	<div id="content">
+		<div id="inner">
+			<div class="block" style="background-color:green;">one</div>
+			<div class="block" style="background-color:purple;">two</div>
+			<div class="block" style="background-color:black;color:yellow;">three</div>
+		</div>
+	</div>
+	<script>
+		var tits=document.getElementById("box").getElementsByTagName("li");
+		var conts=document.getElementById("content").getElementsByTagName("div");
+		var inner=document.getElementById("inner");
+		for (var i=0; i<tits.length; i++) {
+			tits[i].onclick=function () {
+				for (var i=0; i<tits.length; i++) {
+					if (tits[i]==this) {
+						tits[i].style.backgroundColor="blue";
+						startMove(inner,"marginLeft",-300*i)
+					}else {
+						tits[i].style.backgroundColor="gray";
+					}
+				}
+			}
+		}
+
+		/*for (var i=0; i<tits.length; i++) {
+			tits[i].onclick=function () {
+				for (var i=0; i<tits.length; i++) {
+					if (tits[i]==this) {
+						tits[i].style.backgroundColor="blue";
+						conts[i].className="block";
+						conts[i].style.height="0px";
+						startMove(conts[i],"height",300,120);
+					}else {
+						tits[i].style.backgroundColor="gray";
+						conts[i].className="none";
+					}			
+				}
+			}
+		}*/
+	</script>
+</body>
+</html>
+
