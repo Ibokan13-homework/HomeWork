@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="大图滚动">
+	<meta name="keywords" content="大图滚动">
+	<title>大图滚动</title>
+	<link type="text/css" rel="stylesheet" href="css/reset.css">
+	<style type="text/css">
+		body {
+			padding: 100px;
+		}
+		.imgWrap {
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+		.imgs {
+			width: 800px;
+			height: 200px;
+		}
+		.imgs li {
+			width: 200px;
+			height: 200px;
+			float: left;
+		}
+		.nav {
+			width: 200px;
+			margin: 20px auto 0;
+		}
+		.navLeft, .navNum, .navRight {
+			float: left;
+			text-align: center;
+			cursor: pointer;
+		}
+		.navLeft, .navRight {
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+			background-color: yellow;
+		}
+		.navNum li {
+			width: 23px;
+			height: 48px;
+			line-height: 50px;
+			border: 1px solid white;
+			float: left;
+			text-align: center;
+			color: white;
+			background-color: blue;
+		}
+		.navNum .navNumShow {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="imgWrap" class="imgWrap">
+		<ul id="imgs" class="imgs clearfix">
+			<li><img src="img/1.jpg" alt="1">1</li>
+			<li><img src="img/2.jpg" alt="2">2</li>
+			<li><img src="img/3.jpg" alt="3">3</li>
+			<li><img src="img/4.jpg" alt="4">4</li>
+		</ul>
+	</div>
+	<div class="nav clearfix">
+		<span id="navLeft" class="navLeft">Left</span>
+		<ul id="navNum" class="navNum">
+			<li class="navNumShow">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<span id="navRight" class="navRight">Right</span>
+	</div>
+	<script type="text/javascript" src="js/kavin.js"></script>
+	<script type="text/javascript">
+		var imgWrap  = $id('imgWrap');
+		var imgs     = $id('imgs');
+		var imgsLi   = $tag('li', imgs);
+			var imgsLiW = imgsLi[0].offsetWidth;
+		var navLeft  = $id('navLeft');
+		var navNum   = $id('navNum');
+		var navNumLi = $tag('li', navNum);
+			var navNumLiLength = navNumLi.length;
+		var navRight = $id('navRight');
+		var bigTime = 0;
+		var scrollW = 0;
+		var scrollTime = 1000;
+		// bigImgMove -> big images slide move function
+		function bigImgMove() {
+			clearTimeout(fbigTime);
+			scrollW += 1;
+			if ( scrollW < navNumLiLength ) {
+				navNumLi[scrollW].className = 'navNumShow';
+				navNumLi[scrollW-1].className = '';
+			} 
+			else if ( scrollW === navNumLiLength ) {
+				scrollW = 0;
+				navNumLi[scrollW].className = 'navNumShow';
+				navNumLi[navNumLiLength-1].className = '';
+			}
+			setImgWrapSL(scrollW * imgsLiW);
+			bigTime = setTimeout(bigImgMove, scrollTime);
+		}
+		// fbigTime -> first bigmove time
+		var fbigTime = setTimeout(bigImgMove, scrollTime);
+		// setImgWrapSL -> set imgWrap node scrollLeft 
+		// num -> this is a number
+		function setImgWrapSL( num ) {
+			imgWrap.scrollLeft = num;
+		}
+		
+	//------------------------------------------------------------
+	//------------------all of events-----------------------------
+	//------------------------------------------------------------
+		// ID: navNum children tags of li tag add mouse over event
+		for (var i = navNumLiLength - 1; i >= 0; i--) {
+			navNumLi[i].onmouseover = (function(i) {
+				return function() {
+					if ( i < (navNumLiLength-1) ) {
+						setImgWrapSL(i * imgsLiW);
+					}
+					else if ( i === (navNumLiLength-1) ) {
+						setImgWrapSL(0);
+					}
+					scrollW = i;
+					setShow(navNumLi,scrollW,'navNumShow');
+				}
+			})(i);
+		};
+		// ID: navLeft click
+		navLeft.onclick = function() {
+			if ( scrollW > 0 ) {
+				scrollW -= 1;
+			}
+			else if ( scrollW === 0 ) {
+				scrollW = navNumLiLength-1;
+			}
+			setImgWrapSL(scrollW * imgsLiW);
+			setShow(navNumLi,scrollW,'navNumShow');
+		}
+		// ID: navRight click
+		navRight.onclick = function() {
+			if ( scrollW < (navNumLiLength - 1) ) {
+				scrollW += 1;
+			}
+			else if ( scrollW === (navNumLiLength - 1) ) {
+				scrollW = 0;
+			}
+			setImgWrapSL(scrollW * imgsLiW);
+			setShow(navNumLi,scrollW,'navNumShow');
+		}
+		// ID: navLeft mouse over
+		navLeft.onmouseover = function() {
+			clearTimeout(bigTime);
+			clearTimeout(fbigTime);
+		}
+		// ID: navLeft mouse out
+		navLeft.onmouseout = function() {
+			bigTime = setTimeout(bigImgMove, scrollTime);
+		}
+		// ID: navRight mouse over
+		navRight.onmouseover = function() {
+			clearTimeout(bigTime);
+			clearTimeout(fbigTime);
+		}
+		// ID: navRight mouse out
+		navRight.onmouseout = function() {
+			bigTime = setTimeout(bigImgMove, scrollTime);
+		}
+		// ID: navNum mouse over
+		navNum.onmouseover = function() {
+			clearTimeout(bigTime);
+			clearTimeout(fbigTime);
+		}
+		// ID: navNum mouse out
+		navNum.onmouseout = function() {
+			bigTime = setTimeout(bigImgMove, scrollTime);
+		}
+	</script>
+</body>
+</html>
