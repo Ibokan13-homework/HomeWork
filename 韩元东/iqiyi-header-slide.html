@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="奇艺网头部滚动效果">
+	<meta name="keywords" content="奇艺网头部滚动效果">
+	<title>奇艺网头部滚动效果</title>
+	<link type="text/css" rel="stylesheet" href="css/reset.css">
+	<style type="text/css">
+		.hSlide {
+			position: relative;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			width: 100%;
+			min-width: 1350px;
+			height: 500px;
+			background-color: black;
+		}
+		/*sliBigImg*/
+			.sliBigImg li {
+				display: none;
+			}
+			.sliBigImg .show {
+				display: block;
+			}
+			.sliBigImg a {
+				width: 1350px;
+				height: 410px;
+				display: block;
+			}
+			.sliBigImg .show img {
+				opacity: 1;
+			}
+			.sliBigImg img {
+				margin: 0 auto;
+				opacity: 0;
+			}
+
+		/*sliCon*/
+			.sliCon {
+				position: absolute;
+				left: 242px;
+				top: 316px;
+				z-index: 1;
+			}
+			.sliCon li {
+				width: 660px;
+				height: 61px;
+				padding-top: 9px;
+				background: url(img/iqiyi/hengtiao.png) 0 0 no-repeat;
+				display: none;
+				opacity: 0;
+			}
+			.sliCon .show {
+				display: block;
+				opacity: 1;
+			}
+			.sliCon a {
+				float: left;
+				color: #ccc;
+				text-decoration: none;
+			}
+			.sliCon .sliBtn {
+				width: 52px;
+				height: 52px;
+				background: url(img/iqiyi/btn.png) 0 0 no-repeat;
+			}
+			.sliCon .sliBtn:hover {
+				background: url(img/iqiyi/btn-hover.png) 0 0 no-repeat;
+			}
+			.sliCon .sliConText {
+				height: 52px;
+				padding-left: 10px;
+				line-height: 52px;
+			}
+		/*sliPhone*/
+		.sliPhone, .sliPhoneBg, .sliPhoneFilter {
+			position: absolute;
+			right: 50px;
+			top: 50px;
+		}
+		.sliPhone {
+			z-index: 1;
+			width: 164px;
+			height: 318px;
+			padding: 12px 0 0 13px;
+		}
+		.sliPhoneBg {
+			z-index: 2;
+			width: 176px;
+			height: 330px;
+			background: url(img/iqiyi/bgphone.png) 0 0 no-repeat;
+		}
+		.sliPhoneFilter {
+			z-index: 3;
+			width: 164px;
+			height: 318px;
+			padding: 12px 0 0 13px;
+		}
+		.sliPhone li, .sliPhoneFilter li {
+			position: relative;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			width: 75px;
+			height: 50px;
+			border-bottom: 1px solid #2d2d2d;
+			float: left;
+		}
+		.sliPhoneFilter li:last-child {
+			border-bottom: none;
+		}
+		.sliPhone .other, .sliPhoneFilter .other {
+			width: 150px;
+		}
+		.sliPhone .br, .sliPhoneFilter .br {
+			border-right: 1px solid #2d2d2d;
+		}
+		.sliPhone img {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1;
+		}
+		.sliPhoneFilter span {
+			position: absolute;
+			left: 0;
+			right: 0;
+			z-index: 2;
+			display: block;
+			width: 100%;
+			height: 100%;
+			opacity: 0.5;
+			background-color: black;
+			cursor: pointer;
+		}
+		.sliPhoneFilter .show {
+			opacity: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="hSlide" class="hSlide">
+		<ul id="sliBigImg" class="sliBigImg">
+			<li class="show"><a href="#"><img src="img/iqiyi/1-big.jpg" alt="img"></a></li>
+			<li><a href="#"><img src="img/iqiyi/2-big.jpg" alt="img"></a></li>
+			<li><a href="#"><img src="img/iqiyi/3-big.jpg" alt="img"></a></li>
+			<li><a href="#"><img src="img/iqiyi/4-big.jpg" alt="img"></a></li>
+			<li><a href="#"><img src="img/iqiyi/5-big.jpg" alt="img"></a></li>
+			<li><a href="#"><img src="img/iqiyi/6-big.jpg" alt="img"></a></li>
+			<li><a href="#"><img src="img/iqiyi/7-big.jpg" alt="img"></a></li>
+			<li><a href="#"><img src="img/iqiyi/8-big.jpg" alt="img"></a></li>
+			<li><a href="#"><img src="img/iqiyi/9-big.jpg" alt="img"></a></li>
+			<li><a href="#"><img src="img/iqiyi/10-big.jpg" alt="img"></a></li>
+		</ul>
+		<ul id="sliCon" class="sliCon">
+			<li class="show"><a href="#" class="sliBtn"></a><a href="#" class="sliConText">《青春期撞上更年期2》[更新至16集]80后智斗麻辣爹妈</a></li>
+			<li><a href="#" class="sliBtn"></a><a href="#" class="sliConText">头号人物：网络宅男女神 爆乳博上位 香艳大盘点</a></li>
+			<li><a href="#" class="sliBtn"></a><a href="#" class="sliConText">《美味的想念》[更新至第4集]张勋杰美味谈情</a></li>
+			<li><a href="#" class="sliBtn"></a><a href="#" class="sliConText">《爱情自有天意》[更新至第62集]张丹峰娄艺潇虐爱升级</a></li>
+			<li><a href="#" class="sliBtn"></a><a href="#" class="sliConText">《贤妻》[更新至第29集]豪门媳妇婚姻保卫战</a></li>
+			<li><a href="#" class="sliBtn"></a><a href="#" class="sliConText">《一个鬼子都不留》[更新至8集]于震再塑英雄</a></li>
+			<li><a href="#" class="sliBtn"></a><a href="#" class="sliConText">《那年冬天风在吹》[更新至第10集]宋慧乔赵寅成虐心恋</a></li>
+			<li><a href="#" class="sliBtn"></a><a href="#" class="sliConText">浪漫满车：白色情人节特辑 网络人气歌手来相亲</a></li>
+			<li><a href="#" class="sliBtn"></a><a href="#" class="sliConText">康菲家族跳嗨江南style 清新演绎颠覆眼球</a></li>
+			<li><a href="#" class="sliBtn"></a><a href="#" class="sliConText">爱奇艺视频2.0桌面版大更新 酷炫体验，极速观影</a></li>
+		</ul>
+		<ul id="sliPhone" class="sliPhone clearfix">
+			<li class="other"><img src="img/iqiyi/1.jpg" alt="img"></li>
+			<li class="br"><img src="img/iqiyi/2.jpg" alt="img"></li>
+			<li class=""><img src="img/iqiyi/3.jpg" alt="img"></li>
+			<li class="br"><img src="img/iqiyi/4.jpg" alt="img"></li>
+			<li class=""><img src="img/iqiyi/5.jpg" alt="img"></li>
+			<li class="br"><img src="img/iqiyi/6.jpg" alt="img"></li>
+			<li class=""><img src="img/iqiyi/7.jpg" alt="img"></li>
+			<li class="br"><img src="img/iqiyi/8.jpg" alt="img"></li>
+			<li class=""><img src="img/iqiyi/9.jpg" alt="img"></li>
+			<li class="other"><img src="img/iqiyi/10.jpg" alt="img"></li>
+		</ul>
+		<div class="sliPhoneBg"></div>
+		<ul id="sliPhoneFilter" class="sliPhoneFilter clearfix">
+			<li class="other"><span class="show"></span></li>
+			<li class="br"><span></span></li>
+			<li class=""><span></span></li>
+			<li class="br"><span></span></li>
+			<li class=""><span></span></li>
+			<li cl3ass="br"><span></span></li>
+			<li class=""><span></span></li>
+			<li class="br"><span></span></li>
+			<li class=""><span></span></li>
+			<li class="other"><span></span></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/kavin.js"></script>
+	<script type="text/javascript">
+		// sliBigImg -> all of big images wrap ID
+		var sliBigImg = $id('sliBigImg');
+			// sliBigImgLi -> big images parent li tags
+			var sliBigImgLi = $tag('li', sliBigImg);
+			// sliLength -> all images count
+			var sliLength = sliBigImgLi.length;
+			// sliBigImgTag -> all of img tags
+			var sliBigImgTag = $tag('img', sliBigImg);
+		// sliCon -> all of content text wrap ID
+		var sliCon = $id('sliCon');
+			// sliConLi -> content text parent li tags
+			var sliConLi = $tag('li', sliCon);
+		// sliPhone -> all of slide phone images wrap ID
+		var sliPhone = $id('sliPhone');
+			// sliPhoneLi -> slide phone images parent li tags
+			var sliPhoneLi = $tag('li', sliPhone);
+		// sliPhoneFilter -> all of black filter wrap ID
+		var sliPhoneFilter = $id('sliPhoneFilter');
+			// sliPhoneFilterSpan -> black filter span tags
+			var sliPhoneFilterSpan = $tag('span', sliPhoneFilter);
+		// add click event to black filter span tag
+		for (var i = sliLength - 1; i >= 0; i--) {
+			sliPhoneFilterSpan[i].onclick = (function(i){
+				return function() {
+					setImg(i);
+					setCon(i);
+					setSpan(i);
+					imgIndex = i;
+				}
+				sliPhoneFilterSpan[i].onclick = null;
+			})(i);
+		};
+		// imgIndex = now change node index
+		var imgIndex = 0;
+		// all images slide time
+		var slideTime = 5000;
+		// changeTime save bigChange() function setTimeout
+		var changeTime = 0;
+		// fChangeTime save first run bigChange() function setTimeout
+		var fChangeTime = 0;
+		// conTime save content show use setTimeout
+		var conTime = 0;
+		// bigChange() -> every slideTime run once time
+		function bigChange() {
+			clearTimeout(fChangeTime)
+			imgIndex += 1;
+			if ( imgIndex < sliLength && imgIndex > 0 ) {
+				setImg(imgIndex);
+				setCon(imgIndex);
+				setSpan(imgIndex);
+			}
+			else if ( imgIndex === sliLength ) {
+				imgIndex = 0;
+				setImg(imgIndex);
+				setCon(imgIndex);
+				setSpan(imgIndex);
+			}
+			changeTime = setTimeout(bigChange, slideTime);
+		}
+		// first run bigChange function
+		fChangeTime = setTimeout(bigChange, slideTime);
+		// setImg() -> set big images show and hide and opacity
+		function setImg( index ) {
+			for (var j = sliLength - 1; j >= 0; j--) {
+				if ( j === index ) {
+					sliBigImgLi[j].className = 'show';
+					sliBigImgTag[j].style.opacity = 0;
+					startMove(sliBigImgTag[j],'opacity',1);
+				} else {
+					sliBigImgLi[j].className = '';
+					startMove(sliBigImgTag[j],'opacity',0);
+				}
+			}
+		}
+		// setCon() -> set content tag show and hide and opacity
+		function setCon( index ) {
+			for (var j = sliLength - 1; j >= 0; j--) {
+				if ( j === index ) {
+					clearTimeout(conTime);
+					conTime = setTimeout(function() {
+						sliConLi[index].className = 'show';
+						sliConLi[index].style.opacity = 0;
+						startMove(sliConLi[index],'opacity',1);
+					}, 1000)
+				} else {
+					sliConLi[j].className = '';
+				}
+			}
+		}
+		// setSpan() -> set black filter span tag show and hide and opacity
+		function setSpan( index ) {
+			for (var j = sliLength - 1; j >= 0; j--) {
+				if ( j === index ) {
+					sliPhoneFilterSpan[j].className = 'show';
+				} else {
+					sliPhoneFilterSpan[j].className = '';
+				}
+			}
+		}
+		// if mouse on sliPhoneFilter run
+		sliPhoneFilter.onmouseover = function() {
+			clearTimeout(changeTime);
+			clearTimeout(fChangeTime);
+		}
+		// if mouse leave sliPhoneFilter run
+		sliPhoneFilter.onmouseout = function() {
+			clearTimeout(changeTime);
+			changeTime = setTimeout(bigChange, slideTime);
+		}
+ 	</script>
+</body>
+</html>

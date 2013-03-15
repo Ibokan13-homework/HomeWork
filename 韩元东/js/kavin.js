@@ -44,14 +44,78 @@ function setShow( objs, setIndex, className ) {
  *  
  */
 function getStyle(obj,style) {
-	if ( document.defaultView 
-		&& document.defaultView.getComputedStyle 
-		&& !document.currentStyle ) {
+	if ( document.defaultView &&
+		 document.defaultView.getComputedStyle &&
+		!document.currentStyle ) {
 		return document.defaultView.getComputedStyle(obj,null)[style];
 	}else{
 		return obj.currentStyle[style];
 	}
 }
+/*
+ * 
+ */
+function startMove(obj,prop,end,options) {
+    
+    //当options存在
+    if (options) {
+        if (!options.d) {
+            var d = 31;
+        }else{
+            var d = options.d;
+        }
+
+        if (!options.twFn) {
+            var twFn = "Quad";
+        }else{
+            var twFn = options.twFn;
+        }
+
+        if (!options.easeFn) {
+            var easeFn = "easeOut";
+        }else{
+            var easeFn = options.easeFn;
+        }   
+    }else{
+        var d = 31;
+        var twFn = 'Quad';
+        var easeFn = 'easeOut';
+    }
+    var t = 0;
+    if (!obj.t) {
+        obj.t = {};
+    }
+    //获取obj当前的prop样式的值
+    //示例：获取test当前宽度样式的值："50px"
+    var b = getStyle(obj,prop);
+    //字符串=>数字
+    b = parseInt(b);//'50px'=>50
+    //var b = parseInt(getStyle(obj,prop));
+    if(isNaN(b)){
+        b=0;
+    }
+    var c = end - b;
+    clearInterval(obj.t[prop]);
+    obj.t[prop] = setInterval(function(){
+        t++;
+        if (t>d) {
+            clearInterval(obj.t[prop]);
+            return;
+        }
+        if (twFn == 'Linear') {
+            var num = Tween.Linear(t,b,c,d);
+        }else{
+            var num = Tween[twFn][easeFn](t,b,c,d);
+        }
+        if(prop=="opacity"){
+            obj.style[prop] = num;
+        }else{
+            obj.style[prop] = num + 'px';
+        }
+    },10);
+}
+
+
 /*
  * Tween moving framwork
  * t -> current time 	当前时间
