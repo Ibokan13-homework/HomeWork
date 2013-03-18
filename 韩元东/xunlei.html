@@ -146,17 +146,17 @@
 	<script type="text/javascript" src="js/tween.js"></script>
 	<script type="text/javascript" src="js/kHelp-0.2.js"></script>
 	<script type="text/javascript">
-		var bigImg = $id('bigIMg');
-			var bigImgLi = $tag('li', bigImg);
-			var bigImgTag = $tag('img', bigImg);
-		var conText = $id('conText');
-			var conTextLi = $tag('li', conText);
-		var smallImg = $id('smallImg');
-			var smallImgLi = $tag('li', smallImg);
+		var bigImg     = $id('bigIMg'),
+				bigImgLi   = $tag('li', bigImg),
+				bigImgTag  = $tag('img', bigImg),
+			conText    = $id('conText'),
+				conTextLi  = $tag('li', conText),
+			smallImg   = $id('smallImg'),
+				smallImgLi = $tag('li', smallImg),
 		// slide length
-		var sL = $size(smallImgLi);
-		var changeTime = 3000;
-		var imgIndex = 0;
+			sL         = $size(smallImgLi),
+			changeTime = 3000,
+			imgIndex   = 0;
 
 		var bigTime = setInterval(autoChange, changeTime);
 		function autoChange() {
