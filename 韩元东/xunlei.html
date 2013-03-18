@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="迅雷">
+	<meta name="keywords" content="迅雷">
+	<title>迅雷</title>
+	<link type="text/css" rel="stylesheet" href="css/reset.css">
+	<style type="text/css">
+		body {
+			padding-top: 100px;
+		}
+		/* big image slide*/
+		.bigSlide {
+			position: relative;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			width: 750px;
+			margin: 0 auto;
+			overflow: hidden;
+			background-color: black;
+		}
+		.bigSlide ul {
+			position: relative;
+			left: 0;
+			top: 0;
+			z-index: 1;
+		}
+		.bigImg {
+			width: 7500px;
+			height: 350px;
+			overflow: hidden;
+		}
+		.bigImg li {
+			display: none;
+			width: 750px;
+			height: 350px;
+			overflow: hidden;
+		}
+		.bigImg .show {
+			display: block;
+		}
+		.bigImg .opa {
+			opacity: 0;
+		}
+		/* content text*/
+		/*.conText {
+			width: 750px;
+		}*/
+		.bigSlide .conText {
+			position: absolute;
+			left: 0;
+			top: 308px;
+			z-index: 1;
+		}
+		.conText li {
+			width: 700px;
+			display: none;
+			padding-left: 50px;
+			overflow: hidden;
+			background: rgba(0, 0, 0, 0.5) url(img/xunlei/play_ico.png) 10px 3px no-repeat;
+		}
+		.conText li a {
+			line-height: 42px;
+			text-decoration: none;
+			color: white;
+		}
+		.conText .show {
+			display: block;
+		}
+		.conText .opa {
+			opacity: 0;
+		}
+		/* small image slide*/
+		.smallImg {
+			margin-top: -2px;
+		}
+		.smallImg li {
+			position: relative;
+			left: 1;
+			top: 0;
+			z-index: 1;
+			float: left;
+			width: 73px;
+			height: 57px;
+			margin-left: 1.8px;
+		}
+		.smallImg img {
+			position: absolute;
+			left: 1px;
+			top: 5px;
+			z-index: 1;
+			width: 71px;
+			height: 48px;
+		}
+		.smallImg .bg {
+			background: transparent url(img/xunlei/bg.png) 0 0 no-repeat;
+		}
+		.smallImg .br {
+			background: transparent url(img/xunlei/br.gif) 0 4px no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<div class="bigSlide">
+		<ul id="bigImg" class="bigImg clearfix">
+			<li class="show"><a href="#"><img src="img/xunlei/big1.jpg" alt="img"></a></li>
+			<li class="opa"><a href="#"><img src="img/xunlei/big2.jpg" alt="img"></a></li>
+			<li class="opa"><a href="#"><img src="img/xunlei/big3.jpg" alt="img"></a></li>
+			<li class="opa"><a href="#"><img src="img/xunlei/big4.jpg" alt="img"></a></li>
+			<li class="opa"><a href="#"><img src="img/xunlei/big5.jpg" alt="img"></a></li>
+			<li class="opa"><a href="#"><img src="img/xunlei/big6.jpg" alt="img"></a></li>
+			<li class="opa"><a href="#"><img src="img/xunlei/big7.jpg" alt="img"></a></li>
+			<li class="opa"><a href="#"><img src="img/xunlei/big8.jpg" alt="img"></a></li>
+			<li class="opa"><a href="#"><img src="img/xunlei/big9.jpg" alt="img"></a></li>
+			<li class="opa"><a href="#"><img src="img/xunlei/big10.jpg" alt="img"></a></li>
+		</ul>
+		<ul id="conText" class="conText">
+			<li class="show"><a href="#">《上位》34D宅男女神赵奕欢来势胸涌 揭露艺校女生“上位”潜规则(更新至01集)</a></li>
+			<li class="opa"><a href="#">《贤妻》高富帅丈夫遇第三者诱惑 豪门媳妇捍卫爱情历尽波折(大结局35集全)</a></li>
+			<li class="opa"><a href="#">《非诚勿扰》自信男解读山盟海誓,24号丁东丽一见钟情爆灯(更新至03-17期)</a></li>
+			<li class="opa"><a href="#">《华丽一族》打造中国版“天桥风云” 腹黑男为爱不顾一切、痴情绝对(更新至12集)</a></li>
+			<li class="opa"><a href="#">《十二生肖》成式招牌动作片 大哥玩命跳火山 带领"侠盗集团'极地夺宝(免费高清首播)</a></li>
+			<li class="opa"><a href="#">时尚动作游戏,点击马上进入一个无间道时代！</a></li>
+			<li class="opa"><a href="#">京东商城 春雷行动 3.1-3.24 空前低价 电你一下！</a></li>
+			<li class="opa"><a href="#">秦时明月网游版终于出啦，现在进入游戏还能拿特权礼包！</a></li>
+			<li class="opa"><a href="#">《两个女人》正室妖娆小三骨感 男人让欲望将自己吞噬(迅雷看看独家剪辑)</a></li>
+			<li class="opa"><a href="#">《女警爱作战》极品师姐连环反击 动作爆破戏惊险“回巢”(21集全)</a></li>
+		</ul>
+		<ul id="smallImg" class="smallImg clearfix">
+			<li class="bg"><a href="#"><img src="img/xunlei/1.jpg" alt="img"></a></li>
+			<li class="br"><a href="#"><img src="img/xunlei/2.jpg" alt="img"></a></li>
+			<li class="br"><a href="#"><img src="img/xunlei/3.jpg" alt="img"></a></li>
+			<li class="br"><a href="#"><img src="img/xunlei/4.jpg" alt="img"></a></li>
+			<li class="br"><a href="#"><img src="img/xunlei/5.jpg" alt="img"></a></li>
+			<li class="br"><a href="#"><img src="img/xunlei/6.jpg" alt="img"></a></li>
+			<li class="br"><a href="#"><img src="img/xunlei/7.jpg" alt="img"></a></li>
+			<li class="br"><a href="#"><img src="img/xunlei/8.jpg" alt="img"></a></li>
+			<li class="br"><a href="#"><img src="img/xunlei/9.jpg" alt="img"></a></li>
+			<li class="br"><a href="#"><img src="img/xunlei/10.jpg" alt="img"></a></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/tween.js"></script>
+	<script type="text/javascript" src="js/kHelp-0.2.js"></script>
+	<script type="text/javascript">
+		var bigImg = $id('bigIMg');
+			var bigImgLi = $tag('li', bigImg);
+			var bigImgTag = $tag('img', bigImg);
+		var conText = $id('conText');
+			var conTextLi = $tag('li', conText);
+		var smallImg = $id('smallImg');
+			var smallImgLi = $tag('li', smallImg);
+		// slide length
+		var sL = $size(smallImgLi);
+		var changeTime = 3000;
+		var imgIndex = 0;
+
+		var bigTime = setInterval(autoChange, changeTime);
+		function autoChange() {
+			imgIndex += 1;
+			if ( imgIndex === 10 ) {
+				imgIndex = 0;
+			}
+			changeBigImg(imgIndex);
+			changeConText(imgIndex);
+			changeSmallImg(imgIndex);
+		}
+		for ( var i = 0; i < sL; i++ ) {
+			smallImgLi[i].onmouseover = (function(i) {
+				return function() {
+					changeBigImg(i);
+					changeConText(i);
+					changeSmallImg(i);
+					imgIndex = i;
+					clearInterval(bigTime);
+				};
+			})(i);
+			smallImgLi[i].onmouseout = function() {
+				clearInterval(bigTime);
+				bigTime = setInterval(autoChange, changeTime);
+			};
+		};
+		function changeBigImg( index ) {
+			for ( var j = 0; j < sL; j++ ) {
+				if ( j === index ) {
+					$addClass(bigImgLi[j], 'show');
+					$setStyle(bigImgLi[j], 'opacity', 0);
+					$tweenEffect(bigImgLi[j], 'opacity', 1);
+				} else {
+					$emptyClass(bigImgLi[j]);
+					
+				}
+			}
+		}
+		var conTime = 0;
+		function changeConText( index ) {
+			for ( var j = 0; j < sL; j++ ) {
+				if ( j === index ) {
+					clearTimeout(conTime);
+					conTime = setTimeout(function() {
+						$addClass(conTextLi[index], 'show');
+						$setStyle(conTextLi[index], 'opacity', 0);
+						$tweenEffect(conTextLi[index], 'opacity', 1);
+					}, 300);
+				} else {
+					$emptyClass(conTextLi[j]);
+				}
+			}
+		}
+		function changeSmallImg( index ) {
+			for ( var j = 0; j < sL; j++ ) {
+				if ( j === index ) {
+					$removeClass(smallImgLi[j], 'br');
+					$addClass(smallImgLi[j], 'bg');
+					// console.log("OK")
+				} else {
+					$removeClass(smallImgLi[j], 'bg');
+					$addClass(smallImgLi[j], 'br');
+				}
+			}
+			
+		}
+
+	</script>
+</body>
+</html>
