@@ -194,19 +194,20 @@
 			<li class="other"><span></span></li>
 		</ul>
 	</div>
-	<script type="text/javascript" src="js/kavin.js"></script>
+	<script type="text/javascript" src="js/tween.js"></script>
+	<script type="text/javascript" src="js/kHelp-0.2.js"></script>
 	<script type="text/javascript">
 		// sliBigImg -> all of big images wrap ID
 		var sliBigImg = $id('sliBigImg');
 			// sliBigImgLi -> big images parent li tags
 			var sliBigImgLi = $tag('li', sliBigImg);
 			// sliLength -> all images count
-			var sliLength = sliBigImgLi.length;
+			var sliLength = $size(sliBigImgLi);
 			// sliBigImgTag -> all of img tags
 			var sliBigImgTag = $tag('img', sliBigImg);
 		// sliCon -> all of content text wrap ID
 		var sliCon = $id('sliCon');
-			sliCon.style.top = 316 + 'px';
+			$setStyle(sliCon,'top',316,'px');
 			// sliConLi -> content text parent li tags
 			var sliConLi = $tag('li', sliCon);
 		// sliPhone -> all of slide phone images wrap ID
@@ -262,12 +263,13 @@
 		function setImg( index ) {
 			for (var j = sliLength - 1; j >= 0; j--) {
 				if ( j === index ) {
-					sliBigImgLi[j].className = 'show';
-					sliBigImgTag[j].style.opacity = 0;
-					startMove(sliBigImgTag[j],'opacity',1);
+					$addClass(sliBigImgLi[j],'show');
+					$setStyle(sliBigImgTag[j],'opacity',0);
+					$tweenEffect(sliBigImgTag[j],'opacity',1);
 				} else {
-					sliBigImgLi[j].className = '';
-					startMove(sliBigImgTag[j],'opacity',0);
+					$emptyClass(sliBigImgLi[j]);
+					$setStyle(sliBigImgTag[j],'opacity',0)
+					// $tweenEffect(sliBigImgTag[j],'opacity',0);
 				}
 			}
 		}
@@ -277,14 +279,14 @@
 				if ( j === index ) {
 					clearTimeout(conTime);
 					conTime = setTimeout(function() {
-						sliConLi[index].className = 'show';
-						sliConLi[index].style.opacity = 0;
-						startMove(sliConLi[index],'opacity',1);
-						startMove(sliCon,'top',316)
+						$addClass(sliConLi[index],'show');
+						$setStyle(sliConLi[index],'opacity',0);
+						$tweenEffect(sliConLi[index],'opacity',1);
+						$tweenEffect(sliCon,'top',316,'px')
 					}, 1000)
 				} else {
-					sliConLi[j].className = '';
-					sliCon.style.top = 340 + 'px';
+					$emptyClass(sliConLi[j]);
+					$setStyle(sliCon,'top',340,'px');
 				}
 			}
 		}
@@ -292,9 +294,9 @@
 		function setSpan( index ) {
 			for (var j = sliLength - 1; j >= 0; j--) {
 				if ( j === index ) {
-					sliPhoneFilterSpan[j].className = 'show';
+					$addClass(sliPhoneFilterSpan[j],'show');
 				} else {
-					sliPhoneFilterSpan[j].className = '';
+					$emptyClass(sliPhoneFilterSpan[j]);
 				}
 			}
 		}
