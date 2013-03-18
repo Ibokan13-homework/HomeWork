@@ -43,7 +43,7 @@
 			.sliCon {
 				position: absolute;
 				left: 242px;
-				top: 316px;
+				top: 340px;
 				z-index: 1;
 			}
 			.sliCon li {
@@ -206,6 +206,7 @@
 			var sliBigImgTag = $tag('img', sliBigImg);
 		// sliCon -> all of content text wrap ID
 		var sliCon = $id('sliCon');
+			sliCon.style.top = 316 + 'px';
 			// sliConLi -> content text parent li tags
 			var sliConLi = $tag('li', sliCon);
 		// sliPhone -> all of slide phone images wrap ID
@@ -279,9 +280,11 @@
 						sliConLi[index].className = 'show';
 						sliConLi[index].style.opacity = 0;
 						startMove(sliConLi[index],'opacity',1);
+						startMove(sliCon,'top',316)
 					}, 1000)
 				} else {
 					sliConLi[j].className = '';
+					sliCon.style.top = 340 + 'px';
 				}
 			}
 		}
