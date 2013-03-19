@@ -11,9 +11,11 @@
 	<style type="text/css">
 		body {
 			height: 5000px;
+			_background-image: url(about:blank);
+			_background-attachment: fixed;
 		}
 		.ad {
-			position: absolute;
+			position: fixed;
 			right: 50px;
 			top: 100px;
 			z-index: 1;
@@ -21,21 +23,12 @@
 			height: 200px;
 			background-color: red;
 			overflow: auto;
+			_position: absolute;
+			_top: expression(eval(document.documentElement.scrollTop+100));
 		}
 	</style>
 </head>
 <body>
 	<div id="ad" class="ad"></div>
-	<script type="text/javascript" src="js/tween.js"></script>
-	<script type="text/javascript" src="js/kHelp-0.2.js"></script>
-	<script type="text/javascript">
-		var ad    = $id('ad'),
-			adTop = ad.offsetTop;
-		window.onscroll = function() {
-			var st = $getScroll('Top');
-			var stNow = adTop + st;
-			$tweenEffect(ad,'top',stNow);
-		}
-	</script>
 </body>
 </html>

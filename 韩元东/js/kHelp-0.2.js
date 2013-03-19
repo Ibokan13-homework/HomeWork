@@ -196,13 +196,16 @@ function $tweenEffect( obj, sty, end, options ) {
 	    	twFn = 'Quad',
 	    	easeFn = 'easeOut';
 	}
-	var b = $getStyle(obj, sty);
-	//字符串=>数字
-	b = parseInt(b);//'50px'=>50
-	//var b = parseInt(getStyle(obj,prop));
-	if( isNaN(b) ){
-	    b = 0;
+	if ( sty === 'scrollTop' || sty === 'scrollLeft' ) {
+		var b = obj[sty];
+	} else {
+		var b = $getStyle(obj, sty);
+		b = parseInt(b);
+		if( isNaN(b) ){
+		    b = 0;
+		}
 	}
+	
 	var c = end - b,
 		t = 0;
 	if ( !obj.t ) {
@@ -222,7 +225,10 @@ function $tweenEffect( obj, sty, end, options ) {
 	    }
 	    if( sty === "opacity" ){
 	        obj.style[sty] = num;
-	    }else{
+	    } else if ( sty === 'scrollTop' || sty === 'scrollLeft' ) {
+	    	obj[sty] = num;
+	    }
+	    else{
 	        obj.style[sty] = num + 'px';
 	    }
 	},17);

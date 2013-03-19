@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="悬浮广告">
+	<meta name="keywords" content="悬浮广告">
+	<title>悬浮广告</title>
+	<link type="text/css" rel="stylesheet" href="css/reset.css">
+	<style type="text/css">
+		body {
+			height: 5000px;
+		}
+		.ad {
+			position: absolute;
+			right: 50px;
+			top: 100px;
+			z-index: 1;
+			width: 100px;
+			height: 200px;
+			background-color: red;
+			overflow: auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="ad" class="ad"></div>
+	<script type="text/javascript" src="js/tween.js"></script>
+	<script type="text/javascript" src="js/kHelp-0.2.js"></script>
+	<script type="text/javascript">
+		var ad    = $id('ad'),
+			adTop = ad.offsetTop;
+		window.onscroll = function() {
+			var st = $getScroll('Top');
+			var stNow = adTop + st;
+			$tweenEffect(ad,'top',stNow);
+		}
+		ad.onclick = function() {
+			if ( doc.body.scrollTop !== 0 ) {
+				$tweenEffect(doc.body,'scrollTop',0);
+			}
+			if ( doc.documentElement !== 0 ) {
+				$tweenEffect(doc.documentElement,'scrollTop',0);
+			}
+
+		}
+	</script>
+</body>
+</html>
