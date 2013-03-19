@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style>
+		a img{
+			border:0;
+		}
+		body{
+			position:relative;
+			height:407px;
+			overflow:hidden;
+		}
+		.out{
+			width:750px;
+			height:350px;
+			line-height:0;
+		}
+		.inner img{
+			width:750px;
+			height:350px;
+			background:black;
+			position:absolute;
+		}
+		.a{
+			z-index:1;
+		}
+		.nav1{
+			background:black;
+			width:750px;
+			height:57px;
+			position:absolute;
+			z-index:3;
+			line-height:0;
+		}
+		.nav{
+			width:750px;
+			height:350px;
+			line-height:0;	
+		}
+		.nav img{
+			width:71px;
+			height:48px;
+			margin-top:5px;
+			float:left;
+		}
+		.nav div{
+			width:73px;
+			height:57px;
+			padding:0 1px;
+			background:url(imgs/bg1.jpg) 0 4px no-repeat;
+			float:left;
+		}
+		.nav .show2{
+			width:73px;
+			height:57px;
+			float:left;
+			background:url(imgs/bg1.jpg) 0 4px no-repeat;
+		}
+		.nav .show1{
+			width:73px;
+			height:57px;
+			float:left;
+			background:url(imgs/bg.png) no-repeat;
+		}
+		.word{
+			position:absolute;
+			left:0px;
+			top:308px;
+			z-index:1;
+		}
+		.word1{
+			width:750px;
+			height:42px;
+			background:black;
+			opacity:0.6;
+		}
+		.word a{
+			display:block;
+			width:750px;
+			height:42px;
+			position:absolute;
+			left:0px;
+			top:0px;
+			z-index:2;
+			display:none;
+			text-decoration:none;
+		}
+		.word a:hover{
+			text-decoration:underline;
+			color:white;
+		}
+		.word span{
+			display:block;
+			width:600px;
+			height:38px;
+			font-size:20px;
+			color:white;
+			margin-left:10px;
+			padding-left:50px;
+			padding-top:3px;
+			background:url(imgs/ico.png) 0px 0px no-repeat;
+		}
+		.word .show{
+			display:block;
+			width:750px;
+			height:42px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="out" class="out">
+		<div id="inner" class="inner">
+			<a href="#">
+				<img src="imgs/aa.jpg" class="a" />
+			</a>
+			<a href="#">
+				<img src="imgs/bb.jpg" />
+			</a>
+			<a href="#">
+				<img src="imgs/cc.jpg" />
+			</a>
+			<a href="#">
+				<img src="imgs/dd.jpg" />
+			</a>
+			<a href="#">
+				<img src="imgs/ee.jpg" />
+			</a>
+			<a href="#">
+				<img src="imgs/ff.jpg" />
+			</a>
+			<a href="#">
+				<img src="imgs/gg.jpg" />
+			</a>
+			<a href="#">
+				<img src="imgs/hh.jpg" />
+			</a>
+			<a href="#">
+				<img src="imgs/ii.jpg" />
+			</a>
+			<a href="#">
+				<img src="imgs/jj.jpg" />
+			</a>			
+		</div>
+	</div>
+	<div class="nav1">
+		<div id="nav" class="nav">
+			<div class="show1">
+				<a href="#">
+					<img src="imgs/a.jpg"/>
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="imgs/b.jpg" />
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="imgs/c.jpg" />
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="imgs/d.jpg" />
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="imgs/e.jpg" />
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="imgs/f.jpg" />
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="imgs/g.jpg" />
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="imgs/h.jpg" />
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="imgs/i.jpg" />
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="imgs/j.jpg" />
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="word" id="word">
+		<div class="word1"></div>
+		<a href="#" class="show"><span>华丽一族，打造中国版动漫</span></a>
+		<a href="#"><span>《贤妻》豪门媳妇婚姻保卫战</span></a>
+		<a href="#"><span>laughing哥，女警爱作战</span></a>
+		<a href="#"><span>《两个女人》</span></a>
+		<a href="#"><span>京东商城</span></a>
+		<a href="#"><span>《十二生肖》成龙招牌动作</span></a>
+		<a href="#"><span>秦时明月网游版</span></a>
+		<a href="#"><span>《上位》</span></a>
+		<a href="#"><span>时尚动作游戏</span></a>
+		<a href="#"><span>《非诚勿扰》</span></a>
+	</div>
+	<script>
+		var inner=document.getElementById("inner");
+		var word=document.getElementById("word");
+		var imgs=document.getElementById("inner").getElementsByTagName("img");
+		var nav=document.getElementById("nav");
+		var navs=document.getElementById("nav").getElementsByTagName("div");
+		var words=document.getElementById("word").getElementsByTagName("a");
+		var time;
+		var time1;
+		var num=0;
+		//先自转
+		function moveo() {
+			word.style.top="350px";
+			num++;
+			if(num==imgs.length){
+				num=0;
+			}
+			for(var i=0;i<imgs.length;i++){
+				if(i==num){
+					navs[i].className="show1";
+					startMove(imgs[i],"opacity",1);
+					words[i].className="show";
+					time1=setTimeout(function(){
+						for(var i=0;i<navs.length;i++){
+							if(num==i){
+								startMove(word,"top",308);
+							}	
+						}
+					},1000)
+				}else{
+					imgs[i].style.opacity=0;
+					navs[i].className="show2";
+					words[i].className=" ";
+				}
+			}
+		}
+		time=setInterval(moveo,3000);
+		//鼠标事件
+		for(var i=0;i<navs.length;i++){
+			navs[i].onmouseover=function () {
+				clearInterval(time);
+				for(var i=0;i<navs.length;i++){
+					if(navs[i]==this){
+						num=i;
+						navs[i].className="show1";
+						words[i].className="show";
+						startMove(imgs[i],"opacity",1);
+					}else{
+						imgs[i].style.opacity=0;
+						navs[i].className="show2";
+						words[i].className="";
+					}
+				}
+				
+			}
+			navs[i].onmouseout=function () {
+				clearInterval(time);
+				time=setInterval(moveo,3000);
+			}
+		}	
+	</script>
+</body>
+</html>

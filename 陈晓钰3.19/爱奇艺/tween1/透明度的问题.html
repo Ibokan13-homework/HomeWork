@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+</head>
+
+<body style="height:500px;border:1px solid blue;">
+	<div id="test" style="width:50px;background:red;border:1px solid red;height:50px;"></div>
+	<div id="test1" style="width:50px;background:red;height:50px;"></div>
+	<script>
+		var test =document.getElementById('test')
+		var test1 =document.getElementById('test1')
+		
+		var t1;
+		
+		//把主要的代码，用函数给包裹起来，起个名字。
+		//提取的方法：常用一个，就是传参。
+
+		
+
+		//为什么要传一个参数是obj  //将标签提取出来，作为参数obj
+		//为什么要有style
+		//b,c，d                     //把不通用的地方，提取出来
+		//twfn1 , twfn2
+		function startMove(obj,prop,b,c,d,twFn,easeFn) {
+			var t = 0;
+			//为什么要写这段代码
+			//存各种样式的计时器用的,计时器要一一对应
+			//判断因为每运行一次函数，就会生成一个新的计时器，那清的就是新的计时器，而原来的计时器就没有清掉，就会出现异常
+			//如果旧的计时器存在，就不需要创建，如果不存在，就创建一个新的
+			if (!obj.t) {
+				obj.t = {};//创建了一个对象，用来存储各种计时器的
+			}
+			//为什么要写这段代码  清计时器，不让运动越点越快
+			clearInterval(obj.t[prop]);
+			//为什么要用obj.t[style]，如果不用的话会有什么问题
+			//是给对象的不同属性加一个计时器，解决一个对象的不同属性共用一个计时器问题
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					//如果这里不写return，什么问题
+					return;//就会执行后面的代码
+				}
+				//如果不写这个判断，会有什么问题      就会发生错误，因为linear就一个属性，弹出Tween[...]为空或不是对象
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				//同上      因为opacity后面跟的要是个数值，但是加了px就不是了,就会没有任何变化
+				if (prop == 'opacity') {
+					obj.style[prop] = num;
+				}else {
+					obj.style[prop] = num + 'px';
+				}
+				
+			},17);
+		}
+		document.body.onclick = function(){
+			startMove(test,"width",0,900,30,"Quad","easeOut");	
+			startMove(test1,"opacity",0,1,30,"Quad","easeOut");
+		}
+	</script>
+</body>
+</html>

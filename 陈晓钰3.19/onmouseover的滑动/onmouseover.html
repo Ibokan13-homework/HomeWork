@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style>
+		.out{
+			position:relative;
+			width:1000px;
+			margin:100px auto;
+		}
+		.out div{
+			width:100px;
+			height:52px;
+			float:left;
+			font-size:14px;
+			text-align:center;
+			line-height:52px;
+			position:absolute;
+			cursor:pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="out" id="out">
+		<div>首页</div>
+		<div>关于13班</div>
+		<div>13班成员</div>
+		<div>13班实力</div>
+		<div>13班项目</div>
+		<div>13班作业</div>
+		<img src="a.gif" id="img" />
+	</div>
+	<script>
+		
+
+		var divs=document.getElementById("out").getElementsByTagName("div");
+		var img=document.getElementById("img");
+		for(var i=0;i<divs.length;i++){
+			divs[i].style.left=100*i;
+		}
+			for(var i=0;i<divs.length;i++){
+				divs[i].onmouseover=function () {
+					for(var i=0;i<divs.length;i++){
+						if(divs[i]==this){
+							startMove(img,"marginLeft",100*i,{twfn:"back"});
+						}
+					}
+				}
+				divs[i].onmouseout=function () {
+					startMove(img,"marginLeft",0);
+				}
+			}
+			
+			
+	</script>
+</body>
+</html>

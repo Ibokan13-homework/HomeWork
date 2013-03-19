@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style type="text/css">
+	body{
+		position:relative;
+	}
+	.out{
+		width:300px;
+		height:300px;
+		margin:50px auto;
+		border:1px solid red;
+		overflow:hidden;
+		
+	}
+	.outter{
+		width:1200px;
+		height:300px;
+		position:relative;
+	}
+	.outter img{
+		width:300px;
+		height:300px;
+		float:left;
+	}
+	.btnL{
+		position:absolute;
+		left:400px;
+		top:140px;
+		width:50px;
+	}
+	.btnR{
+		position:absolute;
+		right:400px;
+		top:140px;;
+		width:50px;
+	}
+	.btn{
+		width:300px;
+		height:50px;
+		margin:10px auto;
+		border:1px solid red;
+		text-align:center;}
+	.btn span{
+		font-size:40px;
+		padding-right:15px;
+		cursor:pointer;}
+	.choice{color:red;}
+	</style>
+</head>
+
+<body>
+	<div id="out" class="out">
+		<div class="outter" id="outter">
+			<img src="img/a.jpg" />
+			<img src="img/b.jpg" />
+			<img src="img/c.jpg" />
+			<img src="img/d.jpg" />
+		</div>
+	</div>
+	<input type="button" value="left" id="btnL" class="btnL" />
+	<input type="button" value="right" id="btnR" class="btnR" />
+	<div id='btn' class='btn'>
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+		<span>4</span>
+	</div>
+	<script>
+		var out=document.getElementById("out");
+		var outter=document.getElementById("outter");
+		var imgs=document.getElementById("outter").getElementsByTagName("img");
+		var spans=document.getElementById("btn").getElementsByTagName("span");
+		var btnL=document.getElementById("btnL");
+		var btnR=document.getElementById("btnR");
+		//设置它自动运动
+		var num=0;//初始为0;
+		var time;
+		function moveo() {
+			num++;
+			if (num==imgs.length) {
+				num=0;//当初始的图片与图片的长度相同时让它归0
+			}
+			if (num==-1) {
+				num=imgs.length-1;//当初始图片等于0使让它等于最后一张图片
+			}
+			startMove(outter,"left",-300*num);
+		}
+		time=setInterval(moveo,2000);
+		
+		//按钮1,2,3,4
+		for (var i=0; i<spans.length; i++) {
+			spans[i].onclick=function () {
+				clearInterval(time);
+				for (var i=0; i<spans.length; i++) {
+					if (this==spans[i]) {
+						num=i;
+					}
+				}
+				startMove(outter,"left",-300*num);
+				time=setInterval(moveo,2000);
+			}
+		}
+		//左右按钮
+		btnR.onclick=function () {
+			clearInterval(time);
+			moveo();
+			time=setInterval(moveo,2000);
+		}
+		
+		btnL.onclick=function () {
+			clearInterval(time);
+			num-=2;
+			moveo();
+			time=setInterval(moveo,2000);
+		}
+	</script>
+</body>
+</html>

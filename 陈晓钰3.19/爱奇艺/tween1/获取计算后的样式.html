@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		.a{
+			height:200px;
+			padding:10px;
+			border:10px solid red;
+			border-left-width:100px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="a" id="test" style="height:300px;"></div>
+	<script>
+		var test = document.getElementById("test");
+		//方法一，问题：无法精确取到width
+		//alert(test.clientWidth);
+
+		//方法二，问题：当标签上没有style属性的时候，无法取出来。
+		//alert(test.style.width);//
+		
+
+		//方法三：问题：不兼容IE6
+		//参数：标签，null
+		//var list = document.defaultView.getComputedStyle(test,null);
+		//alert(list.height)
+		//alert(document.defaultView.getComputedStyle(test,null)['borderLeftWidth'])
+
+		//方法四：问题：不兼容标准浏览器
+		//var list = test.currentStyle;
+		//alert(list.height);
+		//alert(test.currentStyle['height'])
+
+		//方法五：问题：不通用
+
+		//如果浏览器支持这个东西
+		//if (!!document.defaultView.getComputedStyle) {
+		//	var result = document.defaultView.getComputedStyle(test,null)['height'];
+		//}else{
+			//old ie
+		//	var result = test.currentStyle['height']
+		//}
+		//alert(result);
+
+		//
+
+		function getStyle(obj,style) {
+			if (document.defaultView&&document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style]
+			}
+		}
+
+		var x = getStyle(test,'width');
+		alert(x)
+	</script>
+</body>
+</html>

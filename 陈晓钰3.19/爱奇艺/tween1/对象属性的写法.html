@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+
+<body>
+	<div id="test" style="width:0;border:1px solid red;height:50px;"></div>
+	<script>
+		var test =document.getElementById('test');
+
+		test.style.width = '600px';
+		test.style.height = '600px'
+
+		test.style['width'] = '300px';
+
+		function setStyle(obj,prop,value) {
+			obj.style[prop] = value+'px';
+		}
+
+		setStyle(test,'height',100)
+	</script>
+</body>
+</html>

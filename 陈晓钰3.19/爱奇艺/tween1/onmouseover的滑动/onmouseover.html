@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style>
+		div{
+			width:100px;
+			height:52px;
+			float:left;
+			font-size:14px;
+			text-align:center;
+			line-height:52px;
+			position:absolute;
+			
+		}
+	</style>
+</head>
+
+<body>
+	<div>首页</div>
+	<div>关于13班</div>
+	<div>13班成员</div>
+	<div>13班实力</div>
+	<div>13班项目</div>
+	<div>13班作业</div>
+	<img src="a.gif" id="img" />
+	<script>
+		function getStyle(obj,style) {
+			if (document.defaultView&&document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+		//obj,prop,end,d,twFn,easeFn
+		/*var options = {
+			tag : test,
+			style : "width",
+			end : 200,
+			d : 31,
+			twFn : 'Back',
+			easeFn : 'easeOut'
+		}*/
+		function startMove(obj,prop,end,options) {
+			
+			//当options存在
+			if (options) {
+				if (!options.d) {
+					var d = 31;
+				}else{
+					var d = options.d;
+				}
+
+				if (!options.twFn) {
+					var twFn = "Quad";
+				}else{
+					var twFn = options.twFn;
+				}
+
+				if (!options.easeFn) {
+					var easeFn = "easeOut";
+				}else{
+					var easeFn = options.easeFn;
+				}	
+			}else{
+				var d = 31;
+				var twFn = 'Quad';
+				var easeFn = 'easeOut';
+			}
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			//获取obj当前的prop样式的值
+			//示例：获取test当前宽度样式的值："50px"
+			var b = getStyle(obj,prop);
+			//字符串=>数字
+			b = parseInt(b);//'50px'=>50
+			//var b = parseInt(getStyle(obj,prop));
+			if(isNaN(b)){
+				b=0;
+			}
+			var c = end - b;
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				if(prop=="opacity"){
+					obj.style[prop] = num;
+				}else{
+					obj.style[prop] = num + 'px';
+				}
+			},10);
+		}
+
+		var divs=document.getElementsByTagName("div");
+		var img=document.getElementById("img");
+		for(var i=0;i<divs.length;i++){
+			divs[i].style.left=100*i;
+		}
+			for(var i=0;i<divs.length;i++){
+				divs[i].onmouseover=function () {
+					for(var i=0;i<divs.length;i++){
+						if(divs[i]==this){
+							startMove(img,"marginLeft",100*i);
+						}
+					}
+				}
+				divs[i].onmouseout=function () {
+					startMove(img,"marginLeft",0);
+				}
+			}
+			
+			
+	</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+</head>
+
+<body style="height:500px;border:1px solid blue;">
+	<div id="test" style="width:50px;background:red;border:1px solid red;height:50px;"></div>
+	<div id="test1" style="width:0;border:1px solid red;height:50px;"></div>
+	<script>
+		var test =document.getElementById('test')
+		var test1 =document.getElementById('test1')
+		
+		var t1;
+		
+		//把主要的代码，用函数给包裹起来，起个名字。
+		//把不通用的地方，提取出来
+		//提取的方法：常用一个，就是传参。
+
+		//将标签提取出来，作为参数obj
+		function startMove(obj) {
+			var t = 0,
+				b = 0,
+				c = 100,
+				d = 31;
+			t1 = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(t1);
+					return;
+				}
+				var num = Tween.Linear(t,b,c,d);
+				obj.style.width = num + 'px';
+			},17)
+		}
+		
+		startMove(test);
+		startMove(test1);
+	</script>
+</body>
+</html>

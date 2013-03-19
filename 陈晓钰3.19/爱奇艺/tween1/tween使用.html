@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+</head>
+
+<body style="height:500px;border:1px solid blue;">
+	<div id="test" style="width:50px;background:red;border:1px solid red;height:50px;"></div>
+	<div id="test1" style="width:0;border:1px solid red;height:50px;"></div>
+	<script>
+		var test =document.getElementById('test')
+		var test1 =document.getElementById('test1')
+		//t,b,c,d
+		//var num = Tween.Linear(11,0,100,11);
+		//alert(num)
+		//div.style.width = num + 'px'
+		
+
+		
+		var t1;
+		function startMove(obj,prop,b,c,d,tw1,tw2) {
+			if (!obj.t) {
+				obj.t = {};//存各种样式的计时器用的
+			}
+
+			if (!tw1) {
+				var tw1 = 'Cubic';
+			}
+			if (!tw2) {
+				var tw2 = 'easeOut';
+			}
+			if (tw1 == 'Linear') {
+				var m = Tween['Linear'];
+			}else{
+				var m = Tween[tw1][tw2];
+			}
+			
+			if (!d) {
+				var d = 30;
+			}
+			var t = 0;
+			clearInterval(obj.t[prop])
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(t1);
+					return;
+				}
+				var num = m(t,b,c,d);
+				console.log(prop)
+				if (prop == 'opacity') {
+					
+					obj.style[prop] = num;
+				}else{
+					obj.style[prop] = num +'px';
+				}
+				
+			},17);
+		}
+		document.body.onclick = function(){
+			startMove(test,'opacity',0,1)
+			startMove(test,'height',500,-200)
+			startMove(test1,"marginLeft",0,500,200,'Elastic','easeOut');
+			startMove(test1,"width",0,50,200,'Elastic','easeOut');
+		}
+		//startMove('height')
+
+		
+	</script>
+</body>
+</html>

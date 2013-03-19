@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style type="text/css">
+	body{
+		position:relative;
+	}
+	.out{
+		width:300px;
+		height:300px;
+		margin:50px auto;
+		border:1px solid red;
+		overflow:hidden;
+		
+	}
+	.outter{
+		width:1200px;
+		height:300px;
+		position:relative;
+	}
+	.outter img{
+		width:300px;
+		height:300px;
+		float:left;
+	}
+	.btnL{
+		position:absolute;
+		left:400px;
+		top:140px;
+		width:50px;
+	}
+	.btnR{
+		position:absolute;
+		right:400px;
+		top:140px;;
+		width:50px;
+	}
+	.btn{
+		width:300px;
+		height:50px;
+		margin:10px auto;
+		border:1px solid red;
+		text-align:center;}
+	.btn span{
+		font-size:40px;
+		padding-right:15px;
+		cursor:pointer;}
+	.choice{color:red;}
+	</style>
+</head>
+
+<body>
+	<div id="out" class="out">
+		<div class="outter" id="outter">
+			<img src="img/a.jpg" />
+			<img src="img/b.jpg" />
+			<img src="img/c.jpg" />
+			<img src="img/d.jpg" />
+		</div>
+	</div>
+	<input type="button" value="left" id="btnL" class="btnL" />
+	<input type="button" value="right" id="btnR" class="btnR" />
+	<div id='btn' class='btn'>
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+		<span>4</span>
+	</div>
+	<script>
+		var out=document.getElementById("out");
+		var outter=document.getElementById("outter");
+		var imgs=document.getElementById("outter").getElementsByTagName("img");
+		var spans=document.getElementById("btn").getElementsByTagName("span");
+		var btnL=document.getElementById("btnL");
+		var btnR=document.getElementById("btnR");
+		//设置它自动运动
+		var num=0;//初始为0;
+		var time;
+		function moveo() {
+			startMove(outter,"left",-300*num);
+				if(num==imgs.length){
+					startMove(outter,"left",0);
+					num=0;
+				}
+			num++;
+			time=setTimeout(moveo,2000);
+		}
+		moveo()
+
+		//按钮1,2,3,4
+		for (var i=0; i<spans.length; i++) {
+			spans[i].onclick=function () {
+				clearTimeout(time);
+				for (var i=0; i<spans.length; i++) {
+					if (this==spans[i]) {
+						num=i;
+					}
+				}
+				startMove(outter,"left",-300*num);
+				moveo();
+			}
+		}
+
+		
+		btnR.onclick=function () {
+			clearTimeout(time);
+			moveo();
+		}
+		btnL.onclick=function () {
+			clearTimeout(time);
+			num-=1;
+			moveo();
+		}
+		
+	</script>
+</body>
+</html>

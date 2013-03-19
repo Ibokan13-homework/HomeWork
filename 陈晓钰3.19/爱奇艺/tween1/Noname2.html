@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+</head>
+
+<body style="height:500px;border:1px solid blue;">
+	<div id="test" style="width:350px;background:red;border:1px solid red;height:50px;"></div>
+	<div id="test1" style="width:0;border:1px solid red;height:50px;"></div>
+	<script>
+		var test =document.getElementById('test')
+		var test1 =document.getElementById('test1')
+		
+		function getStyle(obj,style) {
+			if (document.defaultView&&document.defaultView.getComputedStyle){
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+		
+
+		//obj,prop,end,d,twFn,easeFn
+		/*var options = {
+			obj : test,
+			prop : "width",
+			end : 200,
+			d : 31,
+			twFn : 'Back',
+			easeFn : 'easeOut'
+		}*/
+		function startMove(options) {
+			
+			
+			//当options存在
+			if (options) {
+				 var obj=options.obj;
+				var prop=options.prop;
+				var end=options.end;
+				if (!options.d) {
+					var d = 31;
+				}else{
+					var d = options.d;
+				}
+
+				if (!options.twFn) {
+					var twFn = "Quad";
+				}else{
+					var twFn = options.twFn;
+				}
+
+				if (!options.easeFn) {
+					var easeFn = "easeOut";
+				}else{
+					var easeFn = options.easeFn;
+				}	
+			}else{
+				var d = 31;
+				var twFn = 'Quad';
+				var easeFn = 'easeOut';
+			}
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			
+			//获取obj当前的prop样式的值
+			//示例：获取test当前宽度样式的值："50px"
+			var b = getStyle(obj,prop);
+
+			//字符串=>数字
+			b = parseInt(b);//'50px'=>50
+
+			//var b = parseInt(getStyle(obj,prop));
+
+			var c = end - b;
+			
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				
+				
+				obj.style[prop] = num + 'px';
+			},17);
+		}
+
+		document.body.onclick = function(){
+			//startMove(test,"width",i*100);
+			//startMove(test,"height",200);
+			//startMove(test,"height",900,30,"Quad","easeOut");
+			startMove({
+			obj : test,
+			prop : "width",
+			end : 200,
+			d : 31,
+			twFn : 'Back',
+			easeFn : 'easeOut'})
+		}
+
+
+		
+		//
+	</script>
+</body>
+</html>
