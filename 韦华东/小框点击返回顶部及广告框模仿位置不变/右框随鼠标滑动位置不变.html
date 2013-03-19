@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+<style>
+	body{
+		position:relative;
+		top:0;
+		left:0;
+		width:2000px;
+		height:2000px;
+	}
+	.little{
+		position:absolute;
+		z-index:1;
+		top:300px;
+		left:1100px;
+		width:200px;
+		height:200px;
+		border:2px solid gray;
+		background:green;
+		z-index:100;
+	}
+</style>
+<body>
+	<div id="little" class="little">
+		<img src="qq.jpg" alt="qq" />
+	</div>
+	<script src="lib.js"></script>
+	<script src="tween.js"></script>
+	<script language="javascript">
+	var little=document.getElementById("little");
+	var numy=parseInt(getStyle(little,"top"));
+	var numx=parseInt(getStyle(little,"left"));
+	
+	
+	/*if (document.body!=0) {
+		startMove
+	}*/
+	window.onscroll=function () {
+		/*little.style.top=numy+(document.body.scrollTop||document.documentElement.scrollTop)+"px";
+		little.style.left=numx+(document.body.scrollLeft||document.documentElement.scrollLeft)+"px";*/
+		//little.style.top=littletop+"px";
+		//alert(littletop)
+		var littletop=document.body.scrollTop||document.documentElement.scrollTop;
+		var littleleft=document.body.scrollLeft||document.documentElement.scrollLeft;
+		startMove(little,"top",littletop+numy);
+		startMove(little,"left",littleleft+numx);
+	}
+
+	/*setInterval(function () {
+		little.style.top=numy+(document.body.scrollTop||document.documentElement.scrollTop)+"px";
+		little.style.left=numx+(document.body.scrollLeft||document.documentElement.scrollLeft)+"px";
+	},1);*/
+	</script>
+</body>
+</html>
