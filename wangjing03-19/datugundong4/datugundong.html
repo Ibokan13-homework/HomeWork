@@ -155,7 +155,21 @@
 	}
 	leftbtn.onmouseover=function () {
 		clearTimeout(time);
+		ind--;
+		if (ind<-1) {
+			ind=spans.length-1;
+		}
+		startMove(inner,'left',-ind*220,30,'Linear')
+
 		
+	}
+	rightbtn.onmouseover=function () {
+		clearTimeout(time);
+		ind++;
+		if (ind>=spans.length) {
+			ind=0;
+		}
+		startMove(inner,'left',-ind*220,30,'Linear');
 	}
 	
 	
