@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+<body>
+	<span id="hour">00</span>
+	<span>:</span>
+	<span id="minute">00</span>
+	<span>:</span>
+	<span id="second">00</span>
+	<script>
+		var b=document.getElementById("second");
+		var c=document.getElementById("minute");
+		var d=document.getElementById("hour");
+		function delay() {
+			setTimeout(delay,50);
+			second.innerHTML++;
+			if(second.innerHTML>=60){
+				minute.innerHTML++;
+				second.innerHTML="00";
+			}else if(second.innerHTML<10){
+				second.innerHTML="0"+second.innerHTML;
+			} if(minute.innerHTML>=60){
+					hour.innerHTML++;
+					minute.innerHTML="00";
+			}else if(minute.innerHTML<10){
+				minute.innerHTML="0"+minute.innerHTML++;
+			}
+		}
+		delay();
+	</script>
+</body>
+</html>
