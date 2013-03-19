@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style>
+		ul{
+			width:600px;
+			height:56px;
+			margin:0 auto;
+			overflow:hidden;
+			padding:0;
+			background:url(112.jpg) 0 0 no-repeat; 
+		}
+		li{
+			width:100px;
+			height:56px;
+			line-height:56px;
+			font-size:22px;
+			font-weight:bold;
+			text-align:center;
+			float:left;
+			color:#000;
+			list-style:none;
+		}
+	</style>
+</head>
+<body>
+	<ul id="a">
+		<li>首页</li>
+		<li>关于13班</li>
+		<li>13班成员</li>
+		<li>13班实力</li>
+		<li>13班项目</li>
+		<li>13班作业</li>
+	</ul>
+	<script>
+		var lis = document.getElementById('a').getElementsByTagName('li');
+		var uls = document.getElementById('a');
+		for (var i=0; i<lis.length; i++) {
+			lis[i].onmouseover = function(){
+				for (var i=0; i<lis.length; i++) {
+					if (lis[i] == this) {
+						startMove(uls,"backgroundPositionX",i*100)
+					}
+				}
+			}
+			lis[i].onmouseout = function () {
+				startMove(uls,"backgroundPositionX",0)
+			}
+		}
+	</script>
+</body>
+</html>
