@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>	
+		a img{
+			border:none;
+		}
+		body{
+			position:relative;
+		}
+		#a{
+			position:relative;
+			z-index:1;
+		}
+		#a img{
+			position:absolute;
+			z-index:1;
+			top:0px;
+			left:0px;
+			opacity:0;
+		}
+		#b{
+			position:absolute;
+			z-index:2;
+			height:330px;
+			width:176px;
+			top:60px;
+			left:950px;
+			background:url(images/aa/bgphone.png) 0 0 no-repeat;
+		}
+		#b p{
+			width:150px;
+			height:300px;
+			margin:0 auto;
+			margin-top:15px;
+			
+		}
+		#b p a{
+			float:left;	
+			background-color:black;
+			width:75px;
+			height:50px;
+		}
+		#b p img{
+			
+			opacity:0.5;
+		}
+		#b p .aaa{
+			width:150px;
+			height:50px;
+		}
+		#c{
+			position:relative;
+			z-index:4;
+			
+		}
+		/*#c .cc{
+			position:absolute;
+			opacity:0;
+			top:320px;
+			left:140px;
+			width:660px;
+			height:70px;
+			background:url(images/hengtiao.png) 0 0 no-repeat;
+		}*/
+		/*.ccc{
+			position:absolute;
+			top:9px;
+			left:0px;
+			background:url(images/aa/Focus_1.png) 0 0 no-repeat;
+			width:52px;
+			height:52px;
+		}*/
+		/*.ccc:hover{
+			background:url(images/aa/Focus_2.png) 0 0 no-repeat;
+		}*/
+		#ce{
+			position:absolute;
+			opacity:0;
+			top:320px;
+			left:140px;
+			width:660px;
+			height:70px;
+			background:url(images/hengtiao.png) 0 0 no-repeat;
+			z-index:100;
+		}
+	
+	</style>
+</head>
+
+<body>
+	<div id="a" >
+		<img src="images/aa/big1.jpg" alt="《上位》34D宅男女神赵奕欢来势胸涌 揭露艺校女生“上位”潜规则(更新至01集)" />
+		<img src="images/aa/big2.jpg" alt="" />
+		<img src="images/aa/big3.jpg" alt="" />
+		<img src="images/aa/big4.jpg" alt="" />
+		<img src="images/aa/big5.jpg" alt="" />
+		<img src="images/aa/big6.jpg" alt="" />
+		<img src="images/aa/big7.jpg" alt="" />
+		<img src="images/aa/big8.jpg" alt="" />
+		<img src="images/aa/big9.jpg" alt="" />
+		<img src="images/aa/big10.jpg" alt="" />
+	</div>
+	<div id="b">
+		<p>
+			<a class="aaa" href="#"><img src="images/smart1.jpg" alt="111" /></a>
+			<a href="#"><img src="images/smart2.jpg" alt="222" /></a>
+			<a href="#"><img src="images/smart3.jpg" alt="333" /></a>
+			<a href="#"><img src="images/smart4.jpg" alt="444" /></a>
+			<a href="#"><img src="images/smart5.jpg" alt="555" /></a>
+			<a href="#"><img src="images/smart6.jpg" alt="666" /></a>
+			<a href="#"><img src="images/smart7.jpg" alt="777" /></a>
+			<a href="#"><img src="images/smart8.jpg" alt="888" /></a>
+			<a href="#"><img src="images/smart9.jpg" alt="999" /></a>
+			<a class="aaa" href="#"><img src="images/smart10.jpg" alt="101010" /></a>
+			
+		</p>
+	</div>
+	<div id="ce"></div>
+
+</body>
+<script type="text/javascript" src='tween.js'></script>
+
+<script>
+	var b=document.getElementById("b").getElementsByTagName("img");
+	var a=document.getElementById("a").getElementsByTagName("img");
+	var ce=document.getElementById("ce");
+	var ab=0;
+	var cc=0;
+	var dd=0;
+	var ttt;
+
+	b[0].style.borderTopLeftRadius="8px";
+	b[0].style.borderTopRightRadius="8px";
+	b[9].style.borderBottomLeftRadius="8px";
+	b[9].style.borderBottomRightRadius="8px";
+	a[0].style.opacity=1;
+	for (var i=0; i<b.length; i++) {
+		b[i].onclick=tag
+		b[i].onmouseover=function () {
+			clearTimeout(tt)
+		}
+		b[i].onmouseout=function () {
+			tt=setTimeout(time,1000)
+		} 
+	}
+	function tag() {
+		
+		for (var i=0; i<a.length; i++) {
+			if (b[i]==this) {
+				
+				startMove(a[i],"opacity",1,30,"Linear")
+				startMove(b[i],"opacity",1,1,"Linear")
+				startMove(ce,"opacity",0,1,"Linear")
+				startMove(ce,"top",320,1,"Linear")
+				ab=i;
+				clearTimeout(ttt);
+				ttt=setTimeout(function () {
+					startMove(ce,"opacity",0,1,"Linear")
+					startMove(ce,"opacity",0.5,30,"Linear")
+					startMove(ce,"top",320,1,"Linear")
+					startMove(ce,"top",310,30,"Linear")
+                    ce.innerHTML="<a href='#'>"+b[ab-1].alt+"</a>";
+		
+				},2000)
+				//setTimeout(times,2000)
+			}else {
+				a[i].style.opacity=0
+				b[i].style.opacity=0.5
+				//aa[i].style.opacity=0
+				//aa[i].style.top="320px";
+				
+			}
+		}
+	}
+	
+	
+	function time() {
+	clearTimeout(ttt);
+		for (var i=0; i<a.length; i++) {
+			
+			if (ab==i) {
+				startMove(a[i],"opacity",1,30,"Linear")
+				b[i].style.opacity=1
+				ttt= setTimeout(function () {
+					startMove(ce,"opacity",0,1,"Linear")
+					startMove(ce,"opacity",0.5,30,"Linear")
+					startMove(ce,"top",320,1,"Linear")
+					startMove(ce,"top",310,30,"Linear")
+                    ce.innerHTML="<a href='#'>"+b[ab-1].alt+"</a>";
+		
+				},2000)
+				
+				
+			}else {
+				a[i].style.opacity=0
+				b[i].style.opacity=0.5
+                startMove(ce,"opacity",0,1,"Linear")
+				startMove(ce,"top",320,1,"Linear")
+				//aa[i].style.opacity=0
+				//aa[i].style.top="320px";
+			}
+			}
+			ab++
+			if (ab>=10) {
+				ab=0
+			}
+			tt=setTimeout(time,5000)
+	}
+	time()
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		function getStyle(obj,style) {
+			if (document.defaultView&&document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+
+		function startMove(obj,prop,end,d,twFn,easeFn) {
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			
+			//获取obj当前的prop样式的值
+			//示例：获取test当前宽度样式的值："50px"
+			var b = getStyle(obj,prop);
+
+			//字符串=>数字
+			b = parseInt(b);//'50px'=>50
+
+			//var b = parseInt(getStyle(obj,prop));
+
+			var c = end - b;
+			
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				if (prop=="opacity") {
+					obj.style[prop] = num ;
+				}
+				else {
+					obj.style[prop] = num + 'px';
+				}
+				
+				
+			},17);
+		}
+</script>
+</html>

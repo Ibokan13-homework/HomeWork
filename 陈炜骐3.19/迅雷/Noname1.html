@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+	<title>你好</title>
+	<meta charset='utf-8' />
+	<style>
+		#aaaa{
+			width:750px;
+			height:406px;
+			background-color:black;
+		}
+		a img{
+			border:none;
+		}
+		#bigimg{
+			position:relative;
+			z-index:1;
+		}
+		#bigimg a{
+			display:block;
+			width:750px;
+			height:350px;
+			position:absolute;
+			top:0;
+			left:0;
+		}
+		#bigimg a img{
+			opacity:0;
+		}
+		#smartimg{
+			position:relative;
+			z-index:3;
+		}
+		#smartimg a{
+			display:block;
+			float:left;
+			width:75px;
+			height:57px;
+			background:url(images/bg.jpg) 0px 4px no-repeat;
+			margin-top:349px;
+		}
+		#smartimg .smart{
+			display:block;
+			float:left;
+			width:75px;
+			height:57px;
+			background:url(images/fx.png) 0 0 no-repeat;
+			margin-top:349px;
+		}
+		#smartimg a img{
+			margin-top:5px;
+			margin-left:1px;
+		}
+		#ceng{
+			position:absolute;
+			z-index:2;
+			height:42px;
+			width:750px;
+			background-color:black;
+			top:316px;
+			opacity:0;
+		}
+		#ceng span{
+			float:left;
+			width:38px;
+			height:38px;
+			background:url(images/111.png) 0 0 no-repeat;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="aaaa">
+		<div id="bigimg">
+			<a href="#"><img src="images/big1.jpg" alt="《上位》34D宅男女神赵奕欢来势胸涌 揭露艺校女生“上位”潜规则(更新至01集)" /></a>
+			<a href="#"><img src="images/big2.jpg" alt="《贤妻》高富帅丈夫遇第三者诱惑 豪门媳妇捍卫爱情历尽波折(大结局35集全)" /></a>
+			<a href="#"><img src="images/big3.jpg" alt="《非诚勿扰》自信男解读山盟海誓,24号丁东丽一见钟情爆灯(更新至03-17期) " /></a>
+			<a href="#"><img src="images/big4.jpg" alt="《华丽一族》打造中国版“天桥风云” 腹黑男为爱不顾一切、痴情绝对(更新至12集)" /></a>
+			<a href="#"><img src="images/big5.jpg" alt="《十二生肖》成式招牌动作片 大哥玩命跳火山 带领" /></a>
+			<a href="#"><img src="images/big6.jpg" alt="时尚动作游戏,点击马上进入一个无间道时代！" /></a>
+			<a href="#"><img src="images/big7.jpg" alt="京东商城 春雷行动 3.1-3.24 空前低价 电你一下！" /></a>
+			<a href="#"><img src="images/big8.jpg" alt="秦时明月网游版终于出啦，现在进入游戏还能拿特权礼包！" /></a>
+			<a href="#"><img src="images/big9.jpg" alt="《两个女人》正室妖娆小三骨感 男人让欲望将自己吞噬(迅雷看看独家剪辑)" /></a>
+			<a href="#"><img src="images/big10.jpg" alt="《女警爱作战》极品师姐连环反击 动作爆破戏惊险“回巢”(21集全)" /></a>
+		</div>
+		<div id="smartimg">
+			<a href="#"><img src="images/1.jpg" alt="" /></a>
+			<a href="#"><img src="images/2.jpg" alt="" /></a>
+			<a href="#"><img src="images/3.jpg" alt="" /></a>
+			<a href="#"><img src="images/4.jpg" alt="" /></a>
+			<a href="#"><img src="images/5.jpg" alt="" /></a>
+			<a href="#"><img src="images/6.jpg" alt="" /></a>
+			<a href="#"><img src="images/7.jpg" alt="" /></a>
+			<a href="#"><img src="images/8.jpg" alt="" /></a>
+			<a href="#"><img src="images/9.jpg" alt="" /></a>
+			<a href="#"><img src="images/10.jpg" alt="" /></a>
+		</div>
+		<div id="ceng">
+			<span></span>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src='tween.js'></script>
+<script>
+	var bigimg=document.getElementById("bigimg").getElementsByTagName("img");
+	var smartimg=document.getElementById("smartimg").getElementsByTagName("img");
+	var smartimga=document.getElementById("smartimg").getElementsByTagName("a");
+	var ceng=document.getElementById("ceng");
+	var ab=0;
+	var ahtml=ceng.innerHTML;
+	var ttt;
+	bigimg[0].style.opacity=1;
+	for (var i=0; i<smartimg.length; i++) {
+		smartimg[i].onmouseover=tag
+			
+		smartimg[i].onmouseout=function () {
+			ttt=setTimeout(time,1000)
+		}
+	}
+	function tag() {
+		clearTimeout(ttt)
+		for (var i=0; i<smartimg.length; i++) {
+			if (this==smartimg[i]) {
+				startMove(bigimg[i],"opacity",1,10,"Linear");
+				startMove(ceng,"opacity",0.5,30,"Linear")
+				ceng.innerHTML=ahtml+"<a href='#' style='color:white; font-size:18px;line-height:42px;font-weight:bolder;overflow:hidden;'>"+bigimg[i].alt+"</a>"
+				smartimga[i].className="smart"
+				bigimg[i].style.opacity=0
+				startMove(bigimg[i],"opacity",1,10,"Linear")
+				ab=i+1
+			}else {
+				bigimg[i].style.opacity=0
+				smartimga[i].className=""
+			}
+		}
+	}
+	function time() {
+		if (ab>=smartimg.length) {
+			ab=0
+		}	
+		clearTimeout(ttt)
+		for (var i=0; i<smartimg.length; i++) {
+			if (ab==i) {
+				smartimga[i].className="smart"
+				bigimg[i].style.opacity=0
+				ceng.style.opacity=0
+				startMove(bigimg[i],"opacity",1,10,"Linear");
+				startMove(ceng,"opacity",0.5,30,"Linear");
+				ceng.innerHTML=ahtml+"<a href='#' style='color:white; font-size:18px;line-height:42px;font-weight:bolder;overflow:hidden;'>"+bigimg[i].alt+"</a>";
+			}else {
+				bigimg[i].style.opacity=0;
+				smartimga[i].className="";
+				//startMove(ceng,"opacity",0,1,"Linear");
+			}
+		}
+		ab++
+		
+		ttt=setTimeout(time,3000)
+
+	}
+	time();
+
+
+
+
+		function getStyle(obj,style) {
+			if (document.defaultView&&document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+
+		function startMove(obj,prop,end,d,twFn,easeFn) {
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			
+			//获取obj当前的prop样式的值
+			//示例：获取test当前宽度样式的值："50px"
+			var b = getStyle(obj,prop);
+
+			//字符串=>数字
+			b = parseInt(b);//'50px'=>50
+
+			//var b = parseInt(getStyle(obj,prop));
+
+			var c = end - b;
+			
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				if (prop=="opacity") {
+					obj.style[prop] = num ;
+				}
+				else {
+					obj.style[prop] = num + 'px';
+				}
+				
+				
+			},17);
+		}
+</script>
+</html>

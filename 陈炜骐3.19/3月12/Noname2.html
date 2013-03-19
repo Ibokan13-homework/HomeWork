@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script type="text/javascript" src='tween.js'></script>
+	<style>
+		#a div{	
+			border:1px solid red;
+			height:20px;
+			width:98px;
+			margin:0 auto;
+			float:left;			
+		}
+		#a{
+			overflow:hidden;
+		}
+		#c div{
+			float:left;
+			width:300px;
+			height:100px;
+			
+		}
+		#c{
+			position:absolute;
+			left:0px;
+			top:0px;
+			width:900px;
+			height:100px;
+
+		}
+		#b{
+			position:absolute;
+			width:300px;
+			height:100px;
+			overflow:hidden;
+		}
+		.aa{
+			background-color:red;
+		}
+		.bb{
+			background-color:green;
+		}
+		.cc{
+			background-color:blue;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="a">
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+	<div id="b">
+		<div id="c">
+			<div class="aa"></div>
+			<div class="bb"></div>
+			<div class="cc"></div>
+		</div>
+	</div>
+</body>
+<script>
+	var ones=document.getElementById("a").getElementsByTagName("div")
+	var twos=document.getElementById("c").getElementsByTagName("div")
+	var c=document.getElementById("c")
+	for (var i=0; i<ones.length; i++) {
+		ones[i].onclick=tag		
+	}
+	function tag() {
+		for (var i=0; i<ones.length; i++) {
+			if (ones[i]==this) {		
+				startMove(c,"left",-i*300,30,"Linear")
+			}
+		}
+		
+	}
+
+
+
+
+
+
+
+function getStyle(obj,style) {
+			if (document.defaultView&&document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+
+		function startMove(obj,prop,end,d,twFn,easeFn) {
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			
+			//获取obj当前的prop样式的值
+			//示例：获取test当前宽度样式的值："50px"
+			var b = getStyle(obj,prop);
+
+			//字符串=>数字
+			b = parseInt(b);//'50px'=>50
+
+			//var b = parseInt(getStyle(obj,prop));
+
+			var c = end - b;
+			
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				
+				
+				obj.style[prop] = num + 'px';
+			},17);
+		}
+</script>
+</html>

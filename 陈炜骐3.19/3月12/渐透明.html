@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script type="text/javascript" src='tween.js'>
+	<!--
+		
+	//-->
+	</script>
+	<style>
+		.one{
+			width:300px;
+			height:50px;
+			margin:0 auto;
+		}
+		.one div{
+			float:left;
+			width:98px;
+			height:48px;
+			border:1px solid red;
+		}
+		.two{
+			width:300px;
+			height:100px;
+			margin:0 auto;
+		}
+		.two div{
+			height:0px;
+			width:298px;
+			border:1px solid red;
+			
+			
+		}
+		#twotwo{
+			background-color:red;
+		}
+		#two2{
+			background-color:black;
+		}
+		#two3{
+			background-color:green;
+		}
+		#none{
+			
+		}
+	</style>
+</head>
+
+<body>
+	<div class="one" id="ones">
+		<div class="oneone" id="one1">123</div>
+		<div id="one2">456</div>
+		<div id="one3">789</div>
+	</div>
+	<div class="two" id="twos">
+		<div class="twotwo" id="two1"></div>
+		<div id="two2"></div>
+		<div id="two3"></div>
+	</div>
+</body>
+<script>
+	var ones=document.getElementById("ones").getElementsByTagName("div")
+	var twos=document.getElementById("twos").getElementsByTagName("div")
+
+	for (var i=0; i<ones.length; i++) {
+		ones[i].onclick=tag		
+	}
+	function tag() {
+		for (var i=0; i<twos.length; i++) {
+			if (ones[i]==this) {
+				twos[i].style.height="100px"
+				twos[i].style.opacity=0
+				startMove(twos[i],"opacity",1,300,"Linear")
+			}else {
+				twos[i].style.height="0px"
+				
+			}
+		}		
+
+
+		
+	}
+
+
+
+	function getStyle(obj,style) {
+			if (document.defaultView&&document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+
+		function startMove(obj,prop,end,d,twFn,easeFn) {
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			
+			//获取obj当前的prop样式的值
+			//示例：获取test当前宽度样式的值："50px"
+			var b = getStyle(obj,prop);
+
+			//字符串=>数字
+			b = parseInt(b);//'50px'=>50
+
+			//var b = parseInt(getStyle(obj,prop));
+
+			var c = end - b;
+			
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				
+				if (prop=="opacity") {
+					obj.style[prop] = num
+				}else {
+					obj.style[prop] = num + 'px';
+				}
+				
+			},17);
+		}
+
+		
+		
+
+
+</script>
+</html>
