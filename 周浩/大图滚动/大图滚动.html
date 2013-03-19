@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style>
+		a img{
+			border:0px;
+		}
+		#a{
+			width:200px;
+			height:300px;
+			margin:0 auto;
+			overflow:hidden;
+			position:relative;
+		}
+		#b{
+			width:600px;
+			height:300px;
+			position:absolute;
+		}
+		#b a{
+			float:left;
+		}
+		#b .show{
+			display:block;
+		}
+		#c{
+			width:200px;
+			height:50px;
+			overflow:hidden;
+			margin:0 auto;
+			border:1px solid red;
+		}
+		#c span{
+			width:40px;
+			height:50px;
+			float:left;
+			text-align:center;
+			line-height:50px;
+			display:block;
+		}
+		#c .show{
+			color:red;
+			display:block;
+		}
+		#e{
+			float:left;
+		}
+		#f{
+			float:right;
+		}
+	</style>
+</head>
+<body>
+	<div id="a">
+		<div id="b">
+			<a href="#" class="show"><img src="1.jpg" alt="" /></a>
+			<a href="#"><img src="1.jpg" alt="" /></a>
+			<a href="#"><img src="1.jpg" alt="" /></a>
+		</div>
+	</div>
+	<div id="c">
+		<input type="button" name="" value="左" id="e"/>
+		<span class="show">1</span>
+		<span>2</span>
+		<span>3</span>
+		<input type="button" name="" value="右" id="f"/>
+	</div>
+	<script>
+		var a = document.getElementById('a');
+		var b = document.getElementById('b');
+		var c = document.getElementById('c');
+		var e = document.getElementById('e');
+		var f = document.getElementById('f');
+		var bs = document.getElementById('b').getElementsByTagName('a');
+		var inputs = document.getElementById('c').getElementsByTagName('input');
+		var spans = document.getElementById('c').getElementsByTagName('span');
+		//点击数字
+		for (var i=0; i<spans.length; i++) {
+			spans[i].onclick = function () {
+				for (var i=0; i<spans.length; i++) {
+					if (spans[i] == this) {
+						index = i;
+						spans[i].className = "show";
+					}
+					else {
+						spans[i].className = "";
+					}
+					startMove(b,"left",-index*200);
+				}
+			}
+		}
+		//自动滚动
+		var index = 0;
+		var t;
+		function n() {
+			clearInterval(t);
+			t = setInterval(function () {
+				index++;
+				if (index >= spans.length) {
+					index=0;
+				}
+				for (var i=0; i<spans.length; i++) {
+					if (index == i) {
+						spans[i].className = "show";
+					}
+					else {
+						spans[i].className = "";
+					}
+					startMove(b,"left",-index*200);
+				}
+			},1000)
+		}
+		n();
+		//点击
+		e.onclick = function () {
+			index--;
+			if (index < 0) {
+				index = spans.xlength - 1;
+			}
+			for (var i=0; i<spans.length; i++) {
+				if (index == i) {
+					spans[i].className = "show";
+				}
+				else {
+					spans[i].className = "";
+				}
+				startMove(b,"left",-index*200);
+			}
+		}
+		f.onclick = function () {
+			index++;
+			if (index >= spans.length) {
+				index = 0;
+			}
+			for (var i=0; i<spans.length; i++) {
+				if (index == i) {
+					spans[i].className = "show";
+				}
+				else {
+					spans[i].className = "";
+				}
+				startMove(b,"left",-index*200);
+			}
+		}
+		//鼠标放上去的时候
+		c.onmouseover = function(){
+			clearInterval(t);
+		}
+		c.onmouseout = function(){
+			n();
+		}
+	</script>
+</body>
+</html>
