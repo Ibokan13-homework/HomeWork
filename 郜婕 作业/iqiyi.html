@@ -1,0 +1,299 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="cloudgamer效果.js"></script>
+	<style>
+		li{
+			list-style:none;
+			padding:0px;
+			margin:0px;
+		}
+		img{
+			margin:0px;
+			border:none;
+			float:left;
+		}
+		
+		.top{
+			background:black;
+			width:1350px;
+			height:504px;
+			position:relative;
+		}
+		.images{
+			height:410px;
+		}
+		.lis{
+			background:url("iqiyi/aa/bgphone.png") 0 0 no-repeat;
+			position:absolute;
+			width:136px;
+			height:330px;
+			left:976px;
+			top:38px;
+			z-index:3;
+		}
+		.lis a{
+			background-color:black;
+			float:left;
+			margin-left:-27px;
+			overflow:hidden;
+		}
+		.tete{
+			margin-top:13px;
+			width:150px;
+		}
+		.lis img{
+			opacity:0.5;
+			float:left;
+		}
+		.lis .one{
+			border-top-left-radius:7px;
+			border-top-right-radius:6px;
+			border-bottom:1px solid black;
+			width:150px;
+			height:49px;
+		}
+		.lis .two2{
+			width:74px;
+			margin-left:0px;
+			border-top:1px solid black;
+		}	
+		.three{
+			border-top:1px solid black;
+			border-right:1px solid black;
+			height:50px;
+			width:75px;
+		}
+		.six{
+			border-top:1px solid black;
+			border-bottom:1px solid black;
+			border-bottom-left-radius:7px;
+			border-bottom-right-radius:6px;
+			height:49px;
+			width:150px;
+		}
+		.hid{
+			display:none;
+		}
+		.lis .select{
+			opacity:1;
+		}
+		.images .show{
+			display:block;
+		}
+		.hengtiao{
+			width:660px;
+			height:70px;
+			background:url("iqiyi/hengtiao.png") 0 0 no-repeat;
+			overflow:hidden;
+			position:absolute;
+			top:340px;
+			left:184px;
+			opacity:0;
+		}
+		.hengtiao a{
+			text-decoration:none;
+		}
+		.hengtiao .aaa{
+			width:52px;
+			height:52px;
+			background:url("iqiyi/Focus_1.png") 0 0 no-repeat;
+			float:left;
+			margin-top:8px;
+			margin-left:20px;
+		}
+		.hengtiao a:hover{
+			background:url("iqiyi/Focus_2.png") 0 0 no-repeat;
+		}
+		.ce{
+			margin-top:24px;
+			margin-left:80px;
+			font-size:21px;
+			color:white;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="top">
+		<div class="images" id="images">
+			<a href="###"><img src="iqiyi/aa/未标题-1.jpg" alt="《青春期撞上更年期2》[更新至24集]80后智斗麻辣爹妈" class="show" /></a>
+			<a href="###"><img src="iqiyi/aa/未标题-11.jpg" alt="222" class="hid" /></a>
+			<a href="###"><img src="iqiyi/aa/未标题-2.jpg" alt="333" class="hid" /></a>
+			<a href="###"><img src="iqiyi/aa/未标题-8.jpg" alt="《爱情自有天意》[更新至第70集]张丹峰娄艺潇虐爱升级" class="hid" /></a>
+			<a href="###"><img src="iqiyi/aa/未标题-7.jpg" alt="《贤妻》[大结局]豪门媳妇婚姻保卫战" class="hid" /></a>
+			<a href="###"><img src="iqiyi/aa/未标题-9.jpg" alt="666" class="hid" /></a>
+			<a href="###"><img src="iqiyi/aa/未标题-6.jpg" alt="777" class="hid" /></a>
+			<a href="###"><img src="iqiyi/aa/未标题-4.jpg" alt="888" class="hid" /></a>
+			<a href="###"><img src="iqiyi/aa/未标题-10.jpg" alt="999" class="hid" /></a>
+			<a href="###"><img src="iqiyi/aa/未标题-5.jpg" alt="1010" class="hid" /></a>
+		</div>
+		<ul class="lis" id="lis">
+			<li><a href="###" class="tete"><img src="iqiyi/标题1.jpg" alt="" class="one select" /></a></li>
+			<li><a href="###"><img src="iqiyi/标题2.jpg" alt="" class="three" /></a></li>
+			<li><a href="###" class="two2"><img src="iqiyi/标题3.jpg" alt="" /></a></li>
+			<li><a href="###"><img src="iqiyi/标题4.jpg" alt="" class="three" /></a></li>
+			<li><a href="###" class="two2"><img src="iqiyi/标题5.jpg" alt="" /></a></li>
+			<li><a href="###"><img src="iqiyi/标题6.jpg" alt="" class="three" /></a></li>
+			<li><a href="###" class="two2"><img src="iqiyi/标题7.jpg" alt="" /></a></li>
+			<li><a href="###"><img src="iqiyi/标题8.jpg" alt="" class="three" /></a></li>
+			<li><a href="###" class="two2"><img src="iqiyi/标题9.jpg" alt="" /></a></li>
+			<li><a href="###"><img src="iqiyi/标题10.jpg" alt="" class="six" /></a></li>
+		</ul>	
+		<div class="hengtiao" id="hengtiao">
+			<a href="###" class="aaa"></a>
+			<a href="###"><div class="ce" id="ce"></div></a>
+		</div>
+	</div>
+</body>
+<script>
+	var con=document.getElementById("images");
+	var imagess=document.getElementById("images").getElementsByTagName("img");
+	var ul=document.getElementById("lis");
+	var lis=document.getElementById("lis").getElementsByTagName("li");
+	var liss=document.getElementById("lis").getElementsByTagName("img");
+	var heng=document.getElementById("hengtiao");
+	var ce=document.getElementById("ce");
+	var times;
+	//点击切换
+	for (var i=0; i<lis.length; i++) {
+		lis[i].onclick=(function (i) {	
+			clearTimeout(times);
+			return function () {
+				index = i;
+				showWho(i);
+				
+			}
+		})(i);
+	}
+	
+	//弹出层
+	function ab() {
+		heng.style.opacity=0;
+		heng.style.top=410+"px";
+		startMove(heng,"opacity",1);
+		startMove(heng,"top",318);
+		ce.innerHTML=imagess[index].alt;
+		heng.immerHTML="<a href='###'>"+"<div>"+ce.innerHTML+"</div>"+"</a>";
+	}
+
+
+	//相同的提取
+	function showWho(ind) {
+		for (var a=0; a<lis.length; a++) {
+			if (ind == a) {			//判断当前是哪个图标
+				imagess[a].className="show";  //对应的大图显示
+				imagess[a].style.opacity = 0; //大图透明度为0
+				startMove(imagess[a],"opacity",1);  //执行大图透明变为1(不透明)
+				liss[a].style.opacity = 1;  //相应的小图标亮
+				setTimeout(ab,300);
+			}else {
+				imagess[a].className="hid";  //其它大图消失
+				liss[a].style.opacity = 0.5; //其它的小图标半透明
+			}
+		}
+	}
+
+	//自动切换
+	var t;
+	var index = 0;
+	function autoMove() {
+		t = setInterval(function(){
+			index++;
+			if (index==liss.length) {
+				index = 0;
+			}
+			showWho(index);
+		},4000)
+	}
+	autoMove();
+	ab();
+
+	//当鼠标在列表或大图上是，不再自动切换，离开后继续
+	ul.onmouseover = function(){
+		clearInterval(t);
+	}
+	ul.onmouseout = function(){
+		autoMove();
+	}
+	con.onmouseover = function(){
+		clearInterval(t);
+	}
+	con.onmouseout = function(){
+		autoMove();
+	}
+	heng.onmouseover = function(){
+		clearInterval(t);
+	}
+	heng.onmouseout = function(){
+		autoMove();
+	}
+
+
+
+	/*Tween模型*/
+	function getStyle(obj,style) {
+		if (document.defaultView&&document.defaultView.getComputedStyle) {
+			return document.defaultView.getComputedStyle(obj,null)[style];
+		}else {
+			return obj.currentStyle[style];
+		}
+	}
+	function startMove(obj,prop,end,options) {
+		if (options) {
+			if (!options.d) {
+				var d=91;
+			}else {
+				var d=options.d
+			}
+			if (!options.twFn) {
+				var twFn="Quad";
+			}else {
+				var twFn=options.twFn;
+			}
+			if (!options.easeFn) {
+				var easeFn="easeOut";
+			}else {
+				var easeFn=options.easeFn;
+			}
+		}else {
+			var d=91;
+			var twFn="Quad";
+			var easeFn="easeOut";
+		}
+		var t=0;
+		if (!obj.t) {
+			obj.t={};
+		}
+		var b=getStyle(obj,prop);
+		b=parseInt(b);
+
+		if (isNaN(b)) {
+			b = 0;
+		}
+		
+		var c=end-b;
+		clearInterval(obj.t[prop]);
+		
+		obj.t[prop]=setInterval(function () {
+			t++;
+			if (t>d) {
+				clearInterval(obj.t[prop]);
+				return;
+			}
+			if (twFn=="Linear") {
+				var num=Tween.Linear(t,b,c,d);
+			}else {
+				var num=Tween[twFn][easeFn](t,b,c,d);
+			}
+			if (prop=="opacity") {
+				obj.style[prop]=num;
+			}else{
+				obj.style[prop]=num+"px";
+			}
+		},17)
+	}
+</script>
+</html>
