@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="js.js"></script>
+	<style>
+		body{
+			position:relative
+		}
+		#a div{
+			width:100px;
+			height:50px;
+			float:left;
+		}
+		#a{
+			overflow:hidden;
+		}
+		#b{
+			position:absolute;
+			width:100px;
+			height:50px;
+			background-color:red;
+			top:0px;
+			left:0px;
+			opacity:0.5
+		}
+	</style>
+</head>
+
+<body>
+	<div id="a">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+	</div>
+	<div id="b"></div>
+</body>
+<script>
+	var a=document.getElementById("a").getElementsByTagName("div")
+	var b=document.getElementById("b")
+	for (var i=0; i<a.length; i++) {
+		a[i].onmouseover=change
+	}
+	function change() {
+		for (var i=0; i<a.length; i++) {
+			if (a[i]==this) {
+				startMove(b,"left",i*100,3,"Bounce","easeOut")
+				
+				
+			}
+			
+		}
+	}
+	
+
+
+
+
+
+
+
+
+
+
+function getStyle(obj,style) {
+			if (document.defaultView&&document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+
+		function startMove(obj,prop,end,d,twFn,easeFn) {
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			
+			//获取obj当前的prop样式的值
+			//示例：获取test当前宽度样式的值："50px"
+			var b = getStyle(obj,prop);
+
+			//字符串=>数字
+			b = parseInt(b);//'50px'=>50
+
+			//var b = parseInt(getStyle(obj,prop));
+
+			var c = end - b;
+			
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				
+				
+				obj.style[prop] = num + 'px';
+			},17);
+		}
+</script>
+</html>

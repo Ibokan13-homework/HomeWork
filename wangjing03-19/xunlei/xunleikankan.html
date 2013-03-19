@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src='../js.js'></script>
+	<style type="text/css">
+		.top{
+			position:relative;
+			width:750px;
+			height:350px;
+		}
+		.top img{
+			position:absolute;
+			z-index:1;
+			opacity:0;
+		}
+		/*.footer img{
+			float:left;
+		}*/
+		.bottom{
+			/*position:relative;*/
+			padding-top:5px;
+			background:black;
+			width:750px;
+			height:60px;
+		}
+		.bottom a{
+			/*position:absolute;
+			z-index:2;*/
+			text-decoration:none;
+			float:left;
+			width:73px;
+			background:url('迅雷/小图边框.jpg') 0 5px no-repeat;
+			text-align:center;
+			margin-left:2px;
+			height:57px;
+			line-height:57px;
+			padding-top:5px;
+		}
+		
+		#bottom .showbg{
+			background:url('迅雷/背景-透明.png') 0 0 no-repeat;
+		}
+		.top .one{
+			opacity:1;
+		}
+		.footer{
+			position:absolute;
+			background:black;
+			/*left:1px;*/
+			bottom:0px;
+			width:750px;
+			height:50px;
+			z-index:3;
+			background:black url('迅雷/logo.png') 10px center no-repeat;
+			/*background:black;*/
+			opacity:0;
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div class='top' id='top'>
+		<img src='迅雷/big1.jpg'  class='one'/>
+		<img src='迅雷/big2.jpg' />
+		<img src='迅雷/big3.jpg' />
+		<img src='迅雷/big4.jpg' />
+		<img src='迅雷/big5.jpg' />
+		<img src='迅雷/big6.jpg' />
+		<img src='迅雷/big7.jpg' />
+		<img src='迅雷/big8.jpg' />
+		<img src='迅雷/big9.jpg' />
+		<img src='迅雷/big10.jpg' />
+		<div class='footer' id='footer'></div>
+	</div>
+	<div class='bottom' id='bottom'>
+		<a href='#'><img src='迅雷/1.jpg' alt='1'/></a>
+		<a href='#'><img src='迅雷/2.jpg' alt='2'/></a>
+		<a href='#'><img src='迅雷/3.jpg' alt='3'/></a>
+		<a href='#'><img src='迅雷/4.jpg' alt='4'/></a>
+		<a href='#'><img src='迅雷/5.jpg' alt='5'/></a>
+		<a href='#'><img src='迅雷/6.jpg' alt='6'/></a>
+		<a href='#'><img src='迅雷/7.jpg' alt='7'/></a>
+		<a href='#'><img src='迅雷/8.jpg' alt='8'/></a>
+		<a href='#'><img src='迅雷/9.jpg' alt='9'/></a>
+		<a href='#'><img src='迅雷/10.jpg' alt='10' /></a>
+		
+	</div>
+	<!-- <div class='footer'></div> -->
+</body>
+	<script type="text/javascript">
+	 var topimgs=document.getElementById('top').getElementsByTagName('img');
+	 var bottomimgs=document.getElementById('bottom').getElementsByTagName('img');
+	 var as=document.getElementById('bottom').getElementsByTagName('a')
+	 var footer=document.getElementById('footer');
+	 for (var i=0; i<bottomimgs.length; i++) {
+		bottomimgs[i].onmouseover=change;
+	 }
+	 var ind1;
+	 function change() {
+		for (var i=0; i<topimgs.length; i++) {
+			if (this==bottomimgs[i]) {
+				startMove(topimgs[i],'opacity',1,30,'Linear');
+				as[i].className='showbg';
+				//startMove(footer,'opacity',0,1,'Linear');
+				//startMove(footer,'opacity',0.5,1,'Linear');
+				ind2=i;
+				
+			}else {
+				topimgs[i].style.opacity=0;
+				as[i].className='';
+			}
+
+		}
+	 }
+	 
+	 var time;
+	 var ind2=0;
+	 function automove() {
+		for (var i=0; i<bottomimgs.length; i++) {
+			if (ind2==i) {
+				startMove(topimgs[i],"opacity",1,30,"Linear");
+				as[i].className='showbg';
+				//startMove(footer,'opacity',0,1,'Linear');
+				startMove(footer,'opacity',0.5,30,'Linear');
+				footer.innerHTML="<a href='#' style='font-size:18px; color:white;float:left;width:750px;height:50px;line-height:50px;padding-left:80px;text-decoration:none;'>"+bottomimgs[i].alt+"</a>"
+				
+			}else {
+				topimgs[i].style.opacity=0;
+				as[i].className='';
+				//footer.style.opacity=0;
+				
+			}
+		}
+		ind2++;//注意顺序
+		if (ind2>=bottomimgs.length) {
+			ind2=0;
+		}
+		
+		time=setTimeout(automove,3000);
+		
+	 }
+	 automove();
+	 
+	 
+
+
+
+
+	 function getStyle(obj,style) {
+			if (document.defaultView&&document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+
+		function startMove(obj,prop,end,d,twFn,easeFn) {
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			
+			//获取obj当前的prop样式的值
+			//示例：获取test当前宽度样式的值："50px"
+			var b = getStyle(obj,prop);
+
+			//字符串=>数字
+			b = parseInt(b);//'50px'=>50
+
+			//var b = parseInt(getStyle(obj,prop));
+
+			var c = end - b;
+			
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				if (prop=="opacity") {
+					obj.style[prop] = num ;
+				}
+				else {
+					obj.style[prop] = num + 'px';
+				}
+				
+				
+			},17);
+		}
+	</script>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src='../js.js'></script>
+	<style type="text/css">
+		span{
+			float:left;
+			width:50px;
+			height:30px;
+			border:1px solid black;
+			
+
+		}
+		.logo{
+			overflow:hidden;
+			width:900px;
+			height:50px;
+			/*margin-top:200px;*/
+			
+		}
+		/*.inner{
+			overflow:hidden;
+		}*/
+		img{
+			float:left;
+		}
+		.outer{
+			position:relative;
+			width:220px;
+			height:165px;
+			overflow:hidden;
+		}
+		.inner{
+			position:absolute;
+			left:0px;
+			top:0px;
+			overflow:hidden;
+			width:660px;
+			height:165px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class='outer' id='outer'>
+		<div class='inner' id='inner'>
+			<img src='images/cat1.jpg' />
+			<img src='images/cat2.jpg' />
+			<img src='images/dog.jpg' />
+		</div>
+	</div>
+	<div class='logo' id='logo'>
+		
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+		
+	</div>
+	<div class='btn'>
+		<span id='left'>left</span>
+		<span id='right'>right</span>
+	</div>
+
+</body>
+<script type="text/javascript">
+	function getStyle(obj,style) {
+			if (document.defaultView && document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+
+		function startMove(obj,prop,end,d,twFn,easeFn) {
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			
+			//获取obj当前的prop样式的值
+			//示例：获取test当前宽度样式的值："50px"
+			var b = getStyle(obj,prop);
+
+			//字符串=>数字
+			b = parseInt(b);//'50px'=>50
+			if (isNaN(b)) {
+				b = 0;
+			}
+			//var b = parseInt(getStyle(obj,prop));
+
+			var c = end - b;
+			
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				
+				
+				
+				if (prop=='scrollLeft') {
+					obj.scrollLeft=num;
+				}else {
+					obj.style[prop] = num + 'px';
+				}
+			},17);
+		}
+	var outer=document.getElementById('outer');
+	var inner=document.getElementById('inner');
+	var spans=document.getElementById('logo').getElementsByTagName('span');
+	var leftbtn=document.getElementById('left');
+	var rightbtn=document.getElementById('right');
+	var ind=0;
+	var time;
+	function run() {
+		startMove(inner,'left',-ind*220,30,'Linear');
+		/*if (left==-660+'px') {
+			startMove(inner,'left',660,300,'Linear')
+		}*/
+		ind++;
+		time=setTimeout(run,2000);
+		if (ind>3) {
+			startMove(inner,'left',0,30,'Linear');
+			ind=0;
+		}
+		
+	}
+	run();
+	for (var i=0; i<spans.length; i++) {
+		spans[i].onmouseover=goback;
+	}
+	function goback() {
+		clearTimeout(time);
+		for (var i=0; i<spans.length; i++) {
+			if (spans[i]==this) {
+			startMove(inner,'left',-i*220,30,'Linear');
+			ind=i;
+			run();
+			}
+		
+		}
+		/*ind=i;
+		run();*/
+		
+	}
+	leftbtn.onmouseover=function () {
+		clearTimeout(time);
+		
+	}
+	
+	
+</script>
+</html>
