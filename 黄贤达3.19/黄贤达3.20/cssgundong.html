@@ -1,0 +1,40 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>无标题文档</title>
+	<style type="text/css">
+	#div1{
+		width:300px;
+		height:50px;
+		background:#FFFF99;
+		border:#FF3300;
+		color:#FF0000;
+		padding:30px;
+		position:fixed;
+		top:50px;
+		left:0;
+		_position:absolute;
+		_top:expression((document).documentElement.scrollTop+50)
+	}
+	body{
+		width:2000px;
+		height:2000px;
+		_background:url(about:blank);
+		_background-attachment:fixed;
+	}
+	</style>
+</head>
+
+<body>
+	<div id="div1">div1</div>
+	<!-- <script type="text/javascript">
+		var div1=document.getElementById("div1");
+		window.onscroll=function(){
+			div1.innerHTML=document.body.scrollTop+"<br>";
+			var topp=document.documentElement.scrollTop||document.body.scrollTop
+			div1.style.top=topp;
+		}
+	</script> -->
+</body>
+</html> 

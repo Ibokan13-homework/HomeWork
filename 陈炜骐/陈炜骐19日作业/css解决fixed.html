@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+	<title>你好</title>
+	<meta charset='utf-8' />
+	<style>
+		body{
+			_background:url(about:blank);
+			_background-attachment:fixed;
+		}
+		#a{
+			width:100px;
+			height:100px;
+			background-color:gray;
+			position:fixed;
+			top:100px;
+			right:0px;
+			_position:absolute;
+			_top:expression((document).documentElement.scrollTop+100);
+			
+
+
+		}
+		#aa{
+			height:1000px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="aa"></div>
+	<div id="a"></div>
+</body>
+</html>

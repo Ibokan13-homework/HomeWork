@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+	<title>你好</title>
+	<meta charset='utf-8' />
+
+	<style>
+		body{
+			_background:url(about:blank);
+			_background-attachment:fixed;
+		}
+		#center{
+			width:100%;
+			height:1100px;
+			position:absolute;
+			top:0px;
+			left:0px;
+			background-color:black;
+			opacity:0;
+			z-index:1;
+		}
+		#bottom{
+			height:1100px;
+		}
+		#top{
+			width:150px;
+			height:500px;
+			position:absolute;
+			top:50px;
+			left:930px;
+			z-index:2;
+		}
+		#top img{
+			height:500px;
+			width:150px;
+		}
+		#go{
+			position:fixed;
+			bottom:0px;
+			right:0px;
+			width:50px;
+			height:100px;
+			background-color:gray;
+			z-index:3;
+			_position:absolute;
+			_top:expression((document).documentElement.scrollTop+450);
+		}
+		#go1,#go2{
+			width:48px;
+			height:48px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="bottom">
+		<img src="images/1.jpg" alt="" />
+		<img src="images/2.jpg" alt="" />
+		<img src="images/3.jpg" alt="" />	
+	</div>
+	<div id="center"></div>
+	<div id="top">
+		<img id="imgs" src="images/4.jpg" alt="" />	
+	</div>
+	<div id="go">
+		<div id="go1">
+			回到顶部
+		</div>
+		<div id="go2">
+			关灯
+		</div>
+	</div>
+
+
+
+
+	<script type="text/javascript" src='tween.js'></script>
+	<script type="text/javascript" src='lib.js'></script>
+
+	<script>
+		var go1=document.getElementById("go1");
+		var go2=document.getElementById("go2");
+		var center=document.getElementById("center");
+		var imgs=document.getElementById("imgs");
+		var tops=document.getElementById("top");
+		var a=0
+		go2.onclick=function () {
+			if (a==0) {
+				startMove(center,"opacity",1,30,"Linear");
+				startMove(tops,"width",900,30,"Linear");
+				startMove(tops,"height",350,30,"Linear");
+				startMove(tops,"left",100,30,"Linear");
+				startMove(imgs,"width",900,30,"Linear");
+				startMove(imgs,"height",350,30,"Linear");
+					if (document.body.scrollTop!=0) {
+				startMove(document.body,"scrollTop",0,30,"Linear")
+			}
+			if (document.documentElement.scrollTop!=0) {
+				startMove(document.documentElement,"scrollTop",0,30,"Linear")
+			}
+				a++
+			}else {
+				startMove(center,"opacity",0,30,"Linear");
+				startMove(tops,"width",150,30,"Linear");
+				startMove(tops,"height",500,30,"Linear");
+				startMove(tops,"left",930,30,"Linear");
+				startMove(imgs,"width",150,30,"Linear");
+				startMove(imgs,"height",500,30,"Linear");
+				a=0
+					if (document.body.scrollTop!=0) {
+				startMove(document.body,"scrollTop",0,30,"Linear")
+			}
+			if (document.documentElement.scrollTop!=0) {
+				startMove(document.documentElement,"scrollTop",0,30,"Linear")
+			}
+			}	
+		}
+
+	go1.onclick=function () {
+			if (document.body.scrollTop!=0) {
+				startMove(document.body,"scrollTop",0,30,"Linear")
+			}
+			if (document.documentElement.scrollTop!=0) {
+				startMove(document.documentElement,"scrollTop",0,30,"Linear")
+			}
+		}
+	</script>
+</body>
+
+</html>

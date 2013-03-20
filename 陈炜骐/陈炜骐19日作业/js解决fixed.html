@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+	<title>你好</title>
+	<meta charset='utf-8' />
+	<style>
+		#a{
+			width:100px;
+			height:100px;
+			background-color:gray;
+			position:absolute;
+			top:100px;
+			right:0px;
+
+		}
+		#aa{
+			height:1000px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="aa"></div>
+	<div id="a"></div>
+</body>
+<script>
+	document.body;
+	document.documentElement; 
+	var a=document.getElementById("a")
+	window.onscroll=function () {
+		var nums=document.body.scrollTop||document.documentElement.scrollTop;
+		a.style.top=100+nums+"px";
+	}
+</script>
+</html>
