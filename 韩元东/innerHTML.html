@@ -154,10 +154,7 @@
 			overflow: auto;
 		}
 		.record ul li {
-			position: relative;
-			left: 0;
-			top: 0;
-			z-index: 1;
+			overflow: hidden;
 		}
 		.record .del {
 			float: right;
@@ -203,6 +200,7 @@
 			<li class="clearfix"><span class="recNameSpan">姓名</span><span class="recTextSpan">留言内容</span></li>
 		</ul>
 	</div>
+	<script type="text/javascript" src="js/tween.js"></script>
 	<script type="text/javascript" src="js/kHelp-0.2.js"></script>
 	<script type="text/javascript">
 		var inName   = $id("inName"),
@@ -251,13 +249,20 @@
 			li.setAttribute('class','clearfix');
 			li.innerHTML = '<h2 class="recName">'+inName+'</h2><b class="del">删除</b><p class="recText">'+inText+'</p></li>';
 			list.appendChild(li);
+			var liH = parseInt($getStyle(li,'height'));
+			$setStyle(li,'height',0);
+			$tweenEffect(li,'height',liH);
 			addEvent();
 			var i;
 			for ( i = 0; i < $size(dels); i++ ) {
 				dels[i].onclick = function() {
 					var tli = this.parentElement;
 					var tul = tli.parentElement;
-					tul.removeChild(tli);
+					$tweenEffect(tli,'height',0,{
+						endFun: function(){
+							tul.removeChild(tli);
+						}
+					})
 				}
 			}
 		}
