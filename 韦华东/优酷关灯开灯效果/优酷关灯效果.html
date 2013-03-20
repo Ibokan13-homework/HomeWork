@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+<style>
+	body,a{
+		padding:0;
+		margin:0;
+		color:white;
+	}
+	#outer{
+		width:2000px;
+		height:2000px;
+		background-color:green;
+		position:relative;
+		top:0;
+		left:0;
+		z-index:2;
+	}
+	#black{
+		width:2000px;
+		height:2000px;
+		background-color:black;
+		position:absolute;
+		top:0;
+		left:0;
+		z-index:4;
+		display:none;
+	}
+	#vadio{
+		width:400px;
+		height:400px;
+		position:absolute;
+		background-color:black;
+		top:100px;
+		left:100px;
+		z-index:5;
+		border:3px solid yellow;
+	}
+	#vadio .picture{
+		width:400px;
+		height:300px;
+		background:url(bg.jpg) 0 0 no-repeat;
+		cursor:pointer;
+	}
+	#vadio .word a{
+		font-size:20px;
+		color:white;
+	}
+	#vadio .word{
+		margin-top:50px;
+		text-indent:50px;
+	}
+	#others{
+		position:absolute;
+		top:530px;
+		left:100px;
+		z-index:3;
+	}
+	#others span{
+		font-size:30px;
+		color:white;
+	}
+	#turnoff{
+		width:50px;
+		height:100px;
+		position:absolute;
+		top:400px;
+		left:1200px;
+		border:2px solid red;
+		font-size:40px;
+		color:red;
+		font-family:微软雅黑;
+		z-index:6;
+		cursor:pointer;
+	}
+</style>
+<body>
+	<div id="outer">
+		<div id="black" class="black"></div>
+		<div id="vadio">
+			<div class="picture"></div>
+			<div class="word"><a href="http://v.youku.com/v_show/id_XNTI4NDk5NjY0.html?f=19014531">2012华语电影————混剪专辑</a></div>
+		</div>
+		<div id="others">
+			<span><a href="http://www.baidu.com/s?wd=bokanwensi&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg">博看文思13班姑娘好漂亮</a></span><br />
+			<span><a href="http://www.baidu.com/s?wd=bokanwensi&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg">博看文思13班姑娘好漂亮</a></span><br />
+			<span><a href="http://www.baidu.com/s?wd=bokanwensi&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg">博看文思13班姑娘好漂亮</a></span><br />
+			<span><a href="http://www.baidu.com/s?wd=bokanwensi&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg">博看文思13班姑娘好漂亮</a></span><br />
+			<span><a href="http://www.baidu.com/s?wd=bokanwensi&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg">博看文思13班姑娘好漂亮</a></span><br />
+			<span><a href="http://www.baidu.com/s?wd=bokanwensi&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg">博看文思13班姑娘好漂亮</a></span><br />
+			<span><a href="http://www.baidu.com/s?wd=bokanwensi&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg">博看文思13班姑娘好漂亮</a></span><br />
+			<span><a href="http://www.baidu.com/s?wd=bokanwensi&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg">博看文思13班姑娘好漂亮</a></span><br />
+			<span><a href="http://www.baidu.com/s?wd=bokanwensi&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg">博看文思13班姑娘好漂亮</a></span><br />
+			<span><a href="http://www.baidu.com/s?wd=bokanwensi&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg">博看文思13班姑娘好漂亮</a></span>
+		</div>
+		<div id="turnoff">关灯</div>
+	</div>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+	<script>
+		var outer=document.getElementById("outer");
+		var black=document.getElementById("black");
+		var vadio=document.getElementById("vadio");
+		var others=document.getElementById("others");
+		var turnoff=document.getElementById("turnoff");
+		var numy=parseInt(getStyle(turnoff,"top"));
+		var numx=parseInt(getStyle(turnoff,"left"));
+		window.onscroll=function () {
+			var top=document.body.scrollTop||document.documentElement.scrollTop;
+			var left=document.body.scrollLeft||document.documentElement.scrollLeft;
+			//console.log(turnoff.style.top);
+			//console.log(top)
+			startMove(turnoff,"top",top+numy);
+			startMove(turnoff,"left",left+numx);
+			//console.log(turnoff.style.top);
+		}
+		var n=0;
+		turnoff.onclick=function () {
+			n++;
+			if (n%2==1) {
+				black.style.display="block";
+				black.opacity=0;
+				startMove(black,"opacity",1);
+			}else {
+				startMove(black,"opacity",0);
+				black.style.display="none";
+			}
+			//console.log(black.opacity)
+		}
+	</script>
+</body>
+</html>
