@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="cloudgamer效果.js"></script>
+	<script src="引用的库.js"></script>
+	<style>
+		body{
+			position:relative;
+		}
+		img{
+			margin:0;
+			padding:0;
+		}
+		
+		.top{
+			position:absolute;
+			left:0px;
+			top:50px;
+			width:750px;
+			height:350px;
+			z-index:2;
+		}
+		span{
+			float:left;
+			width:20px;
+			height:40px;
+			border:1px solid red;
+			position:fixed;
+			z-index:3;
+			top:280px;
+			left:770px;
+			color:blue;
+		}
+		#black{
+			background-color:black;
+			width:100%;
+			opacity:0;
+			position:absolute;
+			top:0;
+			left:0;
+			height:100%;
+			z-index:1;
+		}
+		#ccc{
+			padding-top:450px;
+		}
+		
+	</style>
+</head>
+
+<body>
+	
+	<span id="span">开灯</span>
+	<div class="top" id="top">
+		<img src="迅雷/big1.jpg" alt="" />
+	</div>
+	<div id="black"></div>
+	<div id="ccc">
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+	</div>
+
+	<script>
+		var black=document.getElementById("black");
+		var span=document.getElementById("span");
+		var topa=document.getElementById("top");
+		span.onclick=function () {
+			if (span.innerHTML=="开灯") {
+				black.style.opacity=0;
+				startMove(black,"opacity",1);
+				startMove(span,"left",970);
+				startMove(topa,"left",200);
+				span.innerHTML="关灯";
+				if (document.body.scrollTop!=0) {
+					startMove(document.body,"scrollTop",0);
+				}else if (document.documentElement.scrollTop!=0) {
+					startMove(document.documentElement,"scrollTop",0);
+				}
+			}else {
+				black.style.opacity=1;
+				startMove(black,"opacity",0);
+				startMove(span,"left",770);
+				startMove(topa,"left",0);
+				span.innerHTML="开灯";
+				if (document.body.scrollTop!=0) {
+					startMove(document.body,"scrollTop",0);
+				}else if (document.documentElement.scrollTop!=0) {
+					startMove(document.documentElement,"scrollTop",0);
+				}
+			}
+				
+		}
+	</script>
+</body>
+</html>
