@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+<style>
+	body ul img li input{
+		padding:0;
+		margin:0;
+	}
+	ul{
+		list-style:none;
+	}
+</style>
+<body>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+	<script type="text/javascript">
+		document.body.style.background="purple";
+		//create a new block
+		var box=document.createElement("div");
+		box.style.width="310px";
+		box.style.height="300px";
+		box.style.margin="50px auto 0";
+		box.style.overflow="hidden";
+		box.style.zoom="1";
+		var textarea=document.createElement("textarea");
+		textarea.style.width="298px";
+		textarea.style.height="248px";
+		textarea.style.border="1px solid red";
+		textarea.style.overflow="auto";
+		textarea.style.background="pink";
+		textarea.style.borderRadius="3%";
+		box.appendChild(textarea);
+		document.body.appendChild(box);
+		//create a new button to submit
+		var sub=document.createElement("input");
+		sub.style.width="80px";
+		sub.type="button";
+		sub.style.height="40px";
+		sub.value="submit";
+		sub.style.background="green";
+		sub.style.cssFloat="right";
+		sub.style.styleFloat="right";
+		sub.style.cursor="pointer";
+		sub.style.margin="10px";
+		sub.style.borderRadius="3%";
+		box.appendChild(sub);
+		//create li tag to display writting stuff from textarea
+		var ul=document.createElement("ul");
+		ul.style.margin="20px auto 0";
+		ul.style.width="350px";
+		ul.style.height="300px";
+		ul.style.overflow="auto";
+		document.body.appendChild(ul);
+		
+		//onclick case
+		sub.onclick=function () {
+			//use li to be message band
+			var li=document.createElement("li");
+			li.style.border="2px solid red";
+			li.style.overflow="hidden";
+			li.style.zoom="1";
+			li.style.width="0";
+			li.style.height="0";
+			li.style.background="black";
+			li.style.borderRadius="3%";
+			//add a pic 
+			var pic=document.createElement("img");
+			pic.style.width="100px";
+			pic.style.height="100px";
+			pic.src="pic.jpg";
+			pic.style.cssFloat="left";
+			pic.style.styleFloat="left";
+			pic.style.margin="10px";
+			pic.style.borderRadius="3%";
+			li.appendChild(pic);
+			// add a div to be name
+			var names=document.createElement("div");
+			names.style.fontSize="16px";
+			names.style.cssFloat="left";
+			names.style.styleFloat="left";
+			names.style.width="100px";
+			names.style.height="20px";
+			names.style.background="red";
+			names.style.margin="10px 0 0 20px";
+			names.innerHTML="Xiaoyu Chen";
+			names.style.borderRadius="3%";
+			li.appendChild(names);
+			//add a div to fill with textarea's content
+			var spot=document.createElement("div");
+			spot.innerHTML="message:"+textarea.value;
+			spot.style.width="165px";
+			spot.style.height="60px";
+			spot.style.cssFloat="left";
+			spot.style.styleFloat="left";
+			spot.style.background="gray";
+			spot.style.overflow="hidden";
+			spot.style.textOverflow="ellipsis";
+			spot.style.wordWrap="break-word";
+			spot.style.whiteSpace="nowrap";
+			spot.style.margin="10px 0 0 10px";
+			spot.style.borderRadius="3%";
+			li.appendChild(spot);
+			//overflow:hidden;text-overflow:ellipsis; white-space:nowrap;
+			//ADD A BUTTON TO DELETE LI THAT DELETE IS INCLOUDED
+			var delet=document.createElement("input");
+			delet.type="button";
+			delet.value="delete";
+			delet.style.cssFloat="right";
+			delet.style.styleFloat="right";
+			li.appendChild(delet);
+			startMove(li,"width",300,{
+				endFn:function () {
+					startMove(li,"height",130);
+				}
+			});
+			if (ul.firstChild) {
+				ul.insertBefore(li,ul.firstChild);
+			}else {
+				ul.appendChild(li);
+			}
+			delet.onclick=function () {
+				var thisone=this;
+				startMove(li,"height",0,{
+					endFn:function () {
+						startMove(li,"width",0,{endFn:function () {
+							thisone.parentNode.parentNode.removeChild(thisone.parentNode);
+						}});
+					}
+				})
+
+				
+			}
+		}
+		
+	</script>
+</body>
+</html>
