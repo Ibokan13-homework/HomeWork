@@ -121,14 +121,19 @@
 		turnoff.onclick=function () {
 			n++;
 			if (n%2==1) {
-				black.style.display="block";
+				
+				startMove(vadio,"left",400)
 				black.opacity=0;
 				startMove(black,"opacity",1);
+				black.style.display="block";
 				turnoff.innerHTML="开灯";
 			}else {
 				startMove(black,"opacity",0);
-				black.style.display="none";
+				setTimeout(function () {
+					black.style.display="none";
+				},100);
 				turnoff.innerHTML="关灯";
+				startMove(vadio,"left",100)
 			}
 			//console.log(black.opacity)
 		}
