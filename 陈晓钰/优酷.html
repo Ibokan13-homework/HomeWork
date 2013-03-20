@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style>
+		body{
+			height:2000px;
+			position:relative;
+			z-index:0;
+		}
+		#out{
+			width:500px;
+			height:500px;
+			background:red;
+			position:absolute;
+		}
+		 #inner{
+			width:100%;
+			height:100%;
+			background:black;
+			position:absolute;
+			display:none;
+			
+		}
+		#close{
+			position:absolute;
+			width:50px;
+			height:50px;
+			right:0px;
+			top:280px;
+			border:1px solid red;
+			color:blue;
+		}
+		#return{
+			position:absolute;
+			width:50px;
+			height:50px;
+			right:0px;
+			top:335px;
+			border:1px solid red;
+			display:none;
+		}
+	</style>
+</head>
+
+<body>
+	<a name="top"><a> 
+	<div id="out"></div>
+	<div id="inner"></div>
+	<div id="close">关灯</div>
+	<div id="return"><a href="#top">返回顶部</a></div>
+	<script>
+		var close=document.getElementById("close");
+		var re=document.getElementById("return");
+		var out=document.getElementById("out");
+		var inner=document.getElementById("inner");
+
+		window.onscroll=function () {
+			var t = document.documentElement.scrollTop || document.body.scrollTop;  
+			if( t >= 450 ) { 
+				re.style.display = "block"; 
+			} else { 
+				re.style.display = "none"; 
+			} 
+			close.style.top=t+280;
+			re.style.top=t+335;
+		}
+		var i=1;
+		close.onclick=function () {
+			out.style.zIndex=5;
+			i++;
+			if(i%2==0){
+				close.innerHTML="开灯";
+				startMove(out,"left",300);
+				startMove(out,"top",0);
+				startMove(inner,"opacity",1);
+				inner.style.display="block";
+			}else{
+				close.innerHTML="关灯";
+				startMove(out,"left",0);
+				startMove(out,"top",0);
+				startMove(inner,"opacity",0);
+				setTimeout(function () {
+					inner.style.display="none";
+				},30)
+				out.style.zIndex=5;
+			}
+		}
+	</script>
+</body>
+</html>
