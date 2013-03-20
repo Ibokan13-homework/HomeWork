@@ -216,6 +216,11 @@ function $tweenEffect( obj, sty, end, options ) {
 	    t += 1;
 	    if ( t > d ) {
 	        clearInterval(obj.t[sty]);
+	        if ( options ) {
+	        	if ( options.endFun ) {
+	        		options.endFun();
+	        	}
+	        }
 	        return;
 	    }
 	    if ( twFn === 'Linear') {

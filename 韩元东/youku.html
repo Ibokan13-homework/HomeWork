@@ -126,12 +126,11 @@
 			$setStyle(btnOn,'opacity',0);
 			$tweenEffect(btnOn,'opacity',1,{
 				d: 30,
-				easeFn: "easeIn"
+				easeFn: "easeIn",
+				endFun: function() {
+					$removeClass(bg,'show');
+				}
 			});
-			clearTimeout(offTime);
-			var offTime = setTimeou(function() {
-				$removeClass(bg,'show');
-			},300)
 		}
 		window.onscroll = function() {
 			var sc = document.body.scrollTop;
