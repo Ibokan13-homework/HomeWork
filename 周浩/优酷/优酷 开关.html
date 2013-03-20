@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		body{
+			position:relative;
+			left:0;
+			top:0;
+			z-index:0;
+		}
+		#a{
+			width:1000px;
+			height:10000px;
+			border:1px solid red;
+			background:blue;
+			position:relative;
+			left:0;
+			top:0;
+			z-index:1;
+		}
+		#b{
+			width:500px;
+			height:200px;
+			border:1px solid red;
+			background:#e33532;
+			position:absolute;
+			left:100px;
+			top:50px;
+			z-index:10;
+		}
+		#c{
+			width:20px;
+			height:200px;
+			border:1px solid red;
+			position:fixed;
+			right:20px;
+			top:300px;
+			z-index:15;
+			_position:absolute;
+			_top:expression(eval(document.documentElement.scrollTop + 300));
+		}
+		#c div{
+			border:1px solid red;
+		}
+		#hei{
+			background:#000;
+			opacity:0;
+			position:absolute;
+			left:0;
+			top:0;
+			z-index:5;
+			width:100%;
+			height:100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="a"></div>
+	<div id="b"></div>
+	<div id="hei"></div>
+	<div id="c">
+		<div><a href="#" id="aa">关灯</a></div>
+		<div><a href="#">弹窗</a></div>
+		<div><a href="#">反馈</a></div>
+		<div><a href="#" id="bb">返回顶部</a</div>
+	</div>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+	<script>
+		var aa = $$('aa');
+		var bb = $$('bb');
+		var b = $$('b');
+		bb.onclick = function () {
+			startMove(document.body,"scrollTop",0);
+		}
+		var index = 0;
+		aa.onclick = function () {
+			index++;
+			if (index%2 == 1) {
+				aa.innerHTML = "开灯";
+				startMove(hei,"opacity",1);
+				startMove(b,"top",400);
+				startMove(b,"left",200);
+			}
+			else{
+				aa.innerHTML = "关灯";
+				startMove(hei,"opacity",0);
+				startMove(b,"top",50);
+				startMove(b,"left",100);
+			}
+		}
+	</script>
+</body>
+</html>
+
