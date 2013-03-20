@@ -244,7 +244,7 @@
 		}
 		function saveMessage() {
 			var inName = document.getElementById("inName").value;
-			var inText = document.getElementById("inText").value;
+			var inText = document.getElementById("inText").value.replace(delWord,'***');
 			var li     = document.createElement('li');
 			li.setAttribute('class','clearfix');
 			li.innerHTML = '<h2 class="recName">'+inName+'</h2><b class="del">删除</b><p class="recText">'+inText+'</p></li>';
@@ -276,6 +276,7 @@
 				}
 			}
 		}
+		var delWord = /操|草|妈|爸|妹|共产党|王智|fuck|shit/gi;
 	</script>
 </body>
 </html>
