@@ -47,8 +47,6 @@
 		width:72px;
 		height:72px;
 		position:fixed;
-		top:10%;
-		left:90%;
 		z-index:5;
 		background:url(circle.png) 0 0 no-repeat;
 		cursor:pointer;
@@ -56,20 +54,6 @@
 		_left:expression(eval(document.documentElement.scrollLeft+10%));
 		_top:expression(eval(document.documentElement.scrollTop+90%));
 	}
-	/*.navchange{
-		width:72px;
-		height:72px;
-		position:fixed;
-		top:50%;
-		left:50%;
-		z-index:5;
-		margin:-36px 0 0 -36px;
-		background:url(circle.png) 0 0 no-repeat;
-		cursor:pointer;
-		_position:absolute;
-		_left:expression(eval(document.documentElement.scrollLeft+50%));
-		_top:expression(eval(document.documentElement.scrollTop+50%));
-	}*/
 	#classbg{
 		position:fixed;
 		width:606px;
@@ -189,9 +173,16 @@
 		block2.style.width="0";
 		block3.style.width="0";
 		block4.style.height="0";
+		navball.style.left=0.9*(box.clientWidth);
+		navball.style.top=0.1*(box.clientHeight);
 		navball.onclick=function () {
+			if(box.moving){
+				return;
+			}
+			box.moving = true;
 			n++;
 			if (n%2==1) {
+				startMove(navball,"left",(box.clientWidth-navball.offsetWidth)/2);
 				startMove(navball,"top",(box.clientHeight-navball.offsetHeight)/2,{
 					endFn:function () {
 						startMove(block1,"height",187,{
@@ -200,7 +191,11 @@
 									endFn:function () {
 										startMove(block4,"height",187,{
 											endFn:function () {
-												startMove(block3,"width",301)
+												startMove(block3,"width",301,{
+													endFn:function () {
+														box.moving=false;
+													}
+												});
 											}
 										})
 									}
@@ -209,7 +204,6 @@
 						});
 					}
 				});
-				startMove(navball,"left",(box.clientWidth-navball.offsetWidth)/2);
 				classbg.style.display="block";
 				graylevel.style.display="block";
 			}else {
@@ -225,6 +219,7 @@
 												startMove(navball,"left",box.clientWidth/10*9);
 												classbg.style.display="none";
 												graylevel.style.display="none";
+												box.moving=false;
 											}
 										})
 									}
@@ -233,6 +228,15 @@
 						})
 					}
 				});
+			}
+		}
+		window.onresize = function(){
+			if (n%2==1) {
+				navball.style.left = (box.clientWidth-navball.offsetWidth)/2 + "px";
+				navball.style.top = (box.clientHeight-navball.offsetHeight)/2 + "px";
+			}else {
+				navball.style.left=box.clientWidth/10*9-navball.offsetWidth/2+"px";
+				navball.style.top=box.clientWidth/10-navball.offsetHeight/2+"px";
 			}
 		}
 	</script>
