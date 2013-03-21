@@ -172,13 +172,24 @@ function $getScroll ( direction, obj ) {
 	return ret;
 }
 /**
- Author: Mr.Chen
+ * use tween.js framwork move effect function
+ * @param  {node} obj     -> node
+ * @param  {object} options -> can has attribute is 
+ *                  {
+ *                    attr: // css style name ( string )
+ *                    end:  // target number  ( number )
+ *                    unit: // 'px' or '%'    ( string )
+ *                    dur:  // duration time  ( number )
+ *                    twFn: // tween.js effect name ( string )
+ *                    easeFn: // ease move name ( string )
+ *                    easeFun: // call back function
+ *                  }
  */
  function $tweenEffect( obj, options ) {
- 	var def = {
+ 	var def = {	// default attribute object
  		attr: false,
  		end: false,
- 		unit: 'px',
+ 		unit: 'px',	// unit
  		dur: 50,
  		twFn: "Linear",
  		easeFn: "easeOut",
@@ -194,7 +205,7 @@ function $getScroll ( direction, obj ) {
  		var b = obj[attr];
  	} else {
  		var b = parseInt($getStyle(obj, attr));
- 		if ( isNaN(b) ) {
+ 		if ( isNaN(b) ) {	// if left is 'auto', b is NaN.
  			b = 0;
  		}
  	}
@@ -205,8 +216,8 @@ function $getScroll ( direction, obj ) {
  	var c = def.end - b;
  	var t = 0;
  	//twTime -> tweenTime
- 	if ( !obj.twTime ) {
- 		obj.twTime = {};
+ 	if ( !obj.twTime ) {	// if has setInterval
+ 		obj.twTime = {};	// 
  	}
  	clearInterval(obj.twTime[attr]);
  	obj.twTime[attr] = setInterval(function() {
@@ -244,20 +255,64 @@ function $getStyle( obj, style ) {
 }
 
 
+/**
+ * Author: Nicholas.
+ * page: 360
+ * function:
+ * .addHandler:
+ * .getEvent:
+ * .getTarget:
+ * .preventDefault:
+ * .removeHandler:
+ * .stopPropagation:
+ * @type {Object}
+ */
+var EventUtil = {
 
+       addHandler: function(element, type, handler) {
+           if ( element.addEventListener ) {    // 是否存在DOM2级方法
+               element.addEventListener( type, handler, false );
+           } else if ( element.attachEvent ) {    //如果存在IE方法，为了支持Old，要加上"on"
+               element.attachEvent( "on" + type, handler);
+           } else {     //都不是时，执行DOM0方法
+               element["on" + type] = handler;
+           }
+       },
+       
+       getEvent: function(event) {
+           return event ? event : window.event;
+       },
+       
+       getTarget: function(event) {
+           return event.target || event.srcElement;
+       },
 
+       preventDefault: function(event) {
+           if (event.preventDefault) {
+               event.preventDefault();
+           } else {
+               event.returnValue = false;
+           }
+       },
 
+       removeHandler: function(element, type, handler) {
+           if ( element.removeEventListener ) {    // 是否存在DOM2级方法
+               element.removeEventListener( type, handler, false );
+           } else if ( element.attachEvent ) {    //如果存在IE方法，为了支持Old，要加上"on"
+               element.detachEvent( "on" + type, handler);
+           } else {    //都不是时，执行DOM0方法
+               element["on" + type] = null;
+           }
+       },
 
-
-
-
-
-
-
-
-
-
-
+       stopPropagation: function(event) {
+           if (event.stopPropagation) {
+               event.stopPropagation();
+           } else {
+               event.cancelBubble = true;
+           }
+       }
+   }
 
 
 

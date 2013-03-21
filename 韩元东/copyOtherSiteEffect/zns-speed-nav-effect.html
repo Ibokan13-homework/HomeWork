@@ -12,7 +12,7 @@
 		#wrap {
 			position: fixed;
 			_position: absolute;
-			right: 6%;
+			right: 9%;
 			top: 15%;
 			z-index: 2;
 			width: 100px;
@@ -118,11 +118,15 @@
 			wrap.click = true;
 			wrap.count = 0;
 		//----fixed float number trigger chrome render bug---------
-		var Body = doc.body;
-			Body.inH = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight,
-			Body.inW = window.innerWidth  ? window.innerWidth  : document.documentElement.clientWidth;
-		$setStyle(con, 'left', Body.inW/2 + 'px')
-		$setStyle(con, 'top', Body.inH/2 + 'px')
+		window.onresize = function() {
+			if ( con.resize ) {
+				var Body = doc.body;
+					Body.inH = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight,
+					Body.inW = window.innerWidth  ? window.innerWidth  : document.documentElement.clientWidth;
+				$setStyle(con, 'left', Body.inW/2 + 'px')
+				$setStyle(con, 'top', Body.inH/2 + 'px')
+			}
+		}
 		//----fixed over------------------------------------------
 		wrap.onclick = function() {
 			wrap.count += 1;
@@ -142,6 +146,7 @@
 					twFn: wrap.twFn,
 					endFun: showPos
 				})
+				con.resize = true;
 				$addClass(con,'show');
 			} 
 			else if ( !wrap.click && wrap.count === 1 ) {
@@ -246,7 +251,7 @@
 											$removeClass(con,'show');
 											$tweenEffect(wrap,{
 												attr: 'right',
-												end: 6,
+												end: 9,
 												unit: '%',
 												dur: wrap.Time,
 												twFn: wrap.twFn
@@ -260,6 +265,7 @@
 												endFun: function() {
 													wrap.click = true;
 													wrap.count = 0;
+													con.resize = false;
 												}
 											})
 										}
