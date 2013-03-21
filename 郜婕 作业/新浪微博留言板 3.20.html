@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		body,div,span,textarea,input,dl,dt,dd{margin:0;padding:0;}
+		li{
+			list-style:none;
+		}
+	</style>
+</head>
+
+<body>
+	<script>
+		var out=document.createElement("div");
+		out.style.width="320px";
+		out.style.height="130px";
+		out.style.margin="0 auto";
+		out.style.marginTop="20px";
+		document.body.appendChild(out);  //把out插入到body里
+		out.style.textAlign="right";  //out里面的内容靠右侧
+		var tex=document.createElement("textarea");
+		tex.style.overflowY="auto";
+		tex.style.width="320px";
+		tex.style.height="100px";
+		tex.value="写点儿什么吧";
+		out.appendChild(tex);  //把tex插入到out里
+		//创建一个input标签
+		var btn=document.createElement("input");
+		btn.type="button";
+		btn.value="发布";
+		out.appendChild(btn);
+		//创建下面的内容区域
+		var con=document.createElement("div");
+		con.style.width="320px";
+		con.style.height="430px";
+		con.style.margin="0 auto";
+		con.style.overflowY="auto";
+		con.style.border="1px solid gray";
+		document.body.appendChild(con);
+		//点击事件
+		btn.onclick=function () {
+			//要显示在下面的内容	
+			var texcon=tex.value;
+			var li=document.createElement("li");
+			li.style.borderBottom="1px solid red";
+			li.style.overflow="hidden";
+			li.style.width="0px";
+			li.style.height="0px";
+			var img=document.createElement("img");
+			img.src="images/752.jpeg";
+			img.style.width="50px";
+			img.style.height="50px";
+			img.style.marginTop="5px";
+			img.style.marginLeft="5px";
+			var names=document.createTextNode("....说：");
+			var who=document.createElement("div");
+			who.style.marginTop="-50px";
+			who.style.marginLeft="65px";
+			who.style.fontSize="18px";
+			who.appendChild(names);
+			var span=document.createElement("div");
+			span.innerHTML=texcon;
+			span.style.height="28px";
+			span.style.fontSize="12px";
+			span.style.marginLeft="65px";
+			span.style.overflow="hidden";
+			span.style.textIndent="1em";
+			var btn2=document.createElement("input");
+			btn2.type="button";
+			btn2.value="删除";
+			btn2.style.marginLeft="260px";
+			btn2.style.marginTop="5px";
+			li.appendChild(img);
+			li.appendChild(who);
+			li.appendChild(span); 
+			li.appendChild(btn2);
+			con.appendChild(li);
+			con.insertBefore(li,con.firstChild);
+			startMove(li,"width",320,{endFn:function () {
+				startMove(li,"height",86);
+				li.style.opacity=0;
+				startMove(li,"opacity",1);
+			}});
+				
+			tex.value="写点儿什么吧";
+			btn2.onclick=function () {
+				//con.removeChild(this.parentNode);  直接删除，没有动画效果
+				var $this=this;
+				li.style.height="86px";
+				startMove(li,"height",0,{endFn:function () {
+					con.removeChild($this.parentNode);
+				}});
+				li.style.opacity=1;
+				startMove(li,"opacity",0);
+			}
+		}
+		//聚焦时，清空表单输入框当前文本
+		tex.onfocus=function () {
+			if (tex.value) {
+				tex.value="";
+			}
+		}
+		
+	</script>
+	<script src="cloudgamer效果.js"></script>
+	<script src="引用的库.js"></script>
+</body>
+</html>
