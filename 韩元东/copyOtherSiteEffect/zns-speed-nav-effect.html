@@ -7,6 +7,7 @@
 	<meta name="description" content="智能社快速导航特效">
 	<meta name="keywords" content="智能社快速导航特效">
 	<title>智能社快速导航特效</title>
+	<link type="text/css" rel="stylesheet" href="../css/reset.css">
 	<style type="text/css">
 		#wrap {
 			position: fixed;
@@ -111,71 +112,71 @@
 		var wrap = $id('wrap'),
 			con  = $id('con'),
 			spans = $tag('span',con),
-			divs = $tag('div',con),
-			bClick = true,
-			tw = 'Back',
-			time = 30,	// ball run time
-			clickCount = 0;
+			divs = $tag('div',con);
+			wrap.twFn = 'Back';
+			wrap.Time = 30;	// ball run wrap.Time
+			wrap.click = true;
+			wrap.count = 0;
 		//----fixed float number trigger chrome render bug---------
-		var Body = doc.body,
-			inH = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight,
-			inW = window.innerWidth  ? window.innerWidth  : document.documentElement.clientWidth;
-		$setStyle(con, 'left', inW/2 + 'px')
-		$setStyle(con, 'top', inH/2 + 'px')
+		var Body = doc.body;
+			Body.inH = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight,
+			Body.inW = window.innerWidth  ? window.innerWidth  : document.documentElement.clientWidth;
+		$setStyle(con, 'left', Body.inW/2 + 'px')
+		$setStyle(con, 'top', Body.inH/2 + 'px')
 		//----fixed over------------------------------------------
 		wrap.onclick = function() {
-			clickCount += 1;
-			if ( bClick && clickCount === 1 ) {
+			wrap.count += 1;
+			if ( wrap.click && wrap.count === 1 ) {
 				$tweenEffect(this,{
 					attr: 'right',
 					end: 50,
 					unit: '%',
-					dur: time,
-					twFn: tw
+					dur: wrap.Time,
+					twFn: wrap.twFn
 				});
 				$tweenEffect(this,{
 					attr: 'top',
 					end: 50,
 					unit: '%',
-					dur: time,
-					twFn: tw,
+					dur: wrap.Time,
+					twFn: wrap.twFn,
 					endFun: showPos
 				})
 				$addClass(con,'show');
 			} 
-			else if ( !bClick && clickCount === 1 ) {
+			else if ( !wrap.click && wrap.count === 1 ) {
 				hidePos();
 			}
 		}
-		var conTime = 25;	// box show and hide time
+		con.Time = 25;	// box show and hide wrap.Time
 		function showPos() {
 			setShow();
 			$addClass(divs[0],'show');
 			$tweenEffect(spans[0],{
 				attr: 'top',
 				end: 0,
-				dur: conTime,
+				dur: con.Time,
 				endFun: function() {
 					$addClass(divs[1],'show');
 					$tweenEffect(spans[1],{
 						attr: 'left',
 						end: 0,
-						dur: conTime,
+						dur: con.Time,
 						endFun: function() {
 							$addClass(divs[2],'show');
 							$tweenEffect(spans[2],{
 								attr: 'top',
 								end: 0,
-								dur: conTime,
+								dur: con.Time,
 								endFun: function() {
 									$addClass(divs[3],'show');
 									$tweenEffect(spans[3],{
 										attr: 'left',
 										end: 0,
-										dur: conTime,
+										dur: con.Time,
 										endFun: function() {
-											bClick = false;
-											clickCount = 0;
+											wrap.click = false;
+											wrap.count = 0;
 										}
 									})
 								}
@@ -187,22 +188,22 @@
 			$tweenEffect(spans[0],{
 				attr: 'opacity',
 				end: 1,
-				dur: conTime,
+				dur: con.Time,
 				endFun: function() {
 					$tweenEffect(spans[1],{
 						attr: 'opacity',
 						end: 1,
-						dur: conTime,
+						dur: con.Time,
 						endFun: function() {
 							$tweenEffect(spans[2],{
 								attr: 'opacity',
 								end: 1,
-								dur: conTime,
+								dur: con.Time,
 								endFun: function() {
 									$tweenEffect(spans[3],{
 										attr: 'opacity',
 										end: 1,
-										dur: conTime							
+										dur: con.Time							
 									})
 								}
 							})
@@ -221,25 +222,25 @@
 			$tweenEffect(spans[3],{
 				attr: 'left',
 				end: 150,
-				dur: conTime,
+				dur: con.Time,
 				endFun: function() {
 					$removeClass(divs[3],'show');
 					$tweenEffect(spans[2],{
 						attr: 'top',
 						end: -100,
-						dur: conTime,
+						dur: con.Time,
 						endFun: function() {
 							$removeClass(divs[2],'show');
 							$tweenEffect(spans[1],{
 								attr: 'left',
 								end: -150,
-								dur: conTime,
+								dur: con.Time,
 								endFun: function() {
 									$removeClass(divs[1],'show');
 									$tweenEffect(spans[0],{
 										attr: 'top',
 										end: 100,
-										dur: conTime,
+										dur: con.Time,
 										endFun: function() {
 											$removeClass(divs[0],'show');
 											$removeClass(con,'show');
@@ -247,18 +248,18 @@
 												attr: 'right',
 												end: 6,
 												unit: '%',
-												dur: time,
-												twFn: tw
+												dur: wrap.Time,
+												twFn: wrap.twFn
 											});
 											$tweenEffect(wrap,{
 												attr: 'top',
 												end: 15,
 												unit: '%',
-												dur: time,
-												twFn: tw,
+												dur: wrap.Time,
+												twFn: wrap.twFn,
 												endFun: function() {
-													bClick = true;
-													clickCount = 0;
+													wrap.click = true;
+													wrap.count = 0;
 												}
 											})
 										}
@@ -272,22 +273,22 @@
 			$tweenEffect(spans[3],{
 				attr: 'opacity',
 				end: 0,
-				dur: conTime,
+				dur: con.Time,
 				endFun: function() {
 					$tweenEffect(spans[2],{
 						attr: 'opacity',
 						end: 0,
-						dur: conTime,
+						dur: con.Time,
 						endFun: function() {
 							$tweenEffect(spans[1],{
 								attr: 'opacity',
 								end: 0,
-								dur: conTime,
+								dur: con.Time,
 								endFun: function() {
 									$tweenEffect(spans[0],{
 										attr: 'opacity',
 										end: 0,
-										dur: conTime
+										dur: con.Time
 									})
 								}
 							})
