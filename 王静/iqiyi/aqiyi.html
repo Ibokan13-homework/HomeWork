@@ -1,0 +1,353 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src='js.js'></script>
+	<style type="text/css">
+		.main {
+			position:relative;
+			height:410px;
+		}
+		.main img{
+			position:absolute;
+			left:0;
+			top:0;
+			border:1px solid black;
+			z-index:0;
+			opacity:0;
+			
+		}
+		ul{	
+			/*position:absolute;*/
+			/*width:158px;*/
+			overflow:hidden;
+			/*z-index:2;*/
+			/*background:url('iqiyi/bgphone.png');*/
+			list-style-type:none;
+			/*overflow:hidden;*/
+			/*margin-top:15px;*/
+			/*margin-left:13px;*/
+			/*overflow:hidden;*/
+			padding-left:13px;
+			padding-top:12px;
+			margin-left:0px;
+			margin-top:0px;
+			
+			
+		}
+		.nav li{
+			float:left;
+			list-style-type:none;
+			/*border:1px solid black;*/
+			width:75px;
+			height:50px;
+			/*overflow:hidden;*/
+			/*margin-left:13px;*/
+			/*margin-top:13px;*/
+			background:black;
+			border-bottom:1px solid black;
+		}
+		
+		.nav{
+			background:url('iqiyi/bgphone.png');
+			left:800px;
+			
+			top:50px;
+			width:170px;
+			position:absolute;
+			z-index:3;
+			/*border:1px solid red;*/
+			height:330px;
+		}
+		.nav .top{
+			width:150px;
+		}
+		.nav .bottom{
+			width:150px;
+			}
+		
+		 .main .noname{
+			opacity:1;
+		}
+		.nav a{
+			text-decoration:none;
+			float:left;
+			width:
+		}
+		.footer{
+			width:500px;
+			height:70px;
+			/*background:black;*/
+			background: black url('iqiyi/aa/Focus_1.png') 20px center no-repeat;
+			position:absolute;
+			/*top:0px;*/
+			opacity:0;
+			left:90px;
+			top:320px;
+			line-height:70px;
+			
+		}
+		.nav img{
+			opacity:0.5;
+		}
+	</style>
+</head>
+
+<body>
+	<div class='main' id='main'>
+		<img src='iqiyi/aa/未标题-1.jpg'  class='noname'/>
+		<img src='iqiyi/aa/未标题-3.jpg' />
+		<img src='iqiyi/aa/未标题-6.jpg' />
+		<img src='iqiyi/aa/未标题-10.jpg' />
+		<img src='iqiyi/aa/未标题-8.jpg' />
+		<img src='iqiyi/aa/未标题-9.jpg' />
+		<img src='iqiyi/aa/未标题-2.jpg' />
+		
+		<img src='iqiyi/aa/未标题-4.jpg' />
+		<img src='iqiyi/aa/未标题-5.jpg' />
+		
+		<img src='iqiyi/aa/未标题-7.jpg' />
+		
+		
+		
+	</div>
+	<div class='nav' id='nav'>
+		<ul>
+			<li class='top'><a href='#'><img src='iqiyi/top.jpg' alt='1'></a></li>
+			<li><a href='#'><img src='iqiyi/phone4.jpg' alt='2'/></a></li>
+			<li><a href='#'><img src='iqiyi/phone1.jpg' alt='3' /></a></li>
+			
+			<li><a href='#'><img src='iqiyi/phone2.jpg' alt='4' /></a></li>
+			<li><a href='#'><img src='iqiyi/phone3.jpg' alt='5' /></a></li>
+			
+			<li><a href='#'><img src='iqiyi/phoen51.gif' alt='6' /></a></li>
+			<li><a href='#'><img src='iqiyi/phone6.jpg'  alt='7'/></a></li>
+			<li><a href='#'><img src='iqiyi/phone7.jpg' alt='8'/></a></li>
+			<li><a href='#'><img src='iqiyi/phone8.jpg' alt='9'/></a></li>
+			<li class='bottom'><a href='#'><img src='iqiyi/bottom.jpg' alt='10'></a></li>
+		</ul>
+	</div>
+	<div class='footer' id='footer'>
+		
+	</div>
+</body>
+<script type="text/javascript">
+	var bgimg=document.getElementById('main').getElementsByTagName('img');
+	var lis=document.getElementById('nav').getElementsByTagName('li');
+	var phoneimg=document.getElementById('nav').getElementsByTagName('img');
+	var footer=document.getElementById('footer');
+	var m; 
+	//m=setInterval(function () {
+		//startMove(footer,'bottom',10,10,'Linear');
+
+	//},17)
+	//startMove(footer,'bottom',10,10,'Linear');
+
+	for (var i=0; i<lis.length; i++) {
+		lis[i].onclick=change;
+	}
+	function change() {
+		for (var i=0; i<lis.length; i++) {
+			if (this==lis[i]) {
+				/*bgimg[i].style.zIndex=1;*/
+				startMove(bgimg[i],'opacity',1,30,'Linear');
+				phoneimg[i].style.opacity=1;
+				startMove(footer,"opacity",1,30,"Linear");
+				startMove(footer,"top",300,1,"Linear");
+				//clear(time)
+			}else {
+				bgimg[i].style.opacity=0;
+				phoneimg[i].style.opacity=0.7;
+			}
+		}
+	}
+	var time;
+	var ind=0;
+	var time2;
+
+	//var ind2=0;
+
+	
+	/*function automove() {
+		//bgimg[ind].style.opacity=0;
+		if (ind>10) {
+			ind=0;
+		}
+		startMove(bgimg[ind],'opacity',1,30,'Linear');
+		ind++;
+		time2=setTimeout(function () {
+			startMove(footer,"opacity",0,1,"Linear")
+			startMove(footer,"opacity",0.5,30,"Linear")
+			startMove(footer,"top",320,1,"Linear")
+			startMove(footer,"top",310,30,"Linear")
+            footer.innerHTML="<a href='#'>"+phoneimg[i].alt+"</a>";
+		},2000);
+		
+		time=setTimeout(automove,3000);
+	}
+	automove();*/
+	var ind2=0;
+	var time5;
+	function automove() {
+		for (var i=0; i<bgimg.length; i++) {
+			if (i==ind2) {
+				startMove(bgimg[i],'opacity',1,30,'Linear');
+				phoneimg[i].style.opacity=1;
+				time5=setTimeout(function () {
+					startMove(footer,"opacity",0.5,30,"Linear");
+					startMove(footer,"top",300,1,"Linear");
+					
+				},2000);
+				/*startMove(footer,"opacity",0.5,30,"Linear");
+				startMove(footer,"top",300,1,"Linear");*/
+
+				
+                footer.innerHTML="<a href='#' style='font-size:18px; color:white;padding-left:80px;'>"+phoneimg[i].alt+"</a>";
+			}else {
+				bgimg[i].style.opacity=0;
+				phoneimg[i].style.opacity=0.7;
+				startMove(footer,"top",320,1,"Linear");
+				startMove(footer,"opacity",0,1,"Linear");
+				
+				
+			}
+			
+			
+		}
+		ind2++;
+			if (ind2>=bgimg.length) {
+				ind2=0;
+			}
+			time=setTimeout(automove,3000)
+		
+	}
+	automove();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	function getStyle(obj,style) {
+			if (document.defaultView && document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+
+		/*function startMove(obj,prop,end,d,twFn,easeFn) {
+			
+			if (!obj.t) {
+				obj.t = {};
+			}
+			
+			//获取obj当前的prop样式的值
+			//示例：获取test当前宽度样式的值："50px"
+			var b = getStyle(obj,prop);
+
+			//字符串=>数字
+			b = parseInt(b);//'50px'=>50
+			if (isNaN(b)) {
+				b = 0;
+			}
+			//var b = parseInt(getStyle(obj,prop));
+
+			var c = end - b;
+			var t = 0;
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				
+				
+				
+				if (prop=='opacity') {
+					obj.style.opacity=num;
+				}else {
+					obj.style[prop] = num + 'px';
+				}
+			},17);
+		}*/
+		function startMove(obj,prop,end,options) {
+			if (options) {
+				if (!options.d) {
+					var d=31;
+				}else {
+					var d=options.d
+				}
+				if (!options.twFn) {
+					var twFn="Quad";
+				}else {
+					var twFn=options.twFn;
+				}
+				if (!options.easeFn) {
+					var easeFn="easeOut";
+				}else {
+					var easeFn=options.easeFn;
+				}
+			}else {
+				var d=31;
+				var twFn="Quad";
+				var easeFn="easeOut";
+			}
+			var t=0;
+			if (!obj.t) {
+				obj.t={};
+			}
+			var b=getStyle(obj,prop);
+			b=parseInt(b);
+
+			if (isNaN(b)) {
+				b = 0;
+			}
+			
+			var c=end-b;
+			clearInterval(obj.t[prop]);
+			
+			obj.t[prop]=setInterval(function () {
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+				if (twFn=="Linear") {
+					var num=Tween.Linear(t,b,c,d);
+				}else {
+					var num=Tween[twFn][easeFn](t,b,c,d);
+				}
+				//obj.style[prop]=num+"px";
+				if (prop=="opacity") {
+					obj.style[prop]=num;
+				}else {
+					obj.style[prop] = num + 'px';
+				}
+			},17)
+		}
+
+</script>
+</html>
