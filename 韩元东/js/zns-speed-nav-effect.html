@@ -8,9 +8,6 @@
 	<meta name="keywords" content="智能社快速导航特效">
 	<title>智能社快速导航特效</title>
 	<style type="text/css">
-		body {
-			height: 4000px;
-		}
 		#wrap {
 			position: fixed;
 			_position: absolute;
@@ -21,7 +18,7 @@
 			height: 100px;
 			margin: -50px -50px 0 0;
 			border-radius: 50px;
-			background-color: red;
+			background-color: purple;
 		}
 		.con {
 			position: fixed;
@@ -40,9 +37,11 @@
 		.con div {
 			position: absolute;
 			z-index: 1;
+			display: none;
 			width: 150px;
 			height: 100px;
 			overflow: hidden;
+			background: none;
 		}
 		.l-t  {
 			left: 0;
@@ -65,7 +64,6 @@
 			left: 0;
 			top: 0;
 			z-index: 1;
-			display: none;
 			width: 100%;
 			height: 100%;
 			opacity: 0;
@@ -113,10 +111,18 @@
 		var wrap = $id('wrap'),
 			con  = $id('con'),
 			spans = $tag('span',con),
+			divs = $tag('div',con),
 			bClick = true,
 			tw = 'Back',
-			time = 30,
+			time = 30,	// ball run time
 			clickCount = 0;
+		//----fixed float number trigger chrome render bug---------
+		var Body = doc.body,
+			inH = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight,
+			inW = window.innerWidth  ? window.innerWidth  : document.documentElement.clientWidth;
+		$setStyle(con, 'left', inW/2 + 'px')
+		$setStyle(con, 'top', inH/2 + 'px')
+		//----fixed over------------------------------------------
 		wrap.onclick = function() {
 			clickCount += 1;
 			if ( bClick && clickCount === 1 ) {
@@ -141,28 +147,28 @@
 				hidePos();
 			}
 		}
-		var conTime = 31;
+		var conTime = 25;	// box show and hide time
 		function showPos() {
 			setShow();
-			$addClass(spans[0],'show');
+			$addClass(divs[0],'show');
 			$tweenEffect(spans[0],{
 				attr: 'top',
 				end: 0,
 				dur: conTime,
 				endFun: function() {
-					$addClass(spans[1],'show');
+					$addClass(divs[1],'show');
 					$tweenEffect(spans[1],{
 						attr: 'left',
 						end: 0,
 						dur: conTime,
 						endFun: function() {
-							$addClass(spans[2],'show');
+							$addClass(divs[2],'show');
 							$tweenEffect(spans[2],{
 								attr: 'top',
 								end: 0,
 								dur: conTime,
 								endFun: function() {
-									$addClass(spans[3],'show');
+									$addClass(divs[3],'show');
 									$tweenEffect(spans[3],{
 										attr: 'left',
 										end: 0,
@@ -217,25 +223,25 @@
 				end: 150,
 				dur: conTime,
 				endFun: function() {
-					$removeClass(spans[3],'show');
+					$removeClass(divs[3],'show');
 					$tweenEffect(spans[2],{
 						attr: 'top',
 						end: -100,
 						dur: conTime,
 						endFun: function() {
-							$removeClass(spans[2],'show');
+							$removeClass(divs[2],'show');
 							$tweenEffect(spans[1],{
 								attr: 'left',
 								end: -150,
 								dur: conTime,
 								endFun: function() {
-									$removeClass(spans[1],'show');
+									$removeClass(divs[1],'show');
 									$tweenEffect(spans[0],{
 										attr: 'top',
 										end: 100,
 										dur: conTime,
 										endFun: function() {
-											$removeClass(spans[0],'show');
+											$removeClass(divs[0],'show');
 											$removeClass(con,'show');
 											$tweenEffect(wrap,{
 												attr: 'right',
