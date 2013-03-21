@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title></title>
+	<style>
+		.one{
+			background:url(bg.gif) no-repeat 0 0;
+			width:440px;
+			height:294px;
+			position:absolute;
+			z-index:5;
+		}
+		.dis{
+			width:100%;
+			height:1000px;
+			position:absolute;
+			z-index:15;
+			background-color:black;
+			display:none;
+			opacity:0;
+		}
+		.show{
+			width:440px;
+			height:294px;
+			position:absolute;
+			z-index:16;
+			top:150px;
+			left:220px;
+			background:url(ren.gif) no-repeat 0 0;
+		}
+		.up{
+			width:50px;
+			height:50px;
+			border-radius:50px;
+			box-shadow:5px 5px 10px 10px white;
+			background-color:white;
+			position:absolute;
+			z-index:19;
+			left:460px;
+			top:10px;
+			color:white;
+			padding:5px;
+		}
+		.off{
+			width:50px;
+			height:50px;
+			border-radius:50px;
+			box-shadow:5px 5px 10px 10px black;
+			position:absolute;
+			z-index:19;
+			left:460px;
+			top:150px;
+			background-color:black;
+			color:white;
+			padding:5px;
+		}
+		
+	</style>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+
+</head>
+
+<body>
+	<div class="one"></div>
+	<div id="dis" class="dis"></div>
+	<div class="show"></div>
+	<div id="up" class="up">开灯</div>
+	<div id="off" class="off">关灯</div>
+	<script type="text/javascript">
+		var up=document.getElementById("up");
+		var offs=document.getElementById("off");
+		var dis=document.getElementById("dis");
+		offs.onclick=function () {
+			dis.style.display="block";
+			dis.style.opacity = 0;
+			startMove(dis,"opacity",1);
+			up.style.color="black";
+			offs.style.color="black";
+		} 
+		up.onclick=function () {
+			
+			startMove(dis,"opacity",0);
+			//if(opacity==0){
+			//	dis.style.display="none";
+			//}
+			up.style.color="white";
+			offs.style.color="white";
+		} 
+	</script>
+</body>
+</html>
