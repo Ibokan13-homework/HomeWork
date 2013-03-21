@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="智能社快速导航特效">
+	<meta name="keywords" content="智能社快速导航特效">
+	<title>智能社快速导航特效</title>
+	<style type="text/css">
+		body {
+			height: 4000px;
+		}
+		#wrap {
+			position: fixed;
+			_position: absolute;
+			right: 6%;
+			top: 15%;
+			z-index: 2;
+			width: 100px;
+			height: 100px;
+			margin: -50px -50px 0 0;
+			border-radius: 50px;
+			background-color: red;
+		}
+		.con {
+			position: fixed;
+			_position: absolute;
+			left: 50%;
+			top: 50%;
+			z-index: 1;
+			display: none;
+			width: 300px;
+			height: 200px;
+			margin: -100px 0 0 -150px;
+		}
+		.show {
+			display: block;
+		}
+		.con div {
+			position: absolute;
+			z-index: 1;
+			width: 150px;
+			height: 100px;
+			overflow: hidden;
+		}
+		.l-t  {
+			left: 0;
+			top: 0;
+		}
+		.l-b  {
+			left: 0;
+			top: 100px;
+		}
+		.r-t  {
+			left: 150px;
+			top: 0;
+		}
+		.r-b  {
+			left: 150px;
+			top: 100px;
+		}
+		.con span {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			display: none;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+		}
+		.con .show {
+			display: block;
+		}
+		.l-t span {
+			border-top-left-radius: 30px;
+			background-color: red;
+		}
+		.l-b span {
+			border-bottom-left-radius: 30px;
+			background-color: blue;
+		}
+		.r-t span {
+			border-top-right-radius: 30px;
+			background-color: green;
+		}
+		.r-b span {
+			border-bottom-right-radius: 30px;
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap" class="h h"></div>
+	<div id="con" class="con">
+		<div class="l-t">
+			<span></span>
+		</div>
+		<div class="r-t">
+			<span></span>
+		</div>
+		<div class="r-b">
+			<span></span>
+		</div>
+		<div class="l-b">
+			<span></span>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/tween.js"></script>
+	<script type="text/javascript" src="js/kHelp-0.3.js"></script>
+	<script type="text/javascript">
+		var wrap = $id('wrap'),
+			con  = $id('con'),
+			spans = $tag('span',con),
+			bClick = true,
+			tw = 'Back',
+			time = 30,
+			clickCount = 0;
+		wrap.onclick = function() {
+			clickCount += 1;
+			if ( bClick && clickCount === 1 ) {
+				$tweenEffect(this,{
+					attr: 'right',
+					end: 50,
+					unit: '%',
+					dur: time,
+					twFn: tw
+				});
+				$tweenEffect(this,{
+					attr: 'top',
+					end: 50,
+					unit: '%',
+					dur: time,
+					twFn: tw,
+					endFun: showPos
+				})
+				$addClass(con,'show');
+			} 
+			else if ( !bClick && clickCount === 1 ) {
+				hidePos();
+			}
+		}
+		var conTime = 31;
+		function showPos() {
+			setShow();
+			$addClass(spans[0],'show');
+			$tweenEffect(spans[0],{
+				attr: 'top',
+				end: 0,
+				dur: conTime,
+				endFun: function() {
+					$addClass(spans[1],'show');
+					$tweenEffect(spans[1],{
+						attr: 'left',
+						end: 0,
+						dur: conTime,
+						endFun: function() {
+							$addClass(spans[2],'show');
+							$tweenEffect(spans[2],{
+								attr: 'top',
+								end: 0,
+								dur: conTime,
+								endFun: function() {
+									$addClass(spans[3],'show');
+									$tweenEffect(spans[3],{
+										attr: 'left',
+										end: 0,
+										dur: conTime,
+										endFun: function() {
+											bClick = false;
+											clickCount = 0;
+										}
+									})
+								}
+							})
+						}
+					})
+				}
+			})
+			$tweenEffect(spans[0],{
+				attr: 'opacity',
+				end: 1,
+				dur: conTime,
+				endFun: function() {
+					$tweenEffect(spans[1],{
+						attr: 'opacity',
+						end: 1,
+						dur: conTime,
+						endFun: function() {
+							$tweenEffect(spans[2],{
+								attr: 'opacity',
+								end: 1,
+								dur: conTime,
+								endFun: function() {
+									$tweenEffect(spans[3],{
+										attr: 'opacity',
+										end: 1,
+										dur: conTime							
+									})
+								}
+							})
+						}
+					})
+				}
+			})
+		}
+		function setShow() {
+			spans[0].style.top = '100px';
+			spans[1].style.left = '-150px';
+			spans[2].style.top = '-100px';
+			spans[3].style.left = '150px';
+		}
+		function hidePos() {
+			$tweenEffect(spans[3],{
+				attr: 'left',
+				end: 150,
+				dur: conTime,
+				endFun: function() {
+					$removeClass(spans[3],'show');
+					$tweenEffect(spans[2],{
+						attr: 'top',
+						end: -100,
+						dur: conTime,
+						endFun: function() {
+							$removeClass(spans[2],'show');
+							$tweenEffect(spans[1],{
+								attr: 'left',
+								end: -150,
+								dur: conTime,
+								endFun: function() {
+									$removeClass(spans[1],'show');
+									$tweenEffect(spans[0],{
+										attr: 'top',
+										end: 100,
+										dur: conTime,
+										endFun: function() {
+											$removeClass(spans[0],'show');
+											$removeClass(con,'show');
+											$tweenEffect(wrap,{
+												attr: 'right',
+												end: 6,
+												unit: '%',
+												dur: time,
+												twFn: tw
+											});
+											$tweenEffect(wrap,{
+												attr: 'top',
+												end: 15,
+												unit: '%',
+												dur: time,
+												twFn: tw,
+												endFun: function() {
+													bClick = true;
+													clickCount = 0;
+												}
+											})
+										}
+									})
+								}
+							})
+						}
+					})
+				}
+			})
+			$tweenEffect(spans[3],{
+				attr: 'opacity',
+				end: 0,
+				dur: conTime,
+				endFun: function() {
+					$tweenEffect(spans[2],{
+						attr: 'opacity',
+						end: 0,
+						dur: conTime,
+						endFun: function() {
+							$tweenEffect(spans[1],{
+								attr: 'opacity',
+								end: 0,
+								dur: conTime,
+								endFun: function() {
+									$tweenEffect(spans[0],{
+										attr: 'opacity',
+										end: 0,
+										dur: conTime
+									})
+								}
+							})
+						}
+					})
+				}
+			})
+		}
+	</script>
+</body>
+</html>
