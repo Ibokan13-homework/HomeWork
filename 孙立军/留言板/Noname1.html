@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+<body>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+	<script type="text/javascript">
+		var out=document.createElement("div");
+		out.style.width="300px";
+		out.style.height="500px";
+		out.style.margin="0 auto";
+		document.body.appendChild(out);
+		var textarea=document.createElement("textarea");
+		textarea.style.width="300px";
+		textarea.style.height="100px";
+		textarea.style.display="block";
+		textarea.style.margin="0 auto";
+		textarea.placeholder="请留言";
+		out.appendChild(textarea);
+		var inp=document.createElement("input");
+		inp.style.width="80px";
+		inp.style.height="30px";
+		inp.type="submit";
+		inp.value="submit";
+		inp.style.cssFloat="right";
+		inp.style.styleFloat="right";
+		out.appendChild(inp);
+		var ul=document.createElement("ul");
+		ul.style.width="300px";
+		ul.style.margin="0px";
+		ul.style.marginTop="50px";
+		ul.style.padding="0";
+		ul.style.listStyle="none";
+		ul.style.overflowY="scroll";
+		ul.style.overflowX="hidden";
+		ul.style.paddingRight="20px";
+		function Trim(str)
+		{
+		 var result="";  
+		 result = str.replace(/(^\s+)|(\s+$)/g,"");//去除字符串前后所有空格（jquery中可用$.trim（str.toString()））
+		 result = result.replace(/\s/g,"");//去除字符串中所有空格
+		 return result;
+		}
+		out.appendChild(ul);
+		inp.onclick=function () {
+			var mess=textarea.value;
+			if(Trim(mess)==""){
+				alert("请先留言，再点击提交");
+			}else {
+				var li=document.createElement("li");
+				li.style.width="280px";
+				li.style.height="0";
+				li.style.border="1px solid red";
+				li.style.wordWrap="break-word";
+				li.style.padding="0 10px";
+				li.style.styleFloat="left";
+				ul.appendChild(li);
+				var img=document.createElement("img");
+				img.src="a1.jpg";
+				img.style.width="50px";
+				img.style.height="30px";
+				img.style.cssFloat="left";
+				img.style.styleFloat="left";
+				img.style.marginTop="10px";
+				li.appendChild(img);
+				li.style.overflow="hidden";
+				var tspan=document.createElement("span");
+				tspan.style.display="block";
+				tspan.style.width="200px";
+				tspan.style.margin="10px 0 0 0px";
+				tspan.style.color="blue";
+				tspan.style.cssFloat="right";
+				tspan.style.styleFloat="right";
+				tspan.style.wordWrap="break-word";
+				tspan.style.fontSize="12px";
+				li.appendChild(tspan);
+				tspan.innerHTML=mess;
+				textarea.value="";
+				var btn=document.createElement("input");
+				btn.type="button";
+				btn.value="delete";
+				btn.style.height="20px";
+				btn.style.cssFloat="right";
+				btn.style.styleFloat="right";
+				li.appendChild(btn);
+				startMove(li,"height",tspan.offsetHeight+30);
+				btn.onclick=function () {
+					var _this=this;
+					startMove(li,"height",0,{
+						endFn:function () {
+							_this.parentNode.parentNode.removeChild(_this.parentNode);
+						}
+					});
+				}
+				var outer=document.createElement("div");
+				img.onmouseover=function () {
+					outer.style.display="block";
+					outer.style.width="100px";
+					outer.style.height="50px";
+					outer.style.background="#eef2b2";
+					outer.style.position="absolute";
+					li.style.position="relative";
+					outer.style.left="50px";
+					outer.style.top="0px";
+					outer.style.textAlign="center";
+					outer.style.fontSize="12px";
+					outer.innerHTML="姓名：XXX<br />年龄：XXX<br />爱好：XXX";
+					li.appendChild(outer);
+				}
+				img.onmouseout=function () {
+					outer.style.display="none";
+				}
+			}
+		}
+	</script>
+</body>
+</html>

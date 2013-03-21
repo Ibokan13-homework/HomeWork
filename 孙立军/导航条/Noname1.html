@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style type="text/css">
+		#main{
+			position:relative;
+			height:54px;
+		}
+		#main div{
+			width:100px;
+			height:54px;
+			position:absolute;
+			text-align:center;
+			font-size:12px;
+			line-height:54px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="main">
+		<div>首页</div>
+		<div>关于13班</div>
+		<div>13班成员</div>
+		<div>13班实力</div>
+		<div>13班项目</div>
+		<div>13班作业</div>
+		<img src="a.gif" id="img"/>
+	</div>
+	<script type="text/javascript">
+		var main=document.getElementById("main");
+		var img=document.getElementById("img");
+		function getStyle(obj,style) {
+			if (document.defaultView && document.defaultView.getComputedStyle && !obj.currentStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+		function startMove(obj,prop,end,options) {
+			if (options) {
+				if (!options.d) {
+					var d = 10;
+				}else{
+					var d = options.d;
+				}
+				if (!options.twFn) {
+					var twFn = "Quad";
+				}else{
+					var twFn = options.twFn;
+				}
+				if (!options.easeFn) {
+					var easeFn = "easeOut";
+				}else{
+					var easeFn = options.easeFn;
+				}	
+			}else{
+				var d = 10;
+				var twFn = 'Quad';
+				var easeFn = 'easeOut';
+			}
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			var b = getStyle(obj,prop);
+			b = parseInt(b);
+			if (isNaN(b)) {
+				b=0;
+			}
+			var c = end - b;
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				if(prop=="opacity"){
+					obj.style[prop] = num;
+				}else {
+					obj.style[prop] = num + 'px';
+				}
+			},17);
+		}
+		var divs=document.getElementById("main").getElementsByTagName("div");
+		for (var i=0; i<divs.length; i++) {
+			divs[i].style.left=100*i+"px";
+		}
+		for (var i=0; i<divs.length; i++) {
+			divs[i].onmouseover=function () {
+				for (var i=0; i<divs.length; i++) {
+					if(divs[i]==this){
+						startMove(img,"marginLeft",100*i);
+					}
+				}
+			}
+			divs[i].onmouseout=function () {
+				startMove(img,"marginLeft",0);
+					
+			}
+		}
+	</script>
+</body>
+</html>

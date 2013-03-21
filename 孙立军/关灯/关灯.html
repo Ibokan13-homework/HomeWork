@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		#main{
+			width:400px;
+			height:400px;
+			background:blue;
+			position:absolute;
+			z-index:100;
+		}
+		#block{
+			width:30px;
+			height:60px;
+			background:red;
+			position:absolute;
+			top:300px;
+			right:0;
+			font-size:20px;
+			text-align:center;
+			z-index:100;
+		}
+		body{
+			width:100%;
+			height:1000px;
+			position:relative;
+			z-index:0;
+			color:white;
+		}
+		#bg{
+			width:100%;
+			height:1000px;
+			background:black;
+			position:absolute;
+			z-index:0;
+			display:none;
+			opacity:0;
+		}
+		#con{
+			position:absolute;
+			z-index:10;
+			color:blue;
+			font-size:20px;
+			padding-top:400px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="main"></div> 
+	<div id="bg" class="show"></div>
+	<pre id="con">
+		sjfls df
+
+		dfjasjdf as
+
+
+
+		邓丽君法律f
+
+		多福多寿fjs
+
+
+
+		的附加赛的肌肤来说f
+
+
+
+
+
+
+		多岁的房间df
+
+
+
+
+
+
+		是的福建省f
+
+
+
+
+		地方撒酒疯
+	</pre>
+
+	<div id="block">关灯</div>
+	<script src="lib.js"></script>
+	<script src="tween.js"></script>
+	<script type="text/javascript">
+		var main=$$("main");
+		var block=$$("block");
+		var bg=$$("bg");
+		var con=$$("con");
+		window.onscroll=function () {
+			var blockX=document.body.scrollTop||document.documentElement.scrollTop+300;
+			startMove(block,"top",blockX);
+		}
+		var count=0;
+		block.onclick=function () {
+			count++;
+			if(count%2==1){
+				block.innerHTML="开灯";
+				if(document.body.scrollTop!=0){
+					startMove(document.body,"scrollTop",0);
+				}
+				if(document.documentElement.scrollTop!=0){
+					startMove(document.documentElement,"scrollTop",0);
+				}
+				main.style.width="700px";
+				bg.style.display="block";
+				startMove(bg,"opacity",1);
+				bg.style.zIndex=20;
+				var a=((document.body.clientWidth||document.documentElement.clientWidth)-main.offsetWidth)/2;
+				main.style.marginLeft=a+"px";
+			}
+			else {
+				block.innerHTML="关灯";
+				bg.style.zIndex=0;
+				startMove(bg,"opacity",0,{
+					endFn:function () {
+						bg.style.display="none";
+					}
+				});
+				main.style.width="400px";
+				main.style.marginLeft="0px";
+			
+			}
+			
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style type="text/css">
+		#nav-tab li{
+			list-style-type:none;
+			float:left;
+			width:58px;
+			height:30px;
+			border:1px solid red;
+			line-height:30px;
+			text-align:center;
+		}
+		ul{
+			padding:0;
+			margin:0;
+		}
+		#nav-tab{
+			overflow:hidden;
+		}
+		#nav-con{
+			width:300px;
+			height:300px;
+			position:relative;
+			overflow:hidden;
+		}
+		#nav-con ul{
+			width:1500px;
+			height:302px;
+			position:absolute;
+		}
+		#nav-con li{
+			width:298px;
+			height:298px;
+			border:1px solid blue;
+			text-align:center;
+			font-size:20px;
+			float:left;
+			list-style-type:none;
+		}
+		#nav-con li img{
+			width:298px;
+			height:298px;
+		}
+		.select{
+			background:#ee1;
+		}
+		#main{
+			margin:0 auto;
+			width:302px;
+			height:330px;
+		}
+		body{
+			margin:10px auto;
+			width:400px;
+			height:330px;
+			position:relative;
+		}
+		#left{
+			position:absolute;
+			left:0px;
+			top:50%;
+			width:50px;
+			height:30px;
+		}
+		#right{
+			position:absolute;
+			right:0px;
+			top:50%;
+			width:52px;
+			height:30px;
+		}
+	</style>
+</head>
+
+<body>
+	<input type="button" value="向左" id="left"/>
+	<div id="main">
+		<div id="nav-tab">
+			<ul>
+				<li class="select">图一</li>
+				<li>图二</li>
+				<li>图三</li>
+				<li>图四</li>
+				<li>图五</li>
+			</ul>
+		</div>
+		<div id="nav-con">
+			<ul id="ul">
+				<li  class="show"><img src="img/a1.jpg" alt="" /></li>
+				<li><img src="img/a2.jpg" alt="" /></li>
+				<li><img src="img/a3.jpg" alt="" /></li>
+				<li><img src="img/a4.jpg" alt="" /></li>
+				<li><img src="img/a5.jpg" alt="" /></li>
+			</ul>
+		</div>
+	</div>
+	<input type="button" value="向右" id="right"/>
+	<script>
+		var tabs=document.getElementById("nav-tab").getElementsByTagName("li");
+		var cons=document.getElementById("nav-con").getElementsByTagName("li");
+		var ul=document.getElementById("ul");
+		var lBtn=document.getElementById("left");
+		var rBtn=document.getElementById("right");
+		function getStyle(obj,style) {
+			if (document.defaultView && document.defaultView.getComputedStyle) {
+				return document.defaultView.getComputedStyle(obj,null)[style];
+			}else{
+				return obj.currentStyle[style];
+			}
+		}
+		function startMove(obj,prop,end,options) {
+			if (options) {
+				if (!options.d) {
+					var d = 31;
+				}else{
+					var d = options.d;
+				}
+				if (!options.twFn) {
+					var twFn = "Quad";
+				}else{
+					var twFn = options.twFn;
+				}
+				if (!options.easeFn) {
+					var easeFn = "easeOut";
+				}else{
+					var easeFn = options.easeFn;
+				}	
+			}else{
+				var d = 31;
+				var twFn = 'Quad';
+				var easeFn = 'easeOut';
+			}
+			var t = 0;
+			if (!obj.t) {
+				obj.t = {};
+			}
+			var b = getStyle(obj,prop);
+			b = parseInt(b);
+			if (isNaN(b)) {
+				b=0;
+			}
+			var c = end - b;
+			clearInterval(obj.t[prop]);
+			obj.t[prop] = setInterval(function(){
+				t++;
+				if (t>d) {
+					clearInterval(obj.t[prop]);
+					return;
+				}
+				if (twFn == 'Linear') {
+					var num = Tween.Linear(t,b,c,d);
+				}else{
+					var num = Tween[twFn][easeFn](t,b,c,d);
+				}
+				if(prop=="opacity"){
+					obj.style[prop] = num;
+				}else {
+					obj.style[prop] = num + 'px';
+				}
+			},17);
+		}
+		for (var i=0; i<tabs.length; i++) {
+			tabs[i].onclick=function () {
+				clearInterval(f);
+				for (var i=0; i<tabs.length; i++) {
+					if(tabs[i]==this){
+						startMove(ul,"left",-300*i);
+						tabs[i].className="select";
+						t=i;
+						moveAuto();
+						//这里需要在调用自动运动的函数是因为上面把自动循环的计时器清除了，所以把清计时器那句代码去掉，将i值付给t就会自动执行自动运动的函数。
+					}else {
+						tabs[i].className="";
+					}
+				}
+			}
+		}
+		var t=0;
+		var f;
+		var d=1;
+		function moveAuto() {
+			clearInterval(f);
+			function auto() {
+				for (var i=0; i<tabs.length; i++) {
+					if(i==t){
+						tabs[i].className="select";
+					}else {
+						tabs[i].className="";
+					}
+				}
+				startMove(ul,"left",-300*t);
+				t++;
+				if(t>cons.length){
+					startMove(ul,"left",0);
+					t=0;
+				}
+			}
+			f=setInterval(auto,1000)
+		}
+		moveAuto();
+		lBtn.onclick=function () {
+			clearInterval(f);
+			var m=parseInt(getStyle(ul,"left"));
+			if(m%300!=0){
+				var d=m%300;
+				m=m-d;
+				var a=m*(-1)/300+1;
+			}else {
+				var a=m*(-1)/300;
+			}
+			
+			tabs[a].className="";
+			a--;
+			if(a<0){
+				a=cons.length-1;
+			}
+			startMove(ul,"left",-300*a);
+			t=a;
+			moveAuto();
+		}
+
+		rBtn.onclick=function () {
+			clearInterval(f);
+			var m=parseInt(getStyle(ul,"left"));
+			
+			var a=m*(-1)/300;
+			tabs[a].className="";
+			a++;
+			if(a>cons.length-1){
+				a=0;
+			}
+			startMove(ul,"left",-300*a);
+			t=a;
+			moveAuto();
+		}
+	</script>
+</body>
+</html>
+ 

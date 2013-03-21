@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		html,body{
+			padding:0;
+			margin:0;
+			height:410px;
+			overflow:hidden;
+		}
+		#imgs{
+			background:black;
+			height:410px;
+			position:absolute;
+			width:100%;
+		}
+		#imgs img{
+			position:absolute;
+			left:0;
+			top:0;
+			z-index:0;
+			width:100%;
+			height:410px;
+			border:none;
+			opacity:0;
+		}
+		#pics{
+			position:absolute;
+			width:176px;
+			height:330px;
+			text-align:center;
+			right:0;
+			top:10%;
+			background:url(bgphone.png);
+		}
+		#pics div{
+			margin:12px auto;
+			overflow:hidden;
+			width:152px;
+			background:black;
+		}
+		#pics div img{
+			float:left;
+			border-right:1px solid gray;
+			border-bottom:1px solid gray;
+			opacity:0.5;
+		}
+		#kimg{
+			position:absolute;
+			left:0;
+			top:0;
+		}
+		#kbg{
+			position:absolute;
+			left:10px;
+			top:2px;
+			width:100px;
+			height:305px;
+			background:white;
+			opacity:0.4;
+		}
+		#hengtiao{
+			position:absolute;
+			bottom:-70px;
+			left:0;
+		}
+		#hengtiao div{
+			width:660px;
+			height:50px;
+			padding:10px;
+			background:url(hengtiao.png);
+			color:white;
+			font:normal normal 20px "微软雅黑";
+			float:left;
+			display:none;
+		}
+		#hengtiao div span{
+			float:left;
+			height:50px;
+			line-height:50px;
+		}
+		#hengtiao div a{
+			display:block;
+			width:52px;
+			height:52px;
+			float:left;
+			background:url(icon1.png);
+		}
+		#hengtiao div a:hover{
+			background:url(icon2.png);
+		}
+		#main{
+			height:410px;
+			width:900px;
+			margin:0 auto;
+			position:relative;
+		}
+		#imgs #one{
+			opacity:1;
+		}
+		#hengtiao .show{
+			display:block;
+		}
+		#smallcon #picone{
+			opacity:1;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="imgs">
+		<a href="#"><img src="img1.jpg" alt="" id="one"/></a>
+		<a href="#"><img src="img2.jpg" alt="" /></a>
+		<a href="#"><img src="img3.jpg" alt="" /></a>
+		<a href="#"><img src="img4.jpg" alt="" /></a>
+		<a href="#"><img src="img5.jpg" alt="" /></a>
+		<a href="#"><img src="img6.jpg" alt="" /></a>
+		<a href="#"><img src="img7.jpg" alt="" /></a>
+		<a href="#"><img src="img8.jpg" alt="" /></a>
+		<a href="#"><img src="img9.jpg" alt="" /></a>
+		<a href="#"><img src="img10.jpg" alt="" /></a>
+	</div>
+	<div id="main">
+		<div id="pics">
+			<div id="smallcon">
+				<img src="pic1.jpg" alt="" id="picone"/>
+				<img src="pic2.jpg" alt="" />
+				<img src="pic3.jpg" alt="" />
+				<img src="pic4.jpg" alt="" />
+				<img src="pic5.jpg" alt="" />
+				<img src="pic6.jpg" alt="" />
+				<img src="pic7.jpg" alt="" />
+				<img src="pic8.jpg" alt="" />
+				<img src="pic9.jpg" alt="" />
+				<img src="pic10.jpg" id="imglast"/>
+			</div>
+		</div>
+		<div id="hengtiao">
+			<div id="select">
+				<a href="#"></a>
+				<span>《青春期撞上更年期2》更新至18集</span>
+			</div>
+			<div>
+				<a href="#"></a>
+				<span>《美味的想念》更新至18集</span>
+			</div>
+			<div>
+				<a href="#"></a>
+				<span>《那年冬天风在吹》更新至18集</span>
+			</div>
+			<div>
+				<a href="#"></a>
+				<span>《贤妻》更新至18集</span>
+			</div>
+			<div>
+				<a href="#"></a>
+				<span>《爱情自由天意》更新至18集</span>
+			</div>
+			<div>
+				<a href="#"></a>
+				<span>《一个鬼子都不》更新至18集</span>
+			</div>
+			<div>
+				<a href="#"></a>
+				<span>《康菲家族版江南style》</span>
+			</div>
+			<div>
+				<a href="#"></a>
+				<span>《综艺节目》</span>
+			</div>
+			<div>
+				<a href="#"></a>
+				<span>《头号人物》</span>
+			</div>
+			<div>
+				<a href="#"></a>
+				<span>《爱奇艺视频》</span>
+			</div>
+		</div>
+	</div>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+	<script type="text/javascript">
+		var img=$$("imgs");
+		var imgs=$$$("img",img);
+		var pic=$$("smallcon");
+		var pics=$$$("img",pic);
+		var hengtiao=$$("hengtiao");
+		var hts=$$$("div",hengtiao);
+		var t=0;
+		function auto() {
+			hengtiao.style.bottom="-70px";
+			for (var i=0; i<imgs.length; i++) {
+				if(t==i){
+					startMove(imgs[t],"opacity",1);
+					startMove(hengtiao,"bottom",20);
+					hts[t].className="show";
+					pics[i].style.opacity=1;
+				}
+				else {
+					imgs[i].style.opacity=0;
+					hts[i].className="";
+					pics[i].style.opacity=0.5;
+				}
+			}
+			t++;
+			if(t>imgs.length-1){
+				t=0;
+			}
+		}
+		var f=setInterval(auto,3000);
+		for (var i=0; i<pics.length; i++) {
+			pics[i].onclick=function () {
+				for (var i=0; i<pics.length; i++) {
+					hts[i].className="";
+					if(pics[i]==this){
+						startMove(imgs[i],"opacity",1);
+						pics[i].style.opacity=1;
+						t=i;
+					}else {
+						imgs[i].style.opacity=0;
+						pics[i].style.opacity=0.5;
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		#block{
+			width:100px;
+			height:100px;
+			background:blue;
+			position:absolute;
+			right:0px;
+			top:40%;
+		}
+		#main{
+			width:602px;
+			height:502px;
+			border:1px solid red;
+			margin:10px auto;
+			overflow:auto;
+			position:relative;
+		}
+		#outer{
+			width:1200px;
+			height:1200px;
+			border:1px solid blue;
+			position:absolute;
+			left:0;
+			top:0;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="main">
+		<div id="outer">
+			<div id="block"></div>
+		</div>
+	</div>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+	<script type="text/javascript">
+		var block=$$("block");
+		var main=$$("main");
+		var outer=$$("outer");
+		function auto() {
+			getStyle(outer,"left")
+		}
+	</script>
+</body>
+</html>

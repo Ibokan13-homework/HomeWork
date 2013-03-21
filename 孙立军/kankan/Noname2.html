@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		body,html{
+			padding:0;
+			margin:0;
+		}
+		#picCon a{
+			float:left;
+			display:none;
+			opacity:0;
+		}
+		#picCon,#imgCon{
+			overflow:hidden;
+			background:black;
+			width:750px;
+		}
+		#picCon .show{
+			display:block;
+		}
+		#imgCon a img{
+			border:0 none;
+		}
+		#picCon a img{
+			border:0 none;
+		}
+		#imgCon a{
+			float:left;
+			margin:0 2px;
+		}
+		#imgCon{
+			position:relative;
+			left:0;
+			height:52px;
+			padding-top:5px;
+			background:black url(bg.gif) 1px 0px no-repeat;
+		}
+		#txtbg{
+			width:750px;
+			height:50px;
+			background:black;
+			opacity:0.6;
+			position:absolute;
+			top:350px;
+			left:0;
+		}
+		#txt{
+			position:absolute;
+			top:350px;
+			left:0;
+			padding-left:20px;
+		}
+		#txt div{
+			overflow:hidden;
+			width:750px;
+			display:none;
+		}
+		#txt img{
+			padding-top:8px;
+			float:left;
+		}
+		#txt span{
+			color:white;
+			font:normal normal 20px "微软雅黑";
+			padding-top:500px;
+			float:left;
+			padding-top:8px;
+		}
+		#txt .show{
+			display:block;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="picCon">
+		<a href="#"><img src="pic1.jpg" alt=""/></a>
+		<a href="#"><img src="pic2.jpg" alt="" /></a>
+		<a href="#"><img src="pic3.jpg" alt="" /></a>
+		<a href="#"><img src="pic4.jpg" alt="" /></a>
+		<a href="#"><img src="pic5.jpg" alt="" /></a>
+		<a href="#"><img src="pic6.jpg" alt="" /></a>
+		<a href="#"><img src="pic7.jpg" alt="" /></a>
+		<a href="#"><img src="pic8.jpg" alt="" /></a>
+		<a href="#"><img src="pic9.jpg" alt="" /></a>
+		<a href="#"><img src="pic10.jpg" alt="" /></a>
+		<div id="txtbg"></div>
+		<div id="txt">
+			<div>
+				<img src="icon.png" alt="" />
+				<span>《上位》34D宅男女神赵奕欢来势汹涌，揭露艺校女生"上位"潜规则</span>
+			</div>
+			<div>
+				<img src="icon.png" alt="" />
+				<span>《贤妻》高富帅遇第三者诱惑 豪门媳妇捍卫爱情历经波折</span>
+			</div>
+			<div>
+				<img src="icon.png" alt="" />
+				<span>《非诚勿扰》自信男解读海誓山盟，24号丁东丽一见钟情爆灯</span>
+			</div>
+			<div>
+				<img src="icon.png" alt="" />
+				<span>《华丽一族》打造中国版"天桥风云"腹黑男为爱不顾一切</span>
+			</div>
+			<div>
+				<img src="icon.png" alt="" />
+				<span>《十二生肖》成式招牌动作 大哥玩命跳火山 带领"侠盗集团"极地夺宝</span>
+			</div>
+			<div>
+				<img src="icon.png" alt="" />
+				<span>时尚动作游戏，点击马上进入一个无间道时代</span>
+			</div>
+			<div>
+				<img src="icon.png" alt="" />
+				<span>京东商城 春雷行动  空前低价  电你一下</span>
+			</div>
+			<div>
+				<img src="icon.png" alt="" />
+				<span>秦时明月网游版终于出啦，现在进入游戏还能拿特权礼包</span>
+			</div>
+			<div>
+				<img src="icon.png" alt="" />
+				<span>《两个女人》正室妖娆小三骨感 男人让欲望将自己吞噬</span>
+			</div>
+			<div>
+				<img src="icon.png" alt="" />
+				<span>《女警爱作战》极品师姐连环反击 动作爆破戏惊险"回巢"</span>
+			</div>
+		</div>
+	</div>
+	<div id="imgCon">
+		<a href="#"><img src="img1.jpg" alt=""/></a>
+		<a href="#"><img src="img2.jpg" alt="" /></a>
+		<a href="#"><img src="img3.jpg" alt="" /></a>
+		<a href="#"><img src="img4.jpg" alt="" /></a>
+		<a href="#"><img src="img5.jpg" alt="" /></a>
+		<a href="#"><img src="img6.jpg" alt="" /></a>
+		<a href="#"><img src="img7.jpg" alt="" /></a>
+		<a href="#"><img src="img8.jpg" alt="" /></a>
+		<a href="#"><img src="img9.jpg" alt="" /></a>
+		<a href="#"><img src="img10.jpg" alt="" /></a>
+		<img src="bg.gif" id="bg"/>
+	</div>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+	<script type="text/javascript">
+		var picCon=$$("picCon");
+		var pics=$$$("a",picCon);
+		var imgCon=$$("imgCon");
+		var imgs=$$$("a",imgCon);
+		var bg=$$("bg");
+		var txtbg=$$("txtbg");
+		var txt=$$("txt");
+		var txts=$$$("div",txt);
+		pics[0].className="show";
+		pics[0].style.opacity=1;
+		var t=0;
+		var f;
+		var a=1;
+		function auto() {
+			if(a==1){
+				txtbg.style.top="350px";
+				txt.style.top="350px";
+			}
+			for (var i=0; i<pics.length; i++) {
+				if(t==i){
+					pics[i].className="show";
+					imgCon.style.backgroundPositionX=1+i*75+"px";
+					startMove(txtbg,"top",300);
+					startMove(txt,"top",300);
+					txts[i].className="show";
+					startMove(pics[t],"opacity",1);
+				}
+				else {
+					pics[i].className="";
+					pics[i].style.opacity=0;
+					txts[i].className="";
+				}
+			}
+			t++;
+			if(t==pics.length){
+				t=0;
+			}
+		}
+		auto();
+		f=setInterval(auto,3000);
+		for (var i=0; i<imgs.length; i++) {
+			imgs[i].onmouseover=function () {
+				for (var i=0; i<imgs.length; i++) {
+					if(imgs[i]==this){
+						imgCon.style.backgroundPositionX=1+i*75+"px";
+						t=i;
+						auto();
+						clearInterval(f);
+						imgs[i].onmouseout=function () {
+							a=0;
+							auto();
+							a=1;
+							f=setInterval(auto,3000);
+						}
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>
