@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+<style>
+	html{
+		width:100%;
+		height:100%;
+	}
+	body{
+		width:100%;
+		height:100%;
+		background:black;
+		padding:0;
+		margin:0;
+	}
+	#box{
+		width:100%;
+		height:100%;
+		background-color:black;
+		position:relative;
+		top:0;
+		left:0;
+		z-index:1;
+	}
+	#graylevel{
+		width:100%;
+		height:100%;
+		position:absolute;
+		background:rgba(0,0,0,0.5);
+		display:none;
+		top:0;
+		left:0;
+		z-index:2;
+	}
+	#box h1{
+		font-size:30px;
+		font-family:微软雅黑;
+		font-style:italic;
+		color:white;
+		width:100px;
+		margin:0 auto;
+	}
+	.navball{
+		width:72px;
+		height:72px;
+		position:fixed;
+		top:10%;
+		left:90%;
+		z-index:5;
+		background:url(circle.png) 0 0 no-repeat;
+		cursor:pointer;
+		_position:absolute;
+		_left:expression(eval(document.documentElement.scrollLeft+10%));
+		_top:expression(eval(document.documentElement.scrollTop+90%));
+	}
+	/*.navchange{
+		width:72px;
+		height:72px;
+		position:fixed;
+		top:50%;
+		left:50%;
+		z-index:5;
+		margin:-36px 0 0 -36px;
+		background:url(circle.png) 0 0 no-repeat;
+		cursor:pointer;
+		_position:absolute;
+		_left:expression(eval(document.documentElement.scrollLeft+50%));
+		_top:expression(eval(document.documentElement.scrollTop+50%));
+	}*/
+	#classbg{
+		position:fixed;
+		width:606px;
+		height:405px;
+		z-index:3;
+		top:50%;
+		left:50%;
+		_position:absolute;
+		_left:expression(eval(document.documentElement.scrollLeft+50%));
+		_top:expression(eval(document.documentElement.scrollTop+50%));
+		cursor:pointer;
+		margin:-202px 0 0 -303px;
+		display:none;
+	}
+	#block1{
+		width:301px;
+		height:187px;
+		position:absolute;
+		bottom:50%;
+		right:50%;
+		background:url(circle-bg.png) 0 0 no-repeat;
+		z-index:4;
+	}
+	#block2{
+		width:301px;
+		height:187px;
+		position:absolute;
+		bottom:50%;
+		left:50%;
+		background:url(circle-bg.png) -309px 0 no-repeat;
+		z-index:4;
+		margin:-301px 0 0 0;
+	}
+	#block3{
+		width:301px;
+		height:187px;
+		position:absolute;
+		top:50%;
+		right:50%;
+		background:url(circle-bg.png) 0 -220px no-repeat;
+		z-index:4;
+		margin:0 0 0 -187px;
+	}
+	#block4{
+		width:301px;
+		height:187px;
+		position:absolute;
+		top:50%;
+		left:50%;
+		background:url(circle-bg.png) -309px -220px no-repeat;
+		z-index:4;
+	}
+</style>
+<body>
+	<div id="box">
+		<div id="graylevel"></div
+		>
+			<div id="navball" class="navball"></div>
+			<div id="classbg">
+				<div id="block1"></div>
+				<div id="block2"></div>
+				<div id="block3"></div>
+				<div id="block4"></div>
+			</div>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+			<h1>智能社</h1>
+		
+	</div>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+	<script>
+		var box=document.getElementById("box");
+		var graylevel=document.getElementById("graylevel");
+		var navball=document.getElementById("navball");
+		var classbg=document.getElementById("classbg");
+		var block1=document.getElementById("block1");
+		var block2=document.getElementById("block2");
+		var block3=document.getElementById("block3");
+		var block4=document.getElementById("block4");
+		var n=0;
+		block1.style.height="0";
+		block2.style.width="0";
+		block3.style.width="0";
+		block4.style.height="0";
+		navball.onclick=function () {
+			n++;
+			if (n%2==1) {
+				startMove(navball,"top",(box.clientHeight-navball.offsetHeight)/2,{
+					endFn:function () {
+						startMove(block1,"height",187,{
+							endFn:function () {
+								startMove(block2,"width",301,{
+									endFn:function () {
+										startMove(block4,"height",187,{
+											endFn:function () {
+												startMove(block3,"width",301)
+											}
+										})
+									}
+								})
+							}
+						});
+					}
+				});
+				startMove(navball,"left",(box.clientWidth-navball.offsetWidth)/2);
+				classbg.style.display="block";
+				graylevel.style.display="block";
+			}else {
+				startMove(block3,"width",0,{
+					endFn:function () {
+						startMove(block4,"height",0,{
+							endFn:function () {
+								startMove(block2,"width",0,{
+									endFn:function () {
+										startMove(block1,"height",0,{
+											endFn:function () {
+												startMove(navball,"top",box.clientHeight/10);
+												startMove(navball,"left",box.clientWidth/10*9);
+												classbg.style.display="none";
+												graylevel.style.display="none";
+											}
+										})
+									}
+								})
+							}		
+						})
+					}
+				});
+			}
+		}
+	</script>
+</body>
+</html>
