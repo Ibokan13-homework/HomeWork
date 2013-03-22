@@ -32,6 +32,7 @@
 			/*background:purple;*/
 			z-index:1;
 			overflow:hidden;
+			display:none;
 			
 			
 		}
@@ -44,6 +45,7 @@
 			/*background:black;*/
 			z-index:1;
 			overflow:hidden;
+			display:none;
 
 		}
 		#bottoml{
@@ -55,6 +57,7 @@
 			/*background:gray;*/
 			z-index:1;
 			overflow:hidden;
+			display:none;
 		}
 		#bottomr{
 			width:200px;
@@ -65,6 +68,7 @@
 			/*background:blue;*/
 			z-index:1;
 			overflow:hidden;
+			display:none;
 		}
 		#bottomr-in ,#bottoml-in, #topl-in ,#topr-in{/*it is ,*/
 			position:relative;/*相对自己？*/
@@ -105,7 +109,7 @@
 <script type="text/javascript">
 	var wrap=$$('wrap');
 	wrap.onclick=function () {
-		startMove(wrap,'right',(getWindowWidth()-wrap.offsetWidth)/2,{})
+		startMove(wrap,'right',(getWindowWidth()-wrap.offsetWidth)/2)
 		startMove(wrap,'top',(getWindowHeight()-wrap.offsetHeight)/2,{endFn:function () {
 			$$('topl').style.display='block';
 			$$('topl-in').style.top='50px';
@@ -123,6 +127,22 @@
 				}})
 			}})
 		}})
+	}
+	function getWindowWidth() {
+		if (typeof (window.innerWidth)=='number') {
+			return window.innerWidth;
+		}else {
+			return document.documentElement.clientWidth;
+		}
+		
+	}
+	function getWindowHeight() {
+		if (typeof (window.innerHeight)=='number') {
+			return window.innerHeight;
+		}else {
+			return document.documentElement.clientHeight;
+		}
+		
 	}
 </script>
 </html>
