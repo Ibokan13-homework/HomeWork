@@ -157,7 +157,7 @@ var Tween = {
 	}
 
 
-
+//获取标签样式
 function getStyle(obj,style) {
 			if (document.defaultView&&document.defaultView.getComputedStyle &&!obj.currentStyle) {
 				return document.defaultView.getComputedStyle(obj,null)[style];
@@ -175,31 +175,27 @@ function getStyle(obj,style) {
 			easeFn : 'easeOut'
 		}*/
 		function startMove(obj,prop,end,options) {
-			
-			//当options存在
-			if (options) {
-				if (!options.d) {
-					var d = 31;
-				}else{
-					var d = options.d;
-				}
 
-				if (!options.twFn) {
-					var twFn = "Quad";
-				}else{
-					var twFn = options.twFn;
-				}
-
-				if (!options.easeFn) {
-					var easeFn = "easeOut";
-				}else{
-					var easeFn = options.easeFn;
-				}	
+			//默认值
+			if (options && options.d) {
+				var d = options.d;
 			}else{
 				var d = 31;
-				var twFn = 'Quad';
-				var easeFn = 'easeOut';
 			}
+			//默认值
+			if (options && options.twFn) {
+				var twFn = options.twFn;
+			}else{
+				var twFn = "Quad";
+			}
+			//默认值
+			if (options && options.easeFn) {
+				var easeFn = options.easeFn;
+			}else{
+				var easeFn = "easeOut";
+			}	
+
+
 			var t = 0;
 			if (!obj.t) {
 				obj.t = {};
@@ -226,6 +222,9 @@ function getStyle(obj,style) {
 				t++;
 				if (t>d) {
 					clearInterval(obj.t[prop]);
+					if (options && options.endFn) {
+						options.endFn();
+					}
 					return;
 				}
 				if (twFn == 'Linear') {
