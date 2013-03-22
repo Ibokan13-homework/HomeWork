@@ -72,6 +72,10 @@ function startMove(obj,prop,end,options) {
 		t++;
 		if (t>d) {
 			clearInterval(obj.t[prop]);
+			//如果endFn存在就执行
+			if (options&&options.endFn) {
+				options.endFn();
+			}
 			return;
 		}
 
