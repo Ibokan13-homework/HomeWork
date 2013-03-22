@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="图片破碎效果">
+	<meta name="keywords" content="图片破碎效果">
+	<title>图片破碎效果</title>
+	<style type="text/css">
+		* { padding: 0; margin: 0; }
+		html,body{ overflow: hidden;}
+		body {
+			padding-top: 100px;
+		}
+		.buffer {
+			position: relative;
+			left: 0;
+			right: 0;
+			z-index: 1;
+			width: 750px;
+			height: 500px;
+			border: 5px solid purple;
+			margin: 0 auto;
+		}
+		.wrap, .tile, .tiles {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			width: 100%;
+			height: 100%;
+		}
+		.tiles {
+			z-index: 2;
+		}
+		.tile {
+		}
+		.img1 {
+			background-image: url(img/avatar.jpg);
+			display: none;
+		}
+		.img2 {
+			background-image: url(img/greenhornet.jpg);
+			display: none;
+		}
+		.img3 {
+			background-image: url(img/ironman.jpg);
+			display: none;
+		}
+		.img4 {
+			background-image: url(img/tron.jpg);
+			display: none;
+		}
+		.show {
+			display: block;
+		}
+		#btnL, #btnR {
+			position: absolute;
+			left: 40%;
+			top: 5%;
+			width: 10%;
+			height: 5%;
+		}
+		#btnR {
+			left: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div class="buffer">
+		<div id="wrap" class="wrap">
+			<div class="img1 tile show"></div>
+			<div class="img2 tile"></div>
+			<div class="img3 tile"></div>
+			<div class="img4 tile"></div>
+		</div>
+		<!-- 为了破碎效果生成的div都会存在tiles中。 -->
+		<div id="tiles" class="tiles"></div>
+	</div>
+		
+	<button id="btnL">上一张</button>
+	<button id="btnR">下一张</button>
+	<script type="text/javascript" src="../js/tween.js"></script>
+	<script type="text/javascript" src="../js/kHelp-0.3.js"></script>
+	<script type="text/javascript">
+		// wrap 是id为wrap的标签
+		var wrap = $id('wrap');
+			// wrapDiv 是wrap下面的所有div
+			var wrapDiv = $tag('div', wrap);
+			// wrapDiv.size 是wrapDiv下div的个数
+			wrapDiv.size = $size(wrapDiv);
+		// tiles 是id为tiles的标签
+		var tiles = $id('tiles');
+			//tilesDiv 是tiles下所有的div
+			var tilesDiv = $tag('div', tiles);
+		// btnL是上一张button
+		var btnL  = $id('btnL'),
+			// btnR是下一张button
+			btnR  = $id('btnR');
+		// winWidth 是屏幕可见宽度
+		var winWidth =  window.innerWidth ? window.innerWidth : document.documentElement.clientWidth,
+			// winHeight 是屏幕可见高度
+			winHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight;
+		// imgIndex 用来保存下一步要显示的图片的下标
+		var imgIndex = 0;
+		// wrap.dur 是图片渐隐和渐显的时间。
+		wrap.dur = 20;
+		// 单击上一步时执行：
+		btnL.onclick = function() {
+			// 当当前的下标为0时，下一步要显示的是最后一个的下标
+			if ( imgIndex === 0 ) {
+				imgIndex = wrapDiv.size-1;
+				imgShow(); //运行显示图片函数，显示下表为imgIndex的图片
+				imgHide(wrapDiv[0]);//运行隐藏图片函数，隐藏下标为0的图片
+			} else {
+				//当当前的下标不为0，就代表着大于0，
+				//所以下一步显示的小标是减去1
+				imgIndex -= 1;
+				imgShow();//运行显示图片函数，显示下表为imgIndex的图片
+				imgHide(wrapDiv[imgIndex+1]);//运行隐藏图片函数，隐藏下标为imgIndex+1的图片
+			}
+		}
+		// 单击上一步时执行：
+		btnR.onclick = function() {
+			// 当当前的下标为最后一个元素，下一步要显示的是下标为0
+			if ( imgIndex === wrapDiv.size-1 ) {
+				imgIndex = 0;
+				imgShow();//运行显示图片函数，显示下表为imgIndex的图片
+				imgHide(wrapDiv[wrapDiv.size-1]);//运行隐藏图片函数，隐藏下标为wrapDiv.size-1的图片
+			} else {
+				//当当前的下标不为最后一个元素，就代表着下标小于最后一个图片的下标，
+				//所以下一步显示的小标是减去1
+				imgIndex += 1;
+				imgShow();//运行显示图片函数，显示下表为imgIndex的图片
+				imgHide(wrapDiv[imgIndex-1]);//运行隐藏图片函数，隐藏下标为imgIndex-1的图片
+			}
+		}
+		//显示图片函数
+		function imgShow() {
+			$addClass(wrapDiv[imgIndex], 'show');//首先显示要显示的图片，添加名字为'show'的类名，就变成display:block;了
+			$setStyle(wrapDiv[imgIndex], 'opacity', 0);//先将图片的透明度设置为0
+			$tweenEffect(wrapDiv[imgIndex], {//使用运动函数慢慢的将图片的透明度变为1.
+				attr: 'opacity',
+				end: 1,
+				dur: wrap.dur
+			})
+		}
+		//隐藏图片函数
+		function imgHide( obj ) {
+			buffering(obj,6,6); //实现破碎效果
+			$setStyle(obj, 'opacity', 1);//先将要隐藏的图片的透明度设置为1
+			$tweenEffect(obj, {//使用运动函数慢慢的将图片的透明度变为0
+				attr: 'opacity',
+				end: 0,
+				dur: wrap.dur,
+				endFun: function() {
+					$removeClass(obj, 'show');//透明度为0后删除名字为'show'的类名，就变成display:none;了
+				}
+			})
+		}
+		//实现破碎效果的函数
+		// target -> 要破碎的标签
+		// col -> 破碎成行数
+		// row -> 破碎成列数
+		// col * row -> 破碎的块数
+		function buffering ( target, col, row ) {
+			//target.Url -> 保存要破碎的图片的路径
+			target.Url = $getStyle(target, 'backgroundImage'),
+			//target.Width -> 保存要破碎的图片的宽度
+			target.Width = parseInt($getStyle(target,'width')),
+			//target.Height -> 保存要破碎的图片的高度
+			target.Height = parseInt($getStyle(target,'height')),
+			//target.col -> 保存要破碎时，一行破碎的个数
+			target.col = col,
+			//target.row -> 保存要破碎时，一行破碎的个数
+			target.row = row,
+			//target.colW -> 保存破碎后，破碎的块的宽度
+			// colW 理解成 col Width
+			target.colW = Math.floor(target.Width/col),
+			//target.rowH -> 保存破碎后，破碎的块的高度
+			// rowH 理解成 row Height
+			target.rowH = Math.floor(target.Height/row),
+			//target.colO -> 首先取模，如果一行破碎的个数能被图片的宽度整除，那么保存的是0
+			//				 如果不能整除，那么保存的是余数。
+			//				 用来矫正不被整除时出现的空白。
+			// colO 理解成 col Other
+			target.colO = target.Width % col,
+			//target.colO -> 首先取模，如果一列破碎的个数能被图片的高度整除，那么保存的是0
+			//				 如果不能整除，那么保存的是余数。
+			//				 用来矫正不被整除时出现的空白。
+			// rowO 理解成 row Other
+			target.rowO = target.Height % row;
+			//当一行破碎的个数不能被整除时运行下面这个判断
+			if ( target.colO > 0 ) target.colW += 1;//不能整除那么块的宽度加一
+			//当一行破碎的个数不能被整除时运行下面这个判断
+			if ( target.rowO > 0 ) target.rowH += 1;//不能整除那么块的高度加一
+			//fragment -> 用来暂时保存所有破碎的块。
+			//document.createDocumentFragment(); -> 自己上网找找，或者红皮书275页也有。
+			var fragment = document.createDocumentFragment();
+			//声明一个for循环要用的变量i为0
+			var i = 0;
+			for ( ;i < col; i++ ) {
+				//声明一个for循环要用的变量j为0
+				var j = 0;
+				for ( ;j < row; j++ ) {
+					//这里执行的次数是 col*row 次
+					//这里开始创建破碎的块
+					//首先声明tile为div标签
+					var tile = document.createElement('div');
+					//给tile添加类'tile'
+					tile.className = 'tile',
+					//设置tile的宽度为 -> 破碎的块的宽度
+					tile.style.width = target.colW + 'px';
+					//设置tile的高度为 -> 破碎的块的高度
+					tile.style.height = target.rowH + 'px';
+					//设置tile的定位为绝对定位 -> 破碎的块的宽度
+					tile.style['position'] = 'absolute';
+					//设置tile的left为 -> i 乘与 块的宽度，
+					// i为0时 -> left: 0px; i为1时 -> left: 1*块的宽度px; i为2时 -> left: 2*块的宽度px;
+					// 以此类推 
+					tile.style.left = i * target.colW + 'px';
+					//设置tile的top为 -> j 乘与 块的宽度，
+					// j为0时 -> left: 0px; j为1时 -> left: 1*块的高度px; j为2时 -> left: 2*块的高度px;
+					// 以此类推 
+					tile.style.top = j * target.rowH + 'px';
+					//设置tile的背景图片的路径为 -> target.Url
+					tile.style['backgroundImage'] = target.Url;
+					//设置tile的背景图片的重复方式为 不重复
+					tile.style['backgroundRepeat'] = 'no-repeat';
+					// bp 用来保存背景图定位坐标。
+					// 背景图定位分两部分 -> x y
+					// x 和 y的都要是负值，这个可以自己测试一下。
+					// 具体x 和 y取什么值可以根据获取left和top值得方式自己推理一下。
+					var bp = '-'+i*target.colW+'px' + ' ' + '-'+j*target.rowH+'px';
+					// 将计算出来的背景定位，给破碎的块设置。
+					tile.style.backgroundPosition = bp;
+					// 将创建的块暂时保存在fragment里面
+					fragment.appendChild(tile);
+				}
+			}
+			//破碎的块创建完成后，一次添加到tiles里面。
+			tiles.appendChild(fragment);
+			// 下面的代码是让破碎的块随机移动，并消失。
+			//声明一个for循环要用的变量i为0
+			var i = 0;
+			for ( i; i < $size(tilesDiv); i++ ) {
+				// tileLeft 的值是 0 到 屏幕宽度范围内的随机数。
+				// 实现原理是：
+				//     1. 用 Math.random(0,1) 生成 0 到 1 内的随机数
+				//     2. 给随机数乘与屏幕的宽度
+				var tileLeft = Math.random(0,1)*winWidth;
+				// 当随机数小于屏幕宽的一般
+				// 让它变成负值，想做移动
+				// 因为正值是向右移动
+				if ( tileLeft < winWidth/2) {
+					tileLeft = -tileLeft;
+				}
+				// tileLeft 的值是 0 到 屏幕高度范围内的随机数。
+				// 跟上面原理一样。
+				var tileTop = Math.random(0,1)*winHeight;
+				if ( tileTop < winHeight/2) {
+					tileTop = -tileTop;
+				}
+				// target.dur -> 破碎效果持续时间
+				target.dur = 50;
+				// 破碎的块x坐标轴的移动效果
+				$tweenEffect(tilesDiv[i],{
+					attr: 'left',
+					end: tileLeft,
+					dur: target.dur
+				})
+				// 破碎的块y坐标轴的移动效果
+				$tweenEffect(tilesDiv[i],{
+					attr: 'top',
+					end: tileTop,
+					dur: target.dur
+				})
+				// 破碎的块隐藏的效果
+				$tweenEffect(tilesDiv[i],{
+					attr: 'opacity',
+					end: 0,
+					dur: target.dur,
+					endFun: (function(i) {
+						// 运动接收后将这个块保存到temp变量里面
+						// 破碎的块删除时，所有块的个数会改变，所以要保存到变量。
+						// 否则会出错
+						var temp = tilesDiv[i];
+						return function() {
+							// 删除块。
+							temp.parentNode.removeChild(temp);
+						}
+					})(i)
+				})
+			}
+		}
+	</script>
+</body>
+</html>
