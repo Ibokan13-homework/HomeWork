@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		#q-nav{
+			position:fixed;
+			right: 50px;
+			top: 50px;
+			width:100px;
+			height:100px;
+			border:1px solid red;
+		}
+		#q-nav-c{
+			width:100%;
+			height:100%;
+			background:black;
+			color:white;
+			position:relative;
+			z-index:2;
+		}
+		#q-nav-lt{
+			position:absolute;
+			width:300px;
+			height:100px;
+			left:-250px;
+			top:-50px;
+			z-index:1;
+			overflow:hidden;
+			display:none;
+		}
+		#q-nav-rt{
+			position:absolute;
+			width:300px;
+			height:100px;
+			left:50px;
+			top:-50px;
+			
+			z-index:1;
+			overflow:hidden;
+			display:none;
+		}
+		#q-nav-rb{
+			position:absolute;
+			width:300px;
+			height:100px;
+			left:50px;
+			top:50px;
+			
+			z-index:1;
+			overflow:hidden;
+			display:none;
+		}
+		#q-nav-lb{
+			position:absolute;
+			width:300px;
+			height:100px;
+			left:-250px;
+			top:50px;
+			
+			z-index:1;
+			overflow:hidden;
+			display:none;
+		}
+		#q-nav-ltc,#q-nav-rtc,#q-nav-rbc,#q-nav-lbc{
+			position:relative;
+			background:red;
+			height:100%;
+		}
+		#q-nav-rtc{
+			background:blue;
+		}
+		#q-nav-rbc{
+			background:yellow;
+		}
+		#q-nav-lbc{
+			background:green;
+		}
+	</style>
+</head>
+
+<body>
+	<img src="a3.jpg" alt="" />
+	<div id="q-nav">
+		<div id="q-nav-c">中</div>
+		<div id="q-nav-lt">
+			<div id="q-nav-ltc">左上</div>
+		</div>
+		<div id="q-nav-rt">
+			<div id="q-nav-rtc">右上</div>
+		</div>
+		<div id="q-nav-rb">
+			<div id="q-nav-rbc">右下</div>
+		</div>
+		<div id="q-nav-lb">
+			<div id="q-nav-lbc">左下</div>
+		</div>
+	</div>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+	<script>
+		var qn = $$('q-nav');
+		qn.onclick = function(){
+			if(qn.moving){
+				return;
+			}
+		//	qn.moving = true;
+			if (qn.isCenter) {
+				//回去
+				startMove($$("q-nav-lbc"),"left",300,{
+					endFn:function(){
+						$$('q-nav-lb').style.display = "none";
+						startMove($$("q-nav-rbc"),"top",-100,{
+							endFn:function(){
+								$$('q-nav-rb').style.display = "none";
+								startMove($$("q-nav-rtc"),"left",-300,{
+									endFn:function(){
+										$$('q-nav-rt').style.display = "none";
+										startMove($$("q-nav-ltc"),"top",100,{
+											endFn:function(){
+												$$('q-nav-lt').style.display = "none";
+												startMove(qn,"right",50,{twFn:"Back"})
+												startMove(qn,"top",50,{
+													twFn:"Back",
+													endFn:function(){
+														qn.isCenter = false;
+														//qn.moving = false;
+												}})
+											}
+										})
+									}
+								})
+							}
+						})
+					}
+				})
+				
+			}else{
+				//还在左上角，让他到中间
+				startMove(qn,"right",(getWindowWidth() - qn.offsetWidth) / 2,{twFn:"Back"})
+				startMove(qn,"top",(getWindowHeight() - qn.offsetHeight) / 2,{twFn:"Back",endFn:function(){
+					$$('q-nav-lt').style.display = "block";
+					$$("q-nav-ltc").style.top = "100px";
+					startMove($$("q-nav-ltc"),"top",0,{
+						endFn:function(){
+							$$('q-nav-rt').style.display = "block";
+							$$("q-nav-rtc").style.left = "-300px";
+							startMove($$("q-nav-rtc"),"left",0,{
+								endFn:function(){
+									$$('q-nav-rb').style.display = "block";
+									$$("q-nav-rbc").style.top = "-100px";
+									startMove($$("q-nav-rbc"),"top",0,{
+										endFn:function(){
+											$$('q-nav-lb').style.display = "block";
+											$$("q-nav-lbc").style.left = "300px";
+											startMove($$("q-nav-lbc"),"left",0,{
+												endFn:function(){
+													qn.isCenter = true;
+													//qn.moving = false;
+												}
+											})
+										}
+									})
+								}
+							})
+						}
+					})
+
+				}})
+				
+			}
+			
+		}
+
+		function getWindowWidth() {
+			if (typeof (window.innerWidth) == 'number') {
+				return window.innerWidth;
+			}else{
+				return document.documentElement.clientWidth;
+			}
+		}
+
+		function getWindowHeight() {
+			if (typeof (window.innerHeight) == 'number') {
+				return window.innerHeight;
+			}else{
+				return document.documentElement.clientHeight;
+			}
+		}
+		
+		//窗框大小改变的时候，会触发事件
+		window.onresize = function(){
+			if (qn.isCenter) {
+				qn.style.right = (getWindowWidth() - qn.offsetWidth) / 2 + "px";
+				qn.style.top = (getWindowHeight() - qn.offsetHeight) / 2 + "px";
+			}
+		}
+	</script>
+</body>
+</html>

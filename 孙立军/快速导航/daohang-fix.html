@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		#circle{
+			width:100px;
+			height:100px;
+			border-radius:50px;
+			background:red;
+			position:fixed;
+			z-index:100;
+			_position:absolute;
+			_top:expression((document).documentElement.scrollTop+10);
+		}
+		#leftTop{
+			width:200px;
+			position:absolute;
+			background:red;
+			height:0px;
+			opacity:0;
+			overflow:hidden;
+		}
+		#rightTop{
+			height:200px;
+			position:absolute;
+			background:green;
+			opacity:0;
+			width:0px;
+		}
+		#leftBottom{
+			height:200px;
+			position:absolute;
+			background:blue;
+			opacity:0;
+			width:0px;
+		}
+		#rightBottom{
+			width:200px;
+			position:absolute;
+			background:gray;
+			height:0px;
+			opacity:0;
+			overflow:hidden;
+		}
+		body{
+			position:relative;
+			width:100%;
+			background:url(about:blank);
+			background-attachment:fixed;
+		}
+		#outer{
+			width:0px;
+			height:0px;
+			position:fixed;
+			_position:absolute;
+			_top:expression((document).documentElement.scrollTop+200);
+		}
+	</style>
+</head>
+
+<body>
+	<div id="circle" class="show"></div>
+	<div id="outer">
+		<div id="leftTop"></div>
+		<div id="rightTop"></div>
+		<div id="leftBottom"></div>
+		<div id="rightBottom"></div>
+	</div>
+	<pre id="pre">
+		dfsdf
+
+
+
+		dfdf
+
+
+
+
+
+
+		dfdf
+
+
+
+
+
+
+		gh
+
+		sd
+		h
+
+
+
+
+
+
+
+		fgdsf
+		s
+
+
+
+
+
+
+
+		fgsdf
+
+
+
+
+		sdfa
+		df
+
+
+
+
+
+
+
+		sdfa
+		d
+
+
+
+
+		a
+		fasdf
+	</pre>
+	<script src="tween.js"></script>
+	<script src="lib.js"></script>
+	<script type="text/javascript">
+		var circle=$$("circle");
+		var lt=$$("leftTop");
+		var rt=$$("rightTop");
+		var lb=$$("leftBottom");
+		var rb=$$("rightBottom");
+		var outer=$$("outer");
+		var pre=$$("pre");
+		var slvalue,stvalue,lvalue,tvalue;
+		window.onscroll=function () {
+			slvalue=document.body.scrollLeft||document.documentElement.scrollLeft;
+			stvalue=document.body.scrollTop||document.documentElement.scrollTop;	
+		}
+		//window.onresize=function () {
+			//auto();
+		//}
+		//auto();
+		//function auto() {
+			pre.style.display="none";
+			lvalue=document.body.clientWidth||document.documentElement.clientWidth;
+			tvalue=document.body.clientHeight||document.documentElement.clientHeight;
+			pre.style.display="block";
+			circle.style.left=parseInt(lvalue)-circle.offsetWidth-10+"px";
+			circle.style.top=10+"px";
+			lt.style.right="0px";
+			lt.style.bottom="0px";
+			rt.style.left="0px";
+			rt.style.bottom="0px";
+			lb.style.right="0px";
+			lb.style.top="0px";
+			rb.style.left="0px";
+			rb.style.top="0px";
+			
+			var t=0;
+			circle.onclick=function () {
+				t++;
+				outer.style.left=parseInt(lvalue)/2+"px";
+				outer.style.top=parseInt(tvalue)/2+"px";
+				if(t%2==1){
+					var outertop=getStyle(outer,"top");
+					startMove(circle,"left",(parseInt(lvalue)-circle.offsetWidth)/2);
+					startMove(circle,"top",(parseInt(tvalue)-circle.offsetHeight)/2,{
+						endFn:function () {
+							startMove(lt,"opacity",1);
+							startMove(lt,"height",200,{
+								endFn:function () {
+									startMove(rt,"opacity",1);
+									startMove(rt,"width",200,{
+										endFn:function () {
+											startMove(rb,"opacity",1);
+											startMove(rb,"height",200,{
+												endFn:function () {
+													startMove(lb,"opacity",1);
+													startMove(lb,"width",200);
+												}
+											});
+										}
+									});
+								}
+							});
+						}
+					});	
+				}else {
+					startMove(lb,"opacity",0);
+					startMove(lb,"width",0,{
+						endFn:function () {
+							startMove(rb,"opacity",0);
+							startMove(rb,"height",0,{
+								endFn:function () {
+									startMove(rt,"opacity",0);
+									startMove(rt,"width",0,{
+										endFn:function () {
+											startMove(lt,"opacity",0);
+											startMove(lt,"height",0,{
+												endFn:function () {
+													startMove(circle,"left",lvalue-circle.offsetWidth-10);
+													startMove(circle,"top",10);
+												}
+											});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			}	
+		//}
+		
+	</script>
+</body>
+</html>
