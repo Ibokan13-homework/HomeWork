@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title></title>
+	<style>
+		body{
+			width:100%;
+			position:relative;
+			height:500px;
+		}
+		.qiu{
+			width:72px;
+			height:72px;
+			background-color:#333;
+			border-radius:50%;
+			position:fixed;
+			top:50%;
+			left:50%;
+		}
+		.qiu div{
+			width:301px;
+			height:187px;
+			position:absolute;
+			border-radius:25px;
+			display:block;
+			opacity:1;
+		}
+		#ent{
+			width:72px;
+			height:72px;
+			border-radius:50%;
+			background-color:yellow;
+			position:absolute;
+		}
+	</style>
+	<script src="lib.js"></script>
+	<script src="tween.js"></script>
+</head>
+
+<body>
+	<div id="qiu" class="qiu">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div id="ent" class="ent"></div>
+	</div>
+	<script type="text/javascript">
+		var divs=document.getElementById("qiu").getElementsByTagName("div");
+		var qiu=document.getElementById("qiu");
+		var ent=document.getElementById("ent");
+		divs[0].style.bottom="36px";
+		divs[0].style.left="-265px";
+		divs[0].style.zIndex=10;
+		divs[0].style.backgroundColor="red";
+		divs[1].style.top="-151px";
+		divs[1].style.left="36px";
+		divs[1].style.backgroundColor="green";
+		divs[1].style.zIndex=9;
+		divs[2].style.top="36px";
+		divs[2].style.left="-265px";
+		divs[2].style.backgroundColor="blue";
+		divs[2].style.zIndex=7;
+		divs[3].style.top="36px";
+		divs[3].style.left="36px";
+		divs[3].style.backgroundColor="#333";
+		divs[3].style.zIndex=8;
+		divs[4].style.zIndex=15;
+		var he=(getWindowHeight() - ent.offsetHeight)/2;
+		var wi=(getWindowWidth() - ent.offsetWidth)/2;
+			ent.onclick=function () {
+				if(ent.moving){
+					return;
+				}
+				ent.moving = true;
+					
+					if(!ent.num){
+						startMove(divs[2],"left",36,{endFn:function () {
+							
+							startMove(divs[3],"top",-151,{endFn:function () {
+								
+								startMove(divs[1],"left",-265,{endFn:function () {
+									
+									startMove(divs[0],"36",187);
+									startMove(divs[0],"height",0,{endFn:function (){
+										startMove(qiu,"left",0);
+										startMove(qiu,"top",0);
+									}});
+									startMove(divs[0],"opacity",0,{endFn:function(){divs[0].style.display="none";ent.moving = false;}});
+								}});
+								startMove(divs[1],"opacity",0,{endFn:function(){divs[1].style.display="none";}})
+							}});
+							startMove(divs[3],"opacity",0,{endFn:function (){divs[3].style.display="none";
+								
+							}})
+						}});
+						startMove(divs[2],"opacity",0,{endFn:function () {divs[2].style.display="none";
+							
+						}})
+						ent.num=true;
+						
+					}else{
+						startMove(qiu,"left",wi);
+						startMove(qiu,"top",he,{endFn:function () {
+							divs[0].style.display="block";
+							startMove(divs[0],"opacity",1);
+							startMove(divs[0],"bottom",36,{endFn:function () {			divs[1].style.display="block";
+							
+								startMove(divs[1],"opacity",1);
+								startMove(divs[1],"left",36,{endFn:function () {
+									divs[3].style.display="block";
+									startMove(divs[3],"opacity",1);
+									startMove(divs[3],"top",36,{endFn:function () {		divs[2].style.display="block";
+										startMove(divs[2],"opacity",1);
+										startMove(divs[2],"left",-265,{endFn:function () {ent.moving = false;}});
+										
+									}});
+								}});
+							}});
+							startMove(divs[0],"height",187);
+							
+						}});				
+						
+						ent.num=false;
+						
+					}
+			}
+		function getWindowWidth() {
+			if (typeof (window.innerWdith) == 'number') {
+				return window.innerWdith;
+			}else{
+				return document.documentElement.clientWidth;
+			}
+		}
+
+		function getWindowHeight() {
+			if (typeof (window.innerHeight) == 'number') {
+				return window.innerHeight;
+			}else{
+				return document.documentElement.clientHeight;
+			}
+		}
+		
+		//窗框大小改变的时候，会触发事件
+		window.onresize = function(){
+			if (ent.isCenter) {
+				ent.style.right = (getWindowWidth() - ent.offsetWidth) / 2 + "px";
+				ent.style.top = (getWindowHeight() - ent.offsetHeight) / 2 + "px";
+			}
+		}
+	</script>
+</body>
+</html>

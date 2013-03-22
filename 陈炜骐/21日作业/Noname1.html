@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+<head>
+	<title>你好</title>
+	<meta charset='utf-8' />
+	<style>
+		body{
+			position:relative;
+		}
+		#ball{
+			height:70px;
+			width:70px;
+			background-color:red;
+			border-radius:50%;
+			position:fixed;
+			top:20px;
+			z-index:3;
+			
+		}
+
+		.left-top{
+			width:200px;
+			height:0px;
+			background-color:yellow;
+			position:fixed;
+			opacity:0;
+		}
+		.left-bottom{
+			width:00px;
+			height:100px;
+			background-color:blue;
+			position:fixed;
+			opacity:0;
+		}
+		.right-top{
+			width:0px;
+			height:100px;
+			background-color:purple;
+			position:fixed;
+			opacity:0;
+		}
+		.right-bottom{
+			width:200px;
+			height:0px;
+			background-color:gray;
+			position:fixed;
+			opacity:0;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="ball"></div>
+	<div id="leftTop" class="left-top"></div>
+	<div id="leftBottom" class="right-top"></div>
+	<div id="rightTop" class="left-bottom"></div>
+	<div id="rightBottom" class="right-bottom"></div>
+</body>
+<script type="text/javascript" src='tween.js'></script>
+<script type="text/javascript" src='lib.js'></script>
+<script>
+	var lLeft=document.body.clientWidth||document.documentElement.clientWidth;
+	var lTop=document.body.clientHeight||document.documentElement.clientHeight;
+	var ball=document.getElementById("ball");
+	var leftTop=document.getElementById("leftTop");
+	var leftBottom=document.getElementById("leftBottom");
+	var rightTop=document.getElementById("rightTop");
+	var rightBottom=document.getElementById("rightBottom");
+	ball.style.left=parseInt(lLeft)-80+"px";
+	leftTop.style.right=parseInt(lLeft)/2+"px";
+	leftTop.style.bottom=parseInt(lTop)/2+"px";
+	leftBottom.style.left=parseInt(lLeft)/2+15+"px";
+	leftBottom.style.bottom=parseInt(lTop)/2+"px";
+	rightTop.style.right=parseInt(lLeft)/2+"px";
+	rightTop.style.top=parseInt(lTop)/2+"px";
+	rightBottom.style.left=parseInt(lLeft)/2+15+"px";
+	rightBottom.style.top=parseInt(lTop)/2+"px";
+	var mouse=0
+
+
+	ball.onclick=function () {
+		mouse++
+		if (mouse==1) {
+			//ball.style.left=parseInt(lLeft)/2-35+"px";
+		//ball.style.top=parseInt(lTop)/2-35+"px";
+		startMove(ball,"left",parseInt(lLeft)/2-20,{
+			endFn : function () {
+				startMove(leftTop,"opacity",1,{
+					endFn : function () {
+						startMove(leftBottom,"opacity",1,{
+							endFn : function () {
+								startMove(rightBottom,"opacity",1,{
+									endFn : function () {
+										startMove(rightTop,"opacity",1)
+									}
+								
+								})
+							}
+						
+						
+						})
+					}
+				
+				
+				})
+			}
+		
+		
+		
+		}
+		
+		
+		
+		
+		)
+		startMove(ball,"top",parseInt(lTop)/2-35,{
+			endFn : function () {
+				//leftTop.style.height="200px"
+				startMove(leftTop,"height",100,{
+					endFn : function () {
+						startMove(leftBottom,"width",200,{
+							endFn : function () {
+								startMove(rightBottom,"height",100,{
+									endFn : function () {
+										startMove(rightTop,"width",200,{
+											endFn : function () {
+												mouse=1
+											}
+										
+										})
+									}
+								})
+							}
+						
+						})
+						//rightTop.style.width="200px"
+					}
+				
+				
+				})
+			}
+		
+		
+		})
+		
+
+
+
+
+
+
+
+
+
+
+		} 
+			
+		if (mouse==2) {
+			startMove(rightTop,"width",0,{
+				endFn : function () {
+					startMove(rightBottom,"height",0,{
+						endFn : function () {
+							startMove(leftBottom,"width",0,{
+								endFn : function () {
+									startMove(leftTop,"height",0,{
+									endFn : function () {
+										startMove(ball,"top",20)
+									}
+									
+									
+									})
+								}
+							})
+						}
+					
+					})
+				}
+			
+			})
+			startMove(rightTop,"opacity",0,{
+				endFn : function () {
+					startMove(rightBottom,"opacity",0,{
+						endFn : function () {
+							startMove(leftBottom,"opacity",0,{
+								endFn : function () {
+									startMove(leftTop,"opacity",0,{
+										endFn : function () {
+											startMove(ball,"left",parseInt(lLeft)-80,{
+												endFn : function () {
+													mouse=0
+												}
+											})
+										}
+									
+									})
+								}
+							
+							})
+						}
+					
+					})
+				}
+			
+			})
+
+
+
+
+
+
+		}
+		
+
+
+
+	}
+
+
+		function getWindowWidth() {
+			if (typeof (window.innerWdith) == 'number') {
+				return window.innerWdith;
+			}else{
+				return document.documentElement.clientWidth;
+			}
+		}
+	window.onresize=function () {
+		//leftTop.style.right=parseInt(lLeft)/2+"px";
+		//leftTop.style.bottom=parseInt(lTop)/2+"px";
+		//leftBottom.style.left=parseInt(lLeft)/2+15+"px";
+		//leftBottom.style.bottom=parseInt(lTop)/2+"px";
+		//rightTop.style.right=parseInt(lLeft)/2+"px";
+		//rightTop.style.top=parseInt(lTop)/2+"px";
+		//rightBottom.style.left=parseInt(lLeft)/2+15+"px";
+		//rightBottom.style.top=parseInt(lTop)/2+"px";
+		leftTop.style.right=(getWindowWidth() - leftTop.offsetWidth) / 2 + "px";
+		leftTop.style.top=(getWindowHeight() - leftTop.offsetHeight) / 2 + "px";
+		leftBottom.style.right=(getWindowWidth() - leftBottom.offsetWidth) / 2 + "px";
+		leftBottom.style.top=(getWindowHeight() - leftBottom.offsetHeight) / 2 + "px";
+		rightTop.style.right=(getWindowWidth() - rightTop.offsetWidth) / 2 + "px";
+		rightTop.style.top=(getWindowHeight() - rightTop.offsetHeight) / 2 + "px";
+		rightBottom.style.right=(getWindowWidth() - rightBottom.offsetWidth) / 2 + "px";
+		rightBottom.style.top=(getWindowHeight() - rightBottom.offsetHeight) / 2 + "px";
+	}
+
+</script>
+</html>

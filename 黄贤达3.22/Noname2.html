@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title></title>
+	<style>
+		body,div,span,textarea,input,dl,dt,dd{margin:0;padding:0;}
+		dl{overflow:hidden;}
+		dl dt,dl img{float:left;}
+		dl img{width:50px;}
+		dd{margin-left:60px;}
+		.inp{
+			width:300px;
+			margin:0 auto;
+		}
+		.inp textarea{
+			width:300px;
+			height:50px;
+		}
+
+	</style>
+	<script src="lib.js"></script>
+	<script src="tween.js"></script>
+</head>
+
+<body>
+	<div class="inp">
+		<textarea name="a" value="" placeholder="想说啥就说呗！！！" id="texta"></textarea>
+		<input type="button" value="说！！" id="say" name="" />
+	</div>
+	<script type="text/javascript">
+		var texta=document.getElementById("texta");
+		var say=document.getElementById("say");
+		var con=document.createElement("div");
+		function Trim(str){
+			 var result="";  
+			 result = str.replace(/(^\s+)|(\s+$)/g,"");//去除字符串前后所有空格（jquery中可用$.trim（str.toString()））
+			 result = result.replace(/\s/g,"");//去除字符串中所有空格
+			 return result;
+		}
+
+		con.style.height="500px";
+		con.style.width="300px";
+		con.style.overflowY="scroll";
+		con.style.border="1px solid #999";
+		con.style.margin="0 auto";
+		document.body.appendChild(con);		
+		say.onclick=function () {
+		var textcon=texta.value;
+			var del=document.createElement("input");		
+			del.type="button";
+			del.value="删除";
+			del.style.marginLeft="250px";
+						
+			if(Trim(textcon)){
+				var conDl=document.createElement("dl");
+				conDl.style.overflow="hidden";
+				
+				conDl.style.wordWrap="break-word";
+				conDl.innerHTML=textcon+"<br />";
+				conDl.appendChild(del);
+				if(con.firstChild){
+					con.insertBefore(conDl,con.firstChild);
+				}else{
+					con.appendChild(conDl);
+				}
+
+				var conHe=conDl.offsetHeight;
+				conDl.style.height=0;
+				
+				startMove(conDl,"width",280,{
+					endFn:function () {
+						startMove(conDl,"height",conHe);
+					}
+				});
+
+				
+				
+				conDl.style.borderBottom="1px solid red";
+				//
+				
+				del.onclick=function () {
+					con.removeChild(this.parentNode);
+				}
+			}else{
+				alert("请输入内容");
+			}
+			
+		}
+		texta.onfocus=function (){
+			if(texta.value){
+				texta.value="";
+			}
+		}
+	</script>
+</body>
+</html>

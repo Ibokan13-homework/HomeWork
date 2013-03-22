@@ -1,0 +1,307 @@
+<!doctype html>
+<html>
+<head>
+	<title>你好</title>
+	<meta charset='utf-8' />
+	<style>
+		
+		#outer{
+			width:100px;
+			height:100px;
+			position:fixed;
+			top:20px;
+			right:20px;		
+		}
+		#ball{
+			width:100%;
+			height:100%;
+			background-color:red;
+			position:relative;
+			z-index:2;
+
+		}
+		#topL{
+			width:200px;
+			height:100px;
+			position:absolute;
+			top:-50px;
+			left:-150px;
+			overflow:hidden;
+			z-index:1;
+		}
+		#topR{
+			width:200px;
+			height:100px;
+			position:absolute;
+			top:-50px;
+			left:50px;
+			overflow:hidden;
+			z-index:1;
+		}
+		#bottomR{
+			width:200px;
+			height:100px;
+			position:absolute;
+			top:50px;
+			left:-150px;
+			overflow:hidden;
+			z-index:1;
+		}
+		#bottomL{
+			width:200px;
+			height:100px;
+			position:absolute;
+			top:50px;
+			left:50px;
+			overflow:hidden;
+			z-index:1;
+		}
+		#topLc{
+			position:relative;
+			height:100%;
+			background-color:yellow;
+			opacity:0;
+		}
+		#topRc{
+			position:relative;
+			height:100%;
+			background-color:gray;
+			opacity:0;
+		}
+		#bottomRc{
+			position:relative;
+			height:100%;
+			background-color:blue;
+			opacity:0;
+		}
+		#bottomLc{
+			position:relative;
+			height:100%;
+			background-color:black;
+			opacity:0;
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<div id="outer">
+		<div id="ball"></div>
+		<div id="topL">
+			<div id="topLc"></div>
+		</div>
+		<div id="topR">
+			<div id="topRc"></div>
+		</div>
+		<div id="bottomR">
+			<div id="bottomRc"></div>
+		</div>
+		<div id="bottomL">
+			<div id="bottomLc"></div>
+		</div>
+	
+	</div>
+
+
+
+
+<script src="tween.js"></script>
+<script src="lib.js"></script>
+<script>
+	var outer=document.getElementById("outer");
+	var topLc=document.getElementById("topLc");
+	var topRc=document.getElementById("topRc");
+	var bottomLc=document.getElementById("bottomLc");
+	var bottomRc=document.getElementById("bottomRc")
+	outer.onclick=function () {
+		if (outer.move) {
+			return
+		}
+		outer.move=true
+		if (outer.left) {
+			startMove(bottomRc,"left",200,{
+			endFn :	function () {
+					startMove(bottomLc,"top",-100,{
+						endFn : function () {
+							startMove(topRc,"left",-200,{
+								endFn : function () {
+									startMove(topLc,"top",100,{
+										endFn : function () {
+											startMove(outer,"right",20)
+										}
+									
+									})
+								}
+							
+							})
+						}
+					
+					})
+				}
+			
+			})
+
+
+
+
+
+
+
+
+
+
+			startMove(bottomRc,"opacity",0,{
+				endFn : function () {
+					startMove(bottomLc,"opacity",0,{
+						endFn : function () {
+							startMove(topRc,"opacity",0,{
+								endFn : function () {
+									startMove(topLc,"opacity",0,{
+										endFn : function () {
+											startMove(outer,"top",20,{
+												endFn : function () {
+													outer.left=false;
+													outer.move=false;
+												}
+											})
+										}
+									})
+								}
+							})
+						}
+					})
+				}
+			
+			})
+
+
+
+
+		}else {
+			startMove(outer,"right",(windosWidth()-outer.offsetWidth)/2,{
+			endFn : function () {
+				startMove(topLc,"opacity",1,{
+					endFn : function () {
+						startMove(topRc,"opacity",1,{
+							endFn : function () {
+								startMove(bottomLc,"opacity",1,{
+								endFn : function () {
+									startMove(bottomRc,"opacity",1)
+								}
+								
+								})
+							}
+						})
+					}
+				
+				})
+			}
+		
+		
+		})
+		
+		
+		
+		
+		
+		startMove(outer,"top",(windosHeight()-outer.offsetHeight)/2,{
+			endFn : function () {
+				topLc.style.top="100px"
+				startMove(topLc,"top",0,{
+					endFn : function () {
+						topRc.style.left="-200px";
+						startMove(topRc,"left",0,{
+							endFn : function () {
+								bottomLc.style.top="-100px"
+								startMove(bottomLc,"top",0,{
+									endFn : function () {
+										bottomRc.style.left="200px"
+										startMove(bottomRc,"left",0,{
+											endFn : function () {
+												outer.left=true;
+												outer.move=false;
+											}
+										})
+									}
+								
+								
+								})
+							}
+						
+						
+						})
+					}
+				
+				
+				})
+			}
+		
+		
+		
+		})
+
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+	function windosWidth() {
+			if (typeof (window.innerWdith) == 'number') {
+				return window.innerWdith;
+			}else{
+				return document.documentElement.clientWidth;
+			}
+		}
+
+		function windosHeight() {
+			if (typeof (window.innerHeight) == 'number') {
+				return window.innerHeight;
+			}else{
+				return document.documentElement.clientHeight;
+			}
+		}
+
+
+window.onresize=function () {
+	if (outer.left) {
+		outer.style.right = (windosWidth() - outer.offsetWidth) / 2 + "px";
+		outer.style.top = (windosHeight() - outer.offsetHeight) / 2 + "px";
+
+
+	}
+}
+
+
+
+
+
+</script>
+</body>
+</html>

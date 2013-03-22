@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+
+<body>
+	
+</body>
+<script type="text/javascript">
+	var out=document.createElement("div");
+	out.style.width="200px";
+	out.style.height="100px";
+	out.style.border="1px red solid";
+	document.body.appendChild(out);
+	var con=document.createTextNode("div");
+	con.style.width="100px";
+	con.style.height="50px";
+	con.style.border="1px solid blue";
+	out.appendChild(con);
+	var inp=document.createElement("input");
+	inp.type="button";
+	inp.value="删除";
+	document.body.appendChild(out);
+	inp.onclick=function () {
+		con.removeChild();
+	}
+
+	
+</script>
+</html>
