@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		html{
+			width:100%;
+			height:100%;
+			overflow:hidden;
+		}
+		body{
+			width:100%;
+			height:100%;
+			background:red;
+			position:relative;
+			left:0;
+			top:0;
+			z-index:0;
+		}
+		a img{
+			border:0;
+		}
+		#all{
+			width:100%;
+			height:100%;
+			background:black;
+			position:absolute;
+			opacity:0;
+			left:0;
+			top:0;
+			z-index:5;
+		}
+		#an{
+			width:72px;
+			height:72px;
+			position:fixed;
+			right:40px;
+			top:80px;
+			z-index:25;
+			_position:absolute;
+			_top:expression(eval(document.documentElement.scrollTop + 80));
+		}
+		#son{
+			width:600px;
+			height:200px;
+			position:fixed;
+			left:50%;
+			top:50%;
+			margin-left:-300px;
+			margin-top:-100px;
+			z-index:20;
+			display:hidden;
+			display:none;
+			border:1px solid blue;
+		}
+		#son div{
+			width:300px;
+			height:100px;
+			float:left;
+			overflow:hidden;
+		}
+		#son .sona{
+			background:green;
+			position:absolute;
+			left:0px;
+			bottom:100px;
+			z-index:21;
+			overflow:hidden;
+		}
+		#son .sonb{
+			background:yellow;
+			position:absolute;
+			left:300px;
+			top:0px;
+			z-index:22;
+		}
+		#son .sonc{
+			background:white;
+			position:absolute;
+			right:300px;
+			bottom:0px;
+			z-index:24;
+		}
+		#son .sond{
+			background:purple;
+			position:absolute;
+			right:0px;
+			top:100px;
+			z-index:23;
+		}
+	</style>
+</head>
+<body id="a">
+	<div>
+		<a href="#" id="an"><img src="yuan.png" alt="" /></a>
+		<div id="all"></div>
+		<div id="son">
+			<div class="sona" id="ona"></div>
+			<div class="sonb" id="onb"></div>
+			<div class="sonc" id="onc"></div>
+			<div class="sond" id="ond"></div>
+		</div>
+	</div>
+	<script src="tween.js"></script>
+	<script src="lib zhi.js"></script>
+	<script>
+		var index = 0;
+		var a = $$("a");
+		var ans = $$('an'),
+			all = $$('all'),
+		    son = $$('son'),
+			ona = $$('ona'),
+			onb = $$('onb'),
+			onc = $$('onc'),
+			ond = $$('ond');
+			ans.onclick = function () {
+				if(ans.moving){
+					return;
+				}
+				ans.moving = true;
+				if (ans.isCenter) {
+					startMove(ans,"right",40,{twFn:"Back"});
+					startMove(ans,"top",80,{twFn:"Back",endFn:function(){
+						ans.isCenter = false;
+					}})
+				}
+				else{
+				index++;
+				if (index%2 == 1) {
+					//startMove(ans,"top",(a.clientHeight-ans.offsetHeight)/2);
+					//startMove(ans,"right",(a.clientWidth-ans.offsetWidth)/2);
+					startMove(ans,"right",(getWindowWidth() - ans.offsetWidth) / 2,{twFn:"Back"});
+					startMove(ans,"top",(getWindowHeight() - ans.offsetHeight) / 2,{twFn:"Back"});
+					startMove(all,"opacity",0.6,{endFn:function (){
+						son.style.display = "block";
+						ona.style.height = "0";
+						onb.style.width = "0";
+						ond.style.height = "0";
+						onc.style.width = "0";
+						startMove(ona,"height",100,{endFn:function () {
+							startMove(onb,"width",300,{endFn:function () {	
+								startMove(ond,"height",100,{endFn:function () {	
+									startMove(onc,"width",300,{endFn:function () {
+									ans.moving = false;	
+									}});
+								}});
+							}});
+						}});
+					}});
+				}
+				else {
+					startMove(onc,"width",0,{endFn:function () {
+						startMove(ond,"height",0,{endFn:function () {	
+							startMove(onb,"width",0,{endFn:function () {	
+								startMove(ona,"height",0,{endFn:function () {
+									startMove(all,"opacity",0);
+									son.style.display = "none";
+									startMove(ans,"top",80);
+									startMove(ans,"right",40);
+									ans.moving = false;
+
+								}});
+							}});
+						}});
+					}});
+				}
+			}
+		}
+		function getWindowWidth() {
+			if (typeof (window.innerWdith) == 'number') {
+				return window.innerWdith;
+			}else{
+				return document.documentElement.clientWidth;
+			}
+		}
+		function getWindowHeight() {
+			if (typeof (window.innerHeight) == 'number') {
+				return window.innerHeight;
+			}else{
+				return document.documentElement.clientHeight;
+			}
+		}
+		window.onresize = function(){
+			if (index%2 == 1) {
+				ans.style.right = (getWindowWidth() - ans.offsetWidth) / 2 + "px";
+				ans.style.top = (getWindowHeight() - ans.offsetHeight) / 2 + "px";
+			}
+			/*if (ans.isCenter) {
+				ans.style.right = (getWindowWidth() - ans.offsetWidth) / 2 + "px";
+				ans.style.top = (getWindowHeight() - ans.offsetHeight) / 2 + "px";
+			}*/
+		}
+	</script>
+</body>
+</html>
