@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		#nav{
+			position:fixed;
+			top:20px;
+			right:20px;
+			width:72px;
+			height:72px;
+		}
+		#nav-c{
+			width:100%;
+			height:100%;
+			position:relative;
+			z-index:1;
+		}
+		#nav-lt{
+			position:absolute;
+			top:-164px;
+			left:-264px;
+			width:300px;
+			height:200px;
+			overflow:hidden;
+			display:none;
+		}
+		#nav-rt{
+			position:absolute;
+			top:-164px;
+			left:36px;
+			width:300px;
+			height:200px;
+			overflow:hidden;
+			display:none;
+		}
+		#nav-rb{
+			position:absolute;
+			top:36px;
+			left:36px;
+			width:300px;
+			height:200px;
+			overflow:hidden;
+			display:none;
+		}
+		#nav-lb{
+			position:absolute;
+			top:36px;
+			left:-264px;
+			width:300px;
+			height:200px;
+			overflow:hidden;
+			display:none;
+		}
+		#nav-ltc,#nav-rtc,#nav-rbc,#nav-lbc{
+			position:relative;  /*相对于自己定位*/
+			background:#ca221d;
+			height:100%;
+		}
+		#nav-ltc{
+			border-top-left-radius:20px;
+		}
+		#nav-rtc{
+			background:#7a9e02;
+			border-top-right-radius:20px;
+		}
+		#nav-rbc{
+			background:#f69e33;
+			border-bottom-right-radius:20px;
+		}
+		#nav-lbc{
+			background:#2ba0cc;
+			border-bottom-left-radius:20px;
+			
+		}
+	</style>
+</head>
+
+<body>
+	<div id="nav">
+		<img src="images/fast_nav.png" alt="" id="nav-c" />
+		<div id="nav-lt">
+			<div id="nav-ltc">左上</div>
+		</div>
+		<div id="nav-rt">
+			<div id="nav-rtc">右上</div>
+		</div>
+		<div id="nav-rb">
+			<div id="nav-rbc">右下</div>
+		</div>
+		<div id="nav-lb">
+			<div id="nav-lbc">左下</div>
+		</div>
+	</div>
+	<script src="cloudgamer效果.js"></script>
+	<script src="引用的库.js"></script>
+	<script>
+		var nav = $$("nav");
+		var navlt = $$("nav-lt");
+		var navrt = $$("nav-rt");
+		var navrb = $$("nav-rb");
+		var navlb = $$("nav-lb");
+
+		var navltc = $$("nav-ltc");
+		var navrtc = $$("nav-rtc");
+		var navrbc = $$("nav-rbc");
+		var navlbc = $$("nav-lbc");
+		nav.onclick = function () {
+
+			if (nav.goOn) {     //如果在运动的过程中一直点的话，运动没完就又从第一个开始，加上return，让下						面的代码不执行
+				return;
+			}
+			nav.goOn = true;
+			if (nav.bianL) {
+				//回到右上
+				startMove(navlbc,"left",300);
+				startMove(navlbc,"opacity",0,{endFn:function () {
+					startMove(navrbc,"top",-200);
+					startMove(navrbc,"opacity",0,{endFn:function () {
+						startMove(navrtc,"left",-300);
+						startMove(navrtc,"opacity",0,{endFn:function () {
+							startMove(navltc,"top",200);
+							startMove(navltc,"opacity",0,{endFn:function () {
+								startMove(nav,"right",20,{twFn:"Back"});
+								startMove(nav,"top",20,{twFn:"Back"});
+								nav.bianL=false;
+								nav.goOn = false;
+							}});
+						}});
+					}})
+				}});
+				
+			}else {
+				//自适应屏幕中间
+				startMove(nav,"right",(getWindowWidth() - nav.offsetWidth) / 2,{twFn:"Back"});
+				startMove(nav,"top",(getWindowHeight() - nav.offsetHeight) / 2,{twFn:"Back",endFn:function () {
+					navlt.style.display="block";
+					navltc.style.top="200px";
+					navltc.style.opacity=0;
+					startMove(navltc,"opacity",1);
+					startMove(navltc,"top",0,{endFn:function () {
+						navrt.style.display="block";
+						navrtc.style.left="-300px";
+						navrtc.style.opacity=0;
+						startMove(navrtc,"opacity",1);
+						startMove(navrtc,"left",0,{endFn:function () {
+							navrb.style.display="block";
+							navrbc.style.top="-200px";
+							navrbc.style.opacity=0;
+							startMove(navrbc,"opacity",1);
+							startMove(navrbc,"top",0,{endFn:function () {
+								navlb.style.display="block";
+								navlbc.style.left="300px";
+								navlbc.style.opacity=0;
+								startMove(navlbc,"opacity",1);
+								startMove(navlbc,"left",0);
+								nav.bianL = true ;
+								nav.goOn = false;
+							}});
+						}});
+					}});
+					
+				}});
+				
+			}
+			
+		}
+
+
+
+		function getWindowWidth() {
+			if (typeof (window.innerWdith) == 'number') {
+				return window.innerWdith;
+			}else{
+				return document.documentElement.clientWidth;
+			}
+		}
+
+		function getWindowHeight() {
+			if (typeof (window.innerHeight) == 'number') {
+				return window.innerHeight;
+			}else{
+				return document.documentElement.clientHeight;
+			}
+		}
+
+		//改变屏幕的宽高，触发的时间，内容自适应
+		window.onresize = function(){
+			nav.style.right = (getWindowWidth() - nav.offsetWidth) / 2 + "px";
+			nav.style.top = (getWindowHeight() - nav.offsetHeight) / 2 + "px";
+			
+		}
+	</script>
+	
+</body>
+</html>
