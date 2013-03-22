@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src="tween.js"></script>
+	<style>
+		.div{
+			width:270px;
+			height:270px;
+			margin:0 auto;
+			overflow:hidden;
+		}
+		
+		#con{
+			width:262px;
+			height:230px;
+		}
+		#btn{
+			float:right;
+		}
+		#div1{
+			width:272px;
+			margin:0 auto;
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div class="div">
+		<textarea name="" id="con"></textarea>
+		<input type="button" name="" value="submit" id="btn" />
+	</div>
+	<div id="div1"></div>
+	<script>
+		var btn=document.getElementById("btn");
+		var div1=document.getElementById("div1");
+		var con=document.getElementById("con");
+
+
+		btn.onclick=function () {
+			//获取文本域中的内容
+			var message=con.value;
+			//创建要插入的标签
+			var div2=document.createElement("div");
+			if(message==""){
+				alert("请输入留言内容");
+			}else{
+				div2.style.width="260px";
+				div2.style.height="0px";
+				div2.style.marginBottom="10px";
+				div2.style.overflow="hidden";
+				div2.style.border="1px solid green";
+				var img=document.createElement("img");
+				img.style.width="50px";
+				img.style.height="50px";
+				img.style.cssFloat="left";//针对火狐浏览器
+				img.style.styleFloat="left";//针对ie浏览器
+				img.setAttribute("src","img/a.jpg");
+				var tspan=document.createElement("span");
+				tspan.style.width="210px";
+				tspan.style.wordWrap="break-word";
+				tspan.style.cssFloat="left";
+				tspan.style.styleFloat="left";
+				tspan.innerHTML=message;
+				var shanchu=document.createElement("input");
+				shanchu.style.cssFloat="right";
+				shanchu.style.styleFloat="right";
+				shanchu.type="button";
+				shanchu.value="remove";
+				//写入
+				div1.appendChild(div2);
+				div2.appendChild(img);
+				div2.appendChild(tspan);
+				div2.appendChild(shanchu);
+				startMove(div2,"height",tspan.offsetHeight+30);
+				//remove
+				shanchu.onclick=function () {
+					//this.parentNode.parentNode.removeChild(this.parentNode);
+					//startMove(div2,"height",0,{d:70});
+					var _this=this;
+					startMove(div2,"height",0,{endFn:function () {
+						_this.parentNode.parentNode.removeChild(_this.parentNode);
+					}		
+					});	
+				}
+			}	
+		}
+	</script>
+</body>
+</html>
