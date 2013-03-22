@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<script src='lib.js'></script>
+	<script src='tween.js'></script>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		.navlogo{
+			position:fixed;
+			right:0;
+			top:0;
+			width:50px;
+			height:50px;
+			background:purple;
+			z-index:20;
+		}
+		.navcon{
+			position:absolute;
+			left:50%;
+			top:50%;
+			border:1px solid red;
+			width:150px;
+			height:150px;
+			margin-top:-75px;
+			margin-left:-75px;
+		}
+		.top1{
+			position:absolute;
+			width:75px;
+			height:75px;
+			background:red;
+			float:left;
+			left:px;
+			top:75px;
+			
+		}
+		.top2{
+			position:absolute;
+			/*width:75px;*/
+			height:75px;
+			background:blue;
+			float:left;
+			left:75px;
+			
+		}
+		.bottom1{
+			position:absolute;
+			width:75px;
+			height:75px;
+			background:yellow;
+			float:left;
+			left:75px;
+			top:75px;
+			z-index:3;
+			
+		}
+		.bottom2{
+			position:absolute;
+			width:75px;
+			/*height:75px;*/
+			background:green;
+			float:left;
+			/*left:3px*/
+			left:75px;
+			top:75px;
+			z-index:5;
+			height:0px;
+			
+		}
+		.blank{
+			position:absolute;
+			width:75px;
+			height:75px;
+			background:white;
+			float:left;
+			left:px;
+			top:75px;
+			z-index:9;
+			
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class='navlogo' id='navlogo'></div>
+	<div class='navcon'>
+		<div class='top1' id='top1'></div>
+		<div class='top2' id='top2'></div>
+		<div class='bottom1' id='bottom1'></div>
+		<div class='bottom2' id='bottom2'></div>
+		
+			<!-- <div class='blank' id='blank'></div> -->
+		
+		
+	</div>
+</body>
+<script type="text/javascript">
+<!--
+	 var navlogo=$$('navlogo');
+	 var navcom=$$('navcon');
+	 var top1=$$('top1');
+	 var top2=$$('top2');
+	 var bottom1=$$('bottom1');
+	 var bottom2=$$('bottom2');
+	 var ind=1;
+	 navlogo.onclick=function () {
+		ind++;
+		navlogo.style.left='50%';
+		navlogo.style.top='50%';
+		navlogo.style.marginTop='-25px';
+		navlogo.style.marginLeft='-25px';
+		if (ind%2==0) {
+			startMove(top1,'top',0,{d:30,endFn:function () {
+				startMove(top2,'width',75,{endFn:function () {
+					startMove(bottom2,'height',75,{endFn:function () {
+						startMove(bottom1,'left',0)
+					}})
+				}})
+			}})
+		}else {
+			startMove(bottom1,'left',75,{endFn:function () {
+				bottom1.style.display='none';
+				startMove(bottom2,'height',0,{endFn:function () {
+					startMove(top2,'width',0,{endFn:function () {
+						startMove(top1,'top',75)
+					}})
+				}})
+			}})
+		}
+	}
+		//var ind=1;
+	//nav.onclick=function () {
+		// nav.style.left='50%';
+		 //nav.style.top='50%';
+		/* ind++;
+		 if (ind%2==0) {
+			 navlogo.style.left='50%';
+			 navlogo.style.top='50%';
+			top1.style.display='block';
+			startMove(top1,'top',280,{
+				d:30,
+				twFn:'Linear',
+				endFn:function () {
+					top2.style.display='block';
+					startMove(top2,'width',70,{
+					d:30,
+					twFn:'Linear',
+					endFn:function () {
+						bottom2.style.display='block';
+						startMove(bottom2,'height',50,{
+						d:30,
+						twFn:'Linear',
+						endFn:function () {
+							bottom1.style.display='block';
+							startMove(bottom1,'left',576,{
+								d:30,
+								twFn:'Linear'
+							
+							})
+						}
+					})
+					}
+				
+			}
+				)
+				
+			}
+			}
+			)
+			//alert(1);
+		 
+		 }else {
+			startMove(bottom1,'left',646,{
+								d:30,
+								twFn:'Linear',
+								endFn:function () {
+									bottom1.style.display='none';
+									startMove(bottom2,'height',0,{
+									d:30,
+									twFn:'Linear'})
+								}
+							
+							})
+			
+		 }
+		 }
+		/*if (ind==2) {
+			top2.style.display='block';
+			startMove(top2,'width',70,{
+				d:30,
+				twFn:'Linear'
+			}
+			
+			)
+			ind=3;
+		}
+		if (ind==3) {
+			bottom1.style.display='block';
+			startMove(bottom1,'left',576,{
+				d:30,
+				twFn:'Linear'
+			}
+				
+			)
+			ind=4;
+		}
+		if (ind=4) {
+			bottom2.style.display='block';
+			startMove(bottom2,'height',50,{
+				d:30,
+				twFn:'Linear'
+			})
+		}*/
+	//}*/
+
+	 
+	 
+//-->
+</script>
+</html>

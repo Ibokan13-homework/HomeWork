@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<script src='tween.js'></script>
+	<script src='lib.js'></script>
+	<style type="text/css">
+		#wrap{
+			width:50px;
+			height:50px;
+			/*background:red;*/
+			position:fixed;
+			top:50px;
+			right:50px;
+			/*z-index:2;*//*定位的父标签被覆盖了？why*/
+		}
+		#center{
+			width:100%;
+			height:100%;
+			position:relative;/*absolute*/
+			background:yellow;
+			z-index:2;
+			
+		}
+		#topl{
+			width:200px;
+			height:50px;
+			position:absolute;
+			left:-175px;
+			top:-25px;
+			/*background:purple;*/
+			z-index:1;
+			overflow:hidden;
+			
+			
+		}
+		#topr{
+			width:200px;
+			height:50px;
+			position:absolute;
+			left:25px;
+			top:-25px;
+			/*background:black;*/
+			z-index:1;
+			overflow:hidden;
+
+		}
+		#bottoml{
+			width:200px;
+			height:50px;
+			position:absolute;
+			left:-175px;
+			top:25px;
+			/*background:gray;*/
+			z-index:1;
+			overflow:hidden;
+		}
+		#bottomr{
+			width:200px;
+			height:50px;
+			position:absolute;
+			left:25px;
+			top:25px;
+			/*background:blue;*/
+			z-index:1;
+			overflow:hidden;
+		}
+		#bottomr-in ,#bottoml-in, #topl-in ,#topr-in{/*it is ,*/
+			position:relative;/*相对自己？*/
+			height:100%;
+		}
+		#bottomr-in{
+			background:purple;
+		}
+		#bottoml-in{
+			background:blue;
+		}
+		#topl-in{
+			background:red;
+		}
+		#topr-in{
+			background:gray;
+		}
+	</style>
+</head>
+
+<body>
+	<div id='wrap'>
+		<div id='center'></div>
+		<div id='topl'>
+			<div id='topl-in'></div>
+		</div>
+		<div id='topr'>
+			<div id='topr-in'></div>
+		</div>
+		<div id='bottoml'>
+			<div id='bottoml-in'></div>
+		</div>
+		<div id='bottomr'>
+			<div id='bottomr-in'></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var wrap=$$('wrap');
+	wrap.onclick=function () {
+		startMove(wrap,'right',(getWindowWidth()-wrap.offsetWidth)/2,{})
+		startMove(wrap,'top',(getWindowHeight()-wrap.offsetHeight)/2,{endFn:function () {
+			$$('topl').style.display='block';
+			$$('topl-in').style.top='50px';
+			startMove($$('topl-in'),'top',0,{endFn:function () {
+				$$('topr').style.display='block';
+				$$('topr-in').style.left='-200px';
+				startMove($$('topr-in'),'left',0,{endFn:function () {
+					$$('bottomr').style.display='block';
+					$$('bottomr-in').style.top='-50px';
+					startMove($$('bottomr-in'),'top',0,{endFn:function () {
+						$$('bottoml').style.display='block';
+						$$('bottoml-in').style.left='200px';
+						startMove($$('bottoml-in'),'left',0)
+					}})
+				}})
+			}})
+		}})
+	}
+</script>
+</html>
