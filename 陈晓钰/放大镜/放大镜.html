@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		body,div,img{
+			margin:0px;
+			padding:0px;
+		}
+		#out{
+			width:350px;
+			height:311px;
+			margin-left:100px;
+			border:1px solid gray;
+			float:left; 
+			position:relative;
+		}
+		#inner{
+			width:150px;
+			height:150px;
+			left:0;
+			top:0;
+			position:absolute;
+			background:gray; 
+			opacity:0.5; 
+			cursor:pointer;
+			filter:alpha(opacity=50);
+			
+		}
+		#show{
+			height:300px; 
+			width:300px;
+			margin-left:500px;
+			overflow:hidden;
+			display:none;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="out">
+		<img src="b.jpg" alt=""  id="small" />
+		<div id="inner"></div>
+	</div>
+	<div id="show">
+		<img src="a.jpg" alt="" id="big" />
+	</div>
+	<script>
+		var out=document.getElementById("out");
+		var inner=document.getElementById("inner");
+		var show=document.getElementById("show");
+		var small=document.getElementById("small");
+		var big=document.getElementById("big");	
+		
+		var t= null;
+		out.onmousemove=function (event) {
+			clearTimeout(t);
+			var event=event || window.event;
+			inner.style.display="block";
+			show.style.display="block";
+			//获取鼠标距窗口的值
+			var mouseX=event.clientX;
+			var mouseY=event.clientY;
+			//console.log(mouseX+" "+mouseY);
+			
+			//鼠标相对于外块的位置
+			var moveL=mouseX - out.offsetLeft - inner.offsetWidth/2;
+			var moveT=mouseY - out.offsetTop - inner.offsetHeight/2;
+			
+			//大图相对于小图的比例移动的距离
+			
+			var moveX=(big.clientWidth/small.offsetWidth)*moveL;
+			var moveY=(big.clientHeight/small.offsetHeight)*moveT;
+			//console.log(moveX+' '+moveY);
+			
+			if(moveL>out.clientWidth-inner.offsetWidth){
+				moveL=out.clientWidth-inner.offsetWidth;
+			}
+			if(moveL<0){
+				moveL=0;	
+			}
+			if(moveT>=out.clientHeight-inner.offsetHeight){
+				moveT=out.clientHeight-inner.offsetHeight;
+			}
+			if(moveT<0){
+				moveT=0;
+			}
+			
+			inner.style.left=moveL+"px";
+			inner.style.top=moveT+"px";
+			show.scrollLeft=moveX;
+			show.scrollTop=moveY;
+		}
+		out.onmouseout=function () {
+
+			//console.log("OUT");
+			t = setTimeout(function(){
+				inner.style.display="none";
+				show.style.display="none";
+			},100);
+		}
+		
+	</script>
+	
+</body>
+</html>
