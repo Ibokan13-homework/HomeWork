@@ -14,18 +14,19 @@
 		}
 		img { width: 100%; height: 100%;}
 		.imgWrap {
-			width: 200px;
-			height: 200px;
+			width: 256px;
+			height: 192px;
 			margin: 0 auto;
 			overflow: hidden;
 		}
 		.imgs {
-			width: 800px;
-			height: 200px;
+			width: 1024px;
+			height: 192px;
 		}
 		.imgs li {
-			width: 200px;
-			height: 200px;
+			position: relative;
+			width: 256px;
+			height: 192px;
 			float: left;
 		}
 		.nav {
@@ -56,15 +57,38 @@
 		.navNum .navNumShow {
 			color: red;
 		}
+		.zoomImg {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			display: none;
+			width: 512px;
+			height: 384px;
+			border: 1px solid red;
+		}
+		.zoomBox {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			display: none;
+			width: 64px;
+			height: 48px;
+			background: rgba(255, 255, 255, 0.5);
+		}
+	.show {
+			display: block;
+		}
 	</style>
 </head>
 <body>
 	<div id="imgWrap" class="imgWrap">
 		<ul id="imgs" class="imgs clearfix">
-			<li><img src="../img/1.jpg" alt="1">1</li>
-			<li><img src="../img/2.jpg" alt="2">2</li>
-			<li><img src="../img/3.jpg" alt="3">3</li>
-			<li><img src="../img/4.jpg" alt="4">4</li>
+			<li><img src="../img/1.jpg" alt="1"><div class="zoomBox"></div></li>
+			<li><img src="../img/2.jpg" alt="2"><div class="zoomBox"></div></li>
+			<li><img src="../img/3.jpg" alt="3"><div class="zoomBox"></div></li>
+			<li><img src="../img/4.jpg" alt="4"><div class="zoomBox"></div></li>
 		</ul>
 	</div>
 	<div class="nav clearfix">
@@ -77,10 +101,13 @@
 		</ul>
 		<span id="navRight" class="navRight">Right</span>
 	</div>
+	<div id="zoomImg" class="zoomImg"></div>
 	<script type="text/javascript" src="../js/kavin.js"></script>
+	<script type="text/javascript" src="../js/kHelp-0.3.js"></script>	
 	<script type="text/javascript">
 		var imgWrap  = $id('imgWrap');
 		var imgs     = $id('imgs');
+		var imgZooms = $tag('div', imgs)
 		var imgsLi   = $tag('li', imgs);
 			var imgsLiW = imgsLi[0].offsetWidth;
 		var navLeft  = $id('navLeft');
@@ -227,6 +254,77 @@
 		// ID: navNum mouse out
 		navNum.onmouseout = function() {
 			bigTime = setTimeout(bigImgMove, scrollTime);
+		}
+		// zoom effect start 2013-3-25
+		var zoomImg = $id('zoomImg');
+		imgWrap.W = imgWrap.offsetWidth;
+		imgWrap.H = imgWrap.offsetHeight;
+		imgWrap.OL = imgWrap.offsetLeft;
+		imgWrap.OT = imgWrap.offsetTop;
+		var i = 0;
+		for (; i < imgsLi.length; i++ ) {
+			imgsLi[i].onmousemove = (function(i) {
+				return function(event) {
+					var event = event || window.event;
+					clearTimeout(bigTime);
+					clearTimeout(fbigTime);
+					console.log("MOVE")
+					showZoom(i,event);
+				}
+			})(i);
+			imgsLi[i].onmouseout = (function(i) {
+				return function(event) {
+					bigTime = setTimeout(bigImgMove, scrollTime);
+					hideZoom(i, event);
+				}
+				
+			})(i)
+		}
+		function showZoom(i, event) {
+			$addClass(imgZooms[i],'show');
+			$addClass(zoomImg, 'show');
+			var imgURL = imgsLi[i].getElementsByTagName('img')[0].getAttribute('src');
+			$setStyle(zoomImg,'backgroundImage','url('+imgURL+')');
+
+			var zoomBox = imgZooms[i];
+			zoomBox.W = imgZooms[i].offsetWidth;
+			zoomBox.H = imgZooms[i].offsetHeight;
+			zoomBox._W = zoomBox.W/2;
+			zoomBox._H = zoomBox.H/2;
+			zoomBox.CX = event.clientX;
+			zoomBox.CY = event.clientY;
+			zoomBox.PX = zoomBox.CX - imgWrap.OL;
+			zoomBox.PY = zoomBox.CY - imgWrap.OT;
+			zoomImg.X = -zoomBox.PX*2;
+			zoomImg.Y = -zoomBox.PY*2;
+			// console.log("zoomBox.W ->"+zoomBox.W
+			// 			+"\nzoomBox.H ->"+zoomBox.H
+			// 			+"\nzoomBox._W ->"+zoomBox._W
+			// 			+"\nzoomBox._H ->"+zoomBox._H
+			// 			+"\nzoomBox.CX ->"+zoomBox.CX
+			// 			+"\nzoomBox.CY ->"+zoomBox.CY
+			// 			+"\nzoomBox.PX ->"+zoomBox.PX
+			// 			+"\nzoomBox.CX ->"+zoomBox.CX
+			// 			+"\nzoomBox.PY ->"+zoomBox.PY);
+			if ( zoomBox.PX > (imgWrap.W - zoomBox.W + zoomBox._W) ) {
+				zoomBox.PX = imgWrap.W - zoomBox.W + zoomBox._W;
+			} else if ( zoomBox.PX <= zoomBox._W ) {
+				zoomBox.PX = zoomBox._W;
+			}
+			if ( zoomBox.PY > (imgWrap.H - zoomBox.H + zoomBox._H) ) {
+				zoomBox.PY = imgWrap.H - zoomBox.H + zoomBox._H;
+			} else if ( zoomBox.PY <= zoomBox._H) {
+				zoomBox.PY = zoomBox._H;
+			}
+			zoomBox.style.left = zoomBox.PX - zoomBox._W + 'px';
+			zoomBox.style.top  = zoomBox.PY - zoomBox._H + 'px';
+			$setStyle(zoomImg,'backgroundPositionX',zoomImg.X,'px')
+			$setStyle(zoomImg,'backgroundPositionY',zoomImg.Y,'px')
+
+		}
+		function hideZoom(i, event) {
+			$removeClass(imgZooms[i], 'show')
+			$removeClass(zoomImg, 'show')
 		}
 	</script>
 </body>
