@@ -268,12 +268,13 @@
 					var event = event || window.event;
 					clearTimeout(bigTime);
 					clearTimeout(fbigTime);
-					console.log("MOVE")
 					showZoom(i,event);
 				}
 			})(i);
 			imgsLi[i].onmouseout = (function(i) {
 				return function(event) {
+					clearTimeout(bigTime);
+					clearTimeout(fbigTime);
 					bigTime = setTimeout(bigImgMove, scrollTime);
 					hideZoom(i, event);
 				}
@@ -318,11 +319,25 @@
 			}
 			zoomBox.style.left = zoomBox.PX - zoomBox._W + 'px';
 			zoomBox.style.top  = zoomBox.PY - zoomBox._H + 'px';
-			$setStyle(zoomImg,'backgroundPositionX',zoomImg.X,'px')
-			$setStyle(zoomImg,'backgroundPositionY',zoomImg.Y,'px')
-
+			//console.log(zoomImg.X+' '+zoomImg.Y)
+			// zoomImg.setAttribute('backgroundPositionX',zoomImg.X+'px')
+			
+			// $setStyle(zoomImg,'background-position-x',zoomImg.X,'px')
+			// var temp = zoomImg.style['backgroundPosition'];
+			// console.log(temp)
+			// $setStyle(zoomImg,'backgroundPositionY',zoomImg.Y,'px')
+			zoomImg.style['backgroundPosition'] = '-'+(-zoomImg.X)+'px 0'; // if don't do this, problem in firefox
+			var pXY = '-'+(-zoomImg.X)+'px -'+(-zoomImg.Y)+'px';
+			if ( zoomImg.currentStyle ) {
+				$setStyle(zoomImg,'backgroundPositionX',zoomImg.X,'px');
+				$setStyle(zoomImg,'backgroundPositionY',zoomImg.Y,'px');
+			} else {
+				$setStyle(zoomImg,'backgroundPosition', pXY);	// firefox+chrome+safari
+			}
+			console.log($getStyle(zoomImg,'backgroundPosition'))
 		}
 		function hideZoom(i, event) {
+			console.log("hide")
 			$removeClass(imgZooms[i], 'show')
 			$removeClass(zoomImg, 'show')
 		}
