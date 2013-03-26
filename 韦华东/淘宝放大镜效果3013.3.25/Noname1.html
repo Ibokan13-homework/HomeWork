@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+<style>
+	#wrap{
+		width:200px;
+		height:149px;
+		margin:30px 0 0 100px;
+		float:left;
+		position:relative;
+		top:0;
+		left:0;
+		z-index:0;
+	}
+	#upper{
+		width:50px;
+		height:50px;
+		background:white;
+		opacity:0.5;
+		filter:alpha(opacity=50); 
+		position:absolute;
+		top:0;
+		left:0;
+		z-index:1;
+		display:none;
+		cursor:pointer;
+	}
+	#clearness{
+		width:125px;
+		height:125px;
+		overflow:hidden;
+		float:left;
+		margin:30px 0 0 100px;
+		position:relative;
+		top:0;
+		left:0;
+	}
+	#huge{
+		position:absolute;
+		top:0;
+		left:0;
+		display:none;
+	}
+	.clear{
+		clear:left;
+	}
+</style>
+<body>
+	<div id="wrap">
+		<img id="little" src="llittle.jpg" alt="death note" />
+		<div id="upper"></div>
+	</div>
+	<div id="clearness">
+		<img id="huge" src="L.jpg" alt="death note" />
+	</div>
+	<div class="clear"></div>
+	<script>
+		 var wraps=document.getElementById("wrap");
+		 var upper=document.getElementById("upper");
+		 var clearness=document.getElementById("clearness");
+		 var little=document.getElementById("little");
+		 var huge=document.getElementById("huge");
+		 little.onmouseover=function () {
+			
+		 }
+	</script>
+</body>
+</html>

@@ -72,8 +72,8 @@
 
 		 }
 		wraps.onmouseout=function () {
-			upper.style.display="none";
-			huge.style.display="none";
+			//upper.style.display="none";
+			//huge.style.display="none";
 		}
 			upper.onmousedown=function (event) {
 			//获取鼠标位置
@@ -89,7 +89,7 @@
 			//获取小框与大框的左距与上距
 			var upperL=upper.offsetLeft;
 			var upperT=upper.offsetTop;
-			upper.onmousemove=function (event) {
+			document.onmousemove=function (event) {
 				//获取鼠标终点位置
 				var event=event||window.event;
 				var mouseendx=event.clientX;
@@ -115,8 +115,8 @@
 				huge.style.left=-uppermovex*(huge.clientWidth/little.offsetWidth)+"px";
 			}
 		}
-		upper.onmouseup=function () {
-			upper.onmousemove=null;
+		document.onmouseup=function () {
+			document.onmousemove=null;
 		}
 	</script>
 </body>
