@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+
+<body>
+	<div id="showtime"></div>
+	<script>
+		var box=document.getElementById("showtime");
+		
+		function today() {
+			var now=new Date();//创建一个时间对象
+			var year=now.getYear();//获取年份，getFullYear为获取四位数的年份
+			var month=now.getMonth()+1;//获取月份0-11，所以加1
+			var date=now.getDate();//获取日期1-31
+			var hour=now.getHours();//获取当前小时
+			var minute=now.getMinutes();//获取当前分钟
+			var second=now.getSeconds();//获取当前秒数
+			//当时分秒小于10时，前面加0
+			var num;
+			function a(num) {
+				if (num<10) {
+					num="0"+num;
+				}
+				return num;
+			}
+			hour=a(hour);
+			minute=a(minute);
+			second=a(second);
+			//获取星期0-6
+			var day;
+			switch (now.getDay()) {
+			case 0:
+			day="星期天";
+			break;
+			case 1:
+			day="星期1";
+			break;
+			case 2:
+			day="星期2";
+			break;
+			case 3:
+			day="星期3";
+			break;
+			case 4:
+			day="星期4";
+			break;
+			case 5:
+			day="星期5";
+			break;
+			case 6:
+			day="星期6";
+			break;
+			}
+			box.innerHTML="TIME:"+year+"-"+month+"-"+date+"<br />"+day+"<br />"+hour+":"+minute+":"+second;
+		}
+		setInterval(today,1000);
+		//获取当前毫秒数
+		var misecond=now.getMilliseconds();
+		//获取从1970年1月1日开始的毫秒数
+		var time=now.getTime();
+	</script>
+</body>
+</html>
