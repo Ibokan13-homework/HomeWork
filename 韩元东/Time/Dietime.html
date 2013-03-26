@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<style>
+		input {
+			width: 50px;
+			text-align: center;
+		}
+		div {
+			width: 300px;
+		}
+		.hide {
+			display: none;
+		}
+
+	</style>
+</head>
+<body>
+	<p>请在下面输入框输入倒计时目标时间：</p>
+	<input type="text" id="year"><span>年</span>
+	<input type="text" id="mon"><span>月</span>
+	<input type="text" id="day"><span>日</span>
+	<input type="text" id="hour"><span>点</span>
+	<input type="text" id="min"><span>分</span>
+	<input type="text" id="sec"><span>秒</span>
+	<button id="start">开始倒计时</button>
+	<p id="nowTime" class="hide"></p>
+	<p id="result" class="hide">距离倒计时结束还有：<span id="timeDone"></span></p>
+	<script src="../js/kHelp-0.3.js"></script>
+	<script>
+		var inputs = $tag('input');
+		var year = $id('year'),
+			mon  = $id('mon'),
+			day  = $id('day'),
+			hour = $id('hour'),
+			min	 = $id('min'),
+			sec	 = $id('sec'),
+			start = $id('start'),
+			result = $id('result'),
+			nowTime = $id('nowTime');
+			timeDone = $id('timeDone');
+		var now = new Date();
+		start.year = now.getFullYear(),
+		start.mon  = now.getMonth() + 1,
+		start.day  = now.getDate(),
+		start.hour = now.getHours(),
+		start.min  = now.getMinutes(),
+		start.sec  = now.getSeconds();
+		setOldTime();
+		function runTime() {
+			start.sec += 1;
+			setOldTime();
+			start.T = setTimeout(runTime, 1000);
+		}
+		runTime();
+		function setOldTime() {
+			if ( start.sec >= 0 && start.sec <= 9 ) {
+				sec.value = '0' + start.sec;
+			}
+			else if ( start.sec >= 10 && start.sec <= 59 ) {
+				sec.value = start.sec;
+			}
+			else if ( start.sec >= 60 ) {
+				start.sec = 0;
+				sec.value = '00';
+				start.min += 1;
+				if ( start.min >= 0 && start.min <= 9 ) {
+					min.value = '0' + start.min;
+				}
+				else if ( start.min >= 10 && start.min <= 59 ) {
+					min.value = start.min;
+				}
+				else if ( start.min >= 60 ) {
+					start.min = 0;
+					min.value = '00';
+					start.hour += 1;
+					if ( start.hour >= 0 && start.hour <= 9 ) {
+						hour.value = '0' + start.hour;
+					}
+					else if ( start.hour >= 10 && start.hour <= 23 ) {
+						hour.value = start.hour;
+					}
+					else if ( start.hour >= 24 ) {
+						start.hour = 0;
+						hour.value = '00';
+						start.day += 1;
+						if ( start.day >= 0 && start.day <= 9 ) {
+							day.value = '0' + start.day;
+						}
+						else if ( start.day >= 10 && start.day <= 29 ) {
+							day.value = start.day;
+						}
+						else if ( start.day >= 30 ) {
+							start.day = 0;
+							day.value = '00';
+							start.mon += 1;
+							if ( start.mon >= 0 && start.mon <= 9 ) {
+								mon.value = '0' + start.mon;
+							}
+							else if ( start.mon >= 10 && start.mon <= 11 ) {
+								mon.value = start.mon;
+							}
+							else if ( start.mon >= 12 ) {
+								start.mon = 0;
+								mon.value = '00';
+								start.year += 1;
+								year.value = start.year;
+							}
+						}
+					}
+				}
+			}
+		}
+		setOldTimeFirst();
+		function setOldTimeFirst() {
+			if ( start.sec >= 0 && start.sec <= 9 ) {
+				sec.value = '0' + start.sec;
+			}
+			else if ( start.sec >= 10 && start.sec <= 59 ) {
+				sec.value = start.sec;
+			}
+			if ( start.min >= 0 && start.min <= 9 ) {
+				min.value = '0' + start.min;
+			}
+			else if ( start.min >= 10 && start.min <= 59 ) {
+				min.value = start.min;
+			}
+			if ( start.hour >= 0 && start.hour <= 9 ) {
+				hour.value = '0' + start.hour;
+			}
+			else if ( start.hour >= 10 && start.hour <= 23 ) {
+				hour.value = start.hour;
+			}
+			if ( start.day >= 0 && start.day <= 9 ) {
+				day.value = '0' + start.day;
+			}
+			else if ( start.day >= 10 && start.day <= 29 ) {
+				day.value = start.day;
+			}
+			if ( start.mon >= 0 && start.mon <= 9 ) {
+				mon.value = '0' + start.mon;
+			}
+			else if ( start.mon >= 10 && start.mon <= 11 ) {
+				mon.value = start.mon;
+			}
+			year.value = start.year;
+		}
+
+		// clear runTime
+		inputs.size = $size(inputs);
+		for ( var i = 0; i < inputs.size; i++ ) {
+			inputs[i].onfocus = (function(i) {
+				return function() {
+					console.log("onfocus")
+					clearTimeout(start.T)
+				}
+			})(i)
+		}
+		start.onclick = function() {
+			clearTimeout(start.T)
+			console.log(year.value)
+			$removeClass(result,'hide');
+			$removeClass(nowTime,'hide');
+			if ( start.year > year.value ) {
+				alert('您输入的年数小于'+start.year+'。请输入大于'+start.year+'的年数。')
+				year.value = start.year;
+				return;
+			} else {
+				console.log("年输入正确")
+				if ( start.mon > mon.value ) {
+					alert('您输入的月数小于'+start.mon+'。请输入大于'+start.mon+'的月数。')
+					if ( start.mon < 10 ) {
+						mon.value = '0'+start.mon;
+					} else {
+						mon.value = start.mon;
+					}
+					return;
+				}
+				else if ( mon.value > 12 ) {
+					alert('您输入的月数大于12。请输入小于的月数。')
+					if ( start.mon < 10 ) {
+						mon.value = '0'+start.mon;
+					} else {
+						mon.value = start.mon;
+					}
+					return;
+				} 
+				else {
+					console.log("月输入正确")
+					if ( start.day > day.value ) {
+						alert('您输入的天数小于'+start.day+'。请输入大于'+start.day+'的天数。')
+						if ( start.day < 10 ) {
+							day.value = '0'+start.day;
+						} else {
+							day.value = start.day;
+						}
+						return;
+					} 
+					else if ( day.value > 30 ) {
+						alert('您输入的天数大于30。请输入小于30的天数。')
+						if ( start.day < 10 ) {
+							day.value = '0'+start.day;
+						} else {
+							day.value = start.day;
+						}
+						return;
+					} 
+					else {
+						console.log("日输入正确")
+						if ( start.hour > hour.value ) {
+							alert('您输入的小时数小于'+start.hour+'。请输入大于'+start.hour+'的小时数。')
+							if ( start.hour < 10 ) {
+								hour.value = '0'+start.hour;
+							} else {
+								hour.value = start.hour;
+							}
+							return;
+						} 
+						else if ( hour.value > 24 ) {
+							alert('您输入的小时数大于24。请输入小于的24小时数。')
+							if ( start.hour < 10 ) {
+								hour.value = '0'+start.hour;
+							} else {
+								hour.value = start.hour;
+							}
+							return;
+						} 
+						else {
+							console.log("小时输入正确")
+							if ( start.min > min.value ) {
+								alert('您输入的分钟数小于'+start.min+'。请输入大于'+start.min+'的分钟数。')
+								if ( start.min < 10 ) {
+									min.value = '0'+start.min;
+								} else {
+									min.value = start.min;
+								}
+								return;
+							} 
+							else if ( min.value > 60 ) {
+								alert('您输入的分钟数大于60。请输入小于60的分钟数。')
+								if ( start.min < 10 ) {
+									min.value = '0'+start.min;
+								} else {
+									min.value = start.min;
+								}
+								return;
+							} 
+							else {
+								console.log("分钟输入正确")
+								if ( start.sec > sec.value ) {
+									alert('您输入的秒数小于'+start.sec+'。请输入大于'+start.sec+'的秒数。')
+									if ( start.sec < 10 ) {
+										sec.value = '0'+start.sec;
+									} else {
+										sec.value = start.sec;
+									}
+									return;
+								}
+								else if ( sec.value > 60 ) {
+									alert('您输入的秒数大于60。请输入小于60的秒数。')
+									if ( start.sec < 10 ) {
+										sec.value = '0'+start.sec;
+									} else {
+										sec.value = start.sec;
+									}
+									return;
+								}  
+								else {
+									console.log("秒输入正确")
+									start.Nyear = year.value = parseInt(year.value);
+									start.Nmon  = mon.value  = parseInt(mon.value);
+									start.Nday  = day.value  = parseInt(day.value);
+									start.Nhour = hour.value = parseInt(hour.value);
+									start.Nmin  = min.value  = parseInt(min.value);
+									start.Nsec  = sec.value  = parseInt(sec.value);
+								}
+							}
+						}
+					}
+				}
+			}
+			start.allTime =   start.sec  * 1000
+							+ start.min  * 60 * 1000
+							+ start.hour * 60 * 60 * 1000
+							+ start.day  * 24 * 60 * 60 * 1000
+							+ start.mon  * 30 * 24 * 60 * 60 * 1000
+							+ start.year * 12 * 30 * 24 * 60 * 60 * 1000;
+			// console.log(start.allTime);
+			start.NallTime =  start.Nsec  * 1000
+							+ start.Nmin  * 60 * 1000
+							+ start.Nhour * 60 * 60 * 1000
+							+ start.Nday  * 24 * 60 * 60 * 1000
+							+ start.Nmon  * 30 * 24 * 60 * 60 * 1000
+							+ start.Nyear * 12 * 30 * 24 * 60 * 60 * 1000;
+			// console.log(start.)
+
+			result.sec  = 1000;
+			result.min  = 60 * 1000;
+			result.hour = 60 * 60 * 1000;
+			result.day  = 24 * 60 * 60 * 1000;
+			result.mon  = 30 * 24 * 60 * 60 * 1000;
+			result.year = 12 * 30 * 24 * 60 * 60 * 1000;
+
+			result.allTime = start.NallTime - start.allTime;
+			console.log("result.allTime->"+result.allTime)
+
+			result.hourcount = parseInt(result.allTime/result.hour);
+			console.log("result.hourcount->"+result.hourcount);
+
+			result.hourother = result.allTime%result.hour;
+			console.log("result.hourother->"+result.hourother);
+
+			result.mincount  = parseInt(result.hourother/result.min);
+			console.log("result.mincount->"+result.mincount);
+
+			result.minother  = result.hourother%result.min;
+			console.log("result.minother->"+result.minother);
+
+			result.seccount  = result.minother/result.sec;
+			console.log("result.seccount->"+result.seccount);
+
+			console.log(result.hourcount+':'+result.mincount+':'+result.seccount);
+
+			timeDown();
+			// if ( result.allTime > result.hour ) {
+			// 	result.hourcount = parseInt(result.allTime/result.hour);
+			// 	result.allTime   = result.allTime%result.hour;
+			// 	if ( result.allTime === 0 ) {
+			// 		return;
+			// 	} else {
+			// 		result.mincount  = parseInt(result.allTime/60);
+			// 		if ( result.mincount)
+			// 	}
+				
+			// }
+			// start.target = start.year* +start.mon* +start.day* +start.hour* +start.min*100 +start.sec*1000
+		}
+		function timeDown() {
+			nowTime.innerHTML =   "您开始的时间是"
+								+ start.year + "年"
+								+ start.mon  + "月"
+								+ start.day  + "日"
+								+ start.hour + "点"
+								+ start.min  + "分"
+								+ start.sec  + "秒";
+			if ( result.allTime >= 1000 ) {
+				result.allTime -= 1000;
+			} else {
+				clearTimeout(result.T);
+				timeDone.innerHTML = result.hourcount+':'+result.mincount+':'+result.seccount;
+				runTime();
+				$addClass(nowTime,'hide')
+				return;
+			}
+			console.log("result.allTime->"+result.allTime)
+
+			result.hourcount = parseInt(result.allTime/result.hour);
+			console.log("result.hourcount->"+result.hourcount);
+
+			result.hourother = result.allTime%result.hour;
+			console.log("result.hourother->"+result.hourother);
+
+			result.mincount  = parseInt(result.hourother/result.min);
+			console.log("result.mincount->"+result.mincount);
+
+			result.minother  = result.hourother%result.min;
+			console.log("result.minother->"+result.minother);
+
+			result.seccount  = result.minother/result.sec;
+			console.log("result.seccount->"+result.seccount);
+
+			console.log(result.hourcount+':'+result.mincount+':'+result.seccount);
+			timeDone.innerHTML = result.hourcount+':'+result.mincount+':'+result.seccount;
+			
+			result.T = setTimeout(timeDown, 1000);
+		}
+
+	</script>
+</body>
+</html>
