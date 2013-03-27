@@ -11,7 +11,7 @@
 		var div=document.getElementById("div");
 		function a() {
 			var now=new Date();
-			var future=new Date(2014,0,3,12,30,30);
+			var future=new Date(2013,3,3,12,30,30);
 			var fu=future.getTime();
 			var nows=now.getTime();
 			var remain=fu-nows;
@@ -19,7 +19,7 @@
 			var hour=parseInt((remain%(24*3600*1000))/(3600*1000));
 			var minute=parseInt(((remain%(24*3600*1000))%(3600*1000))/(60*1000));
 			var second=parseInt((((remain%(24*3600*1000))%(3600*1000))%(60*1000))/1000);
-			div.innerHTML="距2014年1月3号12点30分30秒还有"+day+"天"+hour+"小时"+minute+"分"+second+"秒";
+			div.innerHTML="距2013年3月3号12点30分30秒还有"+day+"天"+hour+"小时"+minute+"分"+second+"秒";
 		}
 		setInterval(a,1000);
 	</script>
