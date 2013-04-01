@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+<style>
+	#box{
+		width:300px;
+		margin:200px auto 0;
+	}
+	#text{
+		width:180px;
+		height:20px;
+	}
+	#btn{
+		width:100px;
+		background-color:#999999;
+	}
+	#ol{
+		width:340px;
+		margin:0 auto;
+		list-style:none;
+	}
+	#ol li{
+		cursor:pointer;
+		width:187px;
+		border-left:1px solid red;
+		border-right:1px solid red;
+	}
+	.bg{
+		background-color:gray;
+	}
+	.nobg{
+		background-color:white;
+	}
+</style>
+<body>
+	<div id="box">
+		<input id="text" type="text" />
+		<input id="btn" type="button" value="百度一下" />
+	</div>
+	<ul id="ol"></ul>
+	<script>
+		//声明变量
+		var box=document.getElementById("box");
+		var text=document.getElementById("text");
+		var btn=document.getElementById("btn");
+		var ol=document.getElementById("ol");
+		//获取时间
+		var time=new Date().getTime();
+		//json外连接
+		var cont;
+		text.onkeyup=function () {
+			if (cont==text.value) {
+				return;
+			}else {
+				var script=document.createElement("script");
+				var keyword=text.value;
+				script.src="http://suggestion.baidu.com/su?wd="+keyword+"&p=3&cb=callback&from=superpage&t="+"time";
+				document.body.appendChild(script);
+				script.onload = function(){
+					document.body.removeChild(script);
+				}
+				cont=text.value;
+			}
+		}
+		//添加下拉框及文字
+		var n=0;
+		function callback(word) {
+			var temp="";
+			var con="";
+			var li="<li>{con}</li>";
+			for (var i=0; i<word.s.length; i++) {
+				temp+=li.replace(/{con}/ig,word.s[i]);
+			}
+			ol.innerHTML=temp;
+			//给下拉li加背景以及链接
+			for (var i=0; i<lis.length; i++) {
+				lis[i].onmouseover=function () {
+					for (var i=0; i<lis.length; i++) {
+						if (lis[i]==this) {
+							n = i;
+							this.onclick=function () {
+								location.href="http://www.baidu.com/s?wd="+this.innerHTML+"&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg&rsv_sug3=15&rsv_sug=0&rsv_sug1=14&rsv_sug4=1330&inputT=826725";
+							}
+							this.className="bg";
+							
+						}else {
+							lis[i].className="nobg";
+						}
+					}
+				}
+			}
+			//用上下键控制li上下选择
+			function down(event) {
+				
+				event=window.event||event;
+				if (window.event.keyCode==40) {
+					n++;
+					if (n==10) {
+					   n = 0;
+					}
+					for (var i=0; i<lis.length; i++) {
+						lis[i].className="nobg";
+						lis[n].className="bg";
+					}
+				}
+				if (window.event.keyCode==38) {
+					n--;
+					if (n==-1) {
+						n=9;
+					}
+					for (var i=0; i<lis.length; i++) {
+						lis[i].className="nobg";
+						lis[n].className="bg";
+					}
+				}
+			}
+			window.document.onkeydown=down;
+		}
+		
+		
+		
+		var lis=document.getElementById("ol").getElementsByTagName("li");
+		//关键字链接
+		function jump(keyword1) {
+			var keyword1=text.value;
+			location.href="http://www.baidu.com/s?wd="+keyword1+"&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg&rsv_sug3=15&rsv_sug=0&rsv_sug1=14&rsv_sug4=1330&inputT=826725";
+		}
+		//点击实现关键字搜索
+		btn.onclick=jump;
+		//回车实现关键字搜索
+		function changepage(event) {
+			event = window.event || event;
+			if(window.event.keyCode == 13) { 
+				jump();
+			} 
+		}
+		window.document.onkeydown=changepage;
+	</script>
+</body>
+</html>
