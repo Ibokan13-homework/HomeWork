@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+<body>
+	<div>
+		<div>
+			<span>one</span>
+			<span>two</span>
+			<span>three</span>
+			<div></div>
+		</div>
+		<div>
+			<div>one's content</div>
+			<div>two's content</div>
+			<div>three's content</div>
+		</div>
+	</div>
+	<script src=jquery.js></script>
+	<script>
+		$("div:first").css({"margin":"0 auto","width":"150px"})
+		$("body").css({"overflow":"hidden","zoom":1});
+		$("div div div:empty").css("clear","both");
+		var spans=$("div div span").css({
+								"width":"50px",
+								"height":"50px",
+								"background":"green",
+								"float":"left"
+		}),
+		divs=$("div div div:not(:empty)").css({
+								"width":"150px",
+								"height":"150px",
+								"background":"pink",
+								"display":"none"
+		});
+		$(divs[0]).css("display","block");
+		$(spans[0]).css("background","red");
+		$("div div span").click(function () {
+			$(this).css("background","red").siblings().css("background","green");
+			$(divs[$("div div span").index(this)]).show().siblings().hide();	
+		})
+	</script>
+</body>
+</html>
