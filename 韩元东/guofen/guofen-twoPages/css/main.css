@@ -1,0 +1,394 @@
+/* main.css @2013-4-7 kavin*/
+
+@charset "utf-8";
+
+html,body {
+	height: 100%;
+	overflow: hidden;
+}
+body {
+	width: 100%;
+	background-color: #dbdce1;
+}
+/* ######################## */
+/* ####### header ######### */
+/* ######################## */
+header {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	width: 100%;
+	height: 40px;
+}
+.h-bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	height: 40px;
+	background-color: black;
+	opacity: 0.3;
+	_filter: alpha(opacity=30);
+}
+.h-text, .h-btns { position: relative; left: 0; top: 0; z-index: 2; }
+.h-text {
+	float: left;
+	width: 206px;
+	height: 18px;
+	padding: 11px 0 0 20px;
+	text-indent: -300px;
+	overflow: hidden;
+}
+.h-text h1 { 
+	height: 18px; 
+	background: transparent url(../img/index-sprite.png) 0px -200px no-repeat; 
+	_background: transparent url(../img/ie6/header-text.png) 0px 0px no-repeat; 
+}
+.h-btns {
+	float: right;
+	width: 220px;
+	height: 32px;
+	padding-top: 8px;
+}
+.h-btns a {
+	float: left;
+}
+.h-btns a:link, .h-btns a:visited, .h-btns a:hover, .h-btns a:active { color: #f5eac1; }
+.wechat {
+	width: 26px;
+	height: 22px;
+	background: transparent url(../img/index-sprite.png) 0px -344px no-repeat;
+	_background: transparent url(../img/ie6/wechat.png) 0px 0px no-repeat; 
+}
+.sina {
+	width: 26px;
+	height: 22px;
+	margin: 0 20px 0 12px;
+	background: transparent url(../img/index-sprite.png) 0px -322px no-repeat;	
+	_background: transparent url(../img/ie6/sina.png) 0px 0px no-repeat; 
+}
+.fun-show {
+	width: 82px;
+	height: 26px;
+	line-height: 26px;
+	padding-left: 8px;
+	margin-top: -1px;
+	background: transparent url(../img/index-sprite.png) 0px -174px no-repeat;
+	_background: transparent url(../img/ie6/header-rbox.png) 0px 0px no-repeat; 
+	font-size: 14px;
+}
+
+/* ######################## */
+/* ####### conent ######### */
+/* ######################## */
+.content {
+	position: relative;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	min-width: 960px;
+	height: 100%;
+	margin: 0 auto;
+	/*background: #201b00 url(../img/bg-girl-b.jpg) 50% 50% no-repeat;*/
+	/*background-size: 100% 100%;*/
+}
+/*.content img { width: 1566px; height: 1256px; }*/
+.call {
+	position: absolute;
+	right: 50px;
+	top: 70px;
+	z-index: 1;
+	width: 132px;
+	height: 42px;
+	padding-left: 52px;
+	background: transparent url(../img/index-sprite.png) 0 -132px no-repeat;
+	_background: transparent url(../img/ie6/call.png) 0px 0px no-repeat; 
+}
+.call a {
+	display: block;
+	width: 100%;
+	line-height: 26px;
+	text-align: center;
+	font-size: 20px;
+}
+.call span {
+	display: block;
+	width: 100%;
+	line-height: 14px;
+	font-size: 12px;
+	text-align: center;
+}
+.call a:link, .call a:visited, .call a:hover, .call a:active { color: #d4c3a9; }
+.call span { color: #d4c3a9; }
+.c-btn-l, .c-btn-r {
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	margin-top: -25px;
+	cursor: pointer;
+}
+.c-btn-l {
+	left: 0;
+	width: 38px;
+	height: 45px;
+	padding: 5px 0 0 12px;
+}
+.c-btn-r {
+	right: 0;
+	width: 34px;
+	height: 45px;
+	padding: 5px 0 0 16px;
+}
+.c-btn-l .c-btn { 
+	background: transparent url(../img/index-sprite.png) 0px -52px no-repeat; 
+	_background: transparent url(../img/ie6/btn-l.png) 0px 0px no-repeat; 
+}
+.c-btn-r .c-btn { 
+	background: transparent url(../img/index-sprite.png) 0px -92px no-repeat; 
+	_background: transparent url(../img/ie6/btn-r.png) 0px 0px no-repeat; 
+}
+.c-btn-bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50px;
+	height: 50px;
+	z-index: 1;
+	opacity: 0.2;
+	_filter: alpha(opacity=20);
+	background-color: white;
+}
+.c-btn {
+	position: relative;
+	top: 0;
+	z-index: 2;
+	display: block;
+	width: 20px;
+	height: 40px;
+	cursor: pointer;
+}
+.c-btn-l .c-btn { left: 0; }
+.c-btn-r .c-btn { right: 0; }
+/* ######################## */
+/* ####### footer ######### */
+/* ######################## */
+footer {
+	position: absolute;
+	left: 0;
+	bottom: 2%;
+	z-index: 2;
+	width: 100%;
+	height: 96px;
+}
+.logo {
+	width: 182px;
+	margin: 0 auto;
+	text-align: center;
+}
+.l-text {
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+}
+.l-text span {
+	float: left;
+	width: 170px;
+	line-height: 38px;
+	color: #e4dad2;
+	text-align: center;
+}
+.l-text .copy {
+	width: 12px;
+	line-height: 36px;
+	font-size: 10px;
+}
+.phones {
+	position: absolute;
+	right: 0;
+	bottom: 5%;
+	z-index: 1;
+	width: 370px;
+	height: 76px;
+}
+.phones a {
+	position: relative;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	float: left;
+	text-align: center;
+}
+.phones a:link, .phones a:visited, .phones a:hover, .phones a:active { color: #dad7d5; }
+.pho_bg {
+	display: block;
+	height: 52px;
+}
+.pho_text {
+	position: absolute;
+	left: -14px;
+	top: 55px;
+	z-index: 1;
+	width: 80px;
+}
+.appstore .pho_bg {
+	width: 36px;
+	background: transparent url(../img/index-sprite.png) 0 -218px no-repeat;
+	_background: transparent url(../img/ie6/iphone.png) 0 0 no-repeat; 
+}
+.appstore .pho_text { left: -22px;}
+.android { margin: 0 60px;}
+.android .pho_bg {
+	width: 46px;
+	background: transparent url(../img/index-sprite.png) 0 0 no-repeat;
+	_background: transparent url(../img/ie6/android.png) 0 0 no-repeat; 
+}
+.android .pho_text { left: -18px;}
+.qr .pho_bg {
+	width: 52px;
+	background: transparent url(../img/index-sprite.png) 0 -270px no-repeat;
+	_background: transparent url(../img/ie6/qr.png) 0 0 no-repeat; 
+}
+/* ######################## */
+/* ####### show.html ###### */
+/* ######### show ######### */
+/* ######################## */
+.show {
+	position: relative;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background: transparent url(../img/show-bg.gif) 0 0;
+}
+.play {
+	position: absolute;
+	left: 15%;
+	top: 90px;
+	z-index: 1;
+	width: 190px;
+}
+.play h1 {
+	line-height: 40px;
+	color: white;
+	font-size: 30px;
+	font-weight: bold;
+}
+.play h1 span {
+	color: white;
+	font-size: 24px;
+}
+.p-box {
+	position: relative;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	width: 160px;
+	height: 120px;
+	/*margin: 0 auto;*/
+}
+.p-bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	opacity: 0.1;
+}
+.p-btn {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+	width: 44px;
+	height: 44px;
+	margin: -33px 0 0 -22px;
+	background: transparent url(../img/btn-play.png) 0 0 no-repeat;
+	cursor: pointer;
+}
+.p-text {
+	position: absolute;
+	left: 59px;
+	top: 76px;
+	z-index: 1;
+	font-size: 10px;
+	color: #b35c1f;
+	-webkit-text-size-adjust: none;
+}
+.s-video {
+	position: absolute;
+	left: 50%;
+	top: 40px;
+	z-index: 1;
+	width: 400px;
+	height: 400px;
+	margin-left: -200px;
+	display: none;
+}
+section {
+	position: relative;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	width: 380px;
+	height: 250px;
+	padding-left: 580px;
+	margin: 0 auto;
+	background: transparent url(../img/footer-bg.gif) 0 bottom repeat-x;
+}
+article {
+	padding-top: 30px;
+}
+article h1 {
+	height: 40px;
+	text-indent: -300px;
+	overflow: hidden;
+	background: transparent url(../img/weidao.jpg) 0 0 no-repeat;
+}
+article p {
+	line-height: 26px;
+	color: #5e5d5d;
+}
+article h2 {
+	line-height: 44px;
+	font-size: 20px;
+	color: #666666;
+}
+.show-slide {
+	position: absolute;
+	left: 0;
+	top: -108px;
+	z-index: 1;
+	width: 164px;
+	height: 288px;
+	padding: 62px 0 0 14px;
+	background: transparent url(../img/iphone-big.png);
+}
+.slide-screen {
+	width: 152px;
+	height: 226px;
+	overflow: hidden;
+}
+.sliding {
+	width: 1216px;
+}
+.sliding li {
+	float: left;
+	width: 152px;
+	height: 226px;
+}
+.sliding img {
+	width: 100%;
+	height: 100%;
+}
+.l-text-show span {
+	color: #424242;
+}
+.s-footer {
+	bottom: -68px;
+}
