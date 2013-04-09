@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+	<style>
+		*{
+			padding:0;
+			margin:0;
+			border:none;
+		}
+		html{
+			width:100%;
+			height:100%;
+		}
+		body{
+			width:100%;
+			height:100%;
+		}
+		.wrap{
+			width:100%;
+			height:100%;
+			min-width:1110px;
+			min-height:400px;
+			_width:expression(document.body.clientWidth<1110?"1110px":"auto" );
+			background:black url(images/index-bg.jpg) center center no-repeat;
+			position:relative;
+			top:0;
+			left:0;
+		}
+		.nav{
+			min-width:1110px;
+			_width:expression(document.body.clientWidth<1110?"1110px":"auto" );
+			height:56px;
+			background:black;
+			opacity:0.5;
+			filter:alpha(opacity=50);
+		}
+		.logotext{
+			position:absolute;
+			top:14px;
+			left:26px;
+		}
+		.sina{
+			position:absolute;
+			top:14px;
+			right:237px;
+		}
+		.tecent{
+			position:absolute;
+			top:14px;
+			right:296px;
+		}
+		.block{
+			position:absolute;
+			top:7px;
+			right:66px;
+		}
+		.sin{
+			position:absolute;
+			top:23px;
+			right:76px;
+		}
+		.function{
+			font-size:20px;
+			color:#f5eac1;
+			font-family:微软雅黑;
+			width:90px;
+			height:25px;
+			position:absolute;
+			top:13px;
+			right:97px;
+		}
+		.tele{
+			position:absolute;
+			top:110px;
+			right:263px;
+		}
+		.num{
+			font-size:24px;
+			color:#d4c3a9;
+			font-family:微软雅黑;
+			position:absolute;
+			top:117px;
+			right:68px;
+		}
+		.time{
+			font-size:14px;
+			color:#d4c3a9;
+			font-family:微软雅黑;
+			position:absolute;
+			top:152px;
+			right:72px;
+		}
+		.weixin{
+			position:absolute;
+			right:78px;
+			bottom:100px;
+		}
+		.weixin-word{
+			font-size:20px;
+			color:#d8d4d0;
+			font-family:微软雅黑;
+			position:absolute;
+			bottom:64px;
+			right:67px;
+		}
+		.android{
+			position:absolute;
+			bottom:100px;
+			right:215px;
+		}
+		.android-w{
+			font-size:20px;
+			color:#d8d4d0;
+			font-family:微软雅黑;
+			position:absolute;
+			bottom:64px;
+			right:205px;
+		}
+		.iphone{
+			position:absolute;
+			bottom:100px;
+			right:348px;
+		}
+		.iphone-w{
+			font-size:20px;
+			color:#d8d4d0;
+			font-family:微软雅黑;
+			position:absolute;
+			bottom:62px;
+			right:318px;
+		}
+		.bottom{
+			width:100%;
+			min-width:1110px;
+			_width:expression(document.body.clientWidth<1110?"1110px":"auto" );
+			text-align:center;
+			position:absolute;
+			bottom:64px;
+		}
+		.btm-word .bottom-logo{
+			width:78px;
+			height:78px;	
+		}
+		.btm-word{
+			font-size:20px;
+			color:#d8d4d0;
+			font-family:微软雅黑;
+			text-align:center;
+			margin-top:5px;
+		}
+		.btm-word span{
+			font-size:12px;
+			color:#d8d4d0;
+			font-family:微软雅黑;
+		}
+	</style>
+	<!--[if IE 6]>
+		<script src="DD_belatedPNG.js"></script>
+		<script> DD_belatedPNG.fix('*');</script>	
+	<![endif]--> 
+	<!--[if lt IE 7]>
+		<script src="pngopacity.js"></script>
+		<script type="text/javascript">
+			DD_belatedPNG.fix('*');
+		</script> 
+	<![endif]-->
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="nav"></div>
+		<a href="#"><img class="logotext" src="images/index-guofen.png" alt="advertisement" /></a>
+		<a href="#"><img class="sina" src="images/sina.png" alt="tecent" /></a>
+		<a href="#"><img class="tecent" src="images/weixin.png" alt="sina" /></a>
+		<img class="block" src="images/index-kuang.png" alt="block" />
+		<a href="#"><img class="sin" src="images/index-sin.png" alt="sin" /></a>
+		<a href="#"><div class="function">功能展示</div></a>
+		<img class="tele" src="images/tel1.png" alt="telephone" />
+		<div class="num">400-077-5330</div>
+		<div class="time">周一到周日 9:00- 22:00</div>
+		<img class="weixin" src="images/index-weixi.png" alt="二维码" />
+		<div class="weixin-word">扫描二维码</div>
+		<a href="#"><img class="android" src="images/index-android.png" alt="安卓用户" /></a>
+		<div class="android-w">Android</div>
+		<a href="#"><img class="iphone" src="images/index-iphone.png" alt="app store" /></a>
+		<div class="iphone-w">App Store</div>
+		<div class="bottom">
+			<a href="#"><img class="bottom-logo" src="images/index-kitchen.png" alt="logo" /></a>
+			<div class="btm-word"><span>&copy</span> 2013&nbsp北京果粉科技有限公司</div>
+		</div>
+	</div>
+</body>
+</html>
