@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title></title>
+	<title>详情页</title>
 	<meta charset='utf-8' />
 	<style>
 		*{
@@ -195,6 +195,29 @@
 		.con .con-bottom-right{
 			float:left;
 		}
+		.video-block{
+			width:500px;
+			height:500px;
+			margin:0 auto;
+			z-index:10;
+			display:none;
+		}
+		.click-bg{
+			width:295px;
+			height:203px;
+			background-color:white;
+			opacity:0.2;
+			filter:alpha(opacity=20);
+			position:absolute;
+			top:205px;
+			left:205px;
+		}
+		.click-btn{
+			position:absolute;
+			top:270px;
+			left:317px;
+			cursor:pointer;
+		}
 	</style>
 </head>
 
@@ -207,7 +230,11 @@
 		<img class="block" src="images/index-kuang.png" alt="block" />
 		<a href="#"><img class="sin" src="images/index-sin.png" alt="sin" /></a>
 		<a href="#"><div class="function">功能展示</div></a>
-		<embed src="http://player.youku.com/player.php/sid/XNDU1NzYwMzk2/v.swf" quality="high" width="500" height="500" align="middle" allowscriptaccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash">
+		<div id="video-block" class="video-block">
+			<embed src="http://player.youku.com/player.php/sid/XNDU1NzYwMzk2/v.swf" quality="high" width="700" height="500" align="middle" allowscriptaccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash">
+		</div>
+		<div id="clickbg" class="click-bg"></div>
+		<img id="click-btn" class="click-btn" src="images/det-startbtn.png" alt="video-button" title="video" />
 	</div>
 	<div class='content'>
 		<div class='con'>
@@ -216,14 +243,14 @@
 					<div class="phone-con" id="phoneCon">
 						<img src="images/det-phone-nav.png" alt="" id="nav"/>
 						<div class="phoneMain" id="phoneMain">
-							<img src="images/det-img1.jpg" alt="" />
-							<img src="images/det-img2.jpg" alt="" />
-							<img src="images/det-img3.jpg" alt="" />
-							<img src="images/det-img4.jpg" alt="" />
-							<img src="images/det-img5.jpg" alt="" />
-							<img src="images/det-img6.jpg" alt="" />
-							<img src="images/det-img7.jpg" alt="" />
-							<img src="images/det-img8.jpg" alt="" />
+							<img src="images/det-img1.jpg" alt="picture" />
+							<img src="images/det-img2.jpg" alt="picture" />
+							<img src="images/det-img3.jpg" alt="picture" />
+							<img src="images/det-img4.jpg" alt="picture" />
+							<img src="images/det-img5.jpg" alt="picture" />
+							<img src="images/det-img6.jpg" alt="picture" />
+							<img src="images/det-img7.jpg" alt="picture" />
+							<img src="images/det-img8.jpg" alt="picture" />
 						</div>
 					</div>
 				</div>
@@ -231,7 +258,6 @@
 				<div class='phone_line'></div>
 				<div class='circle'><img src='images/det-circle.png' alt='list' title='list' /></div>
 			</div>
-			
 			<div class="right">
 				<h3>
 					<img src="images/det-weidao.gif" alt="" />
@@ -254,7 +280,7 @@
 		</div>
 	</div>
 	<!--[if lt IE 7]>
-	<script src="pngopacity.js"></script>
+	<script src="DD_belatedPNG.js"></script>
 	<script type="text/javascript">
 		DD_belatedPNG.fix('*');
 	 </script> 
@@ -269,6 +295,9 @@
 		var phoneMain=document.getElementById("phoneMain");
 		var imgs=phoneMain.getElementsByTagName("img");
 		var phoneCon=document.getElementById("phoneCon");
+		var videobtn=document.getElementById("click-btn");
+		var videoblock=document.getElementById("video-block");
+		var clickbg=document.getElementById("clickbg");
 		var index=0;
 		setInterval(function(){
 				index++;
@@ -277,6 +306,34 @@
 					index=0;
 				}
 			},3000)	;
+		var showed = false;
+		videobtn.onclick=function (event) {
+			var event=window.event||event;
+			event.stopPropagation();
+			if (!showed) {
+				videoblock.style.display="block";
+				videobtn.style.display="none";
+				clickbg.style.display="none";
+				showed =true;
+			}
+		}
+		
+		function hasChild(p,s) {
+			while (s && s != p){s = s.parentNode;}
+			return s === p;
+		}
+		document.onclick = function(event){
+			if (showed) {
+				var e= window.event||event;
+				var t = e.target||e.srcElement;
+				if (!hasChild(videoblock,t)) {
+					videoblock.style.display="none";
+					videobtn.style.display="block";
+					clickbg.style.display="block";
+				}
+				showed = false;
+			}	
+		}
 	</script>
 </body>
 </html>
