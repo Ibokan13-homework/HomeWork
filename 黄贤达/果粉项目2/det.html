@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+	<title>功能页</title>
+	<meta charset='utf-8' />
+	<link rel="stylesheet" type="text/css" href="css.css" />
+	<!--[if lt IE 7]>
+	<script src="pngopacity.js"></script>
+	<script type="text/javascript">
+		DD_belatedPNG.fix('*');
+	 </script> 
+	<![endif]-->
+</head>
+
+<body id="det">
+	<div class="in-tog">
+	</div>
+	<div class="in-to">
+		<div class="in-tcon">
+			<div class="in-logo">
+				<a href="index.html">
+					<img src="images/logo.png" alt="首页" title="果粉厨房"/>
+				</a>
+			</div>
+			<div class="in-api">
+				<span class="in-app">
+					<a href="#">
+						<img src="images/weixin.png" alt="微信" title="微信入口"/>
+					</a>				
+					<a href="#">
+						<img src="images/sina.png" alt="新浪" title="新浪入口"/>
+					</a>
+				</span>													
+				<div>
+					<a href="det.html" class="in-next">功能展示
+						<img src="images/index-sin.png" alt="功能展示" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="head">
+		<div class="head-cont">
+			<div class="head-play-out">
+				<div class="head-play" id="head-play">
+					<embed src="http://player.youku.com/player.php/sid/XNDU1NzYwMzk2/v.swf" quality="high" width="500" height="500" align="middle" allowscriptaccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash">
+				</div>	
+			</div>
+			<div class="head-word">
+				<span class="head-word1">思念,</span>
+				<span class="head-word2">一直都在!</span>
+			</div>
+			<div class="head-video" id="head-video"></div>
+			<img src="images/det-startbtn.png" alt="视频播放" class="head-video-btn" id="head-video-btn"/>				
+			<span class="head-video-word">点击播放</span>
+		</div>		
+	</div>
+	<div class='content'>
+		<div class='con'>
+			<div class='left'>
+				<div class="phone">
+					<div class="phone-con" id="phoneCon">
+						<img src="images/det-phone-nav.jpg" alt="" id="nav"/>
+						<div class="phoneMain" id="phoneMain">
+							<img src="images/det-pic1.jpg" alt="" />
+							<img src="images/det-pic2.jpg" alt="" />
+							<img src="images/det-pic3.jpg" alt="" />
+							<img src="images/det-pic4.jpg" alt="" />
+							<img src="images/det-pic5.jpg" alt="" />
+							<img src="images/det-pic6.jpg" alt="" />
+							<img src="images/det-pic7.jpg" alt="" />
+							<img src="images/det-pic8.jpg" alt="" />
+						</div>
+					</div>
+				</div>
+				<div class='phonebg'></div>
+				<div class='phone_line'></div>
+				<div class='circle'><img src='images/det-circle.png' alt='list' title='list' /></div>
+			</div>			
+			<div class="right">
+				<h3>
+					<img src="images/det-weidao.gif" alt="" />
+				</h3>
+				<ul>
+					<li>一种味道，两地相思</li>
+					<li>一头是母亲，一头是我</li>
+					<li>多想，多想</li>
+					<li>每天都能吃到妈妈做的饭！</li>
+				</ul>
+				<span>果粉厨房，专业提供最值得思念的味道！</span>
+			</div>
+			<div class="bottom">
+				<img src="images/det-icon.gif" alt="果粉厨房" />
+				<div class="con-bottom">
+					<span class="con-bottom-left">&copy</span>
+					<span class="con-bottom-right">2013 北京果粉科技有限公司</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--[if lt IE 7]>
+	<script src="pngopacity.js"></script>
+	<script type="text/javascript">
+		DD_belatedPNG.fix('*');
+	 </script> 
+	<![endif]-->
+	<script src="lib.js"></script>
+	<script src="tween.js"></script>
+	<script src="jquery.js"></script>
+	<script type="text/javascript">
+		var ph=document.getElementById("phoneCon");
+		var inn=0;
+		$("#phoneCon").ready(setInterval(function(){
+			inn++;
+			startMove(ph,"scrollLeft",inn*235);
+			if(inn==7){
+				inn=0;
+			}
+		},3000));
+		$(function () {
+			$(".head-video-btn").click(function (e) {
+				e.stopPropagation();
+				$(".head-play").fadeIn(500);
+			});
+			$(document).click(function (e) {				
+					$(".head-play").fadeOut(500);
+			})
+		});	
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title>果粉功能展示</title>
+	<meta name="description" content="果粉功能展示" />
+</head>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		#det .content{
+			width:100%;
+			background:url(images/det-conbg.gif) 0 0 repeat;
+		}
+		#det .con{
+			width:1210px;
+			height:528px;
+			margin:0 auto;
+			position:relative;
+			top:0;
+			left:0;
+		}
+		#det .con .left .phone{
+			background:url(images/det-phone.png);
+			width:274px;
+			height:440px;
+			padding-top:96px;
+			position:absolute;
+			bottom:118px;
+			left:81px;
+			z-index:3;
+		}		
+		#det .con .left .phone .phone-con{
+			width:235px;
+			height:345px;
+			margin:0 20px;
+			overflow:hidden;
+			border:1px solid black;
+		}
+		#det .con .left .phone .phone-con #nav{
+			position:absolute;
+			left:20px;
+			top:98px;
+		}
+		#det .con .left .phone .phone-con .phoneMain{
+			width:1880px;
+			height:345px;
+		}
+		#det .con .left .phone .phone-con .phoneMain img{
+			width:235px;
+			height:345px;
+			cursor:pointer;
+			float:left;
+		}
+		#det .con .left .circle{
+			width:269px;
+			height:269px;
+			position:absolute;
+			left:341px;
+			bottom:268px;
+			z-index:4;
+		}
+		#det .con .phone_line{
+			width:1208px;
+			height:12px;
+			position:absolute;
+			left:2px;
+			bottom:113px;
+			z-index:1;
+			_font-size:1px;
+			background:url(images/det-phoneline.gif) 0 0 repeat-x;	
+		}
+		#det .con .left .phonebg{
+			width:251px;
+			height:7px;
+			position:absolute;
+			left:94px;
+			bottom:114px;
+			_font-size:1px;
+			z-index:2;
+			background:url(images/det-phonebg.gif) 0 0 no-repeat;
+		}
+		#det .con .right{
+			width:385px;
+			height:270px;
+			color:#666;
+			position:absolute;
+			left:825px;
+			bottom:155px;
+		}
+		#det .con .right h3{
+			margin:20px 0;
+		}
+		#det .con .right ul{
+			list-style-type:none;
+			padding:0;
+			font-size:17px;
+		}
+		#det .con .right ul li{
+			height:30px;
+			line-height:30px;
+		}
+		#det .con .right span{
+			display:block;
+			font-size:20px;
+			margin-top:30px;
+			font-family:"微软雅黑";
+		}
+		#det .con .bottom{
+			width:300px;
+			height:100px;
+			text-align:center;
+			position:absolute;
+			bottom:3px;
+			left:450px;
+		}
+		#det .con .con-bottom{
+			width:300px;
+			height:20px;
+			line-height:20px;
+			margin-top:2px;
+			color:#424242;
+			font-size:16px;
+			font-family:"微软雅黑";
+			overflow:hidden;
+			zoom:1;
+		}
+		#det .con .con-bottom .con-bottom-left{
+			float:left;
+			font-size:10px;
+			margin-left:40px;
+		}
+		#det .con .con-bottom-right{
+			float:left;
+		}
+	</style>
+<body id="det">
+	<div class='content'>
+		<div class='con'>
+			<div class='left'>
+				<div class="phone">
+					<div class="phone-con" id="phoneCon">
+						<img src="images/det-phone-nav.png" alt="" id="nav"/>
+						<div class="phoneMain" id="phoneMain">
+							<img src="images/det-img1.jpg" alt="" />
+							<img src="images/det-img2.jpg" alt="" />
+							<img src="images/det-img3.jpg" alt="" />
+							<img src="images/det-img4.jpg" alt="" />
+							<img src="images/det-img5.jpg" alt="" />
+							<img src="images/det-img6.jpg" alt="" />
+							<img src="images/det-img7.jpg" alt="" />
+							<img src="images/det-img8.jpg" alt="" />
+						</div>
+					</div>
+				</div>
+				<div class='phonebg'></div>
+				<div class='phone_line'></div>
+				<div class='circle'><img src='images/det-circle.png' alt='list' title='list' /></div>
+			</div>
+			
+			<div class="right">
+				<h3>
+					<img src="images/det-weidao.gif" alt="" />
+				</h3>
+				<ul>
+					<li>一种味道，两地相思</li>
+					<li>一头是母亲，一头是我</li>
+					<li>多想，多想</li>
+					<li>每天都能迟到妈妈做的饭！</li>
+				</ul>
+				<span>果粉厨房，专业提供最值得思念的味道！</span>
+			</div>
+			<div class="bottom">
+				<img src="images/det-icon.gif" alt="果粉厨房" />
+				<div class="con-bottom">
+					<span class="con-bottom-left">&copy</span>
+					<span class="con-bottom-right">2013 北京果粉科技有限公司</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+<!--[if lt IE 7]>
+	<script src="pngopacity.js"></script>
+	<script type="text/javascript">
+		DD_belatedPNG.fix('*');
+	 </script> 
+<![endif]-->
+	<script src="lib.js"></script>
+	<script src="tween.js"></script>
+	<script type="text/javascript">
+		var phoneMain=document.getElementById("phoneMain");
+		var imgs=phoneMain.getElementsByTagName("img");
+		var phoneCon=document.getElementById("phoneCon");
+		var index=0;
+		setInterval(function(){
+				index++;
+				startMove(phoneCon,"scrollLeft",index*235);
+				if(index==imgs.length-1){
+					index=0;
+				}
+			},3000)	;
+	</script>
+	
+</body>
+</html>

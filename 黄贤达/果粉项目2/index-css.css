@@ -1,0 +1,270 @@
+*{margin:0;padding:0;border:0;}
+html{height:100%;}
+#index {width:100%;height:100%;overflow:hidden;}
+#index .child{
+	position:relative;
+	width:100%;
+	height:100%;
+}
+a{text-decoration:none;}
+#index .all{
+	background-position: center center;
+	position:absolute;
+	font-size:14px;
+	line-height:20px;
+	color: #1E1C1C;
+	font-family:"微软雅黑";
+	width:100%;
+	height:100%;
+}
+#index .in-tol{
+	width:100%;
+	height:100%;
+	position:absolute;
+	background:url(images/index-bg.jpg) no-repeat center center;	
+	background-attachment: fixed;
+}
+#index .in-Bg{
+	width:100%;
+	position:absolute;
+}
+#index .in-to{
+	width:100%;
+	height:55px;	
+	position:absolute;
+	z-index:100;
+}
+#index .in-tcon{
+	width:88.235%;
+	margin:0 auto;
+}
+#index .in-tog{
+	position:absolute;
+	background-color:#000000;
+	opacity:0.5;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity:0.5;
+	width:100%;
+	height:55px;
+	top:0;
+	overflow:hidden;
+	height:55px;
+	z-index:5;
+	font-family:"微软雅黑";
+}
+#index .in-logo{
+	float:left;
+	margin-top:13px;
+	background:url(images/white.png) no-repeat 156px 3px;			
+	height:55px;
+	width:344px;
+}
+#index .in-logo a{
+	padding-left:27px;
+}
+#index .in-api{
+	float:right;
+	overflow:hidden;
+	width:280px;
+}
+
+#index .in-app{
+	float:left;
+	padding-right:29px;		
+}
+#index .in-app img{
+	width:39px;
+	height:31px;
+}
+#index .in-api div{
+	float:right;
+	border:2px solid #48474b;
+	border-radius:3px;
+	width:130px;
+	height:37px;
+	text-align:center;
+	margin-top:8px;
+			
+}
+
+#index .in-api img{
+	padding:13px 15px 0 0;
+}
+#index .in-next{
+	line-height:40px;
+	text-decoration:none;
+	color:#f5eac1;
+	font-size:18px;
+	text-align:center;
+	padding-left:15px;
+}
+#index .in-tell{
+	background:url(images/tel1.png) no-repeat 15px 11px;
+	position:absolute;
+	top:110px;
+	right:90px;
+	padding:9px 0 9px 4px;
+	color:#d4c3a9;
+	width:245px;
+	height:68px;
+	overflow:hidden;
+}
+#index .in-tell img{
+	width:57px;
+	height:58px;
+	float:left;
+}
+#index .in-tell h5{
+	font-size:24px;
+	font-weight:normal;
+	padding-bottom:12px;
+	padding-top:10px;
+	width:162px;
+	float:right;
+}
+#index .in-tell span{	
+	font-size:15px;
+	float:right;
+}
+#index .in-left{
+	position:absolute;
+	width:84px;
+	height:90px;
+	top:50%;
+	left:0;
+	background-color:white;
+	opacity:0.3;
+	filter:alpha(opacity=30);
+	-moz-opacity:0.3;
+	-khtml-opacity:0.3;
+	overflow:hidden;
+}
+#index .in-l{
+	width:84px;
+	height:90px;
+	background:url(images/left.png) no-repeat 18px 13px;
+	cursor:pointer;
+	position:absolute;
+	top:50.5%;
+}
+#index .in-right{
+	position:absolute;
+	opacity:0.3;
+	filter:alpha(opacity=30);
+	-moz-opacity:0.3;
+	-khtml-opacity:0.3;
+	background-color:white;
+	width:84px;
+	height:90px;
+	top:50%;
+	right:0;
+	overflow:hidden;
+}
+#index .in-r{
+	position:absolute;
+	width:94px;
+	height:90px;
+	background:url(images/right.png) no-repeat 28px 13px;
+	cursor:pointer;
+	right:-7px;
+	top:50.5%;
+}
+#index .index-footer{
+	position:absolute;
+	bottom:10px;
+	width:100%;
+	z-index:10;
+}
+.index-kitchen{
+	float:left;
+	width:100%;
+	overflow:hidden;
+}
+.index-kitchen div{
+	width:276px;
+	height:111px;
+	margin:0 auto;
+}
+.index-kitchen img{
+	display:block;
+	width:78px;
+	height:78px;
+	margin:0 auto 14px;
+}
+.index-kitchen span{
+	color:white;
+	display:block;
+	font-size:18px;
+	text-align:center;
+}
+
+.index-footer{
+	overflow:hidden;
+	zoom:1;
+}
+.index-store{
+	float:left;
+	width:345px;
+	margin-left:-410px;	
+	width:345px;
+	overflow:hidden;
+	display:inline;
+	zoom:1;
+}
+.index-store div{
+	float:right;
+}
+.index-iphone,.index-android,.index-er{
+	width:115px;
+	height:108px;
+}
+.index-iphone-img,.index-android-img,.index-er-img{
+	display:block;
+	margin:0 auto 14px;
+	height:74px;
+	width:47px;
+}
+.index-android-img{
+	height:74px;
+	width:62px;
+}
+.index-er-img{
+	height:74px;
+	width:74px;
+}
+
+.index-iphone-img img,.index-android-img img,.index-er-img img{
+	border:none;
+}
+
+
+.index-iphone-text,.index-android-text,.index-er-text{
+	display:block;
+	margin:0 auto;
+	width:81px;
+	text-decoration:none;
+	text-align:center;
+
+}
+.index-android-text{
+	width:63px;
+}
+.index-er-text{
+	width:90px;
+}
+.index-iphone-text span,.index-android-text span,.index-er-text span{
+	color:white;
+	font-size:16px;
+	text-align:center;
+}
+@media only screen and (max-width:900px) {
+	#index .in-tol {
+		width: 900px;
+	}
+}
+@media only screen and (min-height:700px) {
+	#index .in-tol {
+		height:700px;
+	}
+}
