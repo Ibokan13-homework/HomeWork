@@ -1,0 +1,205 @@
+.index-bg{
+	/*width:100%;*/
+	height:100%;
+	background:url('../images/index-bg.jpg') center center no-repeat;
+	position:relative;
+}
+body{
+	height:100%;
+}
+html{
+	height:100%;
+}
+
+.index-logo{
+	width:100%;
+	height:55px;
+	background:black;
+	opacity:0.5;
+	line-height:55px;
+	overflow:hidden;
+	/*padding-top:15px;*/
+	/*padding-left:50px;*/
+	line-height:55px;
+	/*position:absolute;*/
+	left:0;
+	top:0;
+	z-index:2;
+	
+}
+.index-logoover{
+	position:absolute;
+	top:0px;
+	left:0px;
+	height:55px;
+	overflow:hidden;
+	padding-left:50px;
+
+	
+}
+.index-logo1{
+	width:305px;
+	/*height:55px;*/
+	/*height:55px;*/
+	float:left;
+	/*line-height:55px;*/
+	/*height:55px;*/
+	padding-top:12px;
+}
+.index-weixin{
+	width:54px;
+	height:55px;
+	padding-top:12px;
+	float:left;
+	margin-left:700px;
+}
+.index-sina{
+	width:54px;
+	height:55px;
+	padding-top:12px;
+	float:left;
+	margin-left:8px;
+}
+.index-func{
+	width:100px;
+	height:37px;
+	border:2px solid #48474b;
+	border-radius:3px;
+	float:left;
+	line-height:37px;
+	margin-top:10px;
+	padding-left:15px;
+}
+.index-func span{
+	font-size:18px;
+	color:#f5eac1;
+}
+.callnum{
+	width:246px;
+	height:58px;
+	background:url('../images/tel1.png') left 0 no-repeat;
+	position:absolute;
+	top:110px;
+	right:100px;
+	padding-left:65px;
+}
+.callnum h3{
+	font-size:24px;
+	/*padding-left:100px;*/
+	color:#d4c3a9;
+
+}
+.callnum span{
+	font-size:15px;
+	color:#d4c3a9;
+}
+.bottomimg{
+	width:276px;
+	height:111px;
+	margin:0 auto;
+	position:absolute;
+	bottom:50px;
+	padding-left:550px;
+	
+}
+.bottomimg img{
+	padding-left:80px;
+}
+.bottomimg span{
+	float:left;
+	width:276px;
+	height:20px;
+	font-size:18px;
+	color:white;
+
+}
+.bottomApp{
+	width:115px;
+	height:110px;
+	font-size:18px;
+	color:white;
+	position:absolute;
+	bottom:50px;
+	right:250px;
+	overflow:hidden;
+}
+.bottomApp span{
+	float:left;
+	width:108px;
+	height:20px;
+}
+.bottomApp img{
+	padding-left:18px;
+}
+.bottomAntroid{
+	width:115px;
+	height:110px;
+	font-size:18px;
+	color:white;
+	position:absolute;
+	bottom:50px;
+	right:150px;
+	overflow:hidden;
+}
+.bottomAntroid img{
+	padding-left:18px;
+
+}
+.bottomAntroid span{
+	float:left;
+	width:108px;
+	height:20px;
+	padding-left:10px;
+
+}
+.bottomscan{
+	width:115px;
+	height:110px;
+	font-size:18px;
+	color:white;
+	position:absolute;
+	bottom:50px;
+	right:50px;
+	overflow:hidden;
+	
+}
+.bottomscan img{
+	padding-left:18px;
+}
+.bottomscan span{
+	float:left;
+	width:108px;
+	height:20px;
+	padding-left:10px;
+
+	
+}
+.leftbtn{
+	position:absolute;
+	width:100px;
+	height:100px;
+	left:0px;
+	top:50%;
+	/*background:white;
+	opacity:0.3;*/
+	line-height:100px;
+	/*padding-top:20px;
+	padding-left:10px;*/
+	
+}
+.rightbtn{
+	position:absolute;
+	width:100px;
+	height:100px;
+	right:0px;
+	top:50%;
+	background:url('../images/right.png') right 0 no-repeat;
+
+	
+}
+.leftbtn span{
+	width:100px;
+	height:100px;
+	float:left;
+	background:url('../images/left.png') left 0 no-repeat;
+}

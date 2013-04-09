@@ -1,0 +1,13 @@
+section,article,aside,header,footer,nav,dialog,figure{display:block;}
+html,body,div,ul,ol,li,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,a,img,th,td,form,input,button,textarea,fieldset,iframe,object,pre,code,legend,blockquote{margin:0;padding:0;border:0;outline:0;}
+ol,ul{list-style:none}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}
+input,button,textarea{font-family:inherit;font-size:100%}
+h1,h2,h3,h4,h5,h6{font-weight:normal;font-size:100%;}
+table{border-collapse:collapse;border-spacing:0}caption,th,td{font-weight:normal;text-align:left}
+body,button,input,select,textarea{font:12px/1.8 "微软雅黑",tahoma,arial,宋体b8b\4f53,sans-serif, '宋体', STHeiTi,Arial, Helvetica;color:#333;text-align:left;}
+/*body{font-size:12px;color:#000;font-family:tahoma,arial,\5b8b\4f53,sans-serif;line-height:18px;background-color:#fff;word-wrap:break-word}*/
+a{color:#08c;text-decoration:none}a:hover{text-decoration:underline}
+a.img:hover{background:transparent}a img{border:0}a:hover img{background-color:transparent}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
