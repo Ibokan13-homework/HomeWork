@@ -1,0 +1,363 @@
+*{
+	margin:0;
+	padding:0;
+	border:0 none;
+}
+a{
+	text-decoration:none;
+}
+body{
+	position:relative;
+}
+.det-main,.index-main{
+	width:100%;
+}
+.det-main .det-head,.det-main .det-head .head-navbg,.det-main .det-head .head-nav{
+	min-width:950px;
+	width:expression(document.body.clientWidth<950?"950px":"auto" );
+}
+.det-head{
+	background:url(../images/det-bg.jpg) center center no-repeat;
+	width:100%;
+	height:710px;
+}
+.head-nav{
+	width:100%;
+	position:absolute;
+	top:15px;
+	z-index:2;
+}
+.head-navbg{
+	width:100%;
+	position:absolute;
+	top:10px;
+	height:50px;
+	z-index:1;
+	background:black;
+	opacity:0.3;
+	_filter:alpha(opacity=30);
+}
+.head-nav .navCon{
+	width:80%;
+	margin:0 auto;
+	overflow:hidden;
+	padding-top:5px;
+}
+.head-nav .left{
+	float:left;
+	background:url(../images/white.png) right 5px no-repeat;
+	width:307px;
+}
+.head-nav .right{
+	float:right;
+	width:270px;
+}
+.head-nav .right a{
+	border:0 none;
+	float:left;
+	margin:0 10px;
+	_display:inline;
+}
+.head-nav .right .functionBtn{
+	background:url(../images/index-kuang.png) 0 0 no-repeat;
+	width:133px;
+	height:40px;
+	margin-top:-5px;
+	text-decoration:none;
+	color:#bcb195;
+	font-weight:bold;
+}
+.head-nav .right .functionBtn span{
+	display:block;
+	width:125px;
+	height:40px;
+	line-height:40px;
+	font-size:20px;
+	background:url(../images/index-sin.png) right 15px no-repeat;
+	text-align:center;
+}
+.det-head-con{
+	width:100%;
+	position:absolute;
+	top:60px;
+	color:white;
+}
+.det-head-conMain{
+	width:80%;
+	margin:0 auto;
+	overflow:hidden;
+	height:650px;
+	position:relative;
+	min-width:950px;
+	width:expression(document.body.clientWidth<950?"950px":"auto" );
+}
+.det-head-conMain span{
+	float:left;
+	font-family:"微软雅黑";
+	font-size:57px;
+}
+.det-head-conMain .icon{
+	margin-top:12px;
+	font-family:"宋体";
+}
+.det-head-conMain .word-small{
+	font-size:42px;
+	margin-left:-30px;
+	margin-top:15px;
+	_display:inline;
+}
+.det-head-conMain .words{
+	margin-top:175px;
+	overflow:hidden;
+	width:360px;
+}
+.det-head-conMain .startbg{
+	width:300px;
+	height:205px;
+	background-color:white;
+	opacity:0.1;
+	_filter:alpha(opacity=10);
+	position:absolute;
+	top:250px;
+	left:0;
+}
+.det-head-conMain .startbtn{
+	width:100px;
+	height:135px;
+	background:url(../images/det-startbtn.png) center 52px no-repeat;
+	position:absolute;
+	top:250px;
+	left:100px;
+	cursor:pointer;
+}
+.det-head-conMain .startbtn div{
+	color:#b46119;
+	font-size:14px;
+	margin:0 auto;
+	width:60px;
+	margin-top:140px;
+	font-family:"微软雅黑";
+}
+.det-head-conMain .embed{
+	position:absolute;
+	left:350px;
+	top:120px;
+	width:70%;
+	height:60%;
+	display:none;
+}
+.det-head-conMain embed{
+	width:100%;
+	height:100%;
+}
+.det-con{
+	width:100%;
+	height:528px;
+	background:url(../images/det-conbg.gif) 0 0 repeat-x;
+	min-width:950px;
+	width:expression(document.body.clientWidth<950?"950px":"auto" );
+}
+.det-conMain{
+	width:80%;
+	height:415px;
+	margin:0 auto;
+	background:url(../images/det-phoneline.gif) 0 bottom repeat-x;
+	position:relative;
+	min-width:950px;
+	width:expression(document.body.clientWidth<950?"950px":"auto" );
+}
+.det-conMain .con-left .phone{
+	background:url(../images/det-phone.png) 0 0 no-repeat;
+	position:absolute;
+	left:0;
+	top:-125px;
+	width:274px;
+	height:536px;
+	z-index:2;
+}
+.det-conMain .phone-nav{
+	position:absolute;
+	left:20px;
+	top:94px;
+	background:url(../images/det-phone-nav.jpg) 0 0 no-repeat;
+	width:236px;
+	height:15px;
+	z-index:20;
+}
+.det-conMain .con-left .phone #phone-con{
+	width:236px;
+	height:350px;
+	background:blue;
+	position:absolute;
+	z-index:10;
+	left:20px;
+	top:94px;
+	overflow:hidden;
+}
+#pics{
+	width:1888px;
+	height:350px;
+}
+#pics img{
+	float:left;
+}
+.det-conMain .con-left .phonebg{
+	background:url(../images/det-phonebg.gif) 0 0 no-repeat;
+	width:251px;
+	height:6px;
+	position:absolute;
+	z-index:1;
+	bottom:0;
+	left:15px;
+}
+.det-conMain .con-left .phoneCircle{
+	position:absolute;
+	z-index:3;
+	left:260px;
+	top:-10px;
+}
+.det-conMain .con-right{
+	width:360px;
+	height:270px;
+	color:#666;
+	position:absolute;
+	right:0;
+	bottom:50px;
+	font-family:"微软雅黑";
+}
+.det-conMain .con-right h3{
+	margin:20px 0;
+}
+.det-conMain .con-right ul{
+	list-style-type:none;
+	padding:0;
+	font-size:17px;
+}
+.det-conMain .con-right ul li{
+	height:30px;
+	line-height:30px;
+}
+.det-conMain .con-right span{
+	display:block;
+	font-size:20px;
+	margin-top:30px;	
+}
+.con-bottom{
+	width:100%;
+	position:absolute;
+	bottom:5px;
+	z-index:100;
+	left:0;
+}
+.bottom{
+	width:80%;
+	margin:0 auto;
+	text-align:center;
+	padding:7px 0;
+	color:#424242;
+	font:normal normal 14px "微软雅黑";
+}
+
+
+/*主页*/
+.index-head{
+	width:100%;
+	height:100%;
+}
+.mainbg img{
+	width:100%;
+	height:100%;
+}
+.index-main{
+	height:100%;
+}
+.jiazai div,.index-main .contact,.mainbg,.index-head,.index-main .index-head .head-navbg,.index-main .index-head .head-nav{
+	min-width:800px;
+	width:expression(document.body.clientWidth<800?"800px":"auto" );
+}
+.index-main .contact{
+	position:absolute;
+	z-index:2;
+	width:100%;
+	top:125px;
+}
+.index-main .contact .con{
+	width:80%;
+	margin:0 auto;
+	overflow:hidden;
+}
+.index-main .contact .text{
+	float:right;
+	background:url(../images/tel1.png) 0 0 no-repeat;
+	height:60px;
+	width:250px;
+}
+.index-main .text span{
+	display:block;
+	color:#b2a391;
+	padding-left:75px;
+	font-size:25px;
+	height:30px;
+	line-height:30px;
+}
+.index-main .text .time{
+	font-size:14px;
+}
+.mainbg .left,.mainbg .right,.mainbg .leftbg,.mainbg .rightbg{
+	position:absolute;
+	top:40%;
+	width:85px;
+	height:85px;
+	z-index:20;
+}
+.mainbg .left{
+	left:0;
+	background:url(../images/left.png) center center no-repeat;
+	z-index:30;
+}
+.mainbg .right{
+	right:0;
+	background:url(../images/right.png) center center no-repeat;
+	z-index:30;
+}
+.mainbg .leftbg{
+	left:0;
+	background:white;
+	opacity:0.2;
+	filter:alpha(opacity=20);
+}
+.mainbg .rightbg{
+	right:0;
+	background:white;
+	opacity:0.2;
+	filter:alpha(opacity=20);
+}
+
+.mainbg .bottom img{
+	width:74px;
+	height:74px;
+}
+.jiazai{
+	position:absolute;
+	bottom:10px;
+	right:0;
+	z-index:100;
+	width:100%;
+}
+.jiazai div{
+	width:80%;
+	margin:0 auto;
+	overflow:hidden;
+}
+.jiazai a{
+	float:right;
+	margin-left:15px;
+	color:white;
+	width:100px;
+	font-size:14px;
+	display:block;
+}
+.jiazai dd{
+	height:40px;
+	line-height:40px;
+}
