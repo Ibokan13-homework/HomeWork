@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>功能页</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="css/css.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="det-cont">
+    	<div class="index-nav"></div>
+		<div class="nav-all">
+			<div class="nav-cont">
+				<a href="index1.html" class="nav-index">
+					<img src="images/logo.png" alt="首页" title="果粉厨房" />
+				</a>
+				<img src="images/white.png" alt="" class="nav-img" />
+				<a href="det.html" class="nav-index1">功能展示
+					<img src="images/index-sin.png" alt="" title="功能展示" />
+				</a>
+				<a href="#" class="nav-index3">
+					<img src="images/sina.png" alt="微博" title="新浪微博" />
+				</a>
+				<a href="#" class="nav-index2">
+					<img src="images/weixin.png" alt="微信" title="微信" />
+				</a>
+			</div>
+		</div>
+		<div class="det-head">
+			<div class="head-cont">
+				<div class="head-play-out">
+					<div class="head-play" id="head-play">
+						<embed src="http://player.youku.com/player.php/sid/XNDU1NzYwMzk2/v.swf" quality="high" width="500" height="500" align="middle" allowscriptaccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash">
+					</div>	
+				</div>
+				<div class="head-word">
+					<span class="head-word1">思念,</span>
+					<span class="head-word2">一直都在!</span>
+				</div>
+				<div class="head-video-btn" id="head-video-btn">
+					<img src="images/det-startbtn.png" alt="视频播放" />
+				</div>
+				<div class="head-video" id="head-video"></div>	
+				<span class="head-video-word">点击播放</span>
+			</div>
+		</div>
+    </div>
+    <div class='content'>
+		<div class='con'>
+			<div class='left'>
+				<div class="phone">
+					<div class="phone-con" id="phoneCon">
+						<img src="images/det-phone-nav.jpg" alt="" id="nav" />
+						<div class="phoneMain" id="phoneMain">
+							<img src="images/det-img1.jpg" alt="" />
+							<img src="images/det-img2.jpg" alt="" />
+							<img src="images/det-img3.jpg" alt="" />
+							<img src="images/det-img4.jpg" alt="" />
+							<img src="images/det-img5.jpg" alt="" />
+							<img src="images/det-img6.jpg" alt="" />
+							<img src="images/det-img7.jpg" alt="" />
+							<img src="images/det-img8.jpg" alt="" />
+						</div>
+					</div>
+				</div>
+				<div class='phonebg'></div>
+				<div class='phone_line'></div>
+				<div class='circle'><img src='images/det-circle.png' alt='list' title='list' /></div>
+			</div>
+			
+			<div class="right">
+				<h3>
+					<img src="images/det-weidao.gif" alt="" />
+				</h3>
+				<ul>
+					<li>一种味道，两地相思</li>
+					<li>一头是母亲，一头是我</li>
+					<li>多想，多想</li>
+					<li>每天都能吃到妈妈做的饭！</li>
+				</ul>
+				<span>果粉厨房，专业提供最值得思念的味道！</span>
+			</div>
+			<div class="bottom">
+				<img src="images/det-icon.gif" alt="果粉厨房" />
+				<div class="con-bottom">
+					<span class="con-bottom-left">&copy</span>
+					<span class="con-bottom-right">2013 北京果粉科技有限公司</span>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!--[if lt IE 7]>
+			<script src="pngopacity.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('*');
+			 </script> 
+		<![endif]-->
+		<script src="js/jquery.js"></script>
+		<script src="js/lib.js"></script>
+		<script src="js/tween.js"></script>
+		<script type="text/javascript">
+			$(function () {
+				$("#head-video-btn").click(function (e) {
+					e.stopPropagation();
+					$(".head-play-out").fadeIn(500);
+				});
+				$(document).click(function (e) {
+					if ($(".head-play-out").is(":visible") && !hasChild($("#head-play")[0], e.target)) {
+						$(".head-play-out").fadeOut(500);
+					}
+				})
+		});	
+		function hasChild(p,s) {
+			while (s && s != p){s = s.parentNode;}
+			return s === p;
+		}
+		var phoneMain=document.getElementById("phoneMain");
+		var imgs=phoneMain.getElementsByTagName("img");
+		var phoneCon=document.getElementById("phoneCon");
+		var index=0;
+		setInterval(function(){
+				index++;
+				startMove(phoneCon,"scrollLeft",index*235);
+				if(index==imgs.length-1){
+					index=0;
+				}
+			},3000)	;
+	
+		</script>
+</body>
+</html>
