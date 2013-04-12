@@ -39,7 +39,7 @@
 		$(spans[0]).css("background","red");
 		$("div div span").click(function () {
 			$(this).css("background","red").siblings().css("background","green");
-			$(divs[$("div div span").index(this)]).show().siblings().hide();	
+			$(divs[$("div div span").index(this)]).show(500).siblings().hide(500);	
 		})
 	</script>
 </body>
