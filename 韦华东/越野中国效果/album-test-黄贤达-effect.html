@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box ul,.navigator ul{
+			padding: 0;
+			margin:0;
+		}
+		.box{
+			width: 725px;
+			height: 372px;
+			margin:0 auto;
+			overflow: hidden;
+		}
+		.clear{
+			clear:both;
+		}
+		.allpic{
+			width: 6525px;
+			height: 372px;
+			list-style: none;
+		}
+		.allpic li{
+			float: left;
+			width: 725px;
+			height: 372px;
+		}
+		.allpic img{
+			float: left;
+			width: 725px;
+			height: 372px;
+		}
+		.navigator{
+			width: 928px;
+			height: 116px;
+			border: 1px solid red;
+			margin:0 auto;
+			overflow: hidden;
+		}
+		.micropic{
+			width: 1044px;
+			height: 116px;
+			list-style: none;
+		}
+		.micropic li{
+			float: left;
+			width: 114px;
+			height: 116px;
+			border: 1px solid white;
+		}
+		.micropic li img{
+			float: left;
+			width: 114px;
+			height: 114px;
+		}
+		input{
+			width: 100px;
+			height: 50px;
+			font-size: 30px;
+			line-height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class='box'>
+		<ul class='allpic'>
+			<li><img src='img/ind-top-slide-one.jpg' alt='huge picture' /></li>
+			<li><img src='img/ind-top-slide-two.jpg' alt='huge picture' /></li>
+			<li><img src='img/ind-top-slide-thr.jpg' alt='huge picture' /></li>
+			<li><img src='img/ind-top-slide-one.jpg' alt='huge picture' /></li>
+			<li><img src='img/ind-top-slide-two.jpg' alt='huge picture' /></li>
+			<li><img src='img/ind-top-slide-thr.jpg' alt='huge picture' /></li>
+			<li><img src='img/ind-top-slide-one.jpg' alt='huge picture' /></li>
+			<li><img src='img/ind-top-slide-two.jpg' alt='huge picture' /></li>
+			<li><img src='img/ind-top-slide-thr.jpg' alt='huge picture' /></li>
+			<div class='clear'></div>
+		</ul>
+	</div>
+	<div class='navigator'>
+		<ul class='micropic'>
+			<li><img src='img/sequip-car1.gif' alt='micro img' /></li>
+			<li><img src='img/sequip-car2.gif' alt='micro img' /></li>
+			<li><img src='img/sequip-car3.gif' alt='micro img' /></li>
+			<li><img src='img/sequip-car1.gif' alt='micro img' /></li>
+			<li><img src='img/sequip-car2.gif' alt='micro img' /></li>
+			<li><img src='img/sequip-car3.gif' alt='micro img' /></li>
+			<li><img src='img/sequip-car1.gif' alt='micro img' /></li>
+			<li><img src='img/sequip-car2.gif' alt='micro img' /></li>
+			<li><img src='img/sequip-car3.gif' alt='micro img' /></li>
+			<div class='clear'></div>
+		</ul>
+	</div>
+	<input class='left' type='button' name='left' value='left' />
+	<input class='right' type='button' name='right' value='right' />
+	<script src="jquery-1.9.1.min.js"></script>
+	<script>
+		var $box=$('.box'),
+			$bigImg=$('.allpic'),
+			$microImg=$('.micropic li'),
+			$allMicro=$('.micropic'),
+			$navigator=$('.navigator'),
+			$left=$('.left'),
+			$right=$('.right'),
+			num=0;
+			$microImg.eq(0).css('border','1px solid red');
+		function auto(){
+			num++;
+			move();
+		};
+		$microImg.click(function(){
+			num=$(this).index();
+			move();
+		});
+		function move(){
+			if (num>8) {
+				num=0;
+				$box.scrollLeft(0);
+				$microImg.eq(0).css('border','1px solid red');
+				$navigator.scrollLeft(-116);
+			}
+			$box.scrollLeft(num*725);
+			$remain=$microImg.eq(num).offset().left-$allMicro.offset().left;
+			$remainB=$navigator.offset().left-$allMicro.offset().left;
+			if(parseInt($remain)>=116*8){
+				$navigator.scrollLeft(116);
+			}else if(parseInt($remainB)>=0&&num==0){
+				$navigator.scrollLeft(-116);
+			}
+			$microImg.eq(num).css('border',"1px solid red")
+			.siblings().css('border','1px solid white');	
+		}
+		var t=setInterval(auto,1000);
+		$left.hover(function(){
+			clearInterval(t);
+		});
+		$right.hover(function(){
+			clearInterval(t);
+		});
+		$allMicro.hover(function(){
+			clearInterval(t);
+		});
+		$left.mouseleave(function(){
+			t=setInterval(auto,1000);
+		});
+		$right.mouseleave(function(){
+			t=setInterval(auto,1000);
+		});
+		$allMicro.mouseleave(function(){
+			t=setInterval(auto,1000);
+		});
+		$left.click(function(){
+			num<=0?num=8:num--;
+			move();
+		});
+		$right.click(function(){
+			num>=9?num=0:num++;
+			move();
+		});
+	</script>
+</body>
+</html>
