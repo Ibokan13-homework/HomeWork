@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		ul{
+			text-align:none;
+		}
+		li{
+			width:100px;
+			height:20px;
+		}
+		li:nth-child(n){
+			background-color:red;
+		}
+		li:nth-child(2n){
+			background-color:blue;
+		}
+		.a div:nth-child(1){
+			width:0;
+			border:25px solid blue;
+			border-radius: 25px 25px 25px 25px;
+		}
+		.a div:nth-child(2){
+			width:0;
+			border:25px solid blue;
+			border-radius: 25px 25px 25px 25px;
+			border-top:25px solid transparent;
+		}
+		.a div:nth-child(3){
+			width:100px;
+			height:50px;
+			background-color:red;
+			border-radius: 50%;
+		}
+		.a div:nth-child(4){
+			width:50px;
+			height:50px;
+			background-color:red;
+			border-radius: 0px 25px 0px 25px;
+		}
+		p:nth-of-type(1){
+			width:600px;
+			margin:0 auto;
+			font-size: 50px;
+			color:red;
+			text-shadow:0 -2px 2px rgba(0,255,0,1),0 -4px 2px rgba(255,0,0,1);	
+		}
+		p:nth-of-type(2){
+			width:600px;
+			margin:0 auto;
+			font-size: 50px;
+			text-shadow:2px 2px 0 rgba(0,255,0,1),-2px -2px 0 rgba(0,255,0,1);
+			border:10px solid red;
+			box-shadow:0 0 0 10px blue,0 0 0 20px red,0 0 0 30px green;
+		}
+		p:nth-of-type(3){
+			text-shadow:1px 1px red,
+				2px 2px red,
+				3px 3px red,
+				4px 4px #000,
+				5px 6px red,
+				6px 6px red,
+				7px 7px #000,
+				8px 8px red,
+				9px 9px red;
+			color:#000;
+			font-size:100px;
+			font-weight:bold;
+		}
+		p:nth-of-type(4){
+			text-shadow:1px 1px red,
+				2px 2px red,
+				3px 3px red,
+				4px 4px #000,
+				5px 5px red,
+				6px 6px red,
+				-1px -1px red,
+				-2px -2px red,
+				-3px -3px red,
+				-4px -4px #000,
+				-5px -5px red,
+				-6px -6px red;
+			color:#000;
+			font-size:100px;
+			font-weight:bold;
+		}
+		.img1{
+			width:100px;
+			height:100px;
+			border-width:25px;
+			border-image:url(2.png) 33% repeat;
+		}
+		.img2{
+			width:100px;
+			height:100px;
+			border-width:25px;
+			border-image:url(2.png) 33% stretch;
+		}
+		.al div{
+			width:100px;
+			height:100px;
+			font-size: 30px;
+			font-weight:bold;
+			border:1px solid red;
+			margin:10px;
+			-webkit-transition:all 1s ease;
+		}
+		.al .an{
+			-webkit-transform:scale(1.2);
+		}
+		.al .na{
+			-webkit-transform:scale(0.8);
+			color:transparent;
+			border:1px solid transparent;
+			text-shadow:0 0 3px rgba(000,0,0,0.3);
+			box-shadow:0 0 3px 0 rgba(255,0,0,0.3);
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<div class="a">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+	<div class="img1"></div>
+	<div class="img2"></div>
+	<p>
+		历史记录sd卡老师发的
+	</p>
+	<p contenteditable="true">
+		你收啊搜房散打练级开发
+	</p>
+	<p>
+		月夜花香
+	</p>
+	<p>
+		月夜花香
+	</p>
+	<div class="al">
+		<div>1111</div>
+		<div>2222</div>
+		<div>3333</div>
+	</div>
+	<script src="jquery.js"></script>
+	<script>
+		var div = $(".al div"); 
+		div.on("mouseover",function (){
+			$(this).addClass('an').siblings().addClass('na');
+		}).on("mouseout",function (){
+			$(this).removeClass('an').siblings().removeClass('na');
+		});
+	</script>
+</body>
+</html>
