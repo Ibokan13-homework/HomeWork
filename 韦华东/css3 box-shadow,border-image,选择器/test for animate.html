@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test for animate</title>
+	<style type="text/css">
+		body{
+			background-color: orange;
+		}
+		div{
+			float: left;
+			margin: 50px;
+			width: 200px;
+			height: 200px;
+			background-color: lime;
+			text-indent: 2em;
+		}
+		.hove{
+			-webkit-transition:all 3s ease-out;
+			-webkit-transform:rotate(20deg) scale(1.5) skew(720deg) translate(-30px,-50px);
+			/*-webkit-transform:rotate(360deg) scale(2.0,2.0) skew(20deg) translate(30px, 50px);*/
+		}
+		.others{
+			font-weight: bolder;
+			text-shadow:2px 2px 5px black;
+			color:transparent;
+			opacity: 0.6
+			
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<p>下面，就是见证奇迹的时刻。把鼠标挪过来，说的就是你，快点</p>
+	</div>
+	<div>
+		<p>下面，就是见证奇迹的时刻。把鼠标挪过来，说的就是你，快点</p>
+	</div>
+	<div>
+		<p>下面，就是见证奇迹的时刻。把鼠标挪过来，说的就是你，快点</p>
+	</div>
+	<div>
+		<p>下面，就是见证奇迹的时刻。把鼠标挪过来，说的就是你，快点</p>
+	</div>
+	<div>
+		<p>下面，就是见证奇迹的时刻。把鼠标挪过来，说的就是你，快点</p>
+	</div>
+	<div>
+		<p>下面，就是见证奇迹的时刻。把鼠标挪过来，说的就是你，快点</p>
+	</div>
+	<div>
+		<p>下面，就是见证奇迹的时刻。把鼠标挪过来，说的就是你，快点</p>
+	</div>
+	<div>
+		<p>下面，就是见证奇迹的时刻。把鼠标挪过来，说的就是你，快点</p>
+	</div>
+	<script type="text/javascript">
+		var divs=document.getElementsByTagName('div');
+		for (var i = 0; i < divs.length; i++) {
+			divs[i].onmouseover=function(){
+				for (var i = 0; i <= divs.length; i++) {
+					if(this==divs[i]){
+						divs[i].className='hove';
+					}else{
+						divs[i].className='others';
+					};
+				};
+			};
+			divs[i].onmouseout=function(){
+				for (var i =0; i <divs.length; i++) {
+					divs[i].className='';
+				};	
+			};
+		};
+		
+	</script>
+</body>
+</html>
+<!-- /*针对iframe编辑框的js
+window.onload=function (){var a=document.getElementById("if").contentWindow.document.getElementsByTagName('body');
+	a[0].setAttribute('contenteditable','true');
+	console.log(a[0].getAttribute('contenteditable'))
+}*/ -->
