@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin: 0;padding:0;}
+	</style>
+</head>
+<body>
+<iframe  id="if" frameborder="1" frameborder="0" tabindex="20"  width="800" height="500">
+
+</iframe>
+<script>
+	window.onload=function (){var a=document.getElementById("if").contentWindow.document.getElementsByTagName('body');
+	a[0].setAttribute('contenteditable','true');
+	console.log(a[0].getAttribute('contenteditable'))
+}
+</script>
+</body>
+</html>

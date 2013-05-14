@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#p{
+		width: 100px;
+		height: 200px;
+		background-image: -moz-linear-gradient(top,blue, yellow);
+		background-image: -webkit-linear-gradient(top, #08C, #05C);
+		background-image: -webkit-linear-gradient(20%, center, 30%, center, from(blue), to(yellow)) no-repeat;
+		margin: 0 auto;
+		word-wrap:break-word;
+ 		text-shadow: 2px 2px #444, 3px 3px #555;
+ 		box-shadow:  2px 2px 10px #444, -3px 3px 10px #555;
+	}
+	#p:hover{
+		-webkit-transition: all 3s ease-out;
+		-webkit-transform: rotate(40deg) scale(0.5, 2.0) skew(-30deg) translate(30px, 0);
+		/*-webkit-transform: skew(-30deg);斜转
+		-webkit-transform: translate(100px, 0);横移*/
+
+		/*-webkit-transform: scale(0.5, 2.0);*//*宽高*/
+
+	}
+	.san{
+		width: 0;
+		height:0;
+		margin: 0;
+		padding: 0;
+		border: 100px solid red;
+		border-right:100px solid transparent;
+		border-radius:50%;
+		/*border-image: url(1.png) 100 100  0 0 round round;*/
+		box-shadow:  2px 2px 10px #444, -3px 3px 10px #555;
+	}
+	.tuo{
+		width: 100px;
+		height: 100px;
+		border: 1px solid red;
+		border-radius:50px 50px 50px 50px/70px 70px 70px 70px; 
+		box-shadow:  2px 2px 10px #444, -3px 3px 10px #555;
+	}
+	.wai{
+		width: 100px;
+		height: 100px;
+		border: 1px solid blue;
+		border-radius:100px 30px 100px 30px/80px 80px 80px 80px; 
+		box-shadow:  2px 2px 10px #444, -3px 3px 10px #555;
+	}
+	@font-face{
+		font-family: Adam, src:url(a.ttf);
+	}
+	.ban{
+		width: 100px;
+		height: 100px;
+		margin: 0 auto;
+		background-color: red;
+		text-align: center;
+		line-height: 100px;	
+		color: white;
+	}
+	.ban:hover{
+		text-shadow:0 0 50px blue;
+		-webkit-transition: all 3s ease-out;
+		transition: all 1s ease-out;
+		box-shadow:  0 0 0 50px #444, 0 0 0 100px #555,0 0 0 150px yellow;
+	}
+	span{
+		width: 100px;
+		height:100px;
+		border: 1px solid red;
+		display: block;
+	}
+	.mo{
+		-webkit-transition: all 1s ease-out;
+		text-shadow: 0 0 10px black;
+		-webkit-transform: scale(0.9);
+		-moz-transform: scale(0.9);
+		-ms-transform: scale(0.9);
+		-o-transform: scale(0.9);
+		box-shadow: 0 0 10px 4px white;
+		opacity: 0.8;
+		color: transparent;
+		transition: all 10s ease-out;
+	}
+
+	.normal{
+		-webkit-transition: all 1s ease-out;
+		transition: all 10s ease-out;
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+		-ms-transform: scale(1.1);
+		-o-transform: scale(1.1);
+	}
+	</style>
+</head>
+<body>
+	<div id="p">asdasdasdasdasd越看越模糊越看越模糊越看越模糊越看越模糊越看越模糊</div>
+	<div class="san"></div>
+	<div class="tuo"></div>
+	<div class="wai"></div>
+	<div class="ban">碰我</div>
+	<span>asdasdasd碰我</span>
+	<span>as碰我</span>
+	<span>asdasd碰我</span>
+	<script>
+		var sp=document.getElementsByTagName("span");
+		for (var i = 0; i < sp.length; i++) {
+			sp[i].onmouseover=function(){
+				for (var i = 0; i < sp.length; i++) {
+					if(this==sp[i]){
+						sp[i].className="normal";
+					}
+					else{
+						sp[i].className="mo";
+					}
+				};
+			}
+			sp[i].onmouseout=function(){
+				for (var i = 0; i < sp.length; i++) {
+					if(this!=sp[i]){
+						sp[i].className="";
+					}else{
+						sp[i].className="";
+					}
+
+				};
+			}
+		};
+	</script>
+</body>
+</html>
