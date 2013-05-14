@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.clearfix:after{
+			content:' ';
+			clear:both;
+		}
+		textarea:focus,input:focus{
+			width: 100px;
+			height: 100px;
+			background:yellow;
+			border:2px solid red;
+		}
+		div:nth-of-type(1){
+			margin: 50px;
+			width: 0;
+			height: 0;
+			border:50px solid lime;
+			border-top:50px solid transparent;
+			border-radius:50px;
+
+		}
+		div:nth-child(4){
+			width: 100px;
+			height: 100px;
+			background: orange;
+			border-radius: 50px 0;
+		}
+		div:nth-child(5n){
+			width: 200px;
+			height: 100px;
+			background: brown;
+			border-radius: 100px/50px;
+		}
+		div:nth-of-type(4n){
+			width: 100px;
+			height: 100px;
+			background-color: purple;
+			border-radius: 100px 50px;
+		}
+		p:only-of-type{
+			font-size: 16px;
+			font-weight: bolder;
+			color: red;
+			text-shadow:0 -3px 8px rgba(220,0,0,1), 0 -5px 13px orange,0 -7px 17px lime,0 -9px 22px yellow;
+		}
+		iframe:only-of-type{
+			width: 100px;
+			height: 100px;
+			border:1px solid red;
+		}
+		span{
+			background: black;
+			font-size: 50px;
+			font-family: Georgia;
+			color: orange;
+			text-shadow:2px 2px 10px lime;
+		}
+		span:nth-of-type(2){
+			font-size:30px;
+			font-weight: bolder;
+			color: white;
+			font-family:"Times New Roman",Serif;
+			background:gray;
+			text-shadow:2px 3px 5px black;
+		}
+		div:nth-of-type(5){
+			font-family:"Times New Roman",Serif;
+			font-size: 20px;
+			width: 100px;
+			height: 100px;
+			background-color: lime;
+			border:1px solid black;
+			box-shadow: 0 0 0 5px red,0 0 0 10px lime,0 0 0 15px purple,0 0 0 20px yellow,0 0 0 25px black;
+		}
+		ul{
+			list-style: none;
+		}
+		li:first-child{
+			width: 200px;
+			height: 200px;
+			border:50px solid white;
+			border-image: url(border.jpg) 120 120 120 120 round;
+		}
+		li:nth-of-type(2){
+			margin: 30px;
+			width:100px;
+			height: 100px;
+			border:10px solid lime;
+			border-image: url(bordertwo.jpg) 80 80 80 80 round;
+		}
+	</style>
+</head>
+<body>
+	<input class='clearfix'>balabalabala</input>
+	<textarea class='clearfix'>baalfasdfafd</textarea>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<p contentEditable="true">Beautiful Word for Css3 by Rogue</p>
+	<iframe src="http://baidu.com"></iframe>
+	<br />
+	<span>css3 is awesome!</span>
+	<br />
+	<span>our life is wonderful!</span>
+	<ul>
+		<li class='clearfix'></li>
+		<li class='clearfix'></li>
+	</ul>
+	<div>I'm a div</div>
+</body>
+</html>
