@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	mark{
+		color:red;
+		font-weight:bold;
+		background-color: white;
+	}
+	
+	.ul1,.ul2{
+		list-style:none;
+	}
+	.ul1 li{
+		width:20px;
+		height:20px;
+		float:left;
+		background-color:red;
+		-moz-border-radius:50%; 
+		-webkit-border-radius:50%;
+		margin-right:5px; 
+		text-align:center;
+	}
+	.ul1 li + li {background: green;color: yellow; border: 1px solid #ccc;}
+	input[type="password"]:disabled{ background:yellow;}
+	.ul2 li{
+		width:100px;
+		height:50px;
+		background-color:red;
+	}
+	.ul2 li:nth-child(2n+1){
+		background-color:blue;
+	}
+	.div1{
+		width:50px;
+		height:50px;
+		background-color:red;
+		border-radius:10px;
+		margin-top:10px;
+	}
+	.div2{
+		width:50px;
+		height:50px;
+		background-color:yellow;
+		border-radius:25px;
+		margin-top:10px;
+	}
+	.div3{
+		width:50px;
+		height:50px;
+		background-color:blue;
+		border-top-left-radius:50%;
+		border-bottom-right-radius:50%;
+		/*-moz-border-radius-topleft:50%; */
+		/*-webkit-border-top-left-radius:50%;*/
+		margin-top:10px;
+	}
+	.div4{
+		width:0px;
+		border:25px solid red;
+		border-radius:50%;
+		border-top:25px solid transparent;
+		margin-top:10px;
+	}
+	.div8{
+		width:0px;
+		border:50px solid red;
+		border-radius:50%;
+		border-top:50px solid blue;
+		border-left:50px solid yellow;
+		border-right:50px solid black;
+		margin-top:10px;
+	}
+	.div5{
+		width:100px;
+		height:80px;
+		margin-top:60px;
+		background-color:black;
+		box-shadow:0px 0px 2px 2px red,0px 0px 2px 6px yellow,0px 0px 2px 10px blue,0px 0px 2px 14px green,0px 0px 2px 18px gray;
+	}
+	.div6{
+		width:200px;
+		height:80px;
+		line-height:80px;
+		text-align:center;
+		margin-top:10px;
+		font-size:24px;
+		background-color:black;
+		color:white;
+		font-weight: bold;
+		text-shadow: 2px 2px 12px red,3px 3px 12px red,-2px 2px 12px red,2px -2px 12px red;
+	}
+	.div7{
+		width:200px;
+		height:80px;
+		line-height:80px;
+		text-align:center;
+		margin-top:10px;
+		font-size:24px;
+		background-color:red;
+		color:white;
+		font-weight: bold;
+		text-shadow: -1px 1px 2px gray,-1px 2px 2px gray,-1px 3px 2px gray;
+	}
+</style>
+</head>
+<body>
+    <!-- <progress max="100" value="50" id="pro"></progress> -->
+    <!-- <iframe src="" frameborder="0" contentEdit =""></iframe> -->
+    <!-- <div style="width:200px;height:100px;background-color:gray;border-radius:50%;">123</div> -->
+    <progress max="100" value="0" id="pro"></progress>
+    <p>饿哦I晚而我<mark>玩污染拉容</mark>积率强迫唔i热破网</p>
+    <ul class="ul1">
+    	<li>1</li>
+    	<li>2</li>
+    	<li>3</li>
+    	<li>4</li>
+    	<li>5</li>
+    	<li>6</li>
+    	<li>7</li>
+    	<li>8</li>
+    </ul>
+   <input type="text" enabled />用户民
+   <input type="password" disabled />密码
+    <input type="text" selection/>用户民
+     <input type="text" disabled />用户民
+      <ul class="ul2">
+    	<li>1</li>
+    	<li>2</li>
+    	<li>3</li>
+    	<li>4</li>
+    	<li>5</li>
+    	<li>6</li>
+    	<li>7</li>
+    	<li>8</li>
+    </ul>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div4"></div>
+    <div class="div5"></div>
+    <div class="div6">Beautiful Text</div>
+    <div class="div7">Beautiful</div>
+	<p contenteditable="true">可编译的内容</p>
+	<div class="div8"></div>
+</body>
+</html>
