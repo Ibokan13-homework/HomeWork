@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>css3练习</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		.box{
+			width: 400px;
+			height: 200px;
+			margin: 100px auto;
+			background-color: #ccccff;
+			box-shadow: 0px 0px 2px 3px red,0px 0px 2px 6px yellow,0px 0px 2px 10px green,0px 0px 2px 12px blue,0px 0px 2px 15px #a908df;
+		}
+		.text{
+			width: 500px;
+			height: 80px;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+		.text div{
+			width: 240px;
+			height: 78px;
+			float: left;
+			color: #fff;
+			text-align: center;
+			line-height: 81px;
+			font-size: 24px;
+			font-weight: bold;
+		}
+		.bea{
+			background-color: black;
+			text-shadow: 3px 2px 10px #ae1fb5,-1px -1px 10px #ae1fb5,-1px 2px 10px #ae1fb5,2px -2px 12px #ae1fb5,-1px 3px 10px #ae1fb5;
+		}
+		.bea-rig{
+			margin-left: 20px;
+			background-color: #ddd;
+			text-shadow: -1px 1px 2px gray,-1px 2px 2px gray,-1px 3px 2px gray;
+
+		}
+		.border{
+			width: 210px;
+			height: 300px;
+			margin: 50px auto;
+			overflow: hidden;
+		}
+		.border div{
+			float: left;
+			width: 50px;
+			height: 50px;
+			background-color: #d5d2c1;
+			margin: 10px 0px 0px 40px;
+		}
+		.border1{
+			border-radius: 18%;
+		}
+		.border2{
+			border-bottom-left-radius: 30px;
+		}
+		.border3{
+			border-radius: 50%;
+		}
+		.border .border4{
+			width: 100px;
+			height: 50px;
+			border-radius: 50%;
+			margin-left: 20px;
+		}
+		.border5{
+			border-top-left-radius: 50%;
+			border-bottom-right-radius: 50%;
+		}
+		.border .border6{
+			width: 0;
+			height: 0;
+			background: transparent;
+			border: 25px solid #d5d2c1;
+			border-radius: 50%;
+			border-right-color: transparent;
+		}
+		.border7{
+			border-top-left-radius: 50%;
+			border-bottom-left-radius: 50%;
+			border-bottom-right-radius: 50%;
+		}
+
+		.demo dl{
+			overflow: hidden;
+			margin: 0 auto;
+			width: 500px;
+		}
+		.demo dt,dd{
+			float: left; 
+			width: 40px;
+			height: 40px;
+			margin-left: 0px;
+			margin-right: 5px; 
+			line-height: 40px; 
+			text-align: center; 
+			font-size:24px;
+			border-radius: 20px;
+			background: #000; 
+			color: #fff; 
+		}
+		.demo dd:not(.four){
+			background: #00f;
+			color: #000;
+		}
+
+
+		li{
+			list-style:none;
+		}
+		.demo1 ul{
+			overflow: hidden;
+			padding: 0px;
+			margin: 30px auto;
+			width: 500px;
+		}
+		.demo1 li { 
+			float: left;
+			width: 40px; 
+			height: 40px; 
+			margin-right: 5px; 
+			line-height: 40px; 
+			font-size:24px;
+			border-radius: 20px;
+			text-align: center; 
+			background: #000;
+			color: #fff; 
+		}
+		.demo1 li:nth-child(2n){
+			background:#00f;
+			color:#000;
+		}
+
+		.hover{
+			width: 700px;
+			margin: 0 auto;
+		}
+		.hover ul{
+			height: 238px;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+		.hover ul li{
+			float: left;
+			width: 200px;
+			height: 198px;
+			margin-top: 20px;
+			margin-left: 22px;
+			background-color: gray;
+			box-shadow: 1px 1px 2px 1px black;
+		}
+		.block{
+			-webkit-transform:scale(1.1);
+		}
+		.none{
+			text-shadow:0 0 10px black; 
+			-webkit-transform:scale(0.9);
+			opacity:0.8; 
+			color:rgba(0,0,0,0);
+		}
+	</style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="text">
+    	<div class="bea">Beautiful Text</div>
+    	<div class="bea-rig">Beautiful Text</div>
+	</div>
+	<div class="border">
+		<div class="border1">A</div>
+		<div class="border2">B</div>
+		<div class="border3">C</div>
+		<div class="border4">D</div>
+		<div class="border5">E</div>
+		<div class="border6">F</div>
+		<div class="border7">G</div>
+	</div>
+	<div class="demo">
+		<dl>
+			<dd>1</dd>
+			<dt>2</dt>
+			<dt>3</dt>
+			<dd class="four">4</dd>
+			<dd>5</dd>
+			<dd>6</dd>
+			<dt>7</dt>
+			<dd>8</dd>
+			<dd>9</dd>
+			<dd>10</dd>
+		</dl>
+	</div>
+	<div class="demo1">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+	</div>
+	<div class="hover" id="hover">
+		<ul>
+			<li>qw</li>
+			<li>qw</li>
+			<li>qw</li>
+		</ul>
+	</div>
+	<script>
+		var hoverLi = document.getElementById("hover").getElementsByTagName("li");
+		for (var i = 0; i < hoverLi.length; i++) {
+			hoverLi[i].onmouseover = function(){
+				for (var i = 0; i < hoverLi.length; i++) {
+					
+					hoverLi[i].className = "none";
+					this.className = "block";
+				};
+				
+			}
+			hoverLi[i].onmouseout = function(){
+				for (var i = 0; i < hoverLi.length; i++) {
+					hoverLi[i].className = "";
+				};	
+			}
+		};
+	</script>
+</body>
+</html>
