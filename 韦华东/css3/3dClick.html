@@ -117,92 +117,86 @@
 			m2box=$('.minute2'),
 			s1box=$('.second1'),
 			s2box=$('.second2');
-			setInterval(function(){
-				var now=new Date(),
-					hour1=parseInt(now.getHours()/10),
-					hour2=now.getHours()%10,
-					minute1=parseInt(now.getMinutes()/10),
-					minute2=now.getMinutes()%10,
-					second1=parseInt(now.getSeconds()/10),
-					second2=now.getSeconds()%10,
-					numh1up=parseInt(now.getHours()/10)+1,
-					numh1b=parseInt(now.getHours()/10)+2,
-					numh2up=now.getHours()%10+1,
-					numh2b=now.getHours()%10+2;
-					numm1up=parseInt(now.getMinutes()/10)+1,
-					numm1b=parseInt(now.getMinutes()/10)+2,
-					numm2up=now.getMinutes()%10+1,
-					numm2b=now.getMinutes()%10+2;
-					nums1up=parseInt(now.getSeconds()/10)+1,
-					nums1b=parseInt(now.getSeconds()/10)+2,
-					nums2up=now.getSeconds()%10+1,
-					nums2b=now.getSeconds()%10+2;
-					function once(time2,box1){
-						if (time2==0) {
-							box1.addClass('animate');
-						}else{
-							box1.removeClass('animate');
-						};
-					}
-					once(second2,s1box);
-					function twice(tim1,tim2,roll){
-						if (tim1==0&&tim2==0) {
-							roll.addClass('animate');
-						}else{
-							roll.removeClass('animate');
-						};
-					}
-					twice(second1,second2,m2box);
-					function three(){
-						if(second1==0&&second2==0&&minute2==0){
-							m1box.addClass('animate');
-						}else{
-							m1box.removeClass('animate');
-						};
-					}
-					function four(){
-						if(second1==0&&second2==0&&minute2==0&&minute1==0){
-							h2box.addClass('animate');
-						}else{
-							h2box.removeClass('animate');
-						}
-					}
-					function five(){
-						if(second1==0&&second2==0&&minute2==0&&minute1==0&&hour2==0){
-							h1box.addClass('animate');
-						}else{
-							h1box.removeClass('animate');
-						}
-					}
-					function digital(num1,num2,divs,tim){
-						if (num1==10) {
-							num1=0;
-						};
-						if (num2==11) {
-							num2=1;
-						}else if (num2==10) {
-							num2=0;
-						};
-						divs.eq(0).html(tim);
-						divs.eq(3).html(num1);
-						divs.eq(1).html(num2);
-						divs.eq(2).html('clock');
-					}
-					digital(nums2up,nums2b,s2,second2);
-					digital(nums1up,nums1b,s1,second1);
-					digital(numm2up,numm2b,m2,minute2);
-					digital(numm1up,numm1b,m1,minute1);
-					digital(numh2up,numh2b,h2,hour2);
-					digital(numh1up,numh1b,h1,hour1);
-				// for (var i = 0; i<h1.length; i++) {
-				// 	h1.eq(i).html(parseInt(now.getHours()/10));
-				// 	h2.eq(i).html(now.getHours()%10);
-				// 	m1.eq(i).html(parseInt(now.getMinutes()/10));
-				// 	m2.eq(i).html(now.getMinutes()%10);
-				// 	s1.eq(i).html(parseInt(now.getSeconds()/10));
-				// 	// s2.eq(i).html(now.getSeconds()%10);
-				// };
-			},1000);
+		function clock(){
+			var now=new Date(),
+				hour1=parseInt(now.getHours()/10),
+				hour2=now.getHours()%10,
+				minute1=parseInt(now.getMinutes()/10),
+				minute2=now.getMinutes()%10,
+				second1=parseInt(now.getSeconds()/10),
+				second2=now.getSeconds()%10,
+				numh1up=parseInt(now.getHours()/10)+1,
+				numh1b=parseInt(now.getHours()/10)+2,
+				numh2up=now.getHours()%10+1,
+				numh2b=now.getHours()%10+2;
+				numm1up=parseInt(now.getMinutes()/10)+1,
+				numm1b=parseInt(now.getMinutes()/10)+2,
+				numm2up=now.getMinutes()%10+1,
+				numm2b=now.getMinutes()%10+2;
+				nums1up=parseInt(now.getSeconds()/10)+1,
+				nums1b=parseInt(now.getSeconds()/10)+2,
+				nums2up=now.getSeconds()%10+1,
+				nums2b=now.getSeconds()%10+2;
+			function once(time2,box1){
+				if (time2==0) {
+					box1.addClass('animate');
+				}else{
+					box1.removeClass('animate');
+				};
+			}
+			once(second2,s1box);
+			function twice(tim1,tim2,roll){
+				if (tim1==0&&tim2==0) {
+					roll.addClass('animate');
+				}else{
+					roll.removeClass('animate');
+				};
+			}
+			twice(second1,second2,m2box);
+			function three(){
+				if(second1==0&&second2==0&&minute2==0){
+					m1box.addClass('animate');
+				}else{
+					m1box.removeClass('animate');
+				};
+			}
+			function four(){
+				if(second1==0&&second2==0&&minute2==0&&minute1==0){
+					h2box.addClass('animate');
+				}else{
+					h2box.removeClass('animate');
+				}
+			}
+			function five(){
+				if(second1==0&&second2==0&&minute2==0&&minute1==0&&hour2==0){
+					h1box.addClass('animate');
+				}else{
+					h1box.removeClass('animate');
+				}
+			}
+			function digital(num1,num2,divs,tim){
+				if (num1==10) {
+					num1=0;
+				};
+				if (num2==11) {
+					num2=1;
+				}else if (num2==10) {
+					num2=0;
+				};
+				divs.eq(0).html(tim);
+				divs.eq(3).html(num1);
+				divs.eq(1).html(num2);
+				divs.eq(2).html('clock');
+			}
+			digital(nums2up,nums2b,s2,second2);
+			digital(nums1up,nums1b,s1,second1);
+			digital(numm2up,numm2b,m2,minute2);
+			digital(numm1up,numm1b,m1,minute1);
+			digital(numh2up,numh2b,h2,hour2);
+			digital(numh1up,numh1b,h1,hour1);
+			setTimeout(clock,1000);
+		};
+		clock();
 	</script>
 </body>
 </html>
