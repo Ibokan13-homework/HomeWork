@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	body{
+		background-color: black;
+		-webkit-transform-style:preserve-3d;
+		-webkit-perspective:1000;
+	}
+	@-webkit-keyframes 'one' {
+		0% {-webkit-transform:rotateX(0deg);}
+		30%{-webkit-transform:rotateX(-90deg);}
+		100%{-webkit-transform:rotateX(-90deg);}
+	}
+	.box{
+		-webkit-transform-style:preserve-3d;
+		float: left;
+		position: relative;
+		width: 100px;
+		height: 100px;
+		-webkit-transform-origin:50% 50%;
+		margin:200px 0 0 60px;
+		-webkit-transform:rotateX(-90deg);
+	}
+	.box div{
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		z-index: 1;
+		font-size: 40px;
+		line-height: 100px;
+		color: #fff;
+		text-shadow: 0 0 5px #BB90FC,0 0 6px #BB90FC,0 0 7px #BB90FC,0 0 8px #BB90FC,0 0 9px #BB90FC;
+		text-align: center;
+		border-radius: 5px;
+		font-family: '微软雅黑';
+		border: 1px solid #7D689D;
+		-webkit-backface-visibility:visible ;
+	}
+	.box div span{
+		display: block;
+		height: 100%;
+		/*box-shadow: 0 0 40px #04ffff;*/
+		-webkit-backface-visibility:hidden ;
+		-webkit-transform-style:preserve-3d;
+	}
+	.animate{
+		-webkit-animation:'one' 1s cubic-bezier(.69,1.89,1,.56) infinite;
+	}
+	.second2{
+		-webkit-animation:'one' 1s cubic-bezier(.69,1.89,1,.56) infinite;
+	}
+	.up{
+		-webkit-transform:rotateX(90deg) translateZ(50px);
+	}
+	.down{
+		-webkit-transform:rotateX(270deg) translateZ(50px);
+	}
+	.front{
+		-webkit-transform:rotateX(180deg) translateZ(-50px);
+	}
+	.behind{
+		-webkit-transform:rotateX(180deg) translateZ(50px);
+	}
+</style>
+<body>
+	<div class='box hour1'>
+		<div class='up'>1</div>
+		<div class='down'>2</div>
+		<div class='front'>5</div>
+		<div class='behind'>6</div>
+	</div>
+	<div class='box hour2'>
+		<div class='up'>1</div>
+		<div class='down'>2</div>
+		<div class='front'>5</div>
+		<div class='behind'>6</div>
+	</div>
+	<div class='box minute1'>
+		<div class='up'>1</div>
+		<div class='down'>2</div>
+		<div class='front'>5</div>
+		<div class='behind'>6</div>
+	</div>
+	<div class='box minute2'>
+		<div class='up'>1</div>
+		<div class='down'>2</div>
+		<div class='front'>5</div>
+		<div class='behind'>6</div>
+	</div>
+	<div class='box second1'>
+		<div class='up'>1</div>
+		<div class='down'>2</div>
+		<div class='front'>5</div>
+		<div class='behind'>6</div>
+	</div>
+	<div class='box second2'>
+		<div class='up'>1</div>
+		<div class='down'>2</div>
+		<div class='front'>5</div>
+		<div class='behind'>6</div>
+	</div>
+	<script src="jquery.js"></script>
+	<script>
+		var h1=$('.hour1 div'),
+			h2=$('.hour2 div'),
+			m1=$('.minute1 div'),
+			m2=$('.minute2 div'),
+			s1=$('.second1 div'),
+			s2=$('.second2 div'),
+			h1box=$('.hour1'),
+			h2box=$('.hour2'),
+			m1box=$('.minute1'),
+			m2box=$('.minute2'),
+			s1box=$('.second1'),
+			s2box=$('.second2');
+			setInterval(function(){
+				var now=new Date(),
+					hour1=parseInt(now.getHours()/10),
+					hour2=now.getHours()%10,
+					minute1=parseInt(now.getMinutes()/10),
+					minute2=now.getMinutes()%10,
+					second1=parseInt(now.getSeconds()/10),
+					second2=now.getSeconds()%10,
+					numh1up=parseInt(now.getHours()/10)+1,
+					numh1b=parseInt(now.getHours()/10)+2,
+					numh2up=now.getHours()%10+1,
+					numh2b=now.getHours()%10+2;
+					numm1up=parseInt(now.getMinutes()/10)+1,
+					numm1b=parseInt(now.getMinutes()/10)+2,
+					numm2up=now.getMinutes()%10+1,
+					numm2b=now.getMinutes()%10+2;
+					nums1up=parseInt(now.getSeconds()/10)+1,
+					nums1b=parseInt(now.getSeconds()/10)+2,
+					nums2up=now.getSeconds()%10+1,
+					nums2b=now.getSeconds()%10+2;
+					function once(time2,box1){
+						if (time2==0) {
+							box1.addClass('animate');
+						}else{
+							box1.removeClass('animate');
+						};
+					}
+					once(second2,s1box);
+					function twice(tim1,tim2,roll){
+						if (tim1==0&&tim2==0) {
+							roll.addClass('animate');
+						}else{
+							roll.removeClass('animate');
+						};
+					}
+					twice(second1,second2,m2box);
+					function three(){
+						if(second1==0&&second2==0&&minute2==0){
+							m1box.addClass('animate');
+						}else{
+							m1box.removeClass('animate');
+						};
+					}
+					function four(){
+						if(second1==0&&second2==0&&minute2==0&&minute1==0){
+							h2box.addClass('animate');
+						}else{
+							h2box.removeClass('animate');
+						}
+					}
+					function five(){
+						if(second1==0&&second2==0&&minute2==0&&minute1==0&&hour2==0){
+							h1box.addClass('animate');
+						}else{
+							h1box.removeClass('animate');
+						}
+					}
+					function digital(num1,num2,divs,tim){
+						if (num1==10) {
+							num1=0;
+						};
+						if (num2==11) {
+							num2=1;
+						}else if (num2==10) {
+							num2=0;
+						};
+						divs.eq(0).html(tim);
+						divs.eq(3).html(num1);
+						divs.eq(1).html(num2);
+						divs.eq(2).html('clock');
+					}
+					digital(nums2up,nums2b,s2,second2);
+					digital(nums1up,nums1b,s1,second1);
+					digital(numm2up,numm2b,m2,minute2);
+					digital(numm1up,numm1b,m1,minute1);
+					digital(numh2up,numh2b,h2,hour2);
+					digital(numh1up,numh1b,h1,hour1);
+				// for (var i = 0; i<h1.length; i++) {
+				// 	h1.eq(i).html(parseInt(now.getHours()/10));
+				// 	h2.eq(i).html(now.getHours()%10);
+				// 	m1.eq(i).html(parseInt(now.getMinutes()/10));
+				// 	m2.eq(i).html(now.getMinutes()%10);
+				// 	s1.eq(i).html(parseInt(now.getSeconds()/10));
+				// 	// s2.eq(i).html(now.getSeconds()%10);
+				// };
+			},1000);
+	</script>
+</body>
+</html>
