@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body,html{
+		height:100%;
+		padding:0;
+		margin:0;
+	}
+	@font-face{
+		font-family: myfont;
+		src:url(b.ttf);
+	}
+	body{
+		background-color:black;
+		font-family:myfont;
+		text-align:center;
+		font-size:30px;
+		color:white;
+		line-height: 100px;
+		-webkit-perspective: 1000;
+		-webkit-transform-style:preserve-3d;
+	}
+	@-webkit-keyframes a {
+	    0%    { -webkit-transform: rotateX(0deg);}
+	    25%   {-webkit-transform: rotateX(-90deg);}
+	    50%   {-webkit-transform: rotateX(-180deg);}
+	    75%   {-webkit-transform: rotateX(-270deg);}
+	    100%  { -webkit-transform: rotateX(-360deg);}
+	}
+		.see{
+			width: 1000px;
+			height:100px;
+			margin: 200px auto;
+			
+		}
+		.see span{
+			width:10px;
+			font-size: 50px;
+			float:left;
+			position:absolute;
+			font-family: myfont;
+			color: #04ffff;
+			text-shadow:0px 0px 5px #BB90FC,0px 0px 6px #BB90FC,0px 0px 7px #BB90FC,0px 0px 8px #BB90FC,0px 0px 9px #BB90FC;
+			-webkit-transform-style:preserve-3d;
+			font-weight: bold;
+		}
+		.see span:nth-of-type(1){
+			left:446px;
+		}
+		.see span:nth-of-type(2){
+			right:590px;
+		}
+		.showh{
+			width: 100px;
+			height:100px;
+			position:relative;
+			float: left;
+			margin-right: 50px;
+			-webkit-transform-style:preserve-3d;
+			-webkit-animation-duration: 1s;
+			-webkit-animation-timing-function:cubic-bezier(.25,1.64,.59,.79);
+			/*-webkit-animation:"a" 4s cubic-bezier(.25,1.64,.59,.79) infinite;*/
+		}
+		.showhx{
+			width: 100px;
+			height:100px;
+			position:relative;
+			float: left;
+			margin-right: 50px;
+			-webkit-transform-style:preserve-3d;
+			-webkit-animation-duration: 1s;
+			-webkit-animation-timing-function:cubic-bezier(.25,1.64,.59,.79);
+	    	/*-webkit-animation:"a" 4s cubic-bezier(.25,1.64,.59,.79) infinite;*/
+		}
+		.showm{
+			width: 100px;
+			height:100px;
+			position:relative;
+			float: left;
+			margin-right: 50px;
+			-webkit-transform-style:preserve-3d;
+			-webkit-animation-timing-function:cubic-bezier(.25,1.64,.59,.79);
+			-webkit-animation-duration: 1s;
+	    	/*-webkit-animation:"a" 4s cubic-bezier(.25,1.64,.59,.79) infinite;*/
+		}
+		.showmx{
+			width: 100px;
+			height:100px;
+			position:relative;
+			float: left;
+			margin-right: 50px;
+			-webkit-transform-style:preserve-3d;
+			-webkit-animation-timing-function:cubic-bezier(.25,1.64,.59,.79);
+			-webkit-animation-duration: 1s;
+	    	/*-webkit-animation:"a" 4s cubic-bezier(.25,1.64,.59,.79) infinite;*/
+		}
+		.shows{
+			width: 100px;
+			height:100px;
+			position:relative;
+			float: left;
+			margin-right: 50px;
+			-webkit-transform-style:preserve-3d;
+			/*-webkit-animation-timing-function:cubic-bezier(.25,1.64,.59,.79);
+			-webkit-animation-duration: 1s;*/
+
+	    	/*-webkit-animation:"a" 4s cubic-bezier(.25,1.64,.59,.79) infinite;*/
+		}
+		.showsx{
+			width: 100px;
+			height:100px;
+			position:relative;
+			float: left;
+			margin-right: 50px;
+			-webkit-transform-style:preserve-3d;
+/*			-webkit-animation-timing-function:cubic-bezier(.25,1.64,.59,.79);
+			-webkit-animation-duration: 1s;*/
+	    	/*-webkit-animation:"a" 4s cubic-bezier(.25,1.64,.59,.79) infinite;*/
+		}
+		.show{
+			width: 100px;
+			height:100px;
+			position:relative;
+			float: left;
+			margin-right: 50px;
+			-webkit-transform-style:preserve-3d;
+			-webkit-animation-timing-function:cubic-bezier(.25,1.64,.59,.79);
+			-webkit-animation-duration: 1s;
+	    	/*-webkit-animation:"a" 4s cubic-bezier(.25,1.64,.59,.79) infinite;*/
+		}
+		.show div{
+			position:absolute;
+			width: 100px;
+			height:100px;
+			border: 10px solid white;
+			box-shadow: 4px 4px 20px #04ffff,-4px 2px 20px #04ffff;
+			background-color: #04ffff;
+			text-shadow:0px 0px 5px #BB90FC,0px 0px 6px #BB90FC,0px 0px 7px #BB90FC,0px 0px 8px #BB90FC,0px 0px 9px #BB90FC;
+			opacity: 0.8;
+		}
+		.showh div{
+			position:absolute;
+			width: 100px;
+			height:100px;
+			background-color: #04ffff;
+			box-shadow: 4px 4px 20px #04ffff,-4px 2px 20px #04ffff;
+			text-shadow:0px 0px 5px #BB90FC,0px 0px 6px #BB90FC,0px 0px 7px #BB90FC,0px 0px 8px #BB90FC,0px 0px 9px #BB90FC;
+			opacity: 0.8;
+		}
+		.showhx div{
+			position:absolute;
+			width: 100px;
+			height:100px;
+			background-color: #04ffff;
+			box-shadow: 4px 4px 20px #04ffff,-4px 2px 20px #04ffff;
+			text-shadow:0px 0px 5px #BB90FC,0px 0px 6px #BB90FC,0px 0px 7px #BB90FC,0px 0px 8px #BB90FC,0px 0px 9px #BB90FC;
+			opacity: 0.8;
+		}
+		.showm div{
+			position:absolute;
+			width: 100px;
+			height:100px;
+			background-color: #04ffff;
+			box-shadow: 4px 4px 20px #04ffff,-4px 2px 20px #04ffff;
+			text-shadow:0px 0px 5px #BB90FC,0px 0px 6px #BB90FC,0px 0px 7px #BB90FC,0px 0px 8px #BB90FC,0px 0px 9px #BB90FC;
+			opacity: 0.8;
+		}
+		.showmx div{
+			position:absolute;
+			width: 100px;
+			height:100px;
+			background-color: #04ffff;
+			box-shadow: 4px 4px 20px #04ffff,-4px 2px 20px #04ffff;
+			text-shadow:0px 0px 5px #BB90FC,0px 0px 6px #BB90FC,0px 0px 7px #BB90FC,0px 0px 8px #BB90FC,0px 0px 9px #BB90FC;
+			opacity: 0.8;
+		}
+		.shows div{
+			position:absolute;
+			width: 100px;
+			height:100px;
+			background-color: #04ffff;
+			box-shadow: 4px 4px 20px #04ffff,-4px 2px 20px #04ffff;
+			text-shadow:0px 0px 5px #BB90FC,0px 0px 6px #BB90FC,0px 0px 7px #BB90FC,0px 0px 8px #BB90FC,0px 0px 9px #BB90FC;
+			opacity: 0.8;
+		}
+		.showsx div{
+			position:absolute;
+			width: 100px;
+			height:100px;
+			background-color: #04ffff;
+			box-shadow: 4px 4px 20px #04ffff,-4px 2px 20px #04ffff;
+			text-shadow:0px 0px 5px #BB90FC,0px 0px 6px #BB90FC,0px 0px 7px #BB90FC,0px 0px 8px #BB90FC,0px 0px 9px #BB90FC;
+			opacity: 0.8;
+		}
+		.hour{
+			-webkit-transform:translateZ(50px);
+		}
+		.se{
+			-webkit-transform: translateZ(-50px)  rotateX(180deg) rotateY(-360deg);
+		}
+		.min{
+			-webkit-transform:rotateX(90deg) translateZ(50px);
+		}
+		.minx{
+			-webkit-transform:rotateX(-90deg) translateZ(50px);
+		}
+		.xhour{
+			-webkit-transform:rotateY(90deg) translateZ(50px);
+		}
+		.xse{
+			-webkit-transform:rotateY(-90deg) translateZ(50px);
+		}
+	</style>
+</head>
+<body>
+	<div class="see">
+		<div class="showh">
+			<div class="hour">h0</div>
+			<div class="min">x0</div>
+			<div class="se">m0</div>
+			<div class="minx">x0</div>
+			<div class="xhour">+</div>
+			<div class="xse">+</div>
+		</div>
+		<div class="showhx">
+			<div class="hour">h0</div>
+			<div class="min">x0</div>
+			<div class="se">m0</div>
+			<div class="minx">x0</div>
+			<div class="xhour">+</div>
+			<div class="xse">+</div>
+		</div>
+		<span>:</span>
+		<div class="showm">
+			<div class="hour">h0</div>
+			<div class="min">x0</div>
+			<div class="se">m0</div>
+			<div class="minx">x0</div>
+			<div class="xhour">+</div>
+			<div class="xse">+</div>
+		</div>
+		<div class="showmx">
+			<div class="hour">h0</div>
+			<div class="min">x0</div>
+			<div class="se">m0</div>
+			<div class="minx">x0</div>
+			<div class="xhour">+</div>
+			<div class="xse">+</div>
+		</div>
+		<span>:</span>
+		<div class="shows">
+			<div class="hour">0</div>
+			<div class="min">+</div>
+			<div class="se">+</div>
+			<div class="minx">+</div>
+			<div class="xhour">+</div>
+			<div class="xse">+</div>
+		</div>
+		<div class="showsx">
+			<div class="hour">0</div>
+			<div class="min"></div>
+			<div class="se"></div>
+			<div class="minx"></div>
+			<div class="xhour">+</div>
+			<div class="xse">+</div>
+		</div>
+	</div>
+	<script src="jQuery.js"></script>
+	<script>
+		var showh = $(".showh"),
+			hh    = $(".showh").find("div"),
+			showhx= $(".showhx"),
+			hx    = $(".showhx").find("div"),
+			showm = $(".showm"),
+			mm    = $(".showm").find("div"),
+			showmx= $(".showmx"),
+			mx    = $(".showmx").find("div")
+			shows = $(".shows"),
+			ss    = $(".shows").find("div"),
+			showsx= $(".showsx"),
+			sx    = $(".showsx").find("div"),
+			ind   = 0,
+			se    = 1,
+			minx  = 1,
+			start = new Date();
+			hh.eq(0).html(parseInt(start.getHours()/10));	
+			hx.eq(0).html(start.getHours()%10);
+			mm.eq(0).html(parseInt(start.getMinutes()/10));
+			mx.eq(0).html(start.getMinutes()%10);
+			ss.eq(0).html(parseInt(start.getSeconds()/10));
+			sx.eq(0).html(start.getSeconds()%10);
+		setInterval(function(){
+			var now  =new Date(),
+				num =now.getSeconds()%10;
+			ind++;
+			if(num==0){
+				// num=0;
+				shows.css({"-webkit-transition":"-webkit-transform 1s cubic-bezier(.25,1.64,.59,.79)",
+					"-webkit-transform":"rotateX("+(-90*se)+"deg)"
+				});
+				ss.eq(se).html(parseInt(now.getSeconds()/10));
+				se++;
+				if(se>=4){
+						se=0;
+					}
+			}
+			if(ind>=4){
+				ind=0;
+			}
+			sx.eq(ind).html(now.getSeconds()%10);
+			showsx.css("-webkit-animation","'a' 4s cubic-bezier(.25,1.64,.59,.79) infinite");
+			// min
+			var ses =parseInt(now.getSeconds()/10),
+				mix =now.getMinutes()%10,
+				mim =parseInt(now.getMinutes()/10),
+				hox =now.getHours()%10;
+				//minx
+			if(ses==0&&num==0){
+				showmx.css({"-webkit-transition":"-webkit-transform 1s cubic-bezier(.25,1.64,.59,.79)",
+					"-webkit-transform":"rotateX("+(-90*minx)+"deg)"
+				});
+				mx.eq(minx).html(mix);
+				minx++;
+				if(minx>=4){
+					minx=1;
+				}
+			}
+			//min
+			if(ses==0&&num==0&&mix==0){
+				showm.css({"-webkit-transition":"-webkit-transform 1s cubic-bezier(.25,1.64,.59,.79)",
+					"-webkit-transform":"rotateX("+(-90*minx)+"deg)"
+				});
+				mm.eq(minx).html(parseInt(now.getMinutes()/10));
+				minx++;
+				if(minx>=4){
+					minx=1;
+				}
+			}
+			//hx
+			if(ses==0&&num==0&&mix==0&&mim==0){
+				showhx.css({"-webkit-transition":"-webkit-transform 1s cubic-bezier(.25,1.64,.59,.79)",
+					"-webkit-transform":"rotateX("+(-90*minx)+"deg)"
+				});
+				hx.eq(minx).html(now.Hours()%10);
+				minx++;
+				if(minx>=4){
+					minx=1;
+				}
+			}
+			//hh
+			if(hox==0&&ses==0&&num==0&&mix==0&&mim==0){
+				showh.css({"-webkit-transition":"-webkit-transform 1s cubic-bezier(.25,1.64,.59,.79)",
+					"-webkit-transform":"rotateX("+(-90*minx)+"deg)"
+				});
+				hh.eq(mix).html(parseInt(start.getHours()/10));
+				minx++;
+				if(minx>=4){
+					minx=1;
+				}
+			}
+			
+		},1000)
+	</script>
+
+</body>
+</html>

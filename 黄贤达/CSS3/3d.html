@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3d</title>
+</head>
+<style>
+	body{
+		background-color: black;
+		height: 100%;
+		margin: 0;
+		padding:0;
+	}
+	@font-face{
+			font-family: myFirstFont;
+			src:url(b.ttf);
+		}
+	.see div{
+		opacity: 0.8;
+		box-shadow: 4px 4px 4px blue,-4px 0px 4px blue;
+		color: white;
+		text-shadow:2px 2px 2px blue;
+		font-size: 26px;
+		text-align: center;
+		line-height: 300px;
+		width: 150px;
+		height: 300px;
+		font-family: myFirstFont;
+		float:left;
+	}
+	.one{
+		-webkit-transform:rotateY(-135deg) translate(-459px,2px) scale(1.05, 1.05);
+
+	}
+	.two{
+		-webkit-transform:rotateY(-90deg) translate(-511px,0) scale(1.53, 1.53);
+	}
+	.three{
+		-webkit-transform:rotateY(-55deg) translate(129px,-1px) scale(0.80, 0.85);
+	}
+	.four{
+		height: 200px;
+		-webkit-transform:rotateY(0deg) translate(0px,0px) scale(1.25, 1.25);
+	}
+	.wu{
+		-webkit-transform:rotateY(45deg) translate(4px,0px) scale(1.08, 1.08);
+	}
+	.liu{
+		-webkit-transform:rotateY(90deg)  translate(596px,-2px) scale(1.77, 1.77);
+	}
+	.qi{
+		-webkit-transform:rotateY(135deg) translate(419px,1px) scale(1.04, 1.04);
+	}
+	.ba{
+		-webkit-transform:rotateY(180deg) translate(559px,1px) scale(0.60, 0.60);
+	}
+	@-webkit-keyframes y_rot {
+	    0%    { -webkit-transform: rotateY(0deg); }
+	    100%  { -webkit-transform: rotateY(360deg); }
+	}
+
+	.see{
+		-webkit-transform-style:preserve-3d;
+		-webkit-perspective:500;
+		width:1200px;
+		height: 300px;
+		margin: 100px auto 1000px;
+   		-webkit-animation-name: y_rot; /* setup custom animations */
+    	-webkit-animation-duration: 6s;
+    	-webkit-animation-iteration-count: infinite;
+    	-webkit-animation-timing-function: ease;
+	}
+</style>
+<body>
+	<div class="see">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+		<div class="four">four</div>
+		<div class="wu">wu</div>
+		<div class="liu">liu</div>
+		<div class="qi">qi</div>
+		<div class="ba">ba</div>
+	</div>
+		
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3d</title>
+</head>
+<style>
+	@-webkit-keyframes y_rot {
+	    0%    { -webkit-transform: rotateY(0deg); }
+	    25%   {-webkit-transform: rotateY(-90deg);}
+	    50%   {-webkit-transform: rotateY(-180deg);}
+	    75%   {{-webkit-transform: rotateY(-270deg);}}
+	    100%  { -webkit-transform: rotateY(-360deg); }
+	}
+	@-webkit-keyframes x_rot {
+	    0%    { -webkit-transform: rotateX(-0deg); }
+	    25%   {-webkit-transform: rotateX(-90deg);}
+	    50%   {-webkit-transform: rotateX(-180deg);}
+	    75%   {{-webkit-transform: rotateX(-270deg);}}
+	    100%  { -webkit-transform: rotateX(-360deg); }
+	}
+	body{
+		background-color: black;
+		height: 100%;
+		margin: 0;
+		padding:0;
+		-webkit-animation-name: x_rot;
+    	-webkit-transform-style: preserve-3d;
+	    -webkit-animation-duration: 10s;
+	    -webkit-animation-iteration-count: infinite;
+	    /*-webkit-animation-timing-function: linear;*/
+	    /*-webkit-perspective: 1000;*/
+	}
+	@font-face{
+			font-family: myFirstFont;
+			src:url(b.ttf);
+		}
+	.one{
+		-webkit-transform:  rotateY(-135deg) translateZ(250px);
+	}
+	.two{
+		-webkit-transform:  rotateY(-90deg) translateZ(250px);
+	}
+	.three{
+		-webkit-transform:rotateY(-45deg) translateZ(250px);
+	}
+	.four{
+		-webkit-transform:rotateY(0deg) translateZ(250px);
+	}
+	.wu{
+		-webkit-transform:rotateY(45deg) translateZ(250px);
+	}
+	.liu{
+		-webkit-transform:rotateY(90deg) translateZ(250px);
+	}
+	.qi{
+		-webkit-transform:rotateY(135deg) translateZ(250px);
+	}
+	.baa{
+		-webkit-transform:rotateY(-180deg) translateZ(250px);
+	}
+/**/
+	.o-ne{
+		-webkit-transform:  rotateY(-135deg) rotateX(-45deg) translateZ(250px);
+	}
+	.t-wo{
+		-webkit-transform:  rotateY(-90deg) rotateX(-45deg) translateZ(250px);
+	}
+	.t-hree{
+		-webkit-transform:rotateY(-45deg) rotateX(-45deg) translateZ(250px);
+	}
+	.f-our{
+		-webkit-transform:rotateY(0deg) rotateX(-45deg) translateZ(250px);
+	}
+	.w-u{
+		-webkit-transform:rotateY(45deg) rotateX(-45deg) translateZ(250px);
+	}
+	.l-iu{
+		-webkit-transform:rotateY(90deg) rotateX(-45deg) translateZ(250px);
+	}
+	.q-i{
+		-webkit-transform:rotateY(135deg) rotateX(-45deg) translateZ(250px);
+	}
+	.b-a{
+		-webkit-transform:rotateY(180deg) rotateX(-45deg) translateZ(250px)  ;
+	}
+/**/
+	.oneK{ 
+		-webkit-transform:  rotateY(-135deg) rotateX(45deg) translateZ(250px);
+	}
+	.twoK{
+		-webkit-transform:  rotateY(-90deg) rotateX(45deg) translateZ(250px);
+	}
+	.threeK{
+		-webkit-transform:rotateY(-45deg) rotateX(45deg) translateZ(250px);
+	}
+	.fourK{
+		-webkit-transform:rotateY(0deg) rotateX(45deg) translateZ(250px);
+	}
+	.wuK{
+		-webkit-transform:rotateY(45deg) rotateX(45deg) translateZ(250px);
+	}
+	.liuK{
+		-webkit-transform:rotateY(90deg) rotateX(45deg) translateZ(250px);
+	}
+	.qiK{
+		-webkit-transform:rotateY(135deg) rotateX(45deg) translateZ(250px);
+	}
+	.baK{
+		-webkit-transform:rotateY(180deg) rotateX(45deg) translateZ(250px)  ;
+	}
+	/**/
+	.see .bt{
+		border: 1px solid red;
+		box-shadow: 2px 2px 80px red;
+		background-color: red;
+		-webkit-transform:rotateY(180deg) translateZ(75px);
+	}
+	.see .bl{
+		border: 1px solid red;
+		background-color: red;
+		box-shadow: 2px 2px 80px red;
+		-webkit-transform:rotateY(90deg) translateZ(75px);
+	}
+	.see .br{
+		border: 1px solid red;
+		background-color: red;
+		box-shadow: 2px 2px 80px red;
+		-webkit-transform:rotateY(-90deg) translateZ(75px);
+	}
+	.see .bb{
+		border: 1px solid red;
+		background-color: red;
+		box-shadow: 2px 2px 80px red;
+		-webkit-transform:rotateY(0deg) translateZ(75px);
+	}
+	.see .bo{
+		border: 1px solid red;
+		background-color: red;
+		box-shadow: 2px 2px 80px red;
+		-webkit-transform:rotateX(90deg) translateZ(75px);
+	}
+	.see .ba{
+		border: 1px solid red;
+		background-color: red;
+		box-shadow: 2px 2px 80px red;
+		-webkit-transform:rotateX(-90deg) translateZ(75px);
+	}
+	/**/
+	.see .st{
+		color: black;
+		line-height: 50px;
+		width: 50px;
+		height: 50px;
+		border: 1px solid yellow;
+		background-color: yellow;
+		box-shadow: 2px 2px 20px yellow;
+		-webkit-transform:rotateY(180deg) translateZ(25px);
+	}
+	.see .sl{
+		color: black;
+		line-height: 50px;
+		width: 50px;
+		height: 50px;
+		border: 1px solid yellow;
+		background-color: yellow;
+		box-shadow: 2px 2px 20px yellow;
+		-webkit-transform:rotateY(90deg)  translateZ(25px);
+	}
+	.see .sr{
+		color: black;
+		line-height: 50px;
+		width: 50px;
+		height: 50px;
+		border: 1px solid yellow;
+		background-color: yellow;
+		box-shadow: 2px 2px 20px yellow;
+		-webkit-transform:rotateY(-90deg)  translateZ(25px);
+		-webkit-transform-style:preserve-3d;
+		-webkit-perspective: 1000;
+	}
+	.see .sb{
+		color: black;
+		line-height: 50px;
+		width: 50px;
+		height: 50px;
+		border: 1px solid yellow;
+		background-color: yellow;
+		box-shadow: 2px 2px 20px yellow;
+		-webkit-transform:rotateY(0deg)  translateZ(25px);
+	}
+	.see .so{
+		color: black;
+		line-height: 50px;
+		width: 50px;
+		height: 50px;
+		border: 1px solid yellow;
+		background-color: yellow;
+		box-shadow: 2px 2px 20px yellow;
+		-webkit-transform:rotateX(90deg) translateZ(25px);
+	}
+	.see .sa{
+		color: black;
+		line-height: 50px;
+		width: 50px;
+		height: 50px;
+		border: 1px solid yellow;
+		background-color: yellow;
+		box-shadow: 2px 2px 20px yellow;
+		-webkit-transform:rotateX(-90deg)  translateZ(25px);
+	}
+/**/
+.see div{
+		position: absolute;
+		opacity: 0.5;
+		border-radius: 10px;
+		box-shadow: 4px 4px 40px #04ffff,-4px 2px 40px #04ffff;
+		color: white;
+		text-shadow:2px 2px 2px #333;
+		font-size: 26px;
+		text-align: center;
+		line-height:150px;
+		width: 150px;
+		height: 150px;
+		font-family: myFirstFont;
+		float:left;
+		background-color: #04ffff;
+		-webkit-transition-duration:2s;
+	}
+	.see{
+		position: relative;
+		width: 500px;
+		height: 500px;
+		-webkit-transform-style:preserve-3d;
+		margin-top: 1000px;
+		margin-left: 50%;
+		-webkit-transition-duration:2s;
+		/*-webkit-perspective: 1000;
+		-webkit-perspective-origin: 50% -60px;*/
+	}
+
+</style>
+<body>
+	<div class="see" id="see">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+		<!-- <div class="four">four</div> -->
+		<div class="wu">wu</div>
+		<div class="liu">liu</div>
+		<div class="qi">qi</div>
+		<!-- <div class="baa">ba</div> -->
+		<!--  -->
+		<div class="o-ne">+one</div>
+		<div class="t-wo">+two</div>
+		<div class="t-hree">+three</div>
+		<div class="f-our">+four</div>
+		<div class="w-u">+wu</div>
+		<div class="l-iu">+liu</div>
+		<div class="q-i">+qi</div>
+		<div class="b-a">+ba</div>
+		<!--  -->
+		<div class="oneK">-one</div>
+		<div class="twoK">-two</div>
+		<div class="threeK">-three</div>
+		<div class="fourK">-four</div>
+		<div class="wuK">-wu</div>
+		<div class="liuK">-liu</div>
+		<div class="qiK">-qi</div>
+		<div class="baK">-ba</div>
+		<div class="bt">1</div>
+		<div class="ba">2</div>
+		<div class="bb">3</div>
+		<div class="bo">4</div>
+		<div class="bl">5</div>
+		<div class="br">6</div>
+		<div class="st">F</div>
+		<div class="sl">K</div>
+		<div class="sr">U</div>
+		<div class="sb">C</div>
+		<div class="so">g</div>
+		<div class="sa">o</div>
+	</div>
+		<!--  -->
+		<script src="jquery.js"></script>
+		<script>
+			var a = $("#a"),
+			divs  = $("#see").find("div"),
+			num   = 0,
+			ind   =0  ;
+			function as(){
+				
+					for (var i = 0; i < divs.length; i++) {
+						num=num+Math.random()*13;
+						// divs[i].style.position="static";
+						divs[i].style.left=num*Math.random()-9*Math.random()+"px";
+						divs[i].style.top=num*Math.random()-9*Math.random()+"px";
+						divs[i].style.webkitTransform="transformZ("+num*Math.random()-9*Math.random()+"px)";
+					};
+					setTimeout(function(){
+						for (var i = 0; i < divs.length; i++) {
+						// divs[i].style.position="static";
+						divs[i].style.left=0+"px";
+						divs[i].style.top=0+"px";
+					};
+					},1000)
+					setTimeout(as,3000);
+			}
+			// setInterval(function(){
+			// 	divs.eq(num).html(ind)
+			// 	num++;
+			// 	ind++;
+			// 	if(num>25){
+			// 		num=22;
+			// 	}
+			// 	if(ind>9){
+			// 		ind=0;
+			// 	}
+			// },1500)
+			setTimeout(as,3000);
+		</script>
+</body>
+</html>
