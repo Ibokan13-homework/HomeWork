@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style>
+    @charset "UTF-8";
+    body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;border:0;}
+    body{font-size:12px;font-family:'\65B0\5B8B\4F53','\5B8B\4F53',Verdana;}
+    ul,ol{list-style-type:none;}
+    select,input,img{vertical-align:middle; outline:none;}
+    a{text-decoration:none;}
+    html{overflow-x:hidden;}
+    /*时钟*/
+    body{
+        background-color: black;
+    }
+    #clock_3d {
+        width:100%;
+        position:relative; 
+        
+    }
+    #clock_3d .clock {
+        position:absolute; 
+        left:0; 
+        top:0; 
+        width:100%; 
+        height:100%;
+        -webkit-transform-style:preserve-3d;
+        -webkit-perspective:1300px;
+        -webkit-animation:ulone 5s linear infinite;
+        text-align:center;
+    }
+
+    #clock_3d .clock-con {
+        display:inline-block;
+        width:70px; 
+        height:70px; 
+        position:relative; 
+        margin:60px 10px 0 10px;
+    }
+
+    #clock_3d ul {
+        -webkit-transform-style:preserve-3d;    
+    }
+    .show{
+        -webkit-animation:dome 4s cubic-bezier(.46,1.91,.58,.6) infinite;
+    }
+    @-webkit-keyframes dome {
+        0% {-webkit-transform:rotateX(0deg);}
+        25%   {-webkit-transform: rotateX(-90deg);}
+        50%   {-webkit-transform: rotateX(-180deg);}
+        75%   {-webkit-transform: rotateX(-270deg);}
+        100% {-webkit-transform:rotateX(-360deg);} 
+    }
+    @-webkit-keyframes'ulone'{
+        from{-webkit-transform:rotateX(0deg) rotateY(0deg);}
+        25%{-webkit-transform:rotateX(-5deg) rotateY(20deg);}
+        50%{-webkit-transform:rotateX(0deg) rotateY(0deg);}
+        75%{-webkit-transform:rotateX(5deg) rotateY(-10deg);}
+        to{-webkit-transform:rotateX(0deg) rotateY(0deg);} 
+    }
+    #clock_3d ul, #clock_3d li {
+        position:absolute; 
+        width:100%; 
+        height:100%; 
+        left:0; 
+        top:0;
+    }
+    #clock_3d li {
+        line-height:70px; 
+        text-align:center; 
+        font-size:30px; 
+        color:white; 
+        border:1px solid #7D689D; 
+        text-shadow:0 0 5px #BB90FC,0 0 6px #BB90FC,0 0 7px #BB90FC,0 0 8px #BB90FC,0 0 9px #BB90FC; 
+        font-family:Arial, Helvetica, sans-serif;
+    }
+    .num-frist {
+        -webkit-transform:rotateX(0deg) translateZ(35px);
+        /*-moz-transform:rotateX(0deg) translateZ(35px);
+        -ms-transform:rotateX(0deg) translateZ(35px);
+        -o-transform:rotateX(0deg) translateZ(35px);
+        transform:rotateX(0deg) translateZ(35px);*/
+    }
+    .num-three {
+        -webkit-transform:rotateX(-180deg) translateZ(35px);
+        /*-moz-transform:rotateX(-180deg) translateZ(35px);
+        -ms-transform:rotateX(-180deg) translateZ(35px);
+        -o-transform:rotateX(-180deg) translateZ(35px);
+        transform:rotateX(-180deg) translateZ(35px);*/
+    }
+    .num-two {
+        -webkit-transform:rotateX(90deg) translateZ(35px);
+        /*-moz-transform:rotateX(90deg) translateZ(35px);
+        -ms-transform:rotateX(90deg) translateZ(35px);
+        -o-transform:rotateX(90deg) translateZ(35px);
+        transform:rotateX(90deg) translateZ(35px);*/
+    }
+    .num-four {
+        -webkit-transform:rotateX(-90deg) translateZ(35px);
+        /*-moz-transform:rotateX(-90deg) translateZ(35px);
+        -ms-transform:rotateX(-90deg) translateZ(35px);
+        -o-transform:rotateX(-90deg) translateZ(35px);
+        transform:rotateX(-90deg) translateZ(35px);*/
+    }
+    .split{
+        margin-left: 20px;
+    }
+
+</style>
+</head>
+<body>
+    <div id="clock_3d">
+    	<div class="clock">
+    		<div class="clock-con hour1">
+    			<ul>
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+    		</div>
+    		<div class="clock-con hour2">
+    			<ul>
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+    		</div>
+    		<span class="split"></span>
+    		<div class="clock-con minute1">
+    			<ul>
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+            </div>
+            <div class="clock-con minute2">
+    			<ul>
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+    		</div>
+    		<span class="split"></span>
+    		<div class="clock-con" id="second1">
+    			<ul>
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+            </div>
+            <div class="clock-con" id="second2">
+    			<ul class="show">
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+    		</div>
+    	</div>
+    </div>
+    <script src="jquery.js"></script>
+    <script>
+        var h1 = $('.hour1 li'),
+            h1_ul = $('.hour1 ul'),
+            h2 = $('.hour2 li'),
+            h2_ul = $('.hour2 ul'),
+            m1 = $('.minute1 li'),
+            m1_ul = $('.minute1 ul'),
+            m2 = $('.minute2 li'),
+            m2_ul = $('.minute2 ul'),
+            s1 = $('#second1 li'),
+            s1_ul = $('#second1 ul'),
+            s2 = $('#second2 li');
+            setInterval(function(){
+                var now=new Date();
+                for (var i = 0; i<h1.length; i++) {
+                    h1.eq(i).html(parseInt(now.getHours()/10));
+                    h2.eq(i).html(now.getHours()%10);
+                    m1.eq(i).html(parseInt(now.getMinutes()/10));
+                    m2.eq(i).html(now.getMinutes()%10);
+                    s1.eq(i).html(parseInt(now.getSeconds()/10));
+                    s2.eq(i).html(now.getSeconds()%10);
+                    
+                    if (s2.eq(i).html()=="0") {
+                        s1_ul.addClass("show");
+                    }else{
+                        s1_ul.removeClass("show");
+                    };
+                    if (s2.eq(i).html()=="0"&&s1.eq(i).html()=="0") {
+                        m2_ul.addClass("show");
+                    }else{
+                        m2_ul.removeClass("show");
+                    };
+                    if (s2.eq(i).html()=="0"&&s1.eq(i).html()=="0"&&m2.eq(i).html()=="0") {
+                        m1_ul.addClass("show");
+                    }else{
+                        m1_ul.removeClass("show");
+                    };
+                    if (s2.eq(i).html()=="0"&&s1.eq(i).html()=="0"&&m2.eq(i).html()=="0"&&m1.eq(i).html()=="0") {
+                        h2_ul.addClass("show");
+                    }else{
+                        h2_ul.removeClass("show");
+                    };
+                    if (s2.eq(i).html()=="0"&&s1.eq(i).html()=="0"&&m2.eq(i).html()=="0"&&m1.eq(i).html()=="0"&&h2.eq(i).html()=="0") {
+                        h1_ul.addClass("show");
+                    }else{
+                        h1_ul.removeClass("show");
+                    };
+                };
+            },1000);
+    </script>
+</body>
+</html>
