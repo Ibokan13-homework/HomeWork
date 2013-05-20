@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			position:relative;
+			left:0;
+			top:0;
+			margin:300px;
+			background-color: black;
+			-webkit-transform-style:preserve-3d;
+			-webkit-animation:autoscroll 10s linear infinite;
+		}
+		@-webkit-keyframes autoscroll{
+			from{
+				-webkit-transform:rotateX(0deg) rotateY(30deg);
+			}
+			to{
+				-webkit-transform:rotateX(360deg) rotateY(30deg);
+			}
+		}
+		div{
+			width:100px;
+			height:100px;
+			border:1px solid red;
+			background-color: blue;
+			position:absolute;
+			left:0;
+			top:0;
+		}
+		div:nth-child(1){
+			-webkit-transform:rotateX(0deg) translateZ(50px);
+		}
+		div:nth-child(2){
+			-webkit-transform:rotateX(90deg) translateZ(50px);
+		}
+		div:nth-child(3){
+			-webkit-transform:rotateX(180deg) translateZ(50px);
+		}
+		div:nth-child(4){
+			-webkit-transform:rotateX(270deg) translateZ(50px);
+		}
+		div:nth-child(5){
+			-webkit-transform:rotateY(90deg) translateZ(50px);
+		}
+		div:nth-child(6){
+			-webkit-transform:rotateY(270deg) translateZ(50px);
+		}
+	</style>
+</head>
+<body>
+	<div>1111111111</div>
+	<div>2222222222</div>
+	<div>333333333</div>
+	<div>4444444444</div>
+	<div>55555555</div>
+	<div>666666666</div>
+</body>
+</html>

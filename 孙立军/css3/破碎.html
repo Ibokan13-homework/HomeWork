@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			position:relative;
+			left:0;
+			top:0;
+			margin:150px;
+			background-color: black;
+			-webkit-transform-style:preserve-3d;
+			-webkit-transform:rotateX(30deg) rotateY(30deg);
+		}
+		 div{
+			border:1px solid red;
+			background-color: blue;
+			position:absolute;
+			left:0;
+			top:0;
+			font-size:40px;
+			font-weight: bold;
+			text-align:center;
+			color:white;
+			width:100px;
+			height:100px;
+			line-height:100px;
+			-webkit-transition:all 1s ease;
+		}
+	</style>
+</head>
+<body>
+	<script src="jquery.js"></script>
+	<script>
+		var str="";
+		for (var i = 0;i<6;i++) {
+			str+="<div></div>";
+		};
+		$("body").html(str);
+		var divs=$("div");
+		function auto(){
+			divs.each(function(){
+				$(this).css({
+					"-webkit-transform":"rotateY("+$(this).index()*90+"deg) translateZ(50px)",
+				})
+				if($(this).index()==4){
+					$(this).css({
+					"-webkit-transform":"rotateX(90deg) translateZ(50px)"
+					})
+				}
+				if($(this).index()==5){
+					$(this).css({
+					"-webkit-transform":"rotateX(270deg) translateZ(50px)"
+					})
+				}
+			})
+		}
+		auto();
+		var n=0;
+		divs.on("click",function(){
+			if (n%2==0) {
+				divs.each(function(){
+				$(this).css({
+					"-webkit-transform":"rotateY("+$(this).index()*90+"deg) translateZ(100px)",
+				})
+				if($(this).index()==4){
+					$(this).css({
+					"-webkit-transform":"rotateX(90deg) translateZ(100px)"
+					})
+				}
+				if($(this).index()==5){
+					$(this).css({
+					"-webkit-transform":"rotateX(270deg) translateZ(100px)"
+					})
+				}
+			})
+			}else{
+				auto()
+			};
+			n++;
+		})
+
+			
+	</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div:nth-child(1){
+			width:100px;
+			height:100px;
+			background-color: blue;
+			margin:0 auto;
+			-webkit-transition:all 1s ease;
+		}
+		div:nth-child(1):hover{
+			-webkit-transform:translateX(400px) rotate(60deg);
+		}
+		div:nth-child(2){
+			width:300px;
+			height:100px;
+			background-color: blue;
+			font-size: 40px;
+			font-weight: bold;
+			-webkit-transition:-webkit-transform 2s ease;
+		}
+		div:nth-child(2):hover{
+			-webkit-transform:scaleX(-1);
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div>额感觉少点感觉到个等多</div>
+</body>
+</html>

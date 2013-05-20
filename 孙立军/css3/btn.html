@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			background-color: #eaeaea;
+		}
+		div{
+			text-align:center;
+			cursor:pointer;
+			font-size:12px;
+			color:white;
+			font-weight: bold;
+		}
+		.btn1{
+			width:70px;
+			height:36px;
+			background-color:#49c7f6; 
+			/*156785    506373*/
+			border-radius: 4px;
+			box-shadow:0 1px 0 0 #156785,0 2px 0 0 #156785,0 3px 0 0 #156785,0 4px 0 0 #156785,0 5px 0 0 #156785,0 6px 0 0 #156785,0 6px 0 3px #506373,0 7px 0 2px #506373;
+			background-image: -webkit-linear-gradient(bottom, #39b2de 0%,#49c7f6  100%);
+			line-height:37px;
+
+		}
+		.btn2{
+			margin:30px 0;
+			width:90px;
+			height:50px;
+			background-color: #dadde0;
+			border-radius: 5px;
+			border-top:1px solid #b7b8ba;
+			border-bottom:1px solid white;
+		}
+		.btn2 .inner{
+			width:76px;
+			height:36px;
+			background-color:#49c7f6; 
+			border-radius: 4px;
+			margin:7px auto;
+			border:1px solid #186f8f;
+			line-height:34px;
+			background-image: -webkit-linear-gradient(bottom, #2ca0ca 0%,#3db7e4  100%);
+		}
+		.btn3 div{
+			float:left;
+			height:38px;
+		}
+		.btn3 div:nth-child(1){
+			width:40px;
+			background-color:#0d82ac;
+			border-top:1px solid #2ab7ec;
+			box-shadow: 1px 1px 0 0px #044a64,0px 1px 0 0px #032b3a,0px 2px 0 0px #032b3a,0px 3px 0 0px #032b3a,0px 4px 0 0px #032b3a,2px 2px 0 0px #044a64,2px 3px 0 0px #044a64,2px 4px 0 0 #044a64,2px 5px 0 0 #044a64,1px 10px 8px 0 #999999;
+			border-radius:4px 0 0 4px;
+			border-right:1px solid #07526e;
+			font-size:20px;
+			line-height: 38px;
+			color: #8fd1ea;
+			text-shadow:1px 1px 0 #205983;
+			background-image: -webkit-linear-gradient(bottom, #0a607f 0%,#0e88b4  100%);
+		}
+		 .btn3 div:nth-child(2){
+			width:80px;
+			background-color: #39b2de;
+			height:39px;
+			border-radius: 0 3px 3px 0;
+			box-shadow: 0 1px 0 0 #156785,0 2px 0 0 #156785,0 3px 0 0 #156785,0 4px 0 0 #156785,0 5px 0 0 #156785,0px 10px 8px 0 #999999;
+			font-size:14px;
+			line-height: 39px;
+			background-image: -webkit-linear-gradient(bottom, #39b2de 0%,#49c7f6  100%);
+		} 
+	</style>
+</head>
+<body>
+	<div class="btn1">Button1</div>
+	<div class="btn2">
+		<div class="inner">Button2</div>
+	</div>
+	<div class="btn3">
+		<div>1</div>
+		<div>Button3</div>
+	</div>
+	<script src="jquery.js"></script>
+	<script>
+		$("div").eq(0).on("mousedown",function(){
+			$(this).css({
+				"box-shadow":"0 0 0 1px #506373,0 0 0 3px #506373",
+				"-webkit-transform":"translateY(6px)",
+				"background-color":"#30a5cf",
+				"height":"36px",
+				"color":"#156785",
+				"background-image": "-webkit-linear-gradient(bottom, #49c7f6 0%,#39b2de  100%)"
+			})
+		}).on("mouseup",function(){
+			$(this).css({
+				"box-shadow":"0 1px 0 0 #156785,0 2px 0 0 #156785,0 3px 0 0 #156785,0 4px 0 0 #156785,0 5px 0 0 #156785,0 6px 0 3px #506373,0 7px 0 2px #506373",
+				"-webkit-transform":"translateY(0px)",
+				"background-color":"#49c7f6",
+				"height":"36px",
+				"color":"white",
+				"background-image": "-webkit-linear-gradient(bottom, #39b2de 0%,#49c7f6  100%)"
+
+			})
+		});
+		$(".btn2 div").on("mousedown",function(){
+			$(this).css({
+				"background-image": "-webkit-linear-gradient(bottom,#3db7e4  0%,#2ca0ca 100%)",
+				"line-height":"36px"
+			})
+		}).on("mouseup",function(){
+			$(this).css({
+				"background-image": "-webkit-linear-gradient(bottom, #2ca0ca 0%,#3db7e4  100%)",
+				"line-height":"34px"
+			})
+		});
+		$(".btn3").on("mousedown",function(){
+			$(".btn3 div").eq(1).css({
+				"-webkit-transform":"translateY(2px) translateX(2px)",
+				"box-shadow":"0 1px 0 0 #156785,0 2px 0 0 #156785,0 3px 0 0 #156785,3px 0 3px 0 #156785 inset",
+				"background-image": "-webkit-linear-gradient(bottom, #49c7f6 0%,#39b2de  100%)"
+			})
+		}).on("mouseup",function(){
+			$(".btn3 div").eq(1).css({
+				"-webkit-transform":"translateY(0px) translateX(0px)",
+				"box-shadow": "0 1px 0 0 #156785,0 2px 0 0 #156785,0 3px 0 0 #156785,0 4px 0 0 #156785,0 5px 0 0 #156785,0px 10px 8px 0 #999999",
+				"background-image": "-webkit-linear-gradient(bottom, #39b2de 0%,#49c7f6  100%)"
+			})
+		})
+	</script>
+</body>
+</html>
