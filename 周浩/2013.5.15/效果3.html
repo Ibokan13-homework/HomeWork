@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width:100px;
+			height:100px;
+			background:red;
+			-webkit-transition:all 1s ease;
+		}
+		p{
+			width:100px;
+			height:100px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<p></p>
+	<script src="jquery.js"></script>
+	<script>
+		var div = $("div");
+		div.on("mouseover",function (){
+			div.css({
+				"-webkit-transform":"rotateZ(720deg)",
+				"width":"0",
+				"height":"0",
+				"opacity":"0"
+			});
+		}).on('mouseout',function (){
+			div.css({
+				"-webkit-transform":"rotateZ(-720deg)",
+				"width":"100",
+				"height":"100",
+				"opacity":"1"
+			});
+		});
+	</script>
+</body>
+</html>
