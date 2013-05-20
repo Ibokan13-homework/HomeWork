@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding:0;
+			margin:0
+		}
+		body{
+			background-color: black;
+			-webkit-transform:rotateX(5deg) rotateY(0deg);
+			-webkit-transform-style:preserve-3d;
+		}
+		div{
+			height:200px;
+			margin:100px 0 0 200px;
+			-webkit-animation:'move' 3s linear 0 infinite;
+			-webkit-transform-style:preserve-3d;
+		}
+		ul{
+			float:left;
+			width:100px;
+			height:100px;
+			position: relative;
+			margin-left:50px;
+			list-style:none;
+			-webkit-transition:all 0.3s ease;
+			-webkit-transform-style:preserve-3d;
+			
+		}
+		@-webkit-keyframes 'move' {
+			0% {-webkit-transform:rotateX(0deg) rotateY(10deg);}
+			50% {-webkit-transform:rotateX(10deg) rotateY(15deg);}
+			100% {-webkit-transform:rotateX(0deg) rotateY(10deg);}
+		}
+		ul li{
+			width:100px;
+			height:100px;
+			line-height: 100px;
+			text-align: center;
+			color:white;
+			font-size: 40px;
+			font-weight: bold;
+			position: absolute;
+			border:1px solid red;
+			border-radius:10px;
+		}
+		ul li:nth-child(1){
+			-webkit-transform:rotateX(0) translateZ(50px);
+		}
+		ul li:nth-child(2){
+			-webkit-transform:rotateX(90deg) translateZ(50px);
+		}
+		ul li:nth-child(3){
+			-webkit-transform:rotateX(180deg) translateZ(50px);
+		}
+		ul li:nth-child(4){
+			-webkit-transform:rotateX(270deg) translateZ(50px);
+		}
+		ul li:nth-child(5){
+			-webkit-transform:rotateY(90deg) translateZ(50px);
+		}
+		ul li:nth-child(6){
+			-webkit-transform:rotateY(270deg) translateZ(50px);
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<script src="jquery.js"></script>
+	<script>
+		var uls = $('div ul'),
+			ul6 = $('ul:nth-child(6) li'),
+			ul5 = $('ul:nth-child(5) li'),
+			ul4 = $('ul:nth-child(4) li'),
+			ul3 = $('ul:nth-child(3) li'),
+			ul2 = $('ul:nth-child(2) li'),
+			ul1 = $('ul:nth-child(1) li'),
+			now = new Date(),
+			second1 = now.getSeconds()%10,
+			second2 = parseInt(now.getSeconds()/10),
+			second3 = now.getMinutes()%10,
+			second4 = parseInt(now.getMinutes()/10),
+			second5 = now.getHours()%10,
+			second6 = parseInt(now.getHours()/10), 
+			index = 0;
+		var aTime=[second1,second2,second4,second3,second5,second6];
+		uls.each(function(){
+			var _this=this;
+			$(_this).find("li").each(function(){
+				$(this).html(aTime[$(_this).index()]);
+			})
+		})
+		var in1 = 0,
+			in2 = 0,
+			in3 = 0,
+			in4 = 0,
+			in6 = 0;
+		function a(){
+			index+=1;
+			uls.eq(5).css({
+				"-webkit-transform":"rotateX("+90*index+"deg)"
+			});
+			ul6.html((second1+index)%10);
+			if ((second1+index)%10 == 0) {
+				in1+=1;
+				uls.eq(4).css({
+					"-webkit-transform":"rotateX("+90*in1+"deg)"
+				});
+				second2+=1;
+				ul5.html(second2+1);
+			};
+			ul5.html(second2%6);
+			second2 = second2%6;
+			if (second2%6 == 0&(second1+index)%10 == 0) {
+				in2+=1;
+				uls.eq(3).css({
+					"-webkit-transform":"rotateX("+90*in2+"deg)"
+				});
+				second3+=1;
+				ul4.html(second3+1);
+			};
+			ul4.html(second3%10);
+			second3 = second3%10;
+			if (second3%10 == 0&(second1+index)%10 == 0&second2%6 == 0) {
+				in3+=1;
+				uls.eq(2).css({
+					"-webkit-transform":"rotateX("+90*in3+"deg)"
+				});
+				second4+=1;
+				ul3.html(second4+1);
+			};
+			ul3.html(second4%6);
+			second4 = second4%6;
+			if (second4%6 == 0&(second1+index)%10 == 0&second2%6 == 0&second3%10 == 0) {
+				in4+=1;
+				uls.eq(1).css({
+					"-webkit-transform":"rotateX("+90*in4+"deg)"
+				});
+				second5+=1;
+				ul2.html(second5+1);
+			};
+			ul2.html(second5%10);
+			second5 = second5%10;
+			if (second5%10 == 0&second4%6 == 0&(second1+index)%10 == 0&second2%6 == 0&second3%10 == 0) {
+				in5+=1;
+				uls.eq(0).css({
+					"-webkit-transform":"rotateX("+90*in5+"deg)"
+				});
+				second6+=1;
+				ul1.html(second6+1);
+			};
+			ul1.html(second6%6);
+			second6 = second6%6;
+			if (second6%6 == 0&second5%10 == 0&second4%6 == 0&(second1+index)%10 == 0&second2%6 == 0&second3%10 == 0) {
+				in5+=1;
+			};
+		}
+		setInterval(a,1000)
+	</script>
+</body>
+</html>
