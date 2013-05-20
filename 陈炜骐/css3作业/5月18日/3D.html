@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+		body{
+			background-color: black;
+			-webkit-perspective:900;
+		}
+		.outer{
+			
+			-webkit-transform-style:preserve-3d;
+			margin:200px auto 0px;
+			position: relative;
+			-webkit-transform:rotateY(0deg);
+			
+			
+		}
+		.outer div img{
+			width:100px;
+			height:200px;
+		}
+		
+		div{
+			width:100px;
+			height:200px;
+			position: absolute;
+			top:0;
+			left:0;
+			-webkit-transform:rotateX(100deg);
+		}
+		.outer div:nth-of-type(1){
+			z-index: 10;
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: red;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(2){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: gray;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+			
+		}
+		.outer div:nth-of-type(3){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: black;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(4){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: yellow;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(5){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: blue;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(6){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: green;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(7){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: black;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(8){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: gray;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(9){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: yellow;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(10){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: blue;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(11){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: green;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(12){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: black;
+			-webkit-transform:rotateY(0deg) translateZ(0px);
+		}
+		.outer div:nth-of-type(13){
+			-webkit-transition:-webkit-transform 2s linear;
+			background-color: black;
+			-webkit-transform:rotateY(0deg) translateZ(00px);
+		}
+	</style>
+</head>
+<body>
+	<div id="outer" class="outer">
+		<div>
+			<img src="images/1.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/2.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/3.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/4.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/5.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/1.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/7.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/8.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/9.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/10.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/11.jpg" alt="">
+		</div>
+		<div>
+			<img src="images/6.jpg" alt="">
+		</div> 
+	</div>
+</body>
+<script>
+	var outer=document.getElementById("outer"),
+		outerdiv=document.getElementById("outer").getElementsByTagName("div");
+		outerdiv[0].style.webkitTransform="rotateY(0deg) translateZ(300px)";
+		outerdiv[1].style.webkitTransform="rotateY(30deg) translateZ(300px)";
+		outerdiv[2].style.webkitTransform="rotateY(60deg) translateZ(300px)";
+		outerdiv[3].style.webkitTransform="rotateY(90deg) translateZ(300px)";
+		outerdiv[4].style.webkitTransform="rotateY(120deg) translateZ(300px)";
+		outerdiv[5].style.webkitTransform="rotateY(150deg) translateZ(300px)";
+		outerdiv[6].style.webkitTransform="rotateY(180deg) translateZ(300px)";
+		outerdiv[7].style.webkitTransform="rotateY(210deg) translateZ(300px)";
+		outerdiv[8].style.webkitTransform="rotateY(240deg) translateZ(300px)";
+		outerdiv[9].style.webkitTransform="rotateY(270deg) translateZ(300px)";
+		outerdiv[10].style.webkitTransform="rotateY(300deg) translateZ(300px)";
+		outerdiv[11].style.webkitTransform="rotateY(330deg) translateZ(300px)";
+	// for(var i=outerdiv.length-1;i>=0;i--){
+	// 	// alert(i)
+	// 	outerdiv[i].style.zIndex=outerdiv.length-i
+	// }
+
+	var downX;
+	var dowX,
+		downY,
+		dowY,
+		aa=0,
+		bb=0,
+		rotate,
+		rotateY;
+	document.onmousedown=function(event){
+		var ev=event||window.event;
+		if (ev==event) {
+			event.preventDefault();
+		}else {
+			window.event.returnValue=false
+		}
+		downX=event.clientX,
+		dowX=event.clientX,
+		downY=event.clientY,
+		dowY=event.clientY;
+
+		document.onmousemove=function(event){
+
+		var ev=event||window.event;
+		if (ev==event) {
+			event.preventDefault();
+		}else {
+			window.event.returnValue=false
+		}
+
+			var moveX=event.clientX;
+			var moveY=event.clientY;
+			rotate=aa+((moveX-dowX)/10);
+			rotateY=bb+((moveY-dowY)/10);
+			// outer.style.webkitTransform="rotateY("+rotate+"deg) rotateX("+rotateY+"deg)";
+			if(moveX-downX>0){
+				outer.style.webkitTransform="rotateY("+rotate+"deg) rotateX("+rotateY+"deg)";
+				
+			}else{
+				outer.style.webkitTransform="rotateY("+rotate+"deg) rotateX("+rotateY+"deg)";
+			}
+			if(moveY-downY>0){
+				outer.style.webkitTransform="rotateX("+rotateY+"deg) rotateY("+rotate+"deg)";
+			}else{
+				outer.style.webkitTransform="rotateX("+rotateY+"deg) rotateY("+rotate+"deg)";
+			}
+			downX=event.clientX;
+			downY=event.clientY;
+
+		}
+	}
+	document.onmouseup=function(){
+
+		document.onmousemove=null;
+			aa=rotate;
+			bb=rotateY;
+
+	};
+</script>
+</html>
