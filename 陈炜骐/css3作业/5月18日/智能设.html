@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+		body{
+			-webkit-perspective:1500;
+			background-color: black;
+		}
+		li{
+			list-style: none;
+		}
+		.sec2{
+			-webkit-transition:-webkit-transform 0.1s linear;
+		}
+		.time{
+			-webkit-transform-style:preserve-3d;
+			width:100px;
+			height:100px;
+			position: relative;
+			float:left;
+			margin-left: 10px;
+			top:0;
+			left:0;
+		}
+		.inner{
+			-webkit-transform-style:preserve-3d;
+			-webkit-transform:rotateY(15deg) rotateX(-5deg);
+			width:800px;
+			margin:200px auto;
+		}
+		.time li{
+			line-height:100px;
+			text-align: center;
+			border:1px solid #7D689D;
+			font-size: 100px;
+			width:100px;
+			height:100px;
+			position: absolute;
+			background-color: white;
+			color:white;
+			opacity: 0.8;
+			text-shadow:0 0 5px #BB90FC,0 0 6px #BB90FC,0 0 7px #BB90FC,0 0 8px #BB90FC,0 0 9px #BB90FC;
+			left:0;
+			top:0;
+		}
+		.time li:nth-of-type(1),.hour2 li:nth-of-type(1){
+			-webkit-transform:rotateX(90deg) translateZ(50px);
+		}
+		.time li:nth-of-type(2),.hour2 li:nth-of-type(2){
+			-webkit-transform:rotateY(180deg) translateZ(50px);
+		}
+		.time li:nth-of-type(3),.hour2 li:nth-of-type(3){
+			-webkit-transform:rotateX(90deg) translateZ(-50px);
+		}
+		.time li:nth-of-type(4),.hour2 li:nth-of-type(4){
+			-webkit-transform:rotateY(360deg) translateZ(50px);
+		}
+	</style>
+</head>
+<body>
+	<div class="inner">
+		<div id="hour1" class="hour1 time">
+			<ul class="hour1-ul">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div id="hour2" class="hour2 time">
+			<ul class="hour2-ul">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div id="min1" class="min1 time">
+			<ul class="min1-ul">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div id="min2" class="min2 time">
+			<ul class="min2-ul">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div id="sec1" class="sec1 time">
+			<ul class="sec1-ul">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div id="sec2" class="sec2 time">
+			<ul class="sec2-ul">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	var sec2T,
+		time,
+		sec1S=0,
+		min2S=0,
+		min1S=0,
+		hour2S=0,
+		hour1S=0,
+		sec1Strue=0,
+		min2Strue=0,
+		min1Strue=0,
+		hour2Strue=0,
+		hour1Strue=0;
+	var hour1=document.getElementById("hour1"),
+		hour2=document.getElementById("hour2"),
+		min1=document.getElementById("min1"),
+		min2=document.getElementById("min2"),
+		sec1=document.getElementById("sec1"),
+		sec2=document.getElementById("sec2");
+	var hour1Div=document.getElementById("hour1").getElementsByTagName("li"),
+	 	hour2Div=document.getElementById("hour2").getElementsByTagName("li"),
+	 	min1Div=document.getElementById("min1").getElementsByTagName("li"),
+	 	min2Div=document.getElementById("min2").getElementsByTagName("li"),
+	 	sec1Div=document.getElementById("sec1").getElementsByTagName("li"),
+	 	sec2Div=document.getElementById("sec2").getElementsByTagName("li");
+	var myDate = new Date();
+	var timeS=myDate.getSeconds().toString();
+	if(timeS-0<=9){
+		timeS="0"+timeS;
+	}
+	var timeM=myDate.getMinutes().toString();
+	if(timeM-0<=9){
+		timeM="0"+timeM;
+	}
+	var timeH=myDate.getHours().toString();
+	if(timeH-0<=9){
+		timeH="0"+timeH;
+	}
+	var timeSUserS=timeS.substr(0,1),
+		timeSUserG=timeS.substr(1,1),
+		timeMUserS=timeM.substr(0,1),
+		timeMUserG=timeM.substr(1,1),
+		timeHUserS=timeH.substr(0,1),
+		timeHUserG=timeH.substr(1,1);
+		
+	function move(){
+		clearTimeout(sec2T)
+		// clearInterval(time)
+		timeSUserG++;
+		if(timeSUserG>=10){
+			timeSUserS++;
+			timeSUserG=0;
+			sec1Strue=1;
+		}
+		if(sec1Strue==1){
+			sec1S=-90;
+			sec1Strue=0;
+		}
+		if(timeSUserS>=6){
+			timeMUserG++;
+			timeSUserS=0;
+			min2Strue=1;
+		}
+
+		if(timeMUserG>=10){
+			timeMUserS++;
+			timeMUserG=0;
+			min1Strue=1;
+		}
+
+
+
+		if(timeMUserG>=10){
+			timeMUserS++;
+			timeMUserG=0;
+			min1Strue=1;
+		}
+		if(timeMUserS>=6){
+			timeHUserG++;
+			timeMUserS=0;
+			hour2Strue=1;
+		}
+
+
+
+
+
+		if(hour1Strue==1){
+			hour1S=-90;
+			hour1Strue=0;
+		}
+		if(hour2Strue==1){
+			hour2S=-90;
+			hour2Strue=0;
+		}
+		if(min1Strue==1){
+			min1S=-90;
+			min1Strue=0;
+		}
+		if(min2Strue==1){
+			min2S=-90;
+			min2Strue=0;
+
+		}
+		// var sec1DivTop=timeSUserG+1;
+		secSa=-90;
+		
+		sec2.style.webkitTransform="rotateX("+secSa+"deg)"
+		sec2.style.webkitTransition="-webkit-transform 0.1s linear";
+		
+		sec1.style.webkitTransform="rotateX("+sec1S+"deg)"
+		sec1.style.webkitTransition="-webkit-transform 0.1s linear";
+		
+		min2.style.webkitTransform="rotateX("+min2S+"deg)"
+		min2.style.webkitTransition="-webkit-transform 0.1s linear";
+
+		min1.style.webkitTransform="rotateX("+min1S+"deg)"
+		min1.style.webkitTransition="-webkit-transform 0.1s linear";
+		
+		hour2.style.webkitTransform="rotateX("+hour2S+"deg)"
+		hour2.style.webkitTransition="-webkit-transform 0.1s linear";
+
+		hour1.style.webkitTransform="rotateX("+hour1S+"deg)"
+		hour1.style.webkitTransition="-webkit-transform 0.1s linear";
+
+		sec2T = setTimeout(function(){
+			sec2.style.webkitTransition="-webkit-transform 0s linear";
+			sec2.style.webkitTransform="rotateX(0deg)";
+		},100)
+		
+		sec2T = setTimeout(function(){
+			sec1S=0;
+			sec1.style.webkitTransition="-webkit-transform 0s linear";
+			sec1.style.webkitTransform="rotateX(0deg)";
+		},100)
+
+		sec2T = setTimeout(function(){
+			min2S=0;
+			min2.style.webkitTransition="-webkit-transform 0s linear";
+			min2.style.webkitTransform="rotateX(0deg)";
+		},100)
+
+		sec2T = setTimeout(function(){
+			min1S=0;
+			min1.style.webkitTransition="-webkit-transform 0s linear";
+			min1.style.webkitTransform="rotateX(0deg)";
+		},100)
+
+		sec2T = setTimeout(function(){
+			hour2S=0;
+			hour2.style.webkitTransition="-webkit-transform 0s linear";
+			hour2.style.webkitTransform="rotateX(0deg)";
+		},100)
+
+		sec2T = setTimeout(function(){
+			hour1S=0;
+			hour1.style.webkitTransition="-webkit-transform 0s linear";
+			hour1.style.webkitTransform="rotateX(0deg)";
+		},100)
+
+		sec2Div[3].innerHTML=timeSUserG;
+		sec2Div[1].innerHTML=timeSUserG+2;
+		if(timeSUserG==8){
+			sec2Div[1].innerHTML=0;
+		}
+		if(timeSUserG==9){
+			sec2Div[1].innerHTML=1;
+		}
+		sec2Div[0].innerHTML=timeSUserG;
+		sec1Div[3].innerHTML=timeSUserS;
+		sec1Div[0].innerHTML=timeSUserS;
+		min2Div[3].innerHTML=timeMUserG;
+		min2Div[0].innerHTML=timeMUserG;
+		min1Div[3].innerHTML=timeMUserS;
+		min1Div[0].innerHTML=timeMUserS;
+		hour2Div[3].innerHTML=timeHUserG;
+		hour2Div[0].innerHTML=timeHUserG;
+		hour1Div[3].innerHTML=timeHUserS;
+		hour1Div[0].innerHTML=timeHUserS;
+	}
+	time = setInterval(move,1000)
+</script>
+</html>
