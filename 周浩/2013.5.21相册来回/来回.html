@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		body{
+			position: relative;
+			background: black;
+		}
+		img{
+			position: absolute;
+			top:200px;
+			left:200px;
+			border:6px solid white;
+			-webkit-box-shadow:10px 10px 10px white;
+			-webkit-transform :rotate(-10deg) scale(1);
+			-webkit-transition:all 1s ease;
+		}
+		.show{
+			position: absolute;
+			top:10px;
+			left:800px;
+			-webkit-transform :rotate(-370deg) scale(0.5);
+		}
+	</style>
+</head>
+<body>
+	<img src="1.png" alt="">
+	<img src="2.png" alt="">
+	<img src="3.png" alt="">
+	<img src="4.png" alt="">
+	<img src="5.png" alt="">
+	<img src="6.png" alt="">
+	<script>
+		var imgs = document.getElementsByTagName('img'),
+			num = 0;
+		for (var i = 0; i <imgs.length; i++) {
+			imgs[i].onclick = function(){
+				num+=1;
+				for (var i = 0; i <imgs.length; i++) {
+					if (imgs[i] == this&&imgs[i].className == "") {
+						imgs[i].style.zIndex=num;
+						imgs[i].className = "show";	
+						return;
+					} 
+					if (imgs[i] == this&&imgs[i].className == "show") {
+						imgs[i].style.zIndex=num;
+						imgs[i].className = "";
+					}
+				};
+			};
+		};
+	</script>
+</body>
+</html>
