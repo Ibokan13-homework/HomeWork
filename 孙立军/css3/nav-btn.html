@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			position:relative;
+			left:0;
+			top:0;
+		}
+		.outer{
+			width:8px;
+			height:222px;
+			background:url(shadow.png) 0 0 no-repeat;
+			background-size:800% 100%;
+			position:absolute;
+			left:0;
+			top:0;
+		}
+		.nav{
+			width:100px;
+			height:30px;
+			position:absolute;
+			left:0;
+			top:30px;
+			background-color: #cbcbcb;
+			border-radius:0 10px 10px 0;
+			line-height:30px;
+			text-indent:10px;
+			-webkit-transition:all 0.5s ease;
+			font-size:14px;
+			box-shadow: 1px 3px 3px 1px #9f9f9f;
+		}
+		.nav:hover{
+			padding-left:30px;
+			background-color: #ebebeb;
+			color:blue;
+		}
+		div:nth-child(2){
+			top:70px;
+		}
+		div:nth-child(3){
+			top:110px;
+		}
+		div:nth-child(4){
+			top:150px;
+		}
+	</style>
+</head>
+<body>
+	<div class="nav">NAV1按钮</div>
+	<div class="nav">NAV2按钮</div>
+	<div class="nav">NAV3按钮</div>
+	<div class="nav">NAV4按钮</div>
+	<div class="outer"></div>
+</body>
+</html>

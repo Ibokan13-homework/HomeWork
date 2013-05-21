@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		/* div{
+			position:relative;
+			left:0;
+			top:0;
+			border:1px solid red;
+			margin-top:100px;
+		} */
+		ul{
+			width:600px;
+			height:90px;
+			background-color: #eee;
+			list-style-type:none;
+			padding:0;
+			-webkit-transform:scaleY(-1);
+		}
+		img{
+			width:50px;
+			height:50px;
+			-webkit-transition:all 1s ease;
+		}
+		li{
+			float:left;
+			margin:0 10px;
+			-webkit-transform:scaleY(-1);
+		}
+	</style>
+</head>
+<body>
+	<!-- <div> -->
+		<ul>
+			<li><img src="animal/1.jpg" alt=""></li>
+			<li><img src="animal/2.jpg" alt=""></li>
+			<li><img src="animal/3.jpg" alt=""></li>
+			<li><img src="animal/4.jpg" alt=""></li>
+			<li><img src="animal/5.jpg" alt=""></li>
+			<li><img src="animal/6.jpg" alt=""></li>
+		</ul>	
+	<!-- </div> -->
+	
+	<script src="jquery.js"></script>
+	<script>
+		var imgs=$("img");
+		var lis=$("li");
+
+		lis.on("mouseover",function(){
+			imgs.eq($(this).index()).css({
+				"height":"80px",
+				"width":"80px"
+			})
+			imgs.eq($(this).index()+1).css({
+				"height":"65px",
+				"width":"65px"
+			})
+			imgs.eq($(this).index()-1).css({
+				"height":"65px",
+				"width":"65px"
+			})
+			if($(this).index()-1<0){
+				imgs.eq($(this).index()-1).css({
+					"height":"50px",
+					"width":"50px"
+				})
+			}
+			if ($(this).index()+1>imgs.length) {
+				imgs.eq($(this).index()+1).css({
+					"height":"50px",
+					"width":"50px"
+				})
+			};
+		}).on("mouseout",function(){
+			imgs.each(function(){
+				$(this).css({
+					"height":"50px",
+					"width":"50px"
+				})
+			})
+		})
+	</script>
+</body>
+</html>
