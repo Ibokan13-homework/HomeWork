@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+	<style>
+	*{margin:0;padding:0;}
+	body{position:relative;}
+	span{
+		position:absolute;
+		top:200px;
+		left:200px;
+	}
+	.name{
+		-webkit-transition:-webkit-transform 1s cubic-bezier(.25,1.64,.59,.79);
+		-webkit-transform:translate(700px,-200px) scale(0.5);
+	}
+	.x{
+		-webkit-transition:-webkit-transform 1s cubic-bezier(.25,1.64,.59,.79);
+		-webkit-transform:rotate(360deg);
+	}
+	.eman{
+		-webkit-transition:-webkit-transform 1s cubic-bezier(.25,1.64,.59,.79);
+		-webkit-transform:translate(0px,0px);
+	}
+	.y{
+		-webkit-transition:-webkit-transform 1s cubic-bezier(.25,1.64,.59,.79);
+		-webkit-transform:rotate(-360deg);
+	}
+	</style>
+<body>
+	<span>
+		<img src="1.png" alt="">
+	</span>
+	<span>
+		<img src="2.png" alt="">
+	</span>
+	<span>
+		<img src="3.png" alt="">
+	</span>
+	<span>
+		<img src="4.png" alt="">
+	</span>
+	<span>
+		<img src="5.png" alt="">
+	</span>
+	<span>
+		<img src="6.png" alt="">
+	</span>
+	<span>
+		<img src="7.png" alt="">
+	</span>
+	<span>
+		<img src="8.png" alt="">
+	</span>
+	<span>
+		<img src="9.png" alt="">
+	</span>
+	<span>
+		<img src="10.png" alt="">
+	</span>
+	<span>
+		<img src="11.png" alt="">
+	</span>
+	<span>
+		<img src="12.png" alt="">
+	</span>
+	<script>
+		var simg=document.getElementsByTagName("span"),
+			num =0,
+			img =document.getElementsByTagName("img");
+		for (var i = 0; i < simg.length; i++) {
+			simg[i].onclick=tab;
+		};
+		function tab(){
+			num++;
+				for (var i = 0; i < simg.length; i++) {
+					if(this==simg[i]){
+						simg[i].a;
+						if(simg[i].a==undefined){
+							simg[i].a=true;
+							simg[i].className="name";
+							simg[i].style.zIndex=num;
+							img[i].className="x";
+							
+						}
+						else if(simg[i].a==true){
+							simg[i].a=undefined;
+							simg[i].className="eman";
+							simg[i].style.zIndex=num;
+							img[i].className="y";
+							
+						}
+
+					}
+
+				};
+			
+		}
+	</script>
+</body>
+</html>

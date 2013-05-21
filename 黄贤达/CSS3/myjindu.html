@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	html,body{
+		height:100%;
+	}
+	body{
+		background: #333;
+	}
+	@-webkit-keyframes sparkle {
+	from {background-position: 0 0;}
+	to {background-position: 0 -64px;}
+}
+	.jindu{
+		position: relative;
+		display: block;
+		width: 560px;
+		height: 20px;
+		padding: 10px 20px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+		border-radius: 16px;
+		margin: 40px auto;
+		-webkit-box-shadow: 0px 4px 4px -4px rgba(255, 255, 255, 0.4),0px -3px 3px -3px rgba(255, 255, 255, 0.25),inset 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
+	}
+	.jin{
+		width:0px;
+		background: -moz-linear-gradient(top, rgba(24, 109, 226, 1) 0%, rgba(0, 69, 165, 1) 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(24, 109, 226, 1)), color-stop(100%,rgba(0, 69, 165, 1)));
+		background: -webkit-linear-gradient(top, rgba(24, 109, 226, 1) 0%,rgba(0, 69, 165, 1) 100%);
+		-webkit-box-shadow: 0px 0px 12px 0px rgba(24, 109, 226, 1),inset 0px 1px 0px 0px rgba(255, 255, 255, 0.45),inset 1px 0px 0px 0px rgba(255, 255, 255, 0.25),inset -1px 0px 0px 0px rgba(255, 255, 255, 0.25);
+		box-shadow: 0px 0px 12px 0px rgba(24, 109, 226, 1),inset 0px 1px 0px 0px rgba(255, 255, 255, 0.45),inset 1px 0px 0px 0px rgba(255, 255, 255, 0.25),inset -1px 0px 0px 0px rgba(255, 255, 255, 0.25);
+		position: absolute;
+		height: 16px;
+		top: 12px;
+		left: 22px;
+		-webkit-border-radius: 16px;
+		border-radius: 16px;
+		overflow: hidden;
+	}
+	.shu{
+		font-family: 'Aldrich', sans-serif;
+		position: absolute;
+		display: block;
+		width: 40px;
+		height: 30px;
+		line-height: 30px;
+		top: 38px;
+		left: 0px;
+		background: -webkit-linear-gradient(top, rgba(76, 76, 76, 1) 0%,rgba(38, 38, 38, 1) 100%);
+		text-align: center;
+		font-weight: bold;
+		font-size: 12px;
+		color: white;
+		text-align: center;
+		-webkit-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);
+		box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);
+		text-shadow: 0px -1px 0px black,0px 1px 1px black;
+	}
+	.shuj{
+		position: absolute;
+		display: block;
+		width: 12px;
+		height: 9px;
+		top: -9px;
+		left: 14px;
+		background: transparent;
+		overflow: hidden;
+	}
+	.shuj:before{
+		position: absolute;
+		display: block;
+		content: "";
+		width: 8px;
+		height: 8px;
+		top: 4px;
+		left: 2px;
+		border: 1px solid rgba(0, 0, 0, 0.5);
+		background: -webkit-linear-gradient(-45deg, rgba(86, 86, 86, 1) 0%,rgba(76, 76, 76, 1) 50%);
+		background: linear-gradient(-45deg, rgba(86, 86, 86, 1) 0%,rgba(76, 76, 76, 1) 50%);
+		-webkit-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+	.obj{
+		font-family: 'Aldrich', sans-serif;
+		line-height: 30px;
+		font-weight: bold;
+		font-size: 12px;
+		color: white;
+		text-align: center;
+		text-shadow: 0px -1px 0px black,0px 1px 1px black;
+	}
+	.jin span{
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 64px;
+		-webkit-border-radius: 16px;
+		border-radius: 16px;
+		top: 0;
+		left: 0;
+		background: url("12.png") 0 0;
+		-webkit-animation: sparkle 1500ms linear infinite;
+		opacity: 0.2;
+	}
+	</style>
+</head>
+<body>
+	<div class="jindu">
+		<div class="jin" data-perc="100">
+			<span></span>
+		</div>
+		<div class="shu">
+			<span class="shuj"></span>
+			<div class="obj">25%</div>
+		</div>
+	</div>
+	<script src="jquery.js"></script>
+	<script>
+		var strat=$(".jindu"),
+		    sp   =$(".jin span"),
+		    shul =$(".shu"),
+		    shu  =$(".shu div"),
+		    num  =0;
+		    $(".jin").animate({width:560},8000);
+		    shul.animate({left:560},8000);
+		     var t=setTimeout(function tab(){
+		    	num++;
+		    	$(".obj").html(num+"%")
+		    	t=setTimeout(tab,80)
+		    	if(num==100){
+		    		clearTimeout(t);
+		    	}
+		    },80);
+	</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>nav</title>
+	<style>
+	*{margin:0;padding:0;}
+		.nav{
+			width: 300px;
+			height: 300px;
+			/*-webkit-transform: translate3d(0, 0, 0);*/
+			background: #0DACC4;
+			margin: 30px auto;
+		}
+		.nav a{
+			height:50px;
+			display: block;
+			color: white;
+			text-align: center;
+			line-height: 50px;
+			text-decoration: none;
+			position: relative;
+			-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+		}
+		.stair-1 {
+			-webkit-transform:scale(1.10) translateX(24px);
+			transform:scale(1.10) translateX(24px);
+			box-shadow: 0 0 10px rgba(black, 0.75);
+			z-index: 3;
+			background: #40DBF2;
+		}
+		.stair-2 {
+			-webkit-transform:scale(1.07) translateX(12px);
+			transform:scale(1.07) translateX(12px);
+			box-shadow: 0 0 10px rgba(black, 0.5);
+			z-index: 2;
+			background: #10CEEA;
+		}
+	</style>
+</head>
+<body>
+	<div class="nav">
+		<a href="">nav1</a>
+		<a href="">nav2</a>
+		<a href="">nav3</a>
+		<a href="">nav4</a>
+		<a href="">nav5</a>
+		<a href="">nav6</a>
+	</div>
+	<script src="jquery.js"></script>
+	<script>
+		var nav = $(".nav").find("a");
+		for(var i=0;i<nav.length;i++){
+			nav.eq(i).on("mouseenter",function(){
+				$(this).addClass("stair-1");
+				$(this).next().addClass("stair-2");
+				$(this).prev().addClass("stair-2");
+			});
+			nav.eq(i).on("mouseleave",function(){
+				$(this).removeClass("stair-1").siblings().removeClass("stair-2");
+			});
+		}
+		
+	</script>
+</body>
+</html>
