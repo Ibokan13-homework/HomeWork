@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div:nth-child(1){
+			width:100px;
+			height:100px;
+			background-color:yellow;
+			border-radius:50%;
+			text-align:center;
+			line-height:100px;
+		}
+		div:nth-child(2){
+			width:200px;
+			height:100px;
+			background-color:yellow;
+			border-radius:50%;
+			text-align:center;
+			line-height:100px;
+		}
+		div:nth-child(3){
+			width:100px;
+			height:100px;
+			background-color:green;
+			border-radius:50% 0;
+			text-align:center;
+			line-height:100px;
+		}
+		div:nth-child(4){
+			width:0px;
+			height:0px;
+			border-radius:50%;
+			border:50px solid green;
+			border-right:50px solid transparent;
+		}
+		div:nth-child(5){
+			width:200px;
+			height:50px;
+			border-width:10px;
+			border-image:url(11.png) 30% stretch;
+			text-align:center;
+			line-height:50px;
+		}
+		div:nth-child(6){
+			width:200px;
+			height:100px;
+			border-width:19px;
+			border-image:url(11.png) 33% repeat;
+			text-align:center;
+			line-height:100px;
+		}
+		div:nth-child(7){
+			width:200px;
+			height:100px;
+			margin:30px;
+			border-width:10px;
+			box-shadow:0px 0px 0px 5px red,0px 0px 0px 10px green,0px 0px 0px 15px blue;
+		}
+		div:nth-child(8){
+			width:200px;
+			height:100px;
+			margin:30px;
+			border:10px solid green;
+			box-shadow:2px 0px 18px 4px red;
+		}
+		div:nth-child(9){
+			width:200px;
+			height:100px;
+			margin:30px;
+			border:1px solid blue;
+			text-shadow:0 0 5px green;
+			font-size:40px;
+			font-weight: bold;
+			background-color: black;
+		}
+		div:nth-child(10){
+			width:200px;
+			height:100px;
+			margin:30px;
+			border:1px solid blue;
+			text-shadow:0 0 5px green,0 0 5px blue,0 0 5px red;
+			font-size:40px;
+			font-weight: bold;
+			background-color: gray;
+		}
+		div:nth-child(11){
+			text-shadow: 
+			1px 1px 0 gray, 
+			2px 2px 0 gray, 
+			3px 3px 0 gray, 
+			4px 4px 0 gray, 
+			5px 5px 0 gray, 
+			6px 6px 0 gray; 
+			font-size:40px;
+		}
+		div:nth-child(12){
+			font-size:130px;font-weight:800;color:black;text-shadow:1px 0px gray, 1px 2px green, 3px 1px green, 2px 3px green, 4px 2px green, 4px 4px green, 5px 3px green, 5px 5px green, 7px 4px green, 6px 6px green, 8px 5px green, 7px 7px green, 9px 6px green, 9px 8px green, 11px 7px green;
+		}
+		div:nth-child(13){
+			font-size:50px;font-weight:800;color:white;text-shadow:1px 0px green, 1px 2px green, 3px 1px green, 2px 3px green, 4px 2px green, 4px 4px green, 5px 3px green,-1px 0px green, -1px 2px green, -3px 1px green, -2px 3px green, -4px 2px green, -4px 4px green, -5px 3px green;
+		}
+		div:nth-child(14){
+			 text-shadow:0 0 5px white, 0 0 10px white, 0 0 15px white, 0 0 40px blue, 0 0 70px blue;
+			 font-size:80px;
+			 color:white;
+			 font-weight: bold;
+			 width:300px;
+			 height:100px;
+			 text-align:center;
+		}
+		div:nth-child(15){
+			  color: gray;
+  			text-shadow: -1px -1px 0 white,1px 1px 0 #333,1px 1px 0 gray;
+			 font-weight: bold;
+			 width:300px;
+			 height:100px;
+			 text-align:center;
+			 font-size:100px;
+		}
+	</style>
+</head>
+<body>
+	<div>radius1</div>
+	<div>radius2</div>
+	<div>radius3</div>
+	<div>radius4</div>
+	<div>border-image1</div>
+	<div>border-image2</div>
+	<div>box-shadow1</div>
+	<div>box-shadow2</div>
+	<div>文本阴影1</div>
+	<div contentEditable="true">文本阴影2</div>
+	<div>文字阴影3</div>
+	<div>文字阴影4</div>
+	<div>文字阴影5</div>
+	<div>wenzi1</div>
+	<div>wenzi2</div>
+</body>
+</html>

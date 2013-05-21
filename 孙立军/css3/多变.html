@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			position:relative;
+			left:0;
+			top:0;
+			-webkit-transform-style:preserve-3d;
+		}
+		div{
+			font-size:20px;
+			font-weight:bold;
+			word-wrap:break-word;
+			width:200px;
+			height:80px;
+			position:absolute;
+			left:0;
+			top:0;
+			-webkit-transition:all 1s ease-in;
+
+		}
+		.two{
+			-webkit-transform:translateX(210px);
+		}
+		.three{
+			-webkit-transform:rotate(90deg) translate(150px,60px);
+		}
+		.four{
+			-webkit-transform:rotate(-15deg) translate(100px,200px) scale(1.5);
+			
+		}
+		.six{
+			-webkit-transform:translate(400px,100px) scale(0.8) rotate(30deg) rotateX(20deg);
+		}
+		.six b{
+			-webkit-transform:translateZ(30px);
+		}
+		b{
+			font-size:30px;
+			color:blue;
+		}
+		.five{
+			-webkit-transform: scale(0.001);
+			text-align:center;
+			line-height:80px;
+			top:-28%;
+			left:-15%;
+		}
+		.outer{
+			width:578px;
+			height:285px;
+			-webkit-transform-style:preserve-3d;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<div class="one">sjf<b>one</b>lsjfl;sjdfsjdflsjdfsjdfks</div>
+		<div class="two">sjf<b>two</b>lsjfl;sjdfsjdflsjdfsjdfks</div>
+		<div class="three">sjf<b>three</b>lsjfl;sjdfsjdflsjdfsjdfk</div>
+		<div class="four">
+			sjfl<b>four</b>sjfl;sjdfsjdflsjdfsjdfks
+			<div class="five">sjf<b>five</b>ls</div>
+		</div>
+		
+		<div class="six">sjf<b>six</b>lsjfl;sjdsjdflsjdfsjdfks</div>
+	</div>
+	<script src="jquery.js"></script>
+	<script>
+		var count=1;
+		setInterval(function(){
+	     	if (count%5==1) {
+		     	$(".outer").css({
+		     		"-webkit-transform":"scale(4) translate(300px,150px)"
+		     	})
+	     	};
+	     	if (count%5==2) {
+		     	$(".outer").css({
+		     		"-webkit-transform":"scale(4) translate(100px,150px)"
+		     	})
+	     	};
+	     	if (count%5==3) {
+		     	$(".outer").css({
+		     		"-webkit-transform":"scale(4) translate(100px,-200px) rotate(-90deg)"
+		     	})
+	     	};
+	     	if (count%5==4) {
+		     	$(".outer").css({
+		     		"-webkit-transform":"scale(3) translate(200px,0px) rotate(20deg)"
+		     	})
+	     	};
+	     	if (count%5==0) {
+		     	$(".outer").css({
+		     		"-webkit-transform":"scale(3) translate(-50px,150px) rotate(-30deg)"
+		     	})
+	     	};
+	     	count++;
+	     },2000)
+	</script>
+</body>
+</html>
