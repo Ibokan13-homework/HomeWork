@@ -55,6 +55,7 @@
 			imgs[i].style.left=bodyW/2-300+Math.random()*100+"px";
 			imgs[i].style.top=bodyH/2-300+Math.random()*100+"px";
 			imgs[i].style.webkitTransition="all 1s ease";
+			imgs[i].style.webkitTransform="rotate("+(-30+Math.random()*15)+"deg)";
 		};
 		for (var i = 0;i<imgs.length;i++) {
 			imgs[i].onclick=function(){
@@ -66,7 +67,7 @@
 							if(imgs[i]==this){
 								imgs[i].style.left=bodyW-600+Math.random()*100+"px";
 								imgs[i].style.top=50+Math.random()*50+"px";
-								imgs[i].style.webkitTransform="rotate(360deg)";
+								imgs[i].style.webkitTransform="rotate("+(360+Math.random()*15)+"deg)";
 								count++;
 								if((count/imgs.length)%2==1){
 									a=0;
@@ -80,7 +81,7 @@
 							if(imgs[i]==this){
 								imgs[i].style.left=bodyW/2-300+Math.random()*100+"px";
 								imgs[i].style.top=bodyH/2-300+Math.random()*100+"px";
-								imgs[i].style.webkitTransform="rotate(0deg)";
+								imgs[i].style.webkitTransform="rotate("+(-30+Math.random()*15)+"deg)";
 								count++;
 								if((count/imgs.length)%2==0){
 									a=1;
