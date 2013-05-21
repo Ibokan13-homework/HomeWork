@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html,body{
+			width:100%;
+			height:100%;
+			margin:0;
+			padding:0;
+		}
+		body{
+			background-color:black;
+			position:relative;
+			left:0;
+			top:0;
+		}
+		img{
+			position: absolute;
+			left:0;
+			top:0;
+			border:4px solid white;
+			box-shadow: 3px 3px 16px 2px white;
+		}
+	</style>
+</head>
+<body id="body">
+	<img src="images/1.png" alt="">
+	<img src="images/2.png" alt="">
+	<img src="images/3.png" alt="">
+	<img src="images/4.png" alt="">
+	<img src="images/5.png" alt="">
+	<img src="images/6.png" alt="">
+	<img src="images/7.png" alt="">
+	<img src="images/8.png" alt="">
+	<img src="images/9.png" alt="">
+	<img src="images/10.png" alt="">
+	<img src="images/11.png" alt="">
+	<img src="images/12.png" alt="">
+	<script>
+		var imgs=document.getElementsByTagName("img");
+		var bodyW=document.documentElement.clientWidth;
+		var bodyH=document.documentElement.clientHeight;
+		console.log(bodyW,bodyH)
+		var count=0,
+			a=1;
+		// var go=1;
+		/*window.onresize=function(){
+			bodyW=document.body.clientWidth;
+			bodyH=document.body.clientHeight;
+		}*/
+		var temp;
+		for (var i = 0;i<imgs.length;i++) {
+			imgs[i].style.left=bodyW/2-300+Math.random()*100+"px";
+			imgs[i].style.top=bodyH/2-300+Math.random()*100+"px";
+			imgs[i].style.webkitTransition="all 1s ease";
+		};
+		for (var i = 0;i<imgs.length;i++) {
+			imgs[i].onclick=function(){
+				if(temp==this){
+					return;
+				}else{
+					if(a==1){
+						for (var i = 0;i<imgs.length;i++) {
+							if(imgs[i]==this){
+								imgs[i].style.left=bodyW-600+Math.random()*100+"px";
+								imgs[i].style.top=50+Math.random()*50+"px";
+								imgs[i].style.webkitTransform="rotate(360deg)";
+								count++;
+								if((count/imgs.length)%2==1){
+									a=0;
+								}	
+								temp=this;
+							}
+						}		
+					}
+					else{	
+						for (var i = 0;i<imgs.length;i++) {
+							if(imgs[i]==this){
+								imgs[i].style.left=bodyW/2-300+Math.random()*100+"px";
+								imgs[i].style.top=bodyH/2-300+Math.random()*100+"px";
+								imgs[i].style.webkitTransform="rotate(0deg)";
+								count++;
+								if((count/imgs.length)%2==0){
+									a=1;
+								}
+								temp=this;
+							}
+						}	
+					}
+				}
+					
+			}
+		}
+	</script>
+</body>
+</html>
