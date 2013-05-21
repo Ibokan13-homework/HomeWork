@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.a{
+			width:300px;
+			height:600px;
+			border:1px solid red;
+			margin:0 auto;
+			-webkit-transition:-webkit-transform 2s ease,border 2s ease;
+		}
+		.a div{
+			width:100px;
+			height:100px;
+			border:1px solid red;
+		}
+		.a div:nth-child(n){
+			float:left;
+		}
+		.a div:nth-child(2n){
+			float:right;
+		}
+		.a:hover{
+			-webkit-transform:scaleX(-1);
+			border:10px dotted blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="a">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+	</div>
+</body>
+</html>

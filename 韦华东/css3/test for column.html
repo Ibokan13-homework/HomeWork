@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test for column</title>
+	<style type="text/css">
+		.column{
+			width: 500px;
+			height: 500px;
+			-webkit-column-count:4;
+			-webkit-column-width:100px;
+			-webkit-column-gap:normal;
+			-webkit-column-rule-color:lime;
+		}
+		.column div{
+			border:2px solid orange;
+			padding: 20px;
+		}
+		.column div:nth-child(1){
+			-webkit-column-span:all;
+			-webkit-column-count:4;
+			-webkit-column-width:100px;
+			-webkit-column-gap:normal;
+			-webkit-column-rule-color:lime;
+			-webkit-column-rule-width:10px;
+			-webkit-column-rule-style:ridge;
+		}
+	</style>
+</head>
+<body>
+	<div class='column'>
+		<div>我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!我是column1,I'm number one!</div>
+		<div>我是column2</div>
+		<div>我是column3</div>
+		<div>我是column4</div>
+		<div>我是column5</div>
+	</div>
+</body>
+</html>

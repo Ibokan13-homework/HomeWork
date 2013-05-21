@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="3dcss.css">
+</head>
+<body>
+    <div id="clock_3d">
+    	<div class="clock">
+    		<div class="clock-con hour1">
+    			<ul>
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+    		</div>
+    		<div class="clock-con hour2">
+    			<ul>
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+    		</div>
+    		<span class="split"></span>
+    		<div class="clock-con minute1">
+    			<ul>
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+            </div>
+            <div class="clock-con minute2">
+    			<ul>
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+    		</div>
+    		<span class="split"></span>
+    		<div class="clock-con" id="second1">
+    			<ul>
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+            </div>
+            <div class="clock-con" id="second2">
+    			<ul class="show">
+    				<li class="num-frist"></li>
+    				<li class="num-three"></li>
+    				<li class="num-two"></li>
+    				<li class="num-four"></li>
+    			</ul>
+    		</div>
+    	</div>
+    </div>
+    <script src="jquery.js"></script>
+    <script>
+        var h1 = $('.hour1 li'),
+            h1_ul = $('.hour1 ul'),
+            h2 = $('.hour2 li'),
+            h2_ul = $('.hour2 ul'),
+            m1 = $('.minute1 li'),
+            m1_ul = $('.minute1 ul'),
+            m2 = $('.minute2 li'),
+            m2_ul = $('.minute2 ul'),
+            s1 = $('#second1 li'),
+            s1_ul = $('#second1 ul'),
+            s2 = $('#second2 li');
+            setInterval(function(){
+                var now=new Date();
+                for (var i = 0; i<h1.length; i++) {
+                    h1.eq(i).html(parseInt(now.getHours()/10));
+                    h2.eq(i).html(now.getHours()%10);
+                    m1.eq(i).html(parseInt(now.getMinutes()/10));
+                    m2.eq(i).html(now.getMinutes()%10);
+                    s1.eq(i).html(parseInt(now.getSeconds()/10));
+                    s2.eq(i).html(now.getSeconds()%10);
+                    
+                    if (s2.eq(i).html()=="0") {
+                        s1_ul.addClass("show");
+                    }else{
+                        s1_ul.removeClass("show");
+                    };
+                    if (s2.eq(i).html()=="0"&&s1.eq(i).html()=="0") {
+                        m2_ul.addClass("show");
+                    }else{
+                        m2_ul.removeClass("show");
+                    };
+                    if (s2.eq(i).html()=="0"&&s1.eq(i).html()=="0"&&m2.eq(i).html()=="0") {
+                        m1_ul.addClass("show");
+                    }else{
+                        m1_ul.removeClass("show");
+                    };
+                    if (s2.eq(i).html()=="0"&&s1.eq(i).html()=="0"&&m2.eq(i).html()=="0"&&m1.eq(i).html()=="0") {
+                        h2_ul.addClass("show");
+                    }else{
+                        h2_ul.removeClass("show");
+                    };
+                    if (s2.eq(i).html()=="0"&&s1.eq(i).html()=="0"&&m2.eq(i).html()=="0"&&m1.eq(i).html()=="0"&&h2.eq(i).html()=="0") {
+                        h1_ul.addClass("show");
+                    }else{
+                        h1_ul.removeClass("show");
+                    };
+                };
+            },1000);
+    </script>
+</body>
+</html>

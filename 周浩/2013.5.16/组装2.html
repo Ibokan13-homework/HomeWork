@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding:0;
+			margin:0
+		}
+		body{
+			background-color: black;
+		}
+		div:nth-child(1){
+			height:200px;
+			margin:100px 0 0 200px;
+		}
+		div:nth-child(2){
+			margin:200px 0 0 200px;
+		}
+		ul{
+			float:left;
+			width:100px;
+			height:100px;
+			position: relative;
+			margin-left:50px;
+			list-style:none;
+			-webkit-transform-style:preserve-3d;
+			-webkit-animation:'move' 10s linear 0 infinite;
+		}
+		@-webkit-keyframes 'move' {
+			0% {-webkit-transform:rotateX(0deg) rotateY(10deg);}
+			100% {-webkit-transform:rotateX(360deg) rotateY(10deg);}
+		}
+		ul li{
+			width:100px;
+			height:100px;
+			line-height: 100px;
+			text-align: center;
+			color:white;
+			font-size: 40px;
+			font-weight: bold;
+			position: absolute;
+			border:1px solid red;
+			border-radius:10px;
+			-webkit-transition:all 1s ease;
+		}
+		div:nth-child(1) ul li:nth-child(1){
+			-webkit-transform:rotateX(0) translateZ(200px);
+		}
+		div:nth-child(1) ul li:nth-child(2){
+			-webkit-transform:rotateX(90deg) translateZ(200px);
+		}
+		div:nth-child(1) ul li:nth-child(3){
+			-webkit-transform:rotateX(180deg) translateZ(200px);
+		}
+		div:nth-child(1) ul li:nth-child(4){
+			-webkit-transform:rotateX(270deg) translateZ(200px);
+		}
+		div:nth-child(1) ul li:nth-child(5){
+			-webkit-transform:rotateY(90deg) translateZ(200px);
+		}
+		div:nth-child(1) ul li:nth-child(6){
+			-webkit-transform:rotateY(270deg) translateZ(200px);
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+	</div>
+	<div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+	</div>
+	<script src="jquery.js"></script>
+	<script>
+	var uls =$('ul');
+	uls.each(function (){
+		var lis = $(this).find('li');
+		$(document).on('click',function (){
+			lis.eq(0).css({
+				'-webkit-transform':'rotateX(0) translateZ(50px)'
+			})
+			lis.eq(1).css({
+				'-webkit-transform':'rotateX(90deg) translateZ(50px)'
+			})
+			lis.eq(2).css({
+				'-webkit-transform':'rotateX(180deg) translateZ(50px)'
+			})
+			lis.eq(3).css({
+				'-webkit-transform':'rotateX(270deg) translateZ(50px)'
+			})
+			lis.eq(4).css({
+				'-webkit-transform':'rotateY(90deg) translateZ(50px)'
+			})
+			lis.eq(5).css({
+				'-webkit-transform':'rotateY(270deg) translateZ(50px)'
+			})
+		});
+	});
+	</script>
+</body>
+</html>

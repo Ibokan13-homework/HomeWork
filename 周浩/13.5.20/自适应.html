@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html,body{
+			display : -webkit-box ;
+			-webkit-box-orient:vertical;
+			height:100%;
+			margin:0;
+		}
+		div:nth-child(n){
+			background-color:red;
+			-webkit-box-flex:2;
+		}
+		div:nth-child(2n){
+			background-color:black;
+			-webkit-box-flex:6;
+		}
+	</style>
+</head>
+<body>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+</body>
+</html>
