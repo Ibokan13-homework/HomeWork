@@ -1,0 +1,120 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Example</title>
+    <style>
+		p
+		{
+			padding:0;
+			margin:0;
+			text-indent:2em;
+		}
+        #src > *
+        {
+            float: left;
+        }
+		#src
+		{
+			overflow:hidden;
+		}
+        #target, #src > img
+        {
+            border: thin solid black;
+            padding: 2px;
+            margin: 4px;
+			width:220px;height:165px;
+        }
+        #target
+        {
+            height: 165px;
+            width: 688px;
+            text-align: center;
+			background:url("img/bg.png") center center no-repeat;
+        }
+        
+        #target > img
+        {
+            margin: 2px;
+			width:220px;
+			height:165px;
+        }
+        img.dragged
+        {
+            background-color: Orange;
+        }
+    </style>
+</head>
+<body>
+	<!--图片区-->
+    <div id="src">
+        <img draggable="true" id="airplane1" src="img/1.jpg" alt="airplane1" title="F-22战斗机"/>
+        <img draggable="true" id="airplane2" src="img/2.jpg" alt="airplane2" title="苏-35S超级侧卫"/>
+        <img draggable="true" id="airplane3" src="img/3.jpg" alt="airplane3" title="F-35闪电II"/>
+    </div>
+	<!--投放区-->
+	<div id="target"></div>
+	<!--标题区-->
+	图片标题：<p id="msg"></p>
+
+    <script>
+        var src = document.getElementById("src");
+        var target = document.getElementById("target");
+		var msg = document.getElementById("msg");
+		//保存被点击的对象图片
+		
+
+		// 拖拽目标的event
+		src.ondragstart = function (e) {
+			e.dataTransfer.setData("Text",e.target.id);
+			e.target.style.background = "red";
+			msg.innerHTML = e.target.title;
+			draggedID = e.target;
+
+		}
+		src.ondragend = function  (e) {
+			e.target.style.background = "white";
+		}
+
+		// 置放区的event
+		target.ondragenter = function (e) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+		target.ondragleave = function (e) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+		target.ondragover = function (e) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+		target.ondrop = function (e) {
+			// DOM操作中
+			// 创建标签：document.createElement();
+			// 插入标签：parent.appendChild(target);
+			// 插入标签：parent.insertBefore(target);
+			// 删除标签：removeChild();
+			// 查找标签：getElementById();
+			// jQuery:
+			// $(); appendTo,append,prependTo,prepend,before,wrap,wrapWith,$().remove(),$().empty();
+			// alert(1);
+			e.stopPropagation();
+			e.preventDefault();
+			var draggedID=document.getElementById(e.dataTransfer.getData("Text"));
+			// e.dataTransfer
+			// target.appendChild(draggedID)
+			// console.log(e.dataTransfer.files)
+			var file = e.dataTransfer.files[0];
+			target.innerHTML = "名字：" + file.name + "大小"+file.size / 1024+"K。<br/>类型"+file.type+"最后修改时间"+file.lastModifiedDate;
+
+			var img =document.createElement("img");
+			img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wUmlnaHRzPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvcmlnaHRzLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcFJpZ2h0czpNYXJrZWQ9IkZhbHNlIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkEyQjVFMzdBQjBCMzExRTJBRjYxREYyNkIwODI4OTM4IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkEyQjVFMzc5QjBCMzExRTJBRjYxREYyNkIwODI4OTM4IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUyBXaW5kb3dzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InV1aWQ6MGEwOTE0ODctZTkxMC0xMWUwLTgwNmEtYzcwZWI3NmNlNTNhIiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6NmU5M2U3OTctZTkwZi0xMWUwLTgwNmEtYzcwZWI3NmNlNTNhIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+QUSRzgAAAWZJREFUeNrMkk1LAlEUhu+5dz4c0/ELx4jSohKCInDVom0/oGVQrQL/hrt2/o1o06Zdtax2QUFUq4wSUXOcGVGbz3PTTYlI4K53dzg8vO97OMA5J9OIkik1NSCMzaZpWR2LI4qSpKXToij+5dBsNhuNhqqq6aTCnHe/fYevZRJ0JzvYtt3RK/mMy9tnENtSnHO0TESDZo8mA6ZpRpUP6D8OnABWILVJ0weEwFgk+Dlrq1rxqteaRkCQiF3jXp1jBEIaWy1ypwfyzDhglIvWyaX8bNNCnAQevnVpjg2W/DOIloqR/dJ4JDm/EdsD48vzXJdZRrjghxaXaCJlX12EtndHIiESgNHquq4j56lkMhwO/2b3HI4+CPIQ6J0eu0/3bG4e2y1xeY3N5pyHG+L7IMkEcWDCMguo1wkVlJ3DYQfv5RY7LZbIYNcAKkBcw3aNACW+y4OARhOgqNzpA2Msuw7/7/m+BRgAidWpxzuIsAEAAAAASUVORK5CYII=";
+			target.appendChild(img);
+		}
+
+
+
+    </script>
+
+</body>
+</html>

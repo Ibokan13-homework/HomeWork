@@ -1,0 +1,120 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Example</title>
+    <style>
+		p
+		{
+			padding:0;
+			margin:0;
+			text-indent:2em;
+		}
+        #src > *
+        {
+            float: left;
+        }
+		#src
+		{
+			overflow:hidden;
+		}
+        #target, #src > img
+        {
+            border: thin solid black;
+            padding: 2px;
+            margin: 4px;
+			width:220px;height:165px;
+        }
+        #target
+        {
+            height: 165px;
+            width: 688px;
+            text-align: center;
+			background:url("img/bg.png") center center no-repeat;
+        }
+        
+        #target > img
+        {
+            margin: 2px;
+			width:220px;
+			height:165px;
+        }
+        img.dragged
+        {
+            background-color: Orange;
+        }
+    </style>
+</head>
+<body>
+	<!--图片区-->
+    <div id="src">
+        <img draggable="true" id="airplane1" src="img/1.jpg" alt="airplane1" title="F-22战斗机"/>
+        <img draggable="true" id="airplane2" src="img/2.jpg" alt="airplane2" title="苏-35S超级侧卫"/>
+        <img draggable="true" id="airplane3" src="img/3.jpg" alt="airplane3" title="F-35闪电II"/>
+    </div>
+	<!--投放区-->
+	<div id="target"></div>
+	<!--标题区-->
+	图片标题：<p id="msg"></p>
+
+    <script>
+        var src = document.getElementById("src");
+        var target = document.getElementById("target");
+		var msg = document.getElementById("msg");
+		var objImg=document.createElement("img");
+		objImg.src="img/logo.png";
+
+		
+		/*
+		 *鼠标按下并移动时触发事件
+		 *保存当前图片对象id名
+		 *设置其背景色
+		 */
+        src.ondragstart = function (event) 
+		{
+			event.dataTransfer.setData("Text", event.target.id);
+			event.dataTransfer.setDragImage(objImg,20,20);
+			event.dataTransfer.effectAllowed="all";
+            event.target.className="dragged";
+        }
+		/*
+		 *鼠标触发dragstart后随即连续触发drag
+		 *获取当前被拖动对象的标题
+		 */
+		src.ondrag = function (event) 
+		{
+            msg.innerHTML = event.target.title;	
+        }
+		/*
+		 *取消事件的默认行为
+		 */
+		target.ondragenter = handleDrag;
+        target.ondragover = handleDrag; 
+		function handleDrag(event) {
+			event.preventDefault();
+			event.dataTransfer.dropEffect="copy";
+			target.style.border="2px purple dashed";
+		}
+		/*
+		 *取消投放区的背景
+		 *读取图像id名并通过id名获取对象
+		 *将其插入到投放区中
+		 */
+		target.ondrop = function (event) {
+            event.preventDefault();
+			target.style.background="none";
+			var droppedID = event.dataTransfer.getData("Text");
+            target.appendChild(document.getElementById(droppedID)); 
+			target.style.border="thin solid black";
+        }
+		target.ondragleave = function (event) {
+            event.preventDefault();
+			target.style.border="thin solid black";
+        }
+		src.ondragend = function (event) {
+            event.target.className="";
+        }
+		
+    </script>
+
+</body>
+</html>

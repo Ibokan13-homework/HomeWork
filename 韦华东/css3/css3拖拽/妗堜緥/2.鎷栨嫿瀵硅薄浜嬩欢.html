@@ -1,0 +1,82 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Example</title>
+    <style>
+       p
+		{
+			padding:0;
+			margin:0;
+			text-indent:2em;
+		}
+        #src > *
+        {
+            float: left;
+        }
+		#src
+		{
+			overflow:hidden;
+		}
+        #target, #src > img
+        {
+            border: thin solid black;
+            padding: 2px;
+            margin: 4px;
+			width:220px;height:165px;
+        }
+        #target
+        {
+            height: 165px;
+            width: 688px;
+            text-align: center;
+			background:url("img/bg.png") center center no-repeat;
+        }
+        
+        #target > img
+        {
+            margin: 2px;
+			width:220px;
+			height:165px;
+        }
+        img.dragged
+        {
+            background-color: Orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="src">
+
+		<img draggable="true" id="airplane1" src="img/1.jpg" alt="airplane1" title="F-22战斗机"/>
+        <img draggable="true" id="airplane2" src="img/2.jpg" alt="airplane2" title="苏-35S超级侧卫"/>
+        <img draggable="true" id="airplane3" src="img/3.jpg" alt="airplane3" title="F-35闪电II"/>
+
+
+    </div>
+	<div id="target"></div> 
+	图片标题：<p id="msg"></p>
+    <script>
+
+        var src = document.getElementById("src");
+        var target = document.getElementById("target");
+        var msg = document.getElementById("msg");
+
+        src.ondragstart = function (event) {
+
+            event.target.className="dragged";
+        }
+
+		src.ondrag = function (event) {
+
+            msg.innerHTML = event.target.title;
+        }
+
+        src.ondragend = function (event) {
+
+            event.target.className="";
+        }
+   
+    </script>
+
+</body>
+</html>

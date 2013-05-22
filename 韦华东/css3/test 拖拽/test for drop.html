@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test for drap</title>
+	<style type="text/css">
+		.box{
+			width: 500px;
+			height: 500px;
+			border-radius: 10px;
+			background-color: green;
+			float: left;
+		}
+		img{
+			float: left;
+			draggable:ture;
+		}
+		.clearfix:after{
+			content:' ';
+			clear:both;
+			zoom:1;
+		}
+	</style>
+</head>
+<body class='clearfix'>
+	<img id='pic1' src="a.jpg" alt='test' />
+	<img id='pic2' id='pic1' src="b.jpg" alt='test' />
+	<img id='pic3' src="c.jpg" alt='test' />
+	<div class='box' id='example'></div>
+	<script>
+	// 	var box=document.getElementById("example");
+	// 	var imgs=document.getElementsByTagName('body');
+	// if (window.navigator.userAgent.indexOf("MSIE 6")!=-1){
+	// 	alert('换浏览器')
+	// }
+	// var txt = "<p>Browser CodeName: " + navigator.appCodeName + "</p>";
+	// txt+= "<p>Browser Name: " + navigator.appName + "</p>";
+	// txt+= "<p>Browser Version: " + navigator.appVersion + "</p>";
+	// txt+= "<p>Cookies Enabled: " + navigator.cookieEnabled + "</p>";
+	// txt+= "<p>Platform: " + navigator.platform + "</p>";
+	// txt+= "<p>User-agent header: " + navigator.userAgent + "</p>";
+	// txt+= "<p>User-agent language: " + navigator.systemLanguage + "</p>";
+	// document.getElementById("example").innerHTML=txt;
+	// alert(txt);
+	var elem,
+		img=document.createElement('img');
+		img.src='creat.gif';
+		imgs[0].ondragstart=function(e){
+			e.target.style.border='10px solid lime';
+			// elem=e.target;
+			e.dataTransfer.setData('Text',e.target.id)
+			e.dataTransfer.setDragImage(img,0,0);
+		}
+		imgs[0].ondragend=function(e){
+			e.target.style.border='';
+		}
+		box.ondragenter=function(e){
+			e.stopPropagation();
+			e.preventDefault();
+		}
+		box.ondragleave=function(e){
+			e.stopPropagation();
+			e.preventDefault();
+		}
+		box.ondragover=function(e){
+			e.stopPropagation();
+			e.preventDefault();
+		}
+		box.ondrop=function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			// box.appendChild(elem);
+			box.appendChild(document.getElementById(e.dataTransfer.getData('Text')));
+			// var huangxianda=e.dataTransfer.files[0];
+			// box.innerHTML = "名字：" +huangxianda.name + "大小"+huangxianda.size / 1024+"K。<br/>类型"+huangxianda.type+"最后修改时间"+huangxianda.lastModifiedDate;
+
+		}
+	</script>
+</body>
+</html>

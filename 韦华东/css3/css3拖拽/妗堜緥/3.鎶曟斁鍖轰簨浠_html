@@ -1,0 +1,106 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Example</title>
+    <style>
+		p
+		{
+			padding:0;
+			margin:0;
+			text-indent:2em;
+		}
+        #src > *
+        {
+            float: left;
+        }
+		#src
+		{
+			overflow:hidden;
+		}
+        #target, #src > img
+        {
+            border: thin solid black;
+            padding: 2px;
+            margin: 4px;
+			width:220px;height:165px;
+        }
+        #target
+        {
+            height: 165px;
+            width: 688px;
+            text-align: center;
+			background:url("img/bg.png") center center no-repeat;
+        }
+        
+        #target > img
+        {
+            margin: 2px;
+			width:220px;
+			height:165px;
+        }
+        img.dragged
+        {
+            background-color: Orange;
+        }
+    </style>
+</head>
+<body>
+	<!--图片区-->
+    <div id="src">
+        <img draggable="true" id="airplane1" src="img/1.jpg" alt="airplane1" title="F-22战斗机"/>
+        <img draggable="true" id="airplane2" src="img/2.jpg" alt="airplane2" title="苏-35S超级侧卫"/>
+        <img draggable="true" id="airplane3" src="img/3.jpg" alt="airplane3" title="F-35闪电II"/>
+    </div>
+	<!--投放区-->
+	<div id="target"></div>
+	<!--标题区-->
+	图片标题：<p id="msg"></p>
+
+    <script>
+        var src = document.getElementById("src");
+        var target = document.getElementById("target");
+		var msg = document.getElementById("msg");
+		//保存被点击的对象图片
+		var draggedID=null;
+		/*
+		 *鼠标按下并移动时触发事件
+		 *保存当前图片对象
+		 *设置其背景色
+		 */
+        src.ondragstart = function (event) 
+		{
+			draggedID=event.target;
+            event.target.className="dragged";
+        }
+		/*
+		 *鼠标触发dragstart后随即连续触发drag
+		 *获取当前被拖动对象的标题
+		 */
+		src.ondrag = function (event) 
+		{
+            msg.innerHTML = event.target.title;	
+        }
+		/*
+		 *取消事件的默认行为
+		 */
+		target.ondragenter = handleDrag;
+        target.ondragover = handleDrag; 
+		function handleDrag(event) {
+			event.preventDefault();
+		}
+		/*
+		 *取消投放区的背景
+		 *将当前获取的图片对象插入到投放区中
+		 */
+		target.ondrop = function (event) {
+            event.preventDefault();
+			target.style.background="none";
+            target.appendChild(draggedID); 
+        }
+		src.ondragend = function (event) {
+            event.target.className="";
+        }
+    </script>
+
+</body>
+</html>
