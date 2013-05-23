@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			background: black;
+		}
+		.head{
+			width:222px;
+			height:100px;
+			margin:50px auto 15px;
+			position: relative;
+		}
+		.head div:nth-child(1),
+		.head div:nth-child(2){
+			width:6px;
+			height:35px;
+			background:red;
+			border-radius:3px 3px 0 0;
+			position: absolute;
+			top:-10px;
+		}
+		.head div:nth-child(1){
+			-webkit-transform:rotate(-30deg);
+			left:30px;
+		}
+		.head div:nth-child(2){
+			-webkit-transform:rotate(30deg);
+			right:30px;
+		}
+		.head div:nth-child(3){
+			width:222px;
+			height:100px;
+			border-radius:105px 105px 0px 0px/100px 100px 0px 0px;
+			background:red;
+			position: relative;
+		}
+		.head div:nth-child(3) div{
+			width:20px;
+			height:20px;
+			background: black;
+			border-radius:10px;
+			position: absolute;
+			top:42px;
+		}
+		.head div:nth-child(3) div:nth-child(1){
+			left:55px;
+		}
+		.head div:nth-child(3) div:nth-child(2){
+			right:55px;
+		}
+		.body{
+			width:222px;
+			height:185px;
+			background:red;
+			margin:0 auto;
+			border-radius:0 0 25px 25px;
+			position: relative;
+		}
+		.body div:nth-child(1),
+		.body div:nth-child(2){
+			width:50px;
+			height:150px;
+			background:red;
+			position: absolute;
+			top:0;
+			border-radius:25px;
+			-webkit-transform-origin:top;
+		}
+		.body div:nth-child(1){
+			left:-60px;	
+		}
+		.body div:nth-child(2){
+			right:-60px;
+		}
+		.body div:nth-child(3),
+		.body div:nth-child(4){
+			width:50px;
+			height:80px;
+			background:red;
+			border-radius:0 0 25px 25px;
+			position: absolute;
+			top:185px;
+		}
+		.body div:nth-child(3){
+			left:45px;
+		}
+		.body div:nth-child(4){
+			right:45px;
+		}
+		@-webkit-keyframes 'move1' {
+			0% {-webkit-transform:rotate(-10deg);}
+			50% {-webkit-transform:rotate(10deg);}
+			100% {-webkit-transform:rotate(-10deg);}
+		}
+		@-webkit-keyframes 'move2' {
+			0% {-webkit-transform:rotateZ(60deg);height:160px;}
+			50% {-webkit-transform:rotateZ(0);height:80px;}
+			100% {-webkit-transform:rotateZ(60deg);height:160px;}
+		}
+		@-webkit-keyframes 'move3' {
+			0% {-webkit-transform:rotateZ(0);height:80px;}
+			50% {-webkit-transform:rotateZ(-60deg);height:160px;}
+			100% {-webkit-transform:rotateZ(0);height:80px;}
+		}
+		@-webkit-keyframes 'move4' {
+			0% {-webkit-transform:translate(0,-30px);}
+			50% {-webkit-transform:translate(0,0);}
+			100% {-webkit-transform:translate(0,-30px);}
+		}
+		@-webkit-keyframes 'move5' {
+			0% {-webkit-transform:translate(0,0);}
+			50% {-webkit-transform:translate(0,-30px);}
+			100% {-webkit-transform:translate(0,0);}
+		}
+	</style>
+</head>
+<body>
+	<div class="head">
+		<div></div>
+		<div></div>
+		<div>
+			<div></div>
+			<div></div>
+		</div>
+	</div >
+	<!-- 头部 -->
+	<div class="body">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+	<!-- 身体 -->
+	<input type="button" value="开始">
+	<script src="jquery.js"></script>
+	<script>
+		var button =$('input'),
+			head = $('.head'),
+			left1 = $('.body div:nth-child(1)'),
+			right1 = $('.body div:nth-child(2)')
+			left2 = $('.body div:nth-child(3)'),
+			right2 = $('.body div:nth-child(4)'),
+			divs = $('div'),
+			num = 1;
+		button.on('click',function (){
+			num+=1;
+			if (num%2 == 0) {
+				divs.css({
+					'-webkit-animation-play-state' : 'running'
+					//运行动画
+				});
+				head.css({
+					"-webkit-animation" : "'move1' 1s linear 0 infinite"
+				});
+				left1.css({
+					"-webkit-animation" : "'move2' 1s linear 0 infinite"
+				});
+				right1.css({
+					"-webkit-animation" : "'move3' 1s linear 0 infinite"
+				});
+				left2.css({
+					"-webkit-animation" : "'move4' 1s linear 0 infinite"
+				});
+				right2.css({
+					"-webkit-animation" : "'move5' 1s linear 0 infinite"
+				});
+			}else{
+				divs.css({
+					"-webkit-animation-play-state" : "paused"
+					//停止动画
+				});
+			};
+		});
+	</script>
+</body>
+</html>
