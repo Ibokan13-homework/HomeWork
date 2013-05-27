@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width:400px;
+			height: 100px;
+		}
+		img{
+			border:4px solid purple;
+		}
+		div:nth-child(1){
+			text-align: center;
+			border:1px solid red;
+		}
+		div:nth-child(2){
+			border:1px solid green;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img draggable="true" src="1.png" id="img1" alt="" title="123">
+		<img draggable="true" src="2.png" id="img2" alt="" title="456">
+		<img draggable="true" src="3.png" id="img3" alt="" title="789">
+	</div>
+	<div></div>
+	图片标题：<p></p>
+	<script>
+		var divs = document.getElementsByTagName('div'),
+		 	p = document.getElementsByTagName('p'),
+		 	a;
+		 divs[0].ondragstart = function(e){
+		 	e.target.style.border = "4px solid red";
+		 	a = e.target;
+		 }
+		 divs[0].ondrag = function(e){
+		 	p[0].innerHTML = e.target.title;
+		 }
+		 divs[0].ondragend = function(e){
+		 	e.target.style.border = "4px solid purple";
+		 	
+		 }
+		 divs[1].ondragenter=function(e){
+		 	e.stopPropagation();
+			e.preventDefault();
+		 }
+		 divs[1].ondragleave=function(e){
+		 	e.stopPropagation();
+			e.preventDefault();
+		 }
+		 divs[1].ondragover=function(e){
+		 	e.stopPropagation();
+			e.preventDefault();
+		 }
+		 divs[1].ondrop=function(e){
+		 	e.stopPropagation();
+			e.preventDefault();
+		 	divs[1].appendChild(a);
+		 }
+	</script>
+</body>
+</html>
