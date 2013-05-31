@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test for video</title>
+	<style type="text/css">
+		#time{
+			display: block;
+			width: 150px;
+			height: 20px;
+			border: 2px solid red;
+		}
+	</style>
+</head>
+<body>
+	<video id='video' width='500px'  controls autoplay preload="metadata" loop poster="xxx.png">
+		<source src='天降奇兵A.mp4' type='video/mp4'></source>
+	</video>
+	<br />
+	<progress id='pro' max='100' value='50'></progress>
+	<input type='button' value='暂停/播放' id='pause'/>
+	<div id='time'></div>
+	<input type='button' value='静音/音量' id='silent' />
+	<script type="text/javascript">
+		var pause=document.getElementById('pause'),
+			silent=document.getElementById('silent'),
+			video=document.getElementById('video');
+		video.addEventListener('timeupdate',function(){
+			 var times=document.getElementById('time');
+			times.innerHTML=Math.round(video.currentTime)+'/'+Math.floor(video.duration)+'seconds';
+			var prog=document.getElementById('pro');
+			prog.value=video.currentTime/video.duration*100;
+		},false);
+		pause.onclick=function(){ 
+			if (video.paused) 
+			{
+				video.play();
+				pause.value="暂停";
+			}
+		 else 
+			{
+				video.pause();
+				pause.value="播放";
+			}
+		};
+		silent.onclick=function(){
+			if(video.muted){
+				video.muted=false;
+				silent.value='静音';
+			}else{
+				video.muted=true;
+				silent.value='音量';
+			}
+			// video.muted = !video.muted;
+			// video.volume=0.5;
+		};
+		localStorage
+	</script>
+</body>
+</html>
