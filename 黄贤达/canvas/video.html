@@ -1,0 +1,109 @@
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title>果粉APP</title>
+		<style type="text/css">
+		#play{
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+
+	<input type="button" value='开始播放' id="play">
+	<input type="button" value='暂停播放' id="pause">
+	<div id="time">视频读取中....</div>
+	<progress max="200" value="0" id="progress"></progress>
+	<input type="text" id="ctime"><input type="button" id="ctimebtn">
+	<input type="button" id="muted" value="静音">
+	<video src='a.mp4' width="500px" id="video" poster="http://pic28.nipic.com/20130501/11528256_114215551106_2.gif" controls></video>
+
+	<script type="text/javascript">
+		var video = document.getElementById('video');
+		var play = document.getElementById('play');
+		var pause = document.getElementById('pause');
+		var time = document.getElementById('time');
+		var progress = document.getElementById('progress');
+		var ctime = document.getElementById('ctime');
+		var ctimebtn = document.getElementById('ctimebtn');
+		var muted = document.getElementById('muted');
+		
+		// paused
+		play.onclick = function () {
+			if (video.paused) {
+				video.play();
+			}else{
+				video.pause();
+			}
+		}
+		// alert(video.duration)
+		video.addEventListener("timeupdate",function () {
+			// alert(video.duration)
+			time.innerHTML = video.currentTime + "/" + video.duration;
+			var prg = video.currentTime / video.duration * 200; // 0.1
+			progress.value = prg;
+		},false);
+
+		video.addEventListener("loadedmetadata",function () {
+			time.innerHTML = "00:00/" + video.duration;
+		},false);
+
+		ctimebtn.onclick = function () {
+			var tim = ctime.value;
+			video.currentTime = tim;
+		}
+
+		muted.onclick = function () {
+			// video.muted = !video.muted;
+			video.volume = 0.5; // 音量变化范围0-1.
+		}
+
+		// 倒计时中，10000ms，=》天，时分秒。
+
+
+
+		// add  Event  Listener   增加事件监听器    DOM2级
+		// onclick = function	DOM1级事件
+		// $().on('click',function(){});$().bind();$().live(); 兼容的
+		// <div onclick ="alert(1)"></div>  DOM0级事件绑定
+
+		// window.onload = function(){} 缺点：onclick只能绑定一个，只有一个生效
+		// jQuery，on()。能绑定很多个，都能按顺序执行。
+		// addEventListener(type, function, capture);
+
+		
+		// play.addEventListener("click",function(event){
+		// 	alert(1)
+
+		// },false);
+		// play.addEventListener("click",function(event){
+		// 	alert(2)
+
+		// },false);
+
+		// document.body.addEventListener("click",function(event){
+		// 	alert(3)
+
+		// },true);
+		// play.addEventListener("click",function(event){
+		// 	alert(4)
+
+		// },true);
+		// 同一个标签上面，按绑定顺序执行
+
+		play.attachEvent("onclick",function () {
+			
+		});
+
+		// removeEventListener
+		// detachEvent
+		// 冒泡，捕获
+
+
+				
+
+		
+	</script>
+</body>
+</html>

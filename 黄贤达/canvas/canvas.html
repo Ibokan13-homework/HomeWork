@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<canvas width=400 height=400 id="can" ></canvas>
+	<script>
+		var a=document.getElementById('can');
+		a.style.top="300px";
+		a.style.left="300px";
+		var tex=a.getContext('2d');
+//		
+		tex.beginPath();
+		tex.strokeStyle='#333';
+		tex.arc(200,200,200,0,Math.PI*2,true);
+		tex.closePath();
+		tex.fillStyle="#FF0000";
+		tex.fill();
+		tex.stroke();
+//
+		tex.beginPath();
+		tex.moveTo(200,0);
+		tex.lineTo(200,50);
+		tex.closePath();
+//
+		tex.beginPath();
+		tex.moveTo(200,0);
+		tex.lineTo(200,50);
+		tex.closePath();
+		tex.strokeStyle='#333';
+		tex.stroke();
+		//
+		tex.translate(200,200);
+		tex.scale(1,1);
+		tex.rotate(Math.PI/2);
+		tex.translate(-200,-200);
+		tex.beginPath();
+		tex.moveTo(200,0);
+		tex.lineTo(200,50);
+		tex.closePath();
+		tex.strokeStyle='#333';
+		tex.stroke();
+		tex.translate(200,200);
+		tex.scale(1,1);
+		tex.rotate(Math.PI);
+		tex.translate(-200,-200);
+		tex.beginPath();
+		tex.moveTo(200,0);
+		tex.lineTo(200,50);
+		tex.closePath();
+		tex.strokeStyle='#333';
+		tex.stroke();
+		tex.translate(200,200);
+		tex.scale(1,1);
+		tex.rotate(Math.PI/2*3);
+		tex.translate(-200,-200);
+		tex.beginPath();
+		tex.moveTo(200,0);
+		tex.lineTo(200,50);
+		tex.closePath();
+		tex.strokeStyle='#333';
+		tex.stroke();
+		tex.translate(200,200);
+		tex.scale(1,1);
+		tex.rotate(Math.PI*2);
+		tex.translate(-200,-200);
+		tex.beginPath();
+		tex.moveTo(200,0);
+		tex.lineTo(200,50);
+		tex.closePath();
+		tex.strokeStyle='#333';
+		tex.stroke();
+		for (var i = 0; i < 12; i++) {
+			tex.translate(200,200);
+			tex.scale(1,1);
+			tex.rotate(Math.PI/6);
+			tex.translate(-200,-200);
+			tex.beginPath();
+			tex.moveTo(200,0);
+			tex.lineTo(200,25);
+			tex.closePath();
+			tex.strokeStyle='blue';
+			tex.stroke();
+		};
+		tex.beginPath();
+		tex.moveTo(200,200);
+		tex.bezierCurveTo(100,200,200,100,100,100);
+		tex.stroke();
+	</script>	
+</body>
+</html>
