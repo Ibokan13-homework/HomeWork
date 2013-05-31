@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div style="width:400px;height:400px;margin:0 auto;">
+		<canvas id="a" width=400 height=400></canvas>
+	</div>
+	<script>
+		var a = document.getElementById('a');
+		var b = a.getContext("2d");
+		b.translate(200,200);
+		for (i=0; i<12; i++){
+			b.rotate(Math.PI*2/12);
+			b.rect(-2,150,10,40);
+			b.fillStyle = "red";
+			b.fill();
+		}
+		for (var i = 0; i < 66; i++) {
+			b.rotate(Math.PI*2/12/5);
+			b.rect(0,160,2,20);
+			b.fillStyle = "red";
+			b.fill();
+		};
+	</script>
+</body>
+</html>
