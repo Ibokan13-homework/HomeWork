@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width=500 height=500></canvas>
+</body>
+<script>
+	var canvas=document.getElementById("canvas");
+	var cxt=canvas.getContext("2d");
+	
+
+
+
+
+
+
+
+
+	cxt.beginPath();
+	cxt.moveTo(0,0);
+	cxt.lineTo(100,0)
+	cxt.lineTo(100,100);
+	cxt.lineTo(0,100);
+	cxt.closePath();
+	cxt.fillStyle="red";
+	cxt.fill();
+
+
+
+	cxt.beginPath();
+	cxt.moveTo(20,20);
+	cxt.lineTo(120,20)
+	cxt.lineTo(120,120);
+	cxt.lineTo(20,120);
+	cxt.closePath();
+	cxt.fillStyle="gray";
+	cxt.fill();
+
+
+
+	cxt.beginPath();
+	cxt.moveTo(40,40);
+	cxt.lineTo(140,40)
+	cxt.lineTo(140,140);
+	cxt.lineTo(40,140);
+	cxt.closePath();
+	cxt.fillStyle="black";
+	cxt.fill();
+
+	cxt.beginPath();
+	cxt.moveTo(60,60);
+	cxt.lineTo(160,60)
+	cxt.lineTo(160,160);
+	cxt.lineTo(60,160);
+	cxt.closePath();
+	cxt.fillStyle="purple";
+	cxt.fill();
+
+
+
+
+	cxt.fillStyle="#FF0000";
+	cxt.beginPath();
+	cxt.arc(100,50,50,15,Math.PI*2,true);
+	cxt.closePath();
+	cxt.fill();
+
+</script>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas时钟</title>
+</head>
+<body>
+	<canvas id="canvas" width=500 height=500></canvas>
+</body>
+<script>
+	var canvas=document.getElementById("canvas");
+	var cxt=canvas.getContext("2d");
+	
+	// var grd=cxt.createLinearGradient(100,100,300,300);
+	// grd.addColorStop(0,"#FF0000");
+	// grd.addColorStop(1,"#00FF00");
+	// cxt.fillStyle=grd;
+	// cxt.arc(200,200,100,0,Math.PI*2,true);
+	// cxt.fill()
+	// 
+	// 
+	var gradient=cxt.createLinearGradient(100,100,300,300);
+		gradient.addColorStop("0","magenta");
+		gradient.addColorStop("0.5","blue");
+		gradient.addColorStop("1.0","red");
+
+// 用渐变进行填充
+	cxt.save();
+	cxt.strokeStyle=gradient;
+	cxt.lineWidth=20;
+	cxt.arc(200,200,100,0,Math.PI*2,true);
+	cxt.stroke();
+
+	cxt.translate(200,200);
+
+
+
+
+	for(var i=0;i<=12;i++){
+		cxt.rotate(Math.PI/6)
+		cxt.beginPath();
+		cxt.moveTo(0,-100);
+		cxt.lineTo(0,-70);
+		cxt.strokeStyle="yellow";
+		cxt.lineWidth=10;
+		cxt.stroke();
+		cxt.closePath();
+	}
+	cxt.restore();
+
+
+
+	
+	cxt.translate(200,200);
+	var a=0;
+	function sec(){
+		// cxt.save();
+		// cxt.clearRect(0,0,10,100)
+		
+		a+=1;
+		// cxt.clearRect(0,0,500,500);
+		// alert(1)
+		// alert(cxt.rotate)
+		// cxt.fillRect(-5,-100,10,100)
+		// cxt.clearRect(0,0,500,500)
+		// alert(a
+		cxt.rotate(Math.PI/30);
+		cxt.fillRect(-5,-100,10,100);
+		
+	}
+	// cxt.restore();
+	
+		
+	setInterval(sec,1000);
+</script>
+</html>

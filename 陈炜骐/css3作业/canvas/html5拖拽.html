@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>html5拖拽</title>
+	<style>
+	#outer{
+		width:800px;
+		border:1px solid black;
+		text-align: center;
+	}
+		#outer img{
+			width:220px;
+			height:165px;
+			border:2px solid black;
+		}
+		#enter img{
+			width:220px;
+			height:165px;
+		}
+		#enter{
+			border:1px solid black;
+			text-align: center;
+			width:800px;
+			height:200px;
+			background: url(images/拖拽/bg.png) 50% 50% no-repeat;
+		}
+		#outer .dragclass{
+			border:2px solid red;
+		}
+	</style>
+
+
+</head>
+<body>
+	<div id="outer">
+		<img draggable="true" id="fly1" src="images/拖拽/1.jpg" alt="飞机1">
+		<img draggable="true" id="fly2" src="images/拖拽/2.jpg" alt="飞机2">
+		<img draggable="true" id="fly3" src="images/拖拽/4.jpg" alt="飞机3">
+	</div>
+	<div id="enter"></div>
+	<div id="title"></div>
+
+
+	<script>
+		var outer=document.getElementById("outer");
+		var enter=document.getElementById("enter");
+		var title=document.getElementById("title");
+		var logo=document.createElement("img");
+		logo.src="images/拖拽/logo.png"
+		outer.ondragstart=function(event){
+			event.dataTransfer.setDragImage(logo,70,30);
+			event.dataTransfer.setData("Text",event.target.id);
+			event.target.className="dragclass";
+			title.innerHTML=event.target.alt;
+		}
+		outer.ondragend=function(event){
+			event.target.className="";
+			title.innerHTML="";
+		}
+		enter.ondragleave = function (event) {
+            event.preventDefault();
+            // event.stopPropagation();
+        }
+        enter.ondragover = function (event) {
+            event.preventDefault();
+            // event.stopPropagation();
+        }
+        enter.ondragenter= function (event) {
+            event.preventDefault();
+            // event.stopPropagation();
+        }
+		enter.ondrop=function(event){
+			var aaaa=event.dataTransfer.getData("Text")
+			
+			event.preventDefault();
+			// event.stopPropagation();
+			enter.appendChild(document.getElementById(aaaa));
+		}
+		// enter.ondropend=function(event){
+		// 	enter.appendChild(aaaa)
+		// }
+	</script>
+</body>
+</html>
