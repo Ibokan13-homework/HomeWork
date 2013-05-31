@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#outer{
+			width:500px;
+			height:400px;
+			background-color: black;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="outer">
+		<video src="a.mp4" width="500px" height="400px" controls id="video" poster="8.jpg">
+			<source src="a.mp4" id="source"></source>
+		</video>
+	</div>
+	
+	<br />
+	<input type="button" id="btn" value="play/pause">
+	<input type="button" id="vol" value="静音">
+	<input type="button" value="重新播放" id="again">
+	<span id="time">ddd</span>
+	<progress max="100" value="50" id="pro"></progress>
+	<br />
+	<input type="text" id="value">
+	<input type="button" value="改变进度" id="change">
+	视频地址：<input type="text" id="src">
+	<br />
+	<input type="button" value="放大" id="big">
+	<input type="button" value="正常" id="normal">
+	<input type="button" value="缩小" id="small">
+	<input type="color">
+	<input type="range" mim="1" max="10" id="range" value="8">
+	<script>
+		var btn=document.getElementById("btn");
+		var video=document.getElementById("video");
+		var time=document.getElementById("time");
+		var pro=document.getElementById("pro");
+		var vol=document.getElementById("vol");
+		var value=document.getElementById("value");
+		var change=document.getElementById("change");
+		var again=document.getElementById("again");
+		var big=document.getElementById("big");
+		var normal=document.getElementById("normal");
+		var small=document.getElementById("small");
+		var src=document.getElementById("src");
+		var range=document.getElementById("range");
+		src.style.width="230px";
+		btn.onclick=function(){
+			if(video.paused){
+				video.play();
+			}else{
+				video.pause();
+			}
+		}
+		video.addEventListener("timeupdate",function(){
+			time.innerHTML=parseInt(video.currentTime)+"/"+parseInt(video.duration);
+			pro.value=video.currentTime/video.duration*100;
+			src.value=video.currentSrc;
+			
+		},false)
+		vol.onclick=function(){
+			video.muted=!video.muted;
+		}
+		change.onclick=function(){
+			video.currentTime=value.value;
+		}
+		again.onclick=function(){
+			if (video.ended) {
+				video.currentTime=0;
+				video.play();
+			};
+		}
+		small.onclick=function(){
+			video.style.width="400px";
+			video.style.height="300px";
+			outer.style.width="400px";
+			outer.style.height="300px";
+		}
+		big.onclick=function(){
+			video.style.width="600px";
+			video.style.height="500px";
+			outer.style.width="600px";
+			outer.style.height="500px";
+		}
+		normal.onclick=function(){
+			video.style.width="500px";
+			video.style.height="400px";
+			outer.style.width="500px";
+			outer.style.height="400px";
+		}
+		range.onpropertychange=function(){
+			alert(range.value)
+		}
+	</script>
+</body>
+</html>

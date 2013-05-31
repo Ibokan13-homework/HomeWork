@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<script>
+		localStorage.setItem("key1","1111");
+		localStorage.setItem("key2","2222");
+		localStorage.setItem("key3","33333");
+		localStorage.setItem("key3","key3修改为4444");
+		var key3=localStorage.getItem("key3");
+		var divs=document.getElementsByTagName("div");
+		divs[0].innerHTML="key3对应的值："+key3;
+		divs[1].innerHTML="第一个键是："+localStorage.key(0);
+		divs[2].innerHTML="第一个键对应的值是："+localStorage.getItem(localStorage.key(0));
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			position:absolute;
+			left:0;
+			top:0;
+		}
+		canvas{
+			position:absolute;
+			left:0;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div id="hour"></div>
+	<div id="min"></div>
+	<script>
+		var hour=document.getElementById("hour");
+		var min=document.getElementById("min");
+		function auto(obj,n,deg,width,height){
+			var str="";
+			for (var i = 0;i<n;i++) {
+				str+="<canvas id='canvas"+i+"' width=200 height=200 ></canvas>";
+			};
+			obj.innerHTML=str;
+			var cans=obj.getElementsByTagName("canvas");
+			for (var i = 0;i<cans.length;i++) {
+				cans[i].style.webkitTransform="rotate("+deg*i+"deg)"
+				var ctx=cans[i].getContext("2d");
+				ctx.beginPath();
+				ctx.lineWidth=width;
+				ctx.lineCap="round";
+				ctx.moveTo(95,3);
+				ctx.lineTo(95,height);
+				ctx.stroke();
+			};
+		}
+		auto(hour,12,30,5,20);
+		auto(min,60,6,3,10);
+	</script>
+</body>
+</html>

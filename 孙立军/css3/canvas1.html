@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width=400 height=250 style="background-color:gray"></canvas>
+	<canvas id="canvas1" width=400 height=250 style="background-color:gray"></canvas>
+	<canvas id="canvas2" width=400 height=250 style="background-color:gray"></canvas>
+	<canvas id="canvas3" width=400 height=250 style="background-color:black"></canvas>
+	<script>
+		var canvas=document.getElementById("canvas");
+		var ctx=canvas.getContext("2d");
+		ctx.arc(100,100,50,0,Math.PI*2,true);
+		ctx.arc(90,100,40,0,Math.PI*2,true);
+		ctx.arc(80,100,30,0,Math.PI*2,true);
+		ctx.arc(70,100,20,0,Math.PI*2,true);
+		ctx.arc(60,100,10,0,Math.PI*2,true);
+		ctx.fillStyle="white";
+		ctx.fill();
+		ctx.strokeStyle="black";
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(200,100);
+		ctx.lineTo(230,48);
+		ctx.lineTo(260,100);
+		ctx.closePath();
+		ctx.stroke();
+
+		ctx.rect(270,50,100,50);
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.moveTo(230,110);
+		ctx.lineTo(310,162);
+		ctx.lineTo(210,162);
+		ctx.lineTo(290,110);
+		ctx.lineTo(260,192);
+		
+		
+		ctx.closePath();
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.moveTo(230,110);
+		ctx.lineTo(290,110);
+		ctx.lineTo(310,162);
+		ctx.lineTo(260,192);
+		ctx.lineTo(210,162);
+		ctx.closePath();
+		ctx.stroke();
+
+		var canvas1=document.getElementById("canvas1");
+		var ctx1=canvas1.getContext("2d");
+		ctx1.scale(1.2,1.2);
+		ctx1.fillRect(125,0,40,20);
+		ctx1.beginPath();
+		ctx1.moveTo(125,0);
+		ctx1.lineTo(125,110);
+		ctx1.closePath();
+		ctx1.stroke();
+		ctx1.fillRect(75,110,100,30);
+		ctx1.fillRect(50,140,150,30);
+		ctx1.beginPath();
+		ctx1.moveTo(0,170);
+		ctx1.lineTo(250,170);
+		ctx1.lineTo(200,220);
+		ctx1.lineTo(50,220);
+		ctx1.closePath();
+		ctx1.fill();
+		ctx1.fillStyle="blue";
+		ctx1.strokeStyle="red";
+		ctx1.font="30px 楷体";
+		// ctx1.textAlign="left";
+		// ctx1.textBaseline="bottom";
+		ctx1.strokeText("东方公主号",60,200,200);
+		ctx1.fillText("东方公主号",60,200,200);
+
+
+		var canvas=document.getElementById("canvas2");
+		var ctx2=canvas.getContext("2d");
+		ctx2.translate(0,-50);
+		ctx2.rotate(Math.PI/36);
+		ctx2.rotate(Math.PI/36);
+		/*
+		ctx2.rotate(Math.PI/36);
+		ctx2.rotate(Math.PI/36);
+		执行两遍，相当于执行一次ctx2.rotate(Math.PI/36*2);
+		*/
+
+		ctx2.moveTo(200,70);
+		ctx2.bezierCurveTo(100,0,100,170,200,200);
+		ctx2.moveTo(200,70);
+		ctx2.bezierCurveTo(300,0,300,170,200,200);
+		ctx2.fillStyle="red";
+		ctx2.fill();
+
+		var canvas=document.getElementById("canvas3");
+		var ctx3=canvas.getContext("2d");
+		ctx3.save();
+		ctx3.fillStyle="white";
+		ctx3.fillRect(192,30,17,160);
+		ctx3.beginPath();
+		ctx3.moveTo(192,60);
+		ctx3.lineTo(80,90);
+		ctx3.lineTo(75,110);
+		ctx3.lineTo(192,95);
+		ctx3.lineTo(330,110);
+		ctx3.lineTo(325,95);
+		ctx3.lineTo(210,60);
+		ctx3.closePath();
+		ctx3.fill();
+		ctx3.restore();
+		ctx3.beginPath();
+		ctx3.moveTo(192,160);
+		ctx3.lineTo(150,180);
+		ctx3.lineTo(145,190);
+		ctx3.lineTo(192,185);
+		ctx3.lineTo(212,185);
+		ctx3.lineTo(255,190);
+		ctx3.lineTo(250,180);
+		ctx3.lineTo(212,160);
+		ctx3.closePath();
+		ctx3.fill();
+		ctx3.fillStyle="gray";
+		ctx3.moveTo(200,10);
+		ctx3.bezierCurveTo(188,15,192,40,200,160);
+		ctx3.moveTo(200,10);
+		ctx3.bezierCurveTo(212,15,212,40,200,160);
+		ctx3.fill();
+		
+		ctx3.save();
+		ctx3.beginPath();
+		ctx3.strokeStyle="gray";
+		ctx3.lineWidth=5;
+		ctx3.moveTo(172,55);
+		ctx3.lineTo(172,75);
+		ctx3.moveTo(182,50);
+		ctx3.lineTo(182,70);
+
+		ctx3.moveTo(152,90);
+		ctx3.lineTo(152,110);
+		ctx3.moveTo(142,95);
+		ctx3.lineTo(142,115);
+
+		ctx3.moveTo(220,50);
+		ctx3.lineTo(220,70);
+		ctx3.moveTo(230,55);
+		ctx3.lineTo(230,75);
+
+		ctx3.moveTo(250,90);
+		ctx3.lineTo(250,110);
+		ctx3.moveTo(260,95);
+		ctx3.lineTo(260,115);
+		ctx3.closePath();
+		ctx3.stroke();
+		ctx3.restore();
+	</script>
+</body>
+</html>

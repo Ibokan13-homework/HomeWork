@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#outer4{
+			width:100px;
+			height:100px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="outer1">
+		<div id="outer2">
+			<div id="outer3">
+				<div id="outer4"></div>
+			</div>
+		</div>
+	</div>
+	<script src="jquery.js"></script>
+	<script>
+		var outer4=document.getElementById("outer4");
+		var outer3=document.getElementById("outer3");
+		var outer2=document.getElementById("outer2");
+		var outer1=document.getElementById("outer1");
+
+		/*outer4.onclick=function(){
+			alert(4)
+		}
+		outer3.onclick=function(){
+			alert(3)
+		}
+		outer2.onclick=function(){
+			alert(2)
+		}
+		outer1.onclick=function(){
+			alert(1)
+		}*/
+		outer4.addEventListener("click",function(){
+			alert(44)
+		},true)
+		outer4.addEventListener("click",function(){
+			alert(4)
+		},false)
+		outer3.addEventListener("click",function(){
+			alert(3)
+		},false)
+		outer2.addEventListener("click",function(){
+			alert(2)
+		},false)
+		outer1.addEventListener("click",function(){
+			alert(1)
+		},false)
+		outer4.addEventListener("click",function(){
+			alert(44)
+		},true)
+	</script>
+</body>
+</html>

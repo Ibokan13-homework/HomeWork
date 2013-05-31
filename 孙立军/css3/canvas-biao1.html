@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width=200 height=200  style="border:1px solid red"></canvas>
+	<script>
+		var canvas=document.getElementById("canvas");
+		var ctx=canvas.getContext("2d");
+		ctx.translate(100,100);
+		for (var i = 0;i<12;i++) {
+			ctx.rotate(Math.PI/6);
+			ctx.fillRect(0,70,10,30);
+			ctx.stroke();
+		};
+		for (var i = 0;i<60;i++) {
+			ctx.rotate(Math.PI/30);
+			ctx.fillRect(0,85,5,15);
+			ctx.stroke();
+		};
+	</script>
+</body>
+</html>
