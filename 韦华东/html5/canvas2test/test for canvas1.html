@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas width=500 height=500 id='canvas1'></canvas>
+	<canvas width=500 height=500 id='canvas2'></canvas>
+	<script type="text/javascript">
+		var canone=document.getElementById('canvas1'),
+			canonec=canone.getContext('2d'),
+			cantwo=document.getElementById('canvas2'),
+			cantwoc=cantwo.getContext('2d');
+			canone.style.border='2px solid gray';
+			// canone.style.background='gray';
+			// canonec.fillStyle='lime';
+			// canonec.shadowColor='green';
+			// canonec.shadowBlur=30;
+			// canonec.shadowOffsetX=0;
+			// canonec.shadowOffsetY=0;
+			// canonec.fillRect(0,0,140,100);
+			// // canonec.globalCompositeOperation='destination-out';
+			// canonec.fillStyle='red';
+			// canonec.fillRect(20,20,100,200);
+			//draw images
+			// var img=new Image();
+			// // var img=document.createElement('img');
+			// img.src='bb.jpg';
+			// img.onload=function(){
+			// 	canonec.drawImage(img,524,268,500,500,150,150,300,300);
+			// 	canonec.drawImage(img,0,0,100,100);
+			// 	// canonec.createPattern(img,"repeat-x");
+			// 	canonec.rect(300,300,100,100);
+			// 	canonec.clip();
+			// };
+			//plane's body
+			canonec.beginPath();
+			canonec.moveTo(200,200);
+			canonec.quadraticCurveTo(250,50,300,200);
+			canonec.lineTo(450,300);
+			canonec.lineTo(450,350);
+			canonec.lineTo(300,300);
+			canonec.lineTo(270,500);
+			canonec.lineTo(230,500);
+			canonec.lineTo(200,300);
+			canonec.lineTo(50,350);
+			canonec.lineTo(50,300);
+			canonec.lineTo(200,200);
+			canonec.closePath();
+			canonec.fillStyle='black';
+			canonec.fill();
+			//plane's tail
+			canonec.beginPath();
+			canonec.moveTo(250,500);
+			canonec.lineTo(200,500);
+			canonec.lineTo(200,470);
+			canonec.lineTo(250,450);
+			canonec.lineTo(300,470);
+			canonec.lineTo(300,500);
+			canonec.closePath();
+			canonec.fillStyle='black';
+			canonec.fill();
+			//fire
+			canonec.beginPath();
+			canonec.linejoin="round";
+			canonec.moveTo(100,300);
+			canonec.quadraticCurveTo(120,450,140,300);
+			canonec.closePath();
+			canonec.fill();
+
+			canonec.beginPath();
+			canonec.linejoin="round";
+			canonec.moveTo(400,300);
+			canonec.quadraticCurveTo(380,450,360,300);
+			canonec.closePath();
+			canonec.fill();
+
+			cantwoc.beginPath();
+			cantwoc.moveTo(250,250);
+			cantwoc.bezierCurveTo(50,150,150,450,250,450);
+			cantwoc.moveTo(250,250);
+			cantwoc.bezierCurveTo(450,150,350,450,250,450);
+			cantwoc.closePath();
+			cantwoc.fillStyle='red';
+			cantwoc.fill();
+			
+	</script>
+</body>
+</html>

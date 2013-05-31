@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id='canvas' width=500 height=500>	
+	</canvas>
+	<canvas id='canvas1' width=500 height=500 style='border:1px solid red;'>	
+	</canvas>
+</body>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+		    can=canvas.getContext('2d');
+		    canvas1=document.getElementById('canvas1'),
+		    canone=canvas1.getContext('2d');
+		// can.beginPath();
+		// can.moveTo(0.5,0.5);
+		// can.lineTo(100.5,0.5);
+		// can.lineTo(100.5,100.5);
+		// can.lineTo(0.5,100.5);
+		// can.closePath();
+		// can.fillStyle='#0f0';
+		// can.fill();
+		// can.beginPath();
+		// can.moveTo(50.5,50.5);
+		// can.lineTo(150.5,50.5);
+		// can.lineTo(150.5,150.5);
+		// can.lineTo(50.5,150.5);
+		// can.closePath();
+		// can.fillStyle='#f00';
+		// can.fill();
+		// can.beginPath();
+		// can.moveTo(100,100);
+		// can.lineTo(200,100);
+		// can.lineTo(200,200);
+		// can.lineTo(100,200);
+		// can.closePath();
+		// can.fillStyle='#00f';
+		// can.fill();
+
+		//五角星
+		can.beginPath();
+		can.moveTo(250,0);
+		can.lineTo(400,500);
+		can.lineTo(0,200);
+		can.lineTo(500,200);
+		can.lineTo(100,500);
+		can.lineTo(250,0);
+		can.closePath();
+		can.strokeStyle='#00f';
+		can.stroke();
+		can.beginPath();
+		can.arc(250,250,250,0,Math.PI*2,true);
+		can.stroke();
+
+		//未完成时钟
+		canone.beginPath();
+		canone.arc(250,250,250,0,Math.PI*2,true);
+		canone.fillStyle='gray';
+		canone.fill();
+		canone.beginPath();
+		canone.arc(250,250,10,0,Math.PI*2,true);
+		canone.fillStyle='black';
+		canone.fill();
+
+		canone.beginPath();
+		canone.moveTo(240,0);
+		canone.lineTo(250,50);
+		canone.lineTo(260,0);
+		canone.closePath();
+		canone.fillStyle='#00f';
+		canone.fill();
+		//指针
+		canone.beginPath();
+		canone.moveTo(250,250);
+		canone.bezierCurveTo(250,150,150,250,150,150);
+		canone.strokeStyle='#00f';
+		canone.stroke();
+		//分针
+		canone.beginPath();
+		canone.moveTo(250,250);
+		canone.lineTo(350,150);
+		canone.lineTo(320,150);
+		canone.lineTo(350,150);
+		canone.lineTo(350,180);
+		canone.strokeStyle='lime';
+		canone.stroke();
+		//时针
+		canone.beginPath();
+		canone.moveTo(250,250);
+		canone.lineTo(250,450);
+		canone.lineTo(220,420);
+		canone.lineTo(250,450);
+		canone.lineTo(280,420);
+		canone.lineTo(250,450);
+		canone.strokeStyle='#00f';
+		canone.stroke();
+
+
+		canone.translate(250,250);
+		canone.rotate(Math.PI/2);
+		canone.translate(-250,-250);
+
+
+		canone.beginPath();
+		canone.moveTo(240,0);
+		canone.lineTo(250,50);
+		canone.lineTo(260,0);
+		canone.closePath();
+		canone.fillStyle='#00f';
+		canone.fill();
+
+		canone.translate(250,250);
+		canone.rotate(Math.PI);
+		canone.translate(-250,-250);
+
+
+		canone.beginPath();
+		canone.moveTo(240,0);
+		canone.lineTo(250,50);
+		canone.lineTo(260,0);
+		canone.closePath();
+		canone.fillStyle='#00f';
+		canone.fill();
+
+		canone.translate(250,250);
+		canone.rotate(Math.PI*3/2);
+		canone.translate(-250,-250);
+
+
+		canone.beginPath();
+		canone.moveTo(240,0);
+		canone.lineTo(250,50);
+		canone.lineTo(260,0);
+		canone.closePath();
+		canone.fillStyle='#00f';
+		canone.fill();
+	</script>
+</html>
