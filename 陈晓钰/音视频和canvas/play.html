@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+    .out{
+        position:relative;
+    }
+    #div{
+        position:absolute;
+        left:150px;
+        top:80px;
+        width:200px;
+        height:200px;
+        background-color:red;
+        display:none;
+    }
+</style>
+</head>
+<body>
+    <div class="out">
+    	<video src="as.ogg" width="800px" height="600px" id="video" poster="http://pic28.nipic.com/20130501/11528256_114215551106_2.gif">Video player not available</video>
+        <div id="div"></div>
+    </div>
+    <input type="button" value="play" id="btn" />
+    <span id="time">0</span>/<span id="time1">00</span>
+    <progress max="200" value="0" id="progress"></progress>
+    <script type="text/javascript">
+    	var video=document.getElementById("video");
+    	var btn=document.getElementById("btn");
+    	var time=document.getElementById("time");
+        var div=document.getElementById("div");
+    	var time1=document.getElementById("time1");
+    	var progress = document.getElementById('progress');
+    	//点击事件
+    	btn.onclick=function(){
+    		if(video.paused){
+    			video.play();
+    			btn.value="paused";
+    		}else{
+    			video.pause();
+    			btn.value="paly";
+    		}
+    	}
+        video.addEventListener("timeupdate",function () {
+            //更新播放时间(写入总的播放时间)
+            time1.innerHTML=parseInt(video.duration);
+            //更新当前时间
+            time.innerHTML=parseInt(video.currentTime);
+            var prg = video.currentTime / video.duration * 200;
+            progress.value = prg;
+            if(video.paused){
+                div.style.display="block";
+            }
+        },false);
+
+           
+       
+    	
+    	
+    </script>
+</body>
+</html>

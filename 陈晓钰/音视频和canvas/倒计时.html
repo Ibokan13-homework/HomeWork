@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset='utf-8' />
+</head>
+
+<body>
+	<div id="div"></div>
+	<script>
+		var div=document.getElementById("div");
+	function a(){
+		var timedate=new Date(2013,6,20); 
+		var now=new	Date();
+		var date=timedate.getTime() - now.getTime();
+		var time=parseInt(date/(1000 * 60 * 60 * 24));
+		var hour=parseInt(date / (1000*3600)) - (time * 24)  
+		var minute=parseInt(date / (1000*60)) - (time * 24 *60) - (hour * 60)   
+		var second=parseInt(date / (1000)) - (time*24 *60*60) - (hour * 60 * 60) - (minute*60) 
+		div.innerHTML="现在离2013年6月30日还有:"+time +"天"+hour+"时"+minute+"分"+second+"秒";
+		//document.write("现在离2013年6月30日还有:"+time +"天"+hour+"时"+minute+"分"+second+"秒");
+	}
+		setInterval(a,1000);
+		
+	</script>
+</body>
+</html>
